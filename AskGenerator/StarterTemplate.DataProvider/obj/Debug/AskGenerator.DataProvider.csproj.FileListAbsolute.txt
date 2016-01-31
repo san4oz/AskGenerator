@@ -1,0 +1,12 @@
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Debug\StarterTemplate.DataProvider.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Debug\StarterTemplate.DataProvider.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Debug\StarterTemplate.Business.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Debug\StarterTemplate.Business.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Debug\AskGenerator.DataProvider.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Debug\StarterTemplate.DataProvider.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Debug\StarterTemplate.DataProvider.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Debug\StarterTemplate.DataProvider.dll.config
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Debug\EntityFramework.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Debug\EntityFramework.xml
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Debug\EntityFramework.SqlServer.xml

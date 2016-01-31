@@ -1,0 +1,4 @@
+C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.Business\bin\Debug\StarterTemplate.Business.dll
+C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.Business\bin\Debug\StarterTemplate.Business.pdb
+C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.Business\obj\Debug\StarterTemplate.Business.dll
+C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.Business\obj\Debug\StarterTemplate.Business.pdb

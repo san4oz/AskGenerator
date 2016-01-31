@@ -1,0 +1,4 @@
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\bin\Debug\StarterTemplate.Business.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\bin\Debug\StarterTemplate.Business.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Debug\StarterTemplate.Business.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Debug\StarterTemplate.Business.pdb
