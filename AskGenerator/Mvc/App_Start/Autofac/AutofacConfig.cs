@@ -36,12 +36,14 @@ namespace AskGenerator.App_Start.Autofac
             builder.RegisterType<StudentProvider>().As<IStudentProvider>();
             builder.RegisterType<TeacherProvider>().As<ITeacherProvider>();
             builder.RegisterType<GroupProvider>().As<IGroupProvider>();
+            builder.RegisterType<QuestionProvider>().As<IQuestionProvider>();
 
 
             //Entity managers section
             builder.RegisterType<StudentManager>().As<IStudentManager>();
             builder.RegisterType<TeacherManager>().As<ITeacherManager>();
             builder.RegisterType<GroupManager>().As<IGroupManager>();
+            builder.RegisterType<QuestionManager>().As<IQuestionManager>();
         }
     }
 }

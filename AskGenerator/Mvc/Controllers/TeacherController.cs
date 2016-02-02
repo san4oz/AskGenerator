@@ -18,6 +18,7 @@ namespace AskGenerator.Controllers
         {
             var teachers = Site.TeacherManager.All();
             var viewModel = Mapper.Map<IList<Teacher>, IList<TeacherViewModel>>(teachers);
+
             return View(viewModel);
         }
 
@@ -33,11 +34,7 @@ namespace AskGenerator.Controllers
         {           
             var teacher = Mapper.Map<TeacherViewModel, Teacher>(viewModel.Teacher);
 
-            var groups = Site.GroupManager.GetById(viewModel.Teacher.SelectedGroups);
-
-            teacher.Groups = groups;
-
-            Site.TeacherManager.Create(teacher);
+            Site.TeacherManager.Create(teacher, viewModel.Teacher.SelectedGroups);
 
             return RedirectToAction("List");
         }

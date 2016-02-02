@@ -9,6 +9,8 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
 {
     public interface ITeacherProvider : IBaseProvider<Teacher>
     {
-        List<Student> GetRelatedStudents(string teacherId);        
+        List<Student> GetRelatedStudents(string teacherId);
+
+        bool Create(Teacher teacher, ICollection<string> ids);
     }
 }

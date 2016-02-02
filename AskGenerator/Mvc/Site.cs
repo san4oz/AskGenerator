@@ -17,6 +17,8 @@ namespace AskGenerator
 
         public static IGroupManager GroupManager { get { return Get<IGroupManager>(); } }
 
+        public static IQuestionManager QuestionManager { get { return Get<IQuestionManager>(); } }
+
         #region private
         private static T Get<T>()
         {

@@ -1629,6 +1629,8 @@
     <Content Include="Css\Theme\vendors\uniform\www\CNAME" />
     <Content Include="Css\Theme\vendors\uniform\www\downloads\.keep" />
     <Content Include="Css\Theme\vendors\uniform\www\stylesheets\multiple-themes.scss" />
+    <None Include="Properties\PublishProfiles\askgenerator - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\askgenerator - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -1681,6 +1683,9 @@
     <Content Include="Views\Teacher\Create.cshtml" />
     <Content Include="Views\Teacher\List.cshtml" />
     <Content Include="Views\Teacher\Update.cshtml" />
+    <Content Include="Views\Teacher\Students.cshtml" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
