@@ -17,5 +17,10 @@ namespace AskGenerator.Business.Managers
         {
             return ((ITeacherProvider)Provider).GetRelatedStudents(teacherId);
         }
+
+        public bool Create(Teacher teacher, ICollection<string> ids)
+        {
+            return ((ITeacherProvider)Provider).Create(teacher, ids);
+        }
     }
 }

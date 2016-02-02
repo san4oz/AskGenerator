@@ -57,6 +57,18 @@ namespace AskGenerator.App_Start
                 defaults: new { controller = "Group", action = "create" }
             );
 
+            routes.MapRoute(
+               name: "question/create",
+               url: "question/create",
+               defaults: new { controller = "Question", action = "Create" }
+           );
+
+            routes.MapRoute(
+              name: "question/list",
+              url: "question/list",
+              defaults: new { controller = "Question", action = "List" }
+          );
+
          
             routes.MapRoute(
                 name: "Default",

@@ -29,6 +29,18 @@ namespace AskGenerator.DataProvider.Providers
             });
         }
 
+        public bool Create(Teacher teacher, ICollection<string> ids)
+        {
+            return Execute(context =>
+                {
+                    var groups = context.Groups.Include(x => x.Students).Include(x => x.Teachers).Where(x => ids.Contains(x.Id)).ToList();
+                    teacher.Groups = groups;
+                    context.Teachers.Add(teacher);
+                    context.SaveChanges();
+                    return true;
+                });
+        }
+
         public override List<Teacher> All()
         {
             return Execute(context =>
@@ -45,7 +57,9 @@ namespace AskGenerator.DataProvider.Providers
             {
                 var teacher = context.Teachers.Include(x => x.Groups).Single(x => x.Id == id);
 
-                return context.Students.Where(s => teacher.Groups.Contains(s.Group)).ToList();
+                var ids = teacher.Groups.Select(x => x.Id).ToList();
+
+                return context.Students.Include(g => g.Group).Include(x => x.Group.Students).Include(x => x.Group.Teachers).Where(s => ids.Contains(s.Group.Id)).ToList();
             });
         }
     }

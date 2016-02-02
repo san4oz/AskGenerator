@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseProvider.cs" />
     <Compile Include="Providers\GroupProvider.cs" />
+    <Compile Include="Providers\QuestionProvider.cs" />
     <Compile Include="Providers\StudentProvider.cs" />
     <Compile Include="Providers\TeacherProvider.cs" />
   </ItemGroup>

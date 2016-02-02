@@ -2,3 +2,12 @@ C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\bi
 C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\bin\Debug\StarterTemplate.Business.pdb
 C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Debug\StarterTemplate.Business.dll
 C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Debug\StarterTemplate.Business.pdb
+D:\My_Development\AskGenerator\AskGenerator\StarterTemplate.Business\bin\Debug\StarterTemplate.Business.dll
+D:\My_Development\AskGenerator\AskGenerator\StarterTemplate.Business\bin\Debug\StarterTemplate.Business.pdb
+D:\My_Development\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Debug\AskGenerator.Business.csprojResolveAssemblyReference.cache
+D:\My_Development\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Debug\StarterTemplate.Business.dll
+D:\My_Development\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Debug\StarterTemplate.Business.pdb
+C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.Business\bin\Debug\StarterTemplate.Business.dll
+C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.Business\bin\Debug\StarterTemplate.Business.pdb
+C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Debug\StarterTemplate.Business.dll
+C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Debug\StarterTemplate.Business.pdb

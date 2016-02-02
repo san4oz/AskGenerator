@@ -10,5 +10,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
     public interface ITeacherManager : IBaseManager<Teacher>
     {
         List<Student> GetRelatedStudents(string teacherId);
+
+        bool Create(Teacher teacher, ICollection<string> ids);
     }
 }
