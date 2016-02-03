@@ -110,6 +110,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\838a27e8-af8a-43b6-ae95-333036406301.jpg" />
+    <Content Include="Content\Images\a8705c90-6d61-41ab-a695-675f545a5f86.png" />
+    <Content Include="Content\Images\c3804989-8152-4fb6-b029-0172a1a4a95a.jpg" />
+    <Content Include="Content\Images\e8ae5ddf-a652-43d1-854e-dc4443dc0b2d.jpg" />
+    <Content Include="Content\Images\f13de797-35d5-4fa4-8c15-5fe849404270.jpg" />
+    <Content Include="Content\Images\f3201a7f-8a4e-486a-97bd-65e7e12f74a4.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Css\bootstrap-theme.css" />
     <Content Include="Css\bootstrap-theme.min.css" />
@@ -1629,8 +1635,8 @@
     <Content Include="Css\Theme\vendors\uniform\www\CNAME" />
     <Content Include="Css\Theme\vendors\uniform\www\downloads\.keep" />
     <Content Include="Css\Theme\vendors\uniform\www\stylesheets\multiple-themes.scss" />
-    <None Include="Properties\PublishProfiles\askgenerator - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\askgenerator - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\askgenerator - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\askgenerator - Web Deploy %282%29.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -1695,7 +1701,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Fonts\" />
-    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mvc\AskGenerator.Mvc.csproj">

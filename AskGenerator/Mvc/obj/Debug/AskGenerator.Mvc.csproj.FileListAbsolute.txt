@@ -163,3 +163,9 @@ C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\Mvc\bin\Debug\System.Net
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\Mvc\obj\Debug\AskGenerator.Mvc.csprojResolveAssemblyReference.cache
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\Mvc\obj\Debug\Mvc.dll
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\Mvc\obj\Debug\Mvc.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\Mvc\bin\Debug\Common.Logging.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\Mvc\bin\Debug\Pechkin.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\Mvc\bin\Debug\NReco.PdfGenerator.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\Mvc\bin\Debug\NReco.PdfGenerator.xml
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\Mvc\bin\Debug\AskGenerator.Generator.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\Mvc\bin\Debug\AskGenerator.Generator.pdb

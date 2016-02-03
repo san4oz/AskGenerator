@@ -146,3 +146,5 @@ C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate\bin\Star
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate\obj\Debug\AskGenerator.Web.csprojResolveAssemblyReference.cache
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate\obj\Debug\StarterTemplate.dll
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate\obj\Debug\StarterTemplate.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate\bin\AskGenerator.Generator.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate\bin\AskGenerator.Generator.pdb

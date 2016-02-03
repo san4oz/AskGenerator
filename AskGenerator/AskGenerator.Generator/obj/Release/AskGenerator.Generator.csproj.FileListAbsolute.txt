@@ -1,0 +1,7 @@
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\AskGenerator.Generator.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\AskGenerator.Generator.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\StarterTemplate.Business.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\StarterTemplate.Business.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\AskGenerator.Generator\obj\Release\AskGenerator.Generator.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\AskGenerator.Generator\obj\Release\AskGenerator.Generator.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\AskGenerator.Generator\obj\Release\AskGenerator.Generator.pdb

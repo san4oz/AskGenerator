@@ -10,3 +10,15 @@ C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.DataProv
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Release\AskGenerator.DataProvider.csprojResolveAssemblyReference.cache
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Release\StarterTemplate.DataProvider.dll
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Release\StarterTemplate.DataProvider.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Release\StarterTemplate.DataProvider.dll.config
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Release\StarterTemplate.DataProvider.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Release\StarterTemplate.DataProvider.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Release\EntityFramework.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Release\StarterTemplate.Business.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Release\StarterTemplate.Business.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Release\EntityFramework.xml
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Release\AskGenerator.DataProvider.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Release\StarterTemplate.DataProvider.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Release\StarterTemplate.DataProvider.pdb

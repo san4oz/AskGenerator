@@ -2,3 +2,7 @@ C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.Business
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.Business\bin\Release\StarterTemplate.Business.pdb
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Release\StarterTemplate.Business.dll
 C:\Users\o.kotvytskyi\Desktop\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Release\StarterTemplate.Business.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\bin\Release\StarterTemplate.Business.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\bin\Release\StarterTemplate.Business.pdb
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Release\StarterTemplate.Business.dll
+C:\Users\Alex\Source\Repos\AskGenerator\AskGenerator\StarterTemplate.Business\obj\Release\StarterTemplate.Business.pdb

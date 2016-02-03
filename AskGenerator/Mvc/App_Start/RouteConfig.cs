@@ -39,11 +39,16 @@ namespace AskGenerator.App_Start
            );
 
             routes.MapRoute(
+                name: "teacher/pdf",
+                url: "teacher/pdf",
+                defaults: new { controller = "Teacher", action = "GeneratePDF" }
+            );
+
+            routes.MapRoute(
                 name: "teacher/create",
                 url: "teacher/create",
                 defaults: new { controller = "Teacher", action = "create" }
             );
-
 
             routes.MapRoute(
                 name: "group/list",
