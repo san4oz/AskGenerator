@@ -1,5 +1,4 @@
-﻿@using System.Web.Optimization
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -10,8 +9,6 @@
     @Styles.Render("~/Content/select2")
     @Styles.Render("~/Css/Site.css")
     @Scripts.Render("~/bundles/modernizr")
-
-
 
 </head>
 <body class="bootstrap-admin-with-small-navbar">
@@ -58,6 +55,10 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Script/select2")
     @Scripts.Render("~/Scripts/Teacher.js")
+
     @RenderSection("Scripts", required: false)
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=uk"
+        async defer>
+    </script>
 </body>
 </html>

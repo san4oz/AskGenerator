@@ -95,6 +95,12 @@ namespace AskGenerator.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!await CheckCaptcha())
+                {
+                    ModelState.AddModelError("", "Підтвердіть, що ви не робот.");
+                    return View(model);
+                }
+
                 model.Email = TransformEmail(model.Email);
                 var user = Map<RegistrationModel, User>(model);
                 IdentityResult result = await Manager.CreateAsync(user, model.Password);

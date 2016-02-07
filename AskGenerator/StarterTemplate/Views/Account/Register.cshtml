@@ -11,7 +11,7 @@
                 <div class="text-muted bootstrap-admin-box-title">Реєстрація</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", id="form" }))
                 {
                     @Html.AntiForgeryToken()
                     <fieldset>
@@ -20,11 +20,18 @@
                         <div class="form-group">
                             @Html.EditorForModel()
                         </div>
-                        <button type="submit" class="btn btn-primary">Сохранить</button>
-                        <button type="reset" class="btn btn-default">Очистить</button>
+                        
                     </fieldset>
+                    <div class="form-group">
+                        <div id="g-recaptcha"></div>
+                        <button type="submit" id="sendBtn" disabled="disabled" class="btn btn-primary">Зберігти</button>
+                        <button type="reset" class="btn btn-default">Очистити форму</button>
+                    </div>
                 }
             </div>
         </div>
     </div>
 </div>
+@section scripts{
+    @Scripts.Render("~/Scripts/captcha.js")
+}
