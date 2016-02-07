@@ -167,6 +167,7 @@
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Helpers\IdentityExtensions.cs" />
     <Compile Include="Helpers\Mailer.cs" />
     <Compile Include="Helpers\MailsData.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -178,6 +179,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CreateStudentViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\RegistrationModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />

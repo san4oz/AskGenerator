@@ -11,12 +11,15 @@ using AskGenerator.DataProvider;
 using AskGenerator.ViewModels;
 using AskGenerator.Business.Entities;
 using AskGenerator.Helpers;
+using Microsoft.Owin.Security;
 
 namespace AskGenerator.Controllers
 {
     public class AccountController : BaseController
     {
         const string ConirmRegistrationMail = "ConirmRegistration";
+
+        #region Managers
         protected UserManager Manager
         {
             get
@@ -25,11 +28,62 @@ namespace AskGenerator.Controllers
             }
         }
 
-        public ActionResult Login( )
+        private IAuthenticationManager AuthenticationManager
         {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+        #endregion
+
+        #region Login
+        public ActionResult Login(string returnUrl)
+        {
+            if(User.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
+            ViewBag.returnUrl = returnUrl;
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Email = TransformEmail(model.Email);
+                var user = await Manager.FindByEmailAsync(model.Email);
+                if (user == null || !Manager.CheckPassword(user, model.Password))
+                {
+                    ModelState.AddModelError("Password", "Невірна електронна адреса чи пароль.");
+                }
+                else
+                {
+                    var identity = await Manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    AuthenticationManager.SignOut();
+                    AuthenticationManager.SignIn(new AuthenticationProperties
+                    {
+                        IsPersistent = model.IsPersistent
+                    }, identity);
+
+                    if (string.IsNullOrEmpty(returnUrl))
+                        return RedirectToAction("Index", "Home");
+                    return Redirect(returnUrl);
+                }
+            }
+            ViewBag.returnUrl = returnUrl;
+            return View(model);
+        }
+
+        public ActionResult Logout()
+        {
+            AuthenticationManager.SignOut();
+            return RedirectToAction("Login");
+        }
+        #endregion
+
+        #region Register
         public ActionResult Register( )
         {
             return View();
@@ -60,12 +114,6 @@ namespace AskGenerator.Controllers
             return View(model);
         }
 
-        protected string TransformEmail(string email)
-        {
-            var t = email.ToLower().Split('@');
-            return t[0].Replace(".", string.Empty) + '@' + t[1];
-        }
-
         public async Task<ActionResult> Confirm(string id, string param = null)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -80,8 +128,15 @@ namespace AskGenerator.Controllers
 
             return View();
         }
+        #endregion
 
-        Dictionary<string, string> CreateConfirmTags(string id)
+        protected string TransformEmail(string email)
+        {
+            var t = email.ToLower().Split('@');
+            return t[0].Replace(".", string.Empty) + '@' + t[1];
+        }
+
+        protected Dictionary<string, string> CreateConfirmTags(string id)
         {
             var result = new Dictionary<string, string>();
             result.Add("siteURL", "http://google.com.ua");
