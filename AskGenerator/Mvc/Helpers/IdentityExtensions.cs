@@ -15,6 +15,11 @@ namespace System
             return identity.GetValue("GroupId");
         }
 
+        public static string GetEmail(this IIdentity identity)
+        {
+            return identity.GetValue(ClaimTypes.Email);
+        }
+
         private static string GetValue(this IIdentity identity, string name)
         {
             if (identity == null)
