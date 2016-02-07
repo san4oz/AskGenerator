@@ -1,1 +1,0 @@
-﻿<%@ Application Codebehind="Application.cs" Inherits="AskGenerator.Mvc.Application" Language="C#" %>

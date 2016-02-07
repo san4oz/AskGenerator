@@ -77,7 +77,7 @@ namespace AskGenerator.App_Start
          
             routes.MapRoute(
                 name: "Default",
-                url: "",
+                url: "{controller}/{action}",
                 defaults: new { controller = "Home", action = "Index" }
             );
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace AskGenerator.ViewModels
 {
     public class BaseViewModel
     {
-        public string Id { get; set; }
+        public virtual string Id { get; set; }
 
         public BaseViewModel()
         {

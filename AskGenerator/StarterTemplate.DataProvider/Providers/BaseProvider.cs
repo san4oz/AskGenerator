@@ -13,7 +13,7 @@ namespace AskGenerator.DataProvider.Providers
         where T : Entity
     {
 
-        protected virtual T Execute<T>(Func<AppContext, T> expression)
+        protected virtual TEntity Execute<TEntity>(Func<AppContext, TEntity> expression)
         {
             using (var context = new AppContext())
             {

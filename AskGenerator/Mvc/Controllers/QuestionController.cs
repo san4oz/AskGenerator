@@ -10,13 +10,13 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Controllers
 {
-    public class QuestionController : Controller
+    public class QuestionController : BaseController
     {
         [HttpGet]
         public ActionResult List()
         {
             var models = Site.QuestionManager.All();
-            var viewModels = Mapper.Map<IList<Question>, IList<QuestionViewModel>>(models);
+            var viewModels = Map<IList<Question>, IList<QuestionViewModel>>(models);
             return View(viewModels);
         }
 
@@ -29,7 +29,7 @@ namespace AskGenerator.Controllers
         [HttpPost]
         public ActionResult Create(QuestionViewModel viewModel)
         {
-            var model = Mapper.Map<QuestionViewModel, Question>(viewModel);
+            var model = Map<QuestionViewModel, Question>(viewModel);
             Site.QuestionManager.Create(model);
             return RedirectToAction("List");
         }

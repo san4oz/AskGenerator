@@ -15,13 +15,13 @@ using System.Web.Routing;
 
 namespace AskGenerator.Controllers
 {
-    public class TeacherController : Controller
+    public class TeacherController : BaseController
     {
         [HttpGet]
         public ActionResult List()
         {
             var teachers = Site.TeacherManager.All();
-            var viewModel = Mapper.Map<IList<Teacher>, IList<TeacherViewModel>>(teachers);
+            var viewModel = Map<IList<Teacher>, IList<TeacherViewModel>>(teachers);
 
             return View(viewModel);
         }
@@ -36,7 +36,7 @@ namespace AskGenerator.Controllers
         [HttpPost]
         public ActionResult Create(TeacherComposeViewModel viewModel)
         {           
-            var teacher = Mapper.Map<TeacherViewModel, Teacher>(viewModel.Teacher);
+            var teacher = Map<TeacherViewModel, Teacher>(viewModel.Teacher);
 
             Site.TeacherManager.Create(teacher, viewModel.Teacher.SelectedGroups);
 
@@ -47,7 +47,7 @@ namespace AskGenerator.Controllers
         public ActionResult Students(string teacherId)
         {
             var students = Site.TeacherManager.GetRelatedStudents(teacherId);
-            var viewModel = Mapper.Map<List<Student>, List<StudentViewModel>>(students);
+            var viewModel = Map<List<Student>, List<StudentViewModel>>(students);
             return View(viewModel);
         }
 

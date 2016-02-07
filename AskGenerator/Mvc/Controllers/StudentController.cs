@@ -13,13 +13,13 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Controllers
 {
-    public class StudentController : Controller
+    public class StudentController : BaseController
     {
         [HttpGet]
         public ActionResult List()
         {
             var students = Site.StudentManager.All();
-            var viewModel = Mapper.Map<IList<Student>, IList<StudentViewModel>>(students);
+            var viewModel = Map<IList<Student>, IList<StudentViewModel>>(students);
             return View(viewModel);
         }
 
@@ -42,7 +42,7 @@ namespace AskGenerator.Controllers
         {
             var student = new StudentViewModel();
             var groups = Site.GroupManager.All();
-            var groupViewModels = Mapper.Map<IList<Group>, IList<GroupViewModel>>(groups);
+            var groupViewModels = Map<IList<Group>, IList<GroupViewModel>>(groups);
             var viewModel = new CreateStudentViewModel();
             viewModel.Student = student;
             viewModel.Groups = groupViewModels;
@@ -51,7 +51,7 @@ namespace AskGenerator.Controllers
 
         private Student DecomposeStudentViewModel(CreateStudentViewModel model)
         {
-            var student = Mapper.Map<StudentViewModel, Student>(model.Student);
+            var student = Map<StudentViewModel, Student>(model.Student);
             var group = Site.GroupManager.Get(model.Student.Group.Id);
             student.Group = group;
             student.Image = SavePhoto(model.Student.ImageFile, model.Student.Id);

@@ -10,18 +10,18 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Controllers
 {
-    public class GroupController : Controller
+    public class GroupController : BaseController
     {
         [HttpGet]
-        public ActionResult List()
+        public ActionResult List( )
         {
             var groups = Site.GroupManager.All();
-            var viewModel = Mapper.Map<IList<Group>, IList<GroupViewModel>>(groups);
+            var viewModel = Map<IList<Group>, IList<GroupViewModel>>(groups);
             return View(viewModel);
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create( )
         {
             var group = new GroupViewModel();
             return View(group);
@@ -30,11 +30,9 @@ namespace AskGenerator.Controllers
         [HttpPost]
         public ActionResult Create(GroupViewModel viewModel)
         {
-            var group = Mapper.Map<GroupViewModel, Group>(viewModel);
+            var group = Map<GroupViewModel, Group>(viewModel);
             Site.GroupManager.Create(group);
             return RedirectToAction("List");
         }
-
-
     }
 }
