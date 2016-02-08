@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace AskGenerator.Mvc.Controllers
+namespace AskGenerator.Controllers.Admin
 {
     public class HomeController : Controller
     {

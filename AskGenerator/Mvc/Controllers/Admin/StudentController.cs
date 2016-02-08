@@ -1,4 +1,5 @@
 ﻿using AskGenerator.Business.Entities;
+using AskGenerator.Mvc.Controllers;
 using AskGenerator.ViewModels;
 using AutoMapper;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AskGenerator.Controllers
+namespace AskGenerator.Controllers.Admin
 {
     public class StudentController : BaseController
     {

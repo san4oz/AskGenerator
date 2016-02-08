@@ -1,6 +1,7 @@
 ﻿using AskGenerator.App_Start;
 using AskGenerator.App_Start.Autofac;
 using AskGenerator.App_Start.AutoMapper;
+using AskGenerator.App_Start.Routes;
 using AskGenerator.DataProvider;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,6 @@ namespace AskGenerator.Mvc
         {
             Database.SetInitializer(new DBInitializer<AppContext>());
             ControllerBuilder.Current.DefaultNamespaces.Add("AskGenerator.Mvc.Controllers");
-            AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfig.RegisterDependencies();

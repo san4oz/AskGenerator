@@ -1,4 +1,5 @@
 ﻿using AskGenerator.Business.Entities;
+using AskGenerator.Mvc.Controllers;
 using AskGenerator.ViewModels;
 using AutoMapper;
 using System;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace AskGenerator.Controllers
+namespace AskGenerator.Controllers.Admin
 {
     public class QuestionController : BaseController
     {

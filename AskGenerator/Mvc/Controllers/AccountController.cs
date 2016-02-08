@@ -13,7 +13,7 @@ using AskGenerator.Business.Entities;
 using AskGenerator.Helpers;
 using Microsoft.Owin.Security;
 
-namespace AskGenerator.Controllers
+namespace AskGenerator.Mvc.Controllers
 {
     public class AccountController : BaseController
     {

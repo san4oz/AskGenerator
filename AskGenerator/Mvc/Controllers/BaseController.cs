@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace AskGenerator.Controllers
+namespace AskGenerator.Mvc.Controllers
 {
     public class BaseController : Controller
     {

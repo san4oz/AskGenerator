@@ -1,81 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.Routing;
 
-namespace AskGenerator.App_Start
+namespace AskGenerator.App_Start.Routes
 {
-    public class RouteConfig
+    public class AdminAreaRegistrator : BaseAreaRegistrator
     {
-        public static void RegisterRoutes(RouteCollection routes)
+        public override string AreaName
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            get { return "Admin"; }
+        }
+        protected override string[] namespaces { get { return new[] { "AskGenerator.Controllers.Admin" }; } }
+        protected override object defaultsComponets { get { return new { controller = "Home", action = "Index", id = UrlParameter.Optional }; } }
 
+        public override void RegisterArea(AreaRegistrationContext registrationContext)
+        {
+            base.RegisterArea(registrationContext);
 
-            routes.MapRoute(
+            MapRoute(
                 name: "student/list",
                 url: "student/list",
                 defaults: new { controller = "Student", action = "List" }
             );
 
-            routes.MapRoute(
+            MapRoute(
               name: "student/create",
               url: "student/create",
               defaults: new { controller = "Student", action = "Create" }
           );
 
-            routes.MapRoute(
+            MapRoute(
                 name: "teacher/list",
                 url: "teacher/list",
                 defaults: new { controller = "Teacher", action = "list" }
             );
 
-            routes.MapRoute(
+            MapRoute(
                name: "teacher/students",
                url: "teacher/{teacherId}/students",
                defaults: new { controller = "Teacher", action = "Students" }
            );
 
-            routes.MapRoute(
+            MapRoute(
                 name: "teacher/pdf",
                 url: "teacher/pdf",
                 defaults: new { controller = "Teacher", action = "GeneratePDF" }
             );
 
-            routes.MapRoute(
+            MapRoute(
                 name: "teacher/create",
                 url: "teacher/create",
                 defaults: new { controller = "Teacher", action = "create" }
             );
 
-            routes.MapRoute(
+            MapRoute(
                 name: "group/list",
                 url: "group/list",
                 defaults: new { controller = "Group", action = "list" }
             );
 
-            routes.MapRoute(
+            MapRoute(
                 name: "group/create",
                 url: "group/create",
                 defaults: new { controller = "Group", action = "create" }
             );
 
-            routes.MapRoute(
+            MapRoute(
                name: "question/create",
                url: "question/create",
                defaults: new { controller = "Question", action = "Create" }
            );
 
-            routes.MapRoute(
+            MapRoute(
               name: "question/list",
               url: "question/list",
               defaults: new { controller = "Question", action = "List" }
           );
 
-         
-            routes.MapRoute(
+
+            MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
                 defaults: new { controller = "Home", action = "Index" }
