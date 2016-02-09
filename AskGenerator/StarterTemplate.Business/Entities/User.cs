@@ -26,4 +26,11 @@ namespace AskGenerator.Business.Entities
             }
         }
     }
+
+    public class Role : IdentityRole
+    {
+        public const string Admin = "admin";
+        public const string User = "user";
+        public const string SuperAdmin = "SA";
+    }
 }
