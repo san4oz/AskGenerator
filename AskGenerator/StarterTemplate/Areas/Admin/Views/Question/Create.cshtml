@@ -1,0 +1,45 @@
+﻿@model AskGenerator.ViewModels.QuestionViewModel
+
+@{
+    ViewBag.Title = "Новый вопрос";
+}
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Студент</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("Create", "Question", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+                {
+                    <fieldset>
+                        <legend>Создание студента</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.QuestionBody, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.QuestionBody, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.LowerRateDescription, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.LowerRateDescription, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.HigherRateDescription, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.HigherRateDescription, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="reset" class="btn btn-default">Очистить</button>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>

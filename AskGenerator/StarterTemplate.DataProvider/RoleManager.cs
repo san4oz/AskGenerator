@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using AskGenerator.Business.Entities;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
+using System.Security.Claims;
+
+namespace AskGenerator.DataProvider
+{
+    public class RoleManager : RoleManager<Role>
+    {
+        public RoleManager(RoleStore<Role> store)
+                : base(store) 
+        {}
+
+        public static RoleManager Create(IdentityFactoryOptions<RoleManager> options,
+                                        IOwinContext context)
+        {
+            return new RoleManager(new RoleStore<Role>(context.Get<AppContext>()));
+        }
+    }
+
+}
