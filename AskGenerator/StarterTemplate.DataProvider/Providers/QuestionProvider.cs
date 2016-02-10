@@ -10,5 +10,17 @@ namespace AskGenerator.DataProvider.Providers
 {
     public class QuestionProvider : BaseProvider<Question>, IQuestionProvider
     {
+        /// <summary>
+        /// Gets questions for certain category.
+        /// </summary>
+        /// <param name="isAboutTeacher">Indicates whether question about teachers should be retrived.</param>
+        /// <returns>List of retrived questions.</returns>
+        public List<Question> List(bool isAboutTeacher)
+        {
+            return GetSet(set =>
+            {
+                return set.Where(q => q.IsAboutTeacher == isAboutTeacher).ToList();
+            });
+        }
     }
 }

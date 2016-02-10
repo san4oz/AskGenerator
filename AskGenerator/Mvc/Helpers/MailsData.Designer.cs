@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AskGenerator.Helpers {
+namespace AskGenerator.Mvc.Helpers {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace AskGenerator.Helpers {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AskGenerator.Helpers.MailsData", typeof(MailsData).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AskGenerator.Mvc.Helpers.MailsData", typeof(MailsData).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

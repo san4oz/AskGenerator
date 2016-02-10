@@ -80,6 +80,17 @@ namespace AskGenerator.App_Start.Routes
               defaults: new { controller = "Question", action = "List" }
           );
 
+            MapRoute(
+               name: "questionAT/create",
+               url: "question/teacher/create",
+               defaults: new { controller = "Question", action = "CreateTeacher" }
+           );
+
+            MapRoute(
+              name: "questionAT/list",
+              url: "question/teacher/list",
+              defaults: new { controller = "Question", action = "TeacherList" }
+          );
 
             MapRoute(
                 name: "_Default",

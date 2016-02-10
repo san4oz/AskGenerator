@@ -1704,6 +1704,8 @@
     <Content Include="Areas\Admin\Views\Teacher\Students.cshtml" />
     <Content Include="Areas\Admin\Views\Teacher\Update.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Question\TeacherList.cshtml" />
+    <Content Include="Areas\Admin\Views\Question\_List.cshtml" />
     <None Include="Properties\PublishProfiles\askgenerator - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\askgenerator - Web Deploy %282%29.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -1801,7 +1803,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

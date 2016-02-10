@@ -13,7 +13,7 @@ namespace AskGenerator.Business.Managers
     {
         public GroupManager(IGroupProvider provider) : base(provider) { }
 
-        public List<Group> GetById(IEnumerable<String> ids)
+        public List<Group> GetByIds(IEnumerable<String> ids)
         {
             return ((IGroupProvider)Provider).GetById(ids);
         }

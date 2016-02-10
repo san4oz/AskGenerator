@@ -15,5 +15,6 @@ namespace AskGenerator.Business.Entities
         public string HigherRateDescription { get; set; }
 
         public bool IsAboutTeacher { get; set; }
+
     }
 }

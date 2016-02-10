@@ -11,6 +11,7 @@ namespace AskGenerator.ViewModels
     {
         [Required]
         [Display(Name = "Електронна адреса")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]

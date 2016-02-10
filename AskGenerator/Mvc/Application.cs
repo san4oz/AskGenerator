@@ -7,9 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -20,21 +22,14 @@ namespace AskGenerator.Mvc
     {
         protected void Application_Start()
         {
-            Database.SetInitializer(new DBInitializer<AppContext>());
+            Database.SetInitializer(new CreateDatabaseIfNotExists<AppContext>());
             ControllerBuilder.Current.DefaultNamespaces.Add("AskGenerator.Mvc.Controllers");
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfig.RegisterDependencies();
             AutoMapperConfig.Configure();
-        }
-    }
 
-    internal class DBInitializer<TContext> : IDatabaseInitializer<TContext> where TContext : System.Data.Entity.DbContext
-    {
-
-        public void InitializeDatabase(TContext context)
-        {
-            context.Database.CreateIfNotExists();
+            AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
         }
     }
 }

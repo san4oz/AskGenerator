@@ -1,20 +1,23 @@
 ﻿@model AskGenerator.ViewModels.QuestionViewModel
 
 @{
-    ViewBag.Title = "Новый вопрос";
+    var isEdit = string.IsNullOrEmpty(Model.QuestionBody);
+    var legend = isEdit ? "Создание вопроса":"Редактирование вопрос";
+    ViewBag.Title = isEdit?"Новый вопрос":"Старый вопрос";
 }
 
 <div class="col-md-10">
     <div class="row">
         <div class="panel panel-default bootstrap-admin-no-table-panel">
             <div class="panel-heading">
-                <div class="text-muted bootstrap-admin-box-title">Студент</div>
+                <div class="text-muted bootstrap-admin-box-title">Вопрос</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                @using (Html.BeginForm("Create", "Question", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
-                {
+                <form method="POST" class = "form-horizontal" enctype = "multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.Id)
                     <fieldset>
-                        <legend>Создание студента</legend>
+                        <legend> @legend </legend>
                         <div class="form-group">
                             @Html.LabelFor(x => x.QuestionBody, htmlAttributes: new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
@@ -33,12 +36,12 @@
                                 @Html.TextBoxFor(x => x.HigherRateDescription, htmlAttributes: new { @clas = "form-control" })
                             </div>
                         </div>
-
+                        @Html.HiddenFor(x => x.IsAboutTeacher)
 
                         <button type="submit" class="btn btn-primary">Сохранить</button>
                         <button type="reset" class="btn btn-default">Очистить</button>
                     </fieldset>
-                }
+                </form>
             </div>
         </div>
     </div>

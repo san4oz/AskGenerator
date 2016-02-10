@@ -20,6 +20,8 @@ namespace AskGenerator
 
         public static IQuestionManager QuestionManager { get { return Get<IQuestionManager>(); } }
 
+        public static IVoteManager VoteManager { get { return Get<IVoteManager>(); } }
+
         public static IPDFGenerator PDFGenerator { get { return Get<IPDFGenerator>(); } }
 
         #region private

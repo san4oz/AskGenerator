@@ -13,6 +13,14 @@ namespace AskGenerator.DataProvider.Providers
         where T : Entity
     {
 
+        protected virtual TEntity GetSet<TEntity>(Func<DbSet<T>, TEntity> expression)
+        {
+            using (var context = new AppContext())
+            {
+                return expression(context.Set<T>());
+            }
+        }
+
         protected virtual TEntity Execute<TEntity>(Func<AppContext, TEntity> expression)
         {
             using (var context = new AppContext())

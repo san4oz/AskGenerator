@@ -15,11 +15,17 @@ namespace AskGenerator.Controllers.Admin
     public class QuestionController : BaseController
     {
         [HttpGet]
-        public ActionResult List()
+        public ActionResult List(bool isAboutTeacher = false)
         {
-            var models = Site.QuestionManager.All();
+            var models = Site.QuestionManager.List(isAboutTeacher);
             var viewModels = Map<IList<Question>, IList<QuestionViewModel>>(models);
             return View(viewModels);
+        }
+
+        [HttpGet]
+        public ActionResult TeacherList()
+        {
+            return List(true);
         }
 
         [HttpGet]
@@ -28,11 +34,42 @@ namespace AskGenerator.Controllers.Admin
             return View();
         }
 
+        [HttpGet]
+        public ActionResult CreateTeacher()
+        {
+            var model = new QuestionViewModel()
+            {
+                IsAboutTeacher = true
+            };
+            return View("Create", model);
+        }
+
+        
+        public ActionResult Edit(string id)
+        {
+            var model = Map<Question, QuestionViewModel>(Site.QuestionManager.Get(id));
+            return View("Create", model);
+        }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(QuestionViewModel viewModel)
         {
             var model = Map<QuestionViewModel, Question>(viewModel);
             Site.QuestionManager.Create(model);
+            if(viewModel.IsAboutTeacher)
+                return RedirectToAction("TeacherList");
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(QuestionViewModel viewModel)
+        {
+            var model = Map<QuestionViewModel, Question>(viewModel);
+            Site.QuestionManager.Update(model);
+            if (viewModel.IsAboutTeacher)
+                return RedirectToAction("TeacherList");
             return RedirectToAction("List");
         }
     }

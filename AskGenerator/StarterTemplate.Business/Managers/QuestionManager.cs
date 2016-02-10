@@ -12,8 +12,16 @@ namespace AskGenerator.Business.Managers
     public class QuestionManager : BaseManager<Question, IQuestionProvider>, IQuestionManager
     {
         public QuestionManager(IQuestionProvider provider) : base(provider)
-        {
+        { }
 
+        /// <summary>
+        /// Gets questions for certain category.
+        /// </summary>
+        /// <param name="isAboutTeacher">Indicates whether question about teachers should be retrived.</param>
+        /// <returns>List of retrived questions.</returns>
+        public List<Question> List(bool isAboutTeacher = false)
+        {
+            return Provider.List(isAboutTeacher);
         }
     }
 }

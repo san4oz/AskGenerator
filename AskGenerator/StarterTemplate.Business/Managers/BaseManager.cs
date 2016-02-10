@@ -13,9 +13,9 @@ namespace AskGenerator.Business.Managers
         where T : Entity
         where TProvider : IBaseProvider<T>
     {
-        protected IBaseProvider<T> Provider;
+        protected TProvider Provider;
 
-        public BaseManager(IBaseProvider<T> provider)
+        public BaseManager(TProvider provider)
         {
             Provider = provider;
         }

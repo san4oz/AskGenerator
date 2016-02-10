@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace AskGenerator.ViewModels
 {
@@ -19,5 +20,8 @@ namespace AskGenerator.ViewModels
 
         [Display(Name = "Верхняя отметка")]
         public string HigherRateDescription { get; set; }
+
+        [HiddenInput]
+        public bool IsAboutTeacher { get; set; }
     }
 }
