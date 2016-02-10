@@ -100,6 +100,7 @@
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\Teacher.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\Vote.cs" />
     <Compile Include="InterfaceDefinitions\Core\IPDFGenerator.cs" />
     <Compile Include="InterfaceDefinitions\Managers\IBaseManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\IQuestionManager.cs" />
