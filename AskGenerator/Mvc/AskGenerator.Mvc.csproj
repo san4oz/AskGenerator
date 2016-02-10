@@ -157,7 +157,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
-    <Compile Include="App_Data\test.cs" />
     <Compile Include="App_Start\Autofac\AutofacConfig.cs" />
     <Compile Include="App_Start\AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="App_Start\AutoMapper\IHaveCustomMappings.cs" />
@@ -194,7 +193,9 @@
     <Compile Include="ViewModels\TeacherComposeViewModel.cs" />
     <Compile Include="ViewModels\TeacherViewModel.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AskGenerator.Generator\AskGenerator.Generator.csproj">
       <Project>{468a5bf6-637c-400f-a8dc-186623535ac0}</Project>
