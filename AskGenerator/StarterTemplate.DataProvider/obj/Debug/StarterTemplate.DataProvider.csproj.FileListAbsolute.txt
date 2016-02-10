@@ -1,7 +1,0 @@
-C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.DataProvider\bin\Debug\StarterTemplate.DataProvider.dll
-C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.DataProvider\bin\Debug\StarterTemplate.DataProvider.pdb
-C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.DataProvider\bin\Debug\StarterTemplate.Business.dll
-C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.DataProvider\bin\Debug\StarterTemplate.Business.pdb
-C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.DataProvider\obj\Debug\StarterTemplate.DataProvider.csprojResolveAssemblyReference.cache
-C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.DataProvider\obj\Debug\StarterTemplate.DataProvider.dll
-C:\Users\Alex\documents\visual studio 2013\Projects\StarterTemplate\StarterTemplate.DataProvider\obj\Debug\StarterTemplate.DataProvider.pdb
