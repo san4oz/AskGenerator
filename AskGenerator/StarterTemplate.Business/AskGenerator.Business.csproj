@@ -99,6 +99,7 @@
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\Teacher.cs" />
+    <Compile Include="Entities\test.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Vote.cs" />
     <Compile Include="InterfaceDefinitions\Core\IPDFGenerator.cs" />
