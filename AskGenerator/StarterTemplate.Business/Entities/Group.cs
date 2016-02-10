@@ -11,6 +11,7 @@ namespace AskGenerator.Business.Entities
         public string Name { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
+        
 
         public virtual ICollection<Teacher> Teachers { get; set; }
 
