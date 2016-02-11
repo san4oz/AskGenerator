@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace AskGenerator.Mvc.Controllers
@@ -53,6 +55,34 @@ namespace AskGenerator.Mvc.Controllers
 
                 return captchaResponse.success;
             }
+        }
+
+        /// <summary>
+        /// The string to be used to format photo end-path.
+        /// </summary>
+        const string PhotoPathFormat = "/Content/Images/{0}{1}{2}";
+
+        /// <summary>
+        /// Saves image with specified id to the specified sub dirrectory.
+        /// </summary>
+        /// <param name="image">The image file.</param>
+        /// <param name="id">Id of the photo.</param>
+        /// <param name="subdir">The sub dirrectory save image to.</param>
+        /// <returns>Path to the saved file.</returns>
+        protected string SaveImage(HttpPostedFileBase image, string id, string subdir = null)
+        {
+            if (image == null || image.ContentLength <= 0)
+                return null;
+
+            if (!string.IsNullOrWhiteSpace(subdir))
+                subdir = subdir.Trim('/') + '/';
+
+            var path = string.Format("/Content/Images/{0}{1}{2}", subdir ?? string.Empty, id, Path.GetExtension(image.FileName));
+            var serverPath = Server.MapPath(path);
+
+            image.SaveAs(serverPath);
+            return path;
+
         }
 
         public class CaptchaResponse

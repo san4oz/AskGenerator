@@ -24,7 +24,6 @@ namespace AskGenerator.Controllers.Admin
         {
             var teachers = Site.TeacherManager.All();
             var viewModel = Map<IList<Teacher>, IList<TeacherViewModel>>(teachers);
-
             return View(viewModel);
         }
 
@@ -36,13 +35,44 @@ namespace AskGenerator.Controllers.Admin
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(TeacherComposeViewModel viewModel)
-        {           
-            var teacher = Map<TeacherViewModel, Teacher>(viewModel.Teacher);
-
+        {
+            var teacher = DecomposeStudentViewModel(viewModel.Teacher);
             Site.TeacherManager.Create(teacher, viewModel.Teacher.SelectedGroups);
 
             return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            var teacher = Site.TeacherManager.Get(id);
+            if (teacher == null)
+                return HttpNotFound("Teacher with specified ID was not found.");
+            var viewModel = new TeacherComposeViewModel();
+            viewModel.Teacher = Map<Teacher, TeacherViewModel>(teacher);
+
+            ViewBag.IsEditing = true;
+            return View("Create", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(TeacherComposeViewModel viewModel)
+        {
+            var teacher = DecomposeStudentViewModel(viewModel.Teacher);
+            Site.TeacherManager.Update(teacher, viewModel.Teacher.SelectedGroups);
+
+            return RedirectToAction("List");
+        }
+
+        private Teacher DecomposeStudentViewModel(TeacherViewModel model)
+        {
+            var teacher = Map<TeacherViewModel, Teacher>(model);
+            if(model.ImageFile != null && model.ImageFile.ContentLength > 0)
+                teacher.Image = SaveImage(model.ImageFile, model.Id);
+            return teacher;
         }
 
         [HttpGet]
@@ -56,7 +86,6 @@ namespace AskGenerator.Controllers.Admin
         [HttpPost]
         public ActionResult GeneratePDF(string teacherId)
         {
-
             var teacher = Site.TeacherManager.Get(teacherId);
             if (teacher == null)
                 return RedirectToAction("List");

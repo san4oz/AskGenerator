@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace AskGenerator.Business.Managers
 {
@@ -15,12 +16,22 @@ namespace AskGenerator.Business.Managers
 
         public List<Student> GetRelatedStudents(string teacherId)
         {
-            return ((ITeacherProvider)Provider).GetRelatedStudents(teacherId);
+            return Provider.GetRelatedStudents(teacherId);
         }
 
         public bool Create(Teacher teacher, ICollection<string> ids)
         {
-            return ((ITeacherProvider)Provider).Create(teacher, ids);
+            return Provider.Create(teacher, ids);
+        }
+
+        public bool Update(Teacher teacher, ICollection<string> ids)
+        {
+            if (ids != null && ids.Any())
+            {
+                var groups = DependencyResolver.Current.GetService<IGroupManager>().GetByIds(ids);
+                teacher.Groups = groups;
+            }
+            return Update(teacher);
         }
     }
 }

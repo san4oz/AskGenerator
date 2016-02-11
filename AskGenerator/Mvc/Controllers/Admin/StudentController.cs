@@ -56,23 +56,8 @@ namespace AskGenerator.Controllers.Admin
             var student = Map<StudentViewModel, Student>(model.Student);
             var group = Site.GroupManager.Get(model.Student.Group.Id);
             student.Group = group;
-            student.Image = SavePhoto(model.Student.ImageFile, model.Student.Id);
+            student.Image = SaveImage(model.Student.ImageFile, model.Student.Id);
             return student;
-        }
-
-        private string SavePhoto(HttpPostedFileBase photo, string studentId)
-        {
-            if (photo == null || photo.ContentLength <= 0)
-                return null;
-
-            var path = string.Format("/Content/Images/{0}{1}", studentId, Path.GetExtension(photo.FileName));
-
-            var serverPath = Server.MapPath(path);
-
-            photo.SaveAs(serverPath);
-
-            return path;
-
         }
     }
 }

@@ -1735,7 +1735,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HtmlHelperExtensions\MenuExtensions.cs" />
+    <Compile Include="HtmlHelperExtensions\Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1750,7 +1750,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Shared\_Landing.cshtml" />
-    <Content Include="Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\_Success.cshtml" />
@@ -1759,6 +1758,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_captcha.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_LeftMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1768,6 +1768,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Fonts\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mvc\AskGenerator.Mvc.csproj">

@@ -1,6 +1,16 @@
 ﻿@model  AskGenerator.ViewModels.TeacherComposeViewModel
 @{
-    ViewBag.Title = "Новый преподаватель";
+    bool IsEditing = ViewBag.IsEditing ?? false;
+    string legend;
+    if(IsEditing){
+        ViewBag.Title = "Старый преподаватель";
+        legend = "Редактирование преподавателя";
+    }
+    else{
+        ViewBag.Title = "Новый преподаватель";
+        legend = "Создание преподавателя";
+    }
+    var maxSize = "100px";
 }
 
 <div class="col-md-10">
@@ -10,10 +20,11 @@
                 <div class="text-muted bootstrap-admin-box-title">Преподаватель</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                @using (Html.BeginForm("Create", "Teacher", FormMethod.Post, new { @class = "form-horizontal" }))
-                { 
+                <form method="post" class="form-horizontal" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    @Html.EditorFor(x => x.Teacher.Id)
                     <fieldset>
-                        <legend>Создание преподавателя</legend>
+                        <legend>@legend</legend>
                         <div class="form-group">
                             @Html.LabelFor(x => x.Teacher.FirstName, htmlAttributes: new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
@@ -33,11 +44,22 @@
                                 @Html.ListBoxFor(x => x.Teacher.SelectedGroups, Model.AllGroups)
                             </div>
                         </div>
+                        
+                        @if(IsEditing && !string.IsNullOrEmpty(Model.Teacher.Image)){
+                            <img src="@Model.Teacher.Image" alt="@Model.Teacher.Image.Split('/').Last()" style ="float:right; max-width:@maxSize; max-height:@maxSize;"/>
+                        }
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Teacher.ImageFile, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.Teacher.ImageFile, new { type = "file"})
+                                @Html.EditorFor(x => x.Teacher.Image)
+                            </div>
+                        </div>
 
                         <button type="submit" class="btn btn-primary">Сохранить</button>
                         <button type="reset" class="btn btn-default">Очистить</button>
                     </fieldset>
-                }
+                </form>
             </div>
         </div>
     </div>

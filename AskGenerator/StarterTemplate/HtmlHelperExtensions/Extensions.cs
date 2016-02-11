@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace AskGenerator.Web.HtmlHelperExtensions
+namespace System.Web
 {
     public static class MenuExtensions
     {
@@ -57,5 +57,13 @@ namespace AskGenerator.Web.HtmlHelperExtensions
         }
 
 
+    }
+
+    public static class StringExtensions
+    {
+        public static MvcHtmlString YesNo(this string str)
+        {
+            return MvcHtmlString.Create(string.IsNullOrEmpty(str) ? "No" : "Yes");
+        }
     }
 }

@@ -17,6 +17,8 @@
                         <th>Фамилия</th>
                         <th>Студенты</th>
                         <th>Создать .pdf</th>
+                        <th>Img</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +35,8 @@
                                     <button type="submit">Скачать .pdf файл</button>
                                 }
                             </td>
+                            <td>@teacher.Image.YesNo()</td>
+                            <td><a class="btn btn-primary" href="@Url.Action("Edit", "Teacher", new {id=teacher.Id})">Edit</a></td>
                         </tr>
                     }                    
                 </tbody>
