@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.Entities
 {
-    public class Group : Person
+    public class Group : Entity
     {
         public string Name { get; set; }
 
         public virtual ICollection<Student> Students { get; set; }
-        
 
         public virtual ICollection<Teacher> Teachers { get; set; }
 

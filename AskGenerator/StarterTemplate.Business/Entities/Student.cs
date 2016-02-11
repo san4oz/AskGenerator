@@ -9,8 +9,5 @@ namespace AskGenerator.Business.Entities
     public class Student : Person
     {
         public Group Group { get; set; }
-
-        public string Image { get; set; }
-            
     }
 }

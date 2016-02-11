@@ -11,5 +11,10 @@ namespace AskGenerator.Business.Entities
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        /// <summary>
+        /// Gets or sets path to the person image.
+        /// </summary>
+        public string Image { get; set; }
     }
 }
