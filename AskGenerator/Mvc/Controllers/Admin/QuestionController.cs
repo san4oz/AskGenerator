@@ -18,7 +18,7 @@ namespace AskGenerator.Controllers.Admin
         public ActionResult List(bool isAboutTeacher = false)
         {
             var models = Site.QuestionManager.List(isAboutTeacher);
-            var viewModels = Map<IList<Question>, IList<QuestionViewModel>>(models);
+            var viewModels = MapList<Question, QuestionViewModel>(models);
             return View(viewModels);
         }
 
@@ -48,6 +48,7 @@ namespace AskGenerator.Controllers.Admin
         public ActionResult Edit(string id)
         {
             var model = Map<Question, QuestionViewModel>(Site.QuestionManager.Get(id));
+            IsEditing = true;
             return View("Create", model);
         }
 

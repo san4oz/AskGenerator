@@ -40,6 +40,7 @@ namespace AskGenerator.App_Start.Autofac
             builder.RegisterType<GroupProvider>().As<IGroupProvider>();
             builder.RegisterType<QuestionProvider>().As<IQuestionProvider>();
             builder.RegisterType<VoteProvider>().As<IVoteProvider>();
+            builder.RegisterType<TeamProvider>().As<ITeamProvider>();
 
             //Entity managers section
             builder.RegisterType<StudentManager>().As<IStudentManager>();
@@ -47,6 +48,7 @@ namespace AskGenerator.App_Start.Autofac
             builder.RegisterType<GroupManager>().As<IGroupManager>();
             builder.RegisterType<QuestionManager>().As<IQuestionManager>();
             builder.RegisterType<VoteManager>().As<IVoteManager>();
+            builder.RegisterType<TeamManager>().As<ITeamManager>();
 
             //Core
             builder.RegisterType<PDFRocket>().As<IPDFGenerator>();

@@ -1,0 +1,41 @@
+﻿@model  AskGenerator.Mvc.ViewModels.TeamViewModel
+@{
+    bool IsEditing = ViewBag.IsEditing ?? false;
+    string legend;
+    if(IsEditing){
+        ViewBag.Title = "Стара кафедра";
+        legend = "Редагування кафедри";
+    }
+    else{
+        ViewBag.Title = "Нова кафедра";
+        legend = "Створення кафедри";
+    }
+}
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Кафедра</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                <form method="post" class="form-horizontal" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    @Html.EditorFor(x => x.Id)
+                    <fieldset>
+                        <legend>@legend</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Name, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.Name, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Зберегти</button>
+                        <button type="reset" class="btn btn-default">Очистити</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

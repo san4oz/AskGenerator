@@ -62,5 +62,23 @@ namespace AskGenerator.DataProvider.Providers
                 return context.Students.Include(g => g.Group).Include(x => x.Group.Students).Include(x => x.Group.Teachers).Where(s => ids.Contains(s.Group.Id)).ToList();
             });
         }
+
+
+        public bool Update(Teacher teacher, ICollection<string> ids)
+        {
+            return Execute(context =>
+            {
+                var entry = context.Entry<Teacher>(teacher);
+                if (entry.State == EntityState.Detached)
+                    context.Teachers.Attach(teacher);
+
+                var groups = context.Groups.Include(x => x.Students).Include(x => x.Teachers).Where(x => ids.Contains(x.Id)).ToList();
+                teacher.Groups = groups;
+
+                entry.State = EntityState.Modified;
+                context.SaveChanges();
+                return true;
+            });
+        }
     }
 }

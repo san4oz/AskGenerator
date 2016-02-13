@@ -51,8 +51,11 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                context.Set<T>().Attach(entity);
-                context.Entry<T>(entity).State = EntityState.Modified;
+                var entry = context.Entry<T>(entity);
+                if(entry.State == EntityState.Detached)
+                    context.Set<T>().Attach(entity);
+
+                entry.State = EntityState.Modified;
                 context.SaveChanges();
                 return true;
             });
@@ -62,6 +65,8 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
+                context.Set<T>().Attach(entity);
+                context.Entry<T>(entity).State = EntityState.Deleted;
                 context.Set<T>().Remove(entity);
                 context.SaveChanges();
                 return true;

@@ -99,6 +99,14 @@
     <Compile Include="Migrations\201602111940451_Person.Designer.cs">
       <DependentUpon>201602111940451_Person.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602131544100_Team.cs" />
+    <Compile Include="Migrations\201602131544100_Team.Designer.cs">
+      <DependentUpon>201602131544100_Team.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602131632576_Team1.cs" />
+    <Compile Include="Migrations\201602131632576_Team1.Designer.cs">
+      <DependentUpon>201602131632576_Team1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseProvider.cs" />
@@ -107,6 +115,7 @@
     <Compile Include="Providers\StudentProvider.cs" />
     <Compile Include="Providers\TeacherProvider.cs" />
     <Compile Include="Providers\VoteProvider.cs" />
+    <Compile Include="Providers\TeamProvider.cs" />
     <Compile Include="UserManager.cs" />
     <Compile Include="RoleManager.cs" />
   </ItemGroup>
@@ -126,6 +135,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602111940451_Person.resx">
       <DependentUpon>201602111940451_Person.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602131544100_Team.resx">
+      <DependentUpon>201602131544100_Team.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602131632576_Team1.resx">
+      <DependentUpon>201602131632576_Team1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

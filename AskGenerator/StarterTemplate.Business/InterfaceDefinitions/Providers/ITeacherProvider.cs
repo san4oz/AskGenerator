@@ -12,5 +12,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
         List<Student> GetRelatedStudents(string teacherId);
 
         bool Create(Teacher teacher, ICollection<string> ids);
+
+        bool Update(Teacher teacher, ICollection<string> ids);
     }
 }

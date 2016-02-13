@@ -1,7 +1,7 @@
 ﻿@model AskGenerator.ViewModels.QuestionViewModel
 
 @{
-    var isEdit = string.IsNullOrEmpty(Model.QuestionBody);
+    var isEdit = ViewBag.IsEditing ?? false;
     var legend = isEdit ? "Создание вопроса":"Редактирование вопрос";
     ViewBag.Title = isEdit?"Новый вопрос":"Старый вопрос";
 }

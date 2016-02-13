@@ -22,6 +22,8 @@ namespace AskGenerator.Business.Managers
 
         public virtual bool Create(T entity)
         {
+            if (entity.Id == null)
+                entity.Id = Guid.NewGuid().ToString();
             return Provider.Create(entity);
         }
 

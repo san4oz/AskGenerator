@@ -24,6 +24,8 @@ namespace AskGenerator.DataProvider
 
         public DbSet<Student> Students { get; set; }
 
+        public DbSet<Team> Teames { get; set; }
+
         public DbSet<Teacher> Teachers { get; set; }
 
         public DbSet<Group> Groups { get; set; }

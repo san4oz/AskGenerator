@@ -29,5 +29,7 @@ namespace AskGenerator.ViewModels
 
         [HiddenInput(DisplayValue = false)]
         public string Image { get; set; }
+
+        public string TeamId { get; set; }
     }
 }

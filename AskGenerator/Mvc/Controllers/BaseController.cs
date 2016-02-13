@@ -15,6 +15,28 @@ namespace AskGenerator.Mvc.Controllers
     public class BaseController : Controller
     {
         /// <summary>
+        /// Gets or sets value indicating whether edit action is executing.
+        /// It saves value in <see cref="ViewBag.IsEditing"/>.
+        /// </summary>
+        protected bool IsEditing
+        {
+            get
+            {
+                return ViewBag.IsEditing ?? false;
+            }
+            set
+            {
+                ViewBag.IsEditing = value; 
+            }
+        }
+
+        protected JsonResult Json404(object data)
+        {
+            Response.StatusCode = 404;
+            return Json(data);
+        }
+
+        /// <summary>
         /// Execute a mapping from the source object to a new destination object.
         /// </summary>
         /// <typeparam name="TDestination">Destination type.</typeparam>
@@ -35,6 +57,18 @@ namespace AskGenerator.Mvc.Controllers
         protected TDestination Map<TSource, TDestination>(TSource source)
         {
             return Mapper.Map<TSource, TDestination>(source);
+        }
+
+        /// <summary>
+        /// Execute a mapping from the source list to a new destination list.
+        /// </summary>
+        /// <typeparam name="TSource">Source type.</typeparam>
+        /// <typeparam name="TDestination">Destination type.</typeparam>
+        /// <param name="source">Source object to map from.</param>
+        /// <returns>Mapped destination object.</returns>
+        protected IList<TDestination> MapList<TSource, TDestination>(IList<TSource> source)
+        {
+            return Mapper.Map<IList<TSource>, IList<TDestination>>(source);
         }
 
         protected async Task<bool> CheckCaptcha()

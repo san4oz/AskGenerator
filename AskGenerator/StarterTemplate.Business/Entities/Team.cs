@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.Entities
 {
-    public class Teacher : Person
+    public class Team : Entity
     {
-        public virtual ICollection<Group> Groups { get; set; }
-
-        public string TeamId { get; set; }
+        public string Name { get; set; }
     }
 }

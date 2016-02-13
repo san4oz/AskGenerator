@@ -30,7 +30,7 @@ namespace AskGenerator.Controllers.Admin
         [HttpGet]
         public ActionResult Create()
         {
-            var viewModel = new TeacherComposeViewModel();
+            var viewModel = new TeacherComposeViewModel(null);
             return View(viewModel);
         }
 
@@ -50,10 +50,9 @@ namespace AskGenerator.Controllers.Admin
             var teacher = Site.TeacherManager.Get(id);
             if (teacher == null)
                 return HttpNotFound("Teacher with specified ID was not found.");
-            var viewModel = new TeacherComposeViewModel();
-            viewModel.Teacher = Map<Teacher, TeacherViewModel>(teacher);
+            var viewModel = new TeacherComposeViewModel(Map<Teacher, TeacherViewModel>(teacher));
 
-            ViewBag.IsEditing = true;
+            IsEditing = true;
             return View("Create", viewModel);
         }
 

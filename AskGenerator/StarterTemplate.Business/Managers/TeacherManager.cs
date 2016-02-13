@@ -26,12 +26,7 @@ namespace AskGenerator.Business.Managers
 
         public bool Update(Teacher teacher, ICollection<string> ids)
         {
-            if (ids != null && ids.Any())
-            {
-                var groups = DependencyResolver.Current.GetService<IGroupManager>().GetByIds(ids);
-                teacher.Groups = groups;
-            }
-            return Update(teacher);
+            return Provider.Update(teacher, ids);
         }
     }
 }

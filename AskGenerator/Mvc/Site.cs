@@ -22,6 +22,8 @@ namespace AskGenerator
 
         public static IVoteManager VoteManager { get { return Get<IVoteManager>(); } }
 
+        public static ITeamManager TeamManager { get { return Get<ITeamManager>(); } }
+
         public static IPDFGenerator PDFGenerator { get { return Get<IPDFGenerator>(); } }
 
         #region private

@@ -1477,6 +1477,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\captcha.js" />
+    <Content Include="Scripts\controls.js" />
     <Content Include="Scripts\i18n\ar.js" />
     <Content Include="Scripts\i18n\az.js" />
     <Content Include="Scripts\i18n\bg.js" />
@@ -1702,10 +1703,11 @@
     <Content Include="Areas\Admin\Views\Teacher\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Teacher\List.cshtml" />
     <Content Include="Areas\Admin\Views\Teacher\Students.cshtml" />
-    <Content Include="Areas\Admin\Views\Teacher\Update.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Question\TeacherList.cshtml" />
     <Content Include="Areas\Admin\Views\Question\_List.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\List.cshtml" />
     <None Include="Properties\PublishProfiles\askgenerator - FTP %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\askgenerator - Web Deploy %282%29.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
