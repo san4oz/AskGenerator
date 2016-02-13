@@ -40,9 +40,44 @@ namespace AskGenerator.Controllers.Admin
             return RedirectToAction("List");
         }
 
-        private CreateStudentViewModel CreateCompositeModel()
+        [HttpGet]
+        public ActionResult Edit(string id)
         {
-            var student = new StudentViewModel();
+            var student = Site.StudentManager.Get(id);
+            var model = CreateCompositeModel(id);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(CreateStudentViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var edited = DecomposeStudentViewModel(model);
+            Site.StudentManager.Update(edited);
+            return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            if(!string.IsNullOrEmpty(id))
+            {
+                Site.StudentManager.Delete(id);
+            }
+            return RedirectToAction("List");
+        }
+
+        private CreateStudentViewModel CreateCompositeModel(string studentId = null)
+        {
+            StudentViewModel student;
+
+            if (string.IsNullOrEmpty(studentId))
+                student = new StudentViewModel();
+            else
+                student = Map<Student, StudentViewModel>(Site.StudentManager.Get(studentId));
+
             var groups = Site.GroupManager.All();
             var groupViewModels = Map<IList<Group>, IList<GroupViewModel>>(groups);
             var viewModel = new CreateStudentViewModel();

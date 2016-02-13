@@ -73,5 +73,14 @@ namespace AskGenerator.Controllers.Admin
                 return RedirectToAction("TeacherList");
             return RedirectToAction("List");
         }
+
+        public ActionResult Delete(string id)
+        {
+            if (!string.IsNullOrEmpty(id))
+            {                
+                Site.QuestionManager.Delete(id);
+            }
+            return RedirectToAction("List");
+        }
     }
 }

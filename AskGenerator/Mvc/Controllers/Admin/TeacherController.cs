@@ -1,5 +1,6 @@
 ﻿using AskGenerator.Business.Entities;
 using AskGenerator.Mvc.Controllers;
+using AskGenerator.Mvc.ViewModels;
 using AskGenerator.ViewModels;
 using AutoMapper;
 using System;
@@ -77,9 +78,8 @@ namespace AskGenerator.Controllers.Admin
         [HttpGet]
         public ActionResult Students(string teacherId)
         {
-            var students = Site.TeacherManager.GetRelatedStudents(teacherId);
-            var viewModel = Map<List<Student>, List<StudentViewModel>>(students);
-            return View(viewModel);
+            var model = CreateTeacherVotingViewModel(teacherId);
+            return View(model);
         }
 
         [HttpPost]
@@ -101,6 +101,21 @@ namespace AskGenerator.Controllers.Admin
                 url);
 
             return pdf;
+        }
+
+        public TeacherVotingViewModel CreateTeacherVotingViewModel(string teacherId)
+        {
+            var model = new TeacherVotingViewModel();
+
+            var teacher = Site.TeacherManager.Get(teacherId);
+            model.Teacher = Map<Teacher, TeacherViewModel>(teacher);
+     
+            var students = Site.TeacherManager.GetRelatedStudents(teacherId);
+            model.Students = Map<List<Student>, List<StudentViewModel>>(students);
+
+            model.Vote = new VotingViewModel();
+
+            return model;            
         }
     }
 }

@@ -26,7 +26,7 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                return context.Students.Include(x => x.Group).SingleOrDefault(x => x.Id == id);
+                return context.Students.Include(x => x.Group).Include(x => x.Group.Students).Include(y => y.Group.Teachers).SingleOrDefault(x => x.Id == id);
             });
         }
 

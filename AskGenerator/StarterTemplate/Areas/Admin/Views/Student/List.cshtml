@@ -16,6 +16,7 @@
                         <th>Имя</th>
                         <th>Фамилия</th>
                         <th>Группа</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,14 @@
                             <td>@student.FirstName</td>
                             <td>@student.LastName</td>
                             <td>@student.Group.Name</td>
+                            <td>
+                                <a class="btn btn-primary" style="float: left; margin-right: 10px;"  href="@Url.Action("Edit", "Student", new {id=student.Id}) ">Редактировать</a>
+                                @using(@Html.BeginForm("Delete", "Student", FormMethod.Post))
+                                {
+                                    <input type="hidden" id="id" value="@student.Id" name="Id" />
+                                    <button class="btn btn-danger" type="submit">Удалить</button>
+                                }
+                            </td>
                         </tr>
                     }                    
                 </tbody>

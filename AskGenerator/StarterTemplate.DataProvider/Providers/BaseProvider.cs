@@ -51,13 +51,18 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                var entry = context.Entry<T>(entity);
-                if(entry.State == EntityState.Detached)
-                    context.Set<T>().Attach(entity);
-
-                entry.State = EntityState.Modified;
+                //context.Set<T>().Attach(entity);
+                //context.Entry<T>(entity).State = EntityState.Modified;
+                //context.SaveChanges();
+                //return true;
+                var original = context.Set<T>().First(x => x.Id == entity.Id);
+                if(original != null)
+                {
+                    context.Entry(original).CurrentValues.SetValues(entity);
                 context.SaveChanges();
                 return true;
+                }
+                return false;
             });
         }
 

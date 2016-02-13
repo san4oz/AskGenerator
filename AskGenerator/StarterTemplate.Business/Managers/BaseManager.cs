@@ -32,9 +32,9 @@ namespace AskGenerator.Business.Managers
             return Provider.Update(entity);
         }
 
-        public virtual bool Delete(T entity)
+        public virtual bool Delete(string id)
         {
-            return Provider.Delete(entity);
+            return Provider.Delete(id);
         }
 
         public virtual T Get(string id)
