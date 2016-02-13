@@ -7,7 +7,7 @@
 /AskGenerator/AskGenerator.Generator/bin
 /AskGenerator/Mvc/bin
 /AskGenerator/Mvc/obj
-/AskGenerator/packages
+
 /AskGenerator/StarterTemplate/bin
 /AskGenerator/StarterTemplate/obj
 /AskGenerator/StarterTemplate.Business/obj
@@ -16,3 +16,7 @@
 /AskGenerator/StarterTemplate.DataProvider/bin
 /AskGenerator/StarterTemplate.DataProvider/obj
 /AskGenerator/AskGenerator.Generator/obj
+/AskGenerator/StarterTemplate/bin
+/AskGenerator/StarterTemplate.DataProvider/bin/Debug
+/AskGenerator/StarterTemplate.DataProvider/bin/Debug
+/AskGenerator/StarterTemplate/bin
