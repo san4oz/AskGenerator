@@ -14,6 +14,16 @@ namespace AskGenerator.Mvc
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                        "~/Scripts/angular/angular.min.js",
+                        "~/Scripts/angular/angular-route.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/controllers").Include(
+                        "~/Scripts/controllers/*.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/models").Include(
+                        "~/Scripts/models/*.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));

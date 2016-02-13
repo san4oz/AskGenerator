@@ -169,6 +169,11 @@
     <Content Include="Css\bootstrap-theme.min.css" />
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\bootstrap.min.css" />
+    <Content Include="Css\img\expander-minus.png" />
+    <Content Include="Css\img\expander-plus.png" />
+    <Content Include="Css\img\img1.jpeg" />
+    <Content Include="Css\img\img2.png" />
+    <Content Include="Css\img\img3.png" />
     <Content Include="Css\Site.css" />
     <Content Include="Css\select2.css" />
     <Content Include="Css\select2.min.css" />
@@ -1460,9 +1465,15 @@
     <Content Include="Css\Theme\vendors\uniform\www\stylesheets\site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\angular\angular-route.min.js" />
+    <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\captcha.js" />
+    <Content Include="Scripts\controllers\expandCollapse.js" />
+    <Content Include="Scripts\controllers\voteController.js" />
+    <Content Include="Scripts\controllers\voteOptions.js" />
     <Content Include="Scripts\controls.js" />
     <Content Include="Scripts\i18n\ar.js" />
     <Content Include="Scripts\i18n\az.js" />
@@ -1691,7 +1702,7 @@
     <Content Include="Areas\Admin\Views\Question\TeacherList.cshtml" />
     <Content Include="Areas\Admin\Views\Question\_List.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Create.cshtml" />
-	  <Content Include="Areas\Admin\Views\Team\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Team\List.cshtml" />
     <Content Include="Areas\Admin\Views\Student\Edit.cshtml" />
     <!--<None Include="Properties\PublishProfiles\ztu-fikt - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ztu-fikt - Web Deploy.pubxml" />-->
@@ -1709,6 +1720,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\models\option.js" />
+    <Content Include="Scripts\models\teacherRait.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
@@ -1746,6 +1759,7 @@
     <Content Include="Views\Shared\_captcha.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
+    <Content Include="Views\Home\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

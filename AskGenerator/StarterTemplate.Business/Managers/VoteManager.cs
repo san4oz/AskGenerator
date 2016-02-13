@@ -16,5 +16,10 @@ namespace AskGenerator.Business.Managers
         {
 
         }
+
+        public Task<List<Vote>> ListAsync(string userId)
+        {
+            return new TaskFactory().StartNew(() => Provider.List(userId));
+        }
     }
 }

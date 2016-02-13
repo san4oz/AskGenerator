@@ -8,12 +8,12 @@ namespace AskGenerator.Business.Entities
 {
     public class Vote : Entity
     {
-        public Question Question { get; set; }
+        public Question QuestionId { get; set; }
 
         public short Answer { get; set; }
 
-        public Teacher Teacher { get; set; }
+        public string TeacherId { get; set; }
 
-        public User Account { get; set; }
+        public string AccountId { get; set; }
     }
 }
