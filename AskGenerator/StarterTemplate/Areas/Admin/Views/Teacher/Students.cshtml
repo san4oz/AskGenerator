@@ -1,13 +1,13 @@
-﻿@model  List<AskGenerator.ViewModels.StudentViewModel>
+﻿@model  AskGenerator.Mvc.ViewModels.TeacherVotingViewModel
 @using System.Web.Optimization
 @{
     ViewBag.Title = "Студенты преподователя";
-    var questions = Site.QuestionManager.All(); 
+    var questions = Site.QuestionManager.All();
     Layout = null;
 }
 
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -28,50 +28,64 @@
                 <div class="row">
                     <div class="panel panel-default bootstrap-admin-no-table-panel">
                         <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                            @foreach(var student in Model)
-                            {
-                            <div class="row">
-                                <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                                    <a class="thumbnail" href="#">
-                                        <img class="img-responsive" src="@student.Image" alt="">
-                                    </a>
-                                </div>
-                                <div class="col-lg-9 col-md-8 col-xs-6">
-                                    <div>
-                                        <div>@Html.LabelFor(x => student.Name)</div>
-                                        <div>@Html.DisplayFor(x => student.Name)</div>
+                            <h1 class="techer-name">@Model.Teacher.FirstName  @Model.Teacher.LastName</h1>
+                            <div class="student-list row-fluid">
+
+                                <div class="list-info row">
+                                    <div class="thumbnails">
+                                        @foreach (var student in Model.Students)
+                                        {
+                                            <div class="student col-lg-4 col-md-4 col-xs-4">
+
+                                                <a class="thumbnail" style="background:url(@student.Image)"></a>
+                                                <div class="contact">
+                                                    <div>
+                                                        @Html.LabelFor(x => student.FirstName):@student.FirstName
+                                                    </div>
+                                                    <div>@Html.LabelFor(x => student.LastName): @student.LastName</div>
+                                                    <div>@Html.LabelFor(x => student.Group): @student.Group.Name</div>
+                                                </div>
+                                            </div>
+                                        }
                                     </div>
-                                    <div>
-                                        <div>@Html.LabelFor(x => student.Group.Name)</div>
-                                        <div>@Html.DisplayFor(x => student.Group.Name)</div>
-                                    </div>
                                 </div>
+                                <hr />
+                                <div class="list-body row">
+                                    <table class="student-question-table">
+                                        <thead>
+                                            <tr>
+                                                <td>Студент</td>
+                                                @foreach (var question in questions.Where(x => !x.IsAboutTeacher))
+                                                {
+                                                    <td>@question.QuestionBody</td>
+                                                }
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var student in Model.Students)
+                                            {
+                                                <tr>
+                                                    <td class="student-name">@student.Name</td>
+                                                    @foreach (var question in questions.Where(x => !x.IsAboutTeacher))
+                                                    {
+                                                        <td>1 2 3 4 5</td>
+                                                    }
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
-                            <div class="row"><h2 class="questions-h2">Вопросы:</h2></div>
-                            <div class="row rate-row">
-                                @foreach (var question in questions)
-                                {
-                                <div class="col-lg-3 col-md-3 col-xs-3 question-wrapper">
-                                    <div class="question">@question.QuestionBody</div>
-                                    <div class="rate-number">
-                                        @for (var i = 1; i <= 5; i++)
-                                        { <span class="rate">@i.ToString()</span> }
-                                    </div>
-                                    <div class="lower">@question.LowerRateDescription</div>
-                                    <div class="higher">@question.HigherRateDescription</div>
-                                </div>
-                                }
-                            </div>
-                            <hr />
-                            }
                         </div>
+                        <hr />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-
+</html>
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/Script/select2")

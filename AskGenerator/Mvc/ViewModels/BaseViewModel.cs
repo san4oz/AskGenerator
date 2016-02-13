@@ -13,7 +13,7 @@ namespace AskGenerator.ViewModels
 
         public BaseViewModel()
         {
-            Id = Guid.NewGuid().ToString();
+            //Id = Guid.NewGuid().ToString();
         }
     }
 }

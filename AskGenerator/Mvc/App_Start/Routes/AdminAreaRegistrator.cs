@@ -33,6 +33,18 @@ namespace AskGenerator.App_Start.Routes
           );
 
             MapRoute(
+             name: "student/edit",
+             url: "student/edit",
+             defaults: new { controller = "Student", action = "Edit" }
+         );
+
+            MapRoute(
+            name: "student/delete",
+            url: "student/delete",
+            defaults: new { controller = "Student", action = "Delete" }
+        );
+
+            MapRoute(
                 name: "teacher/list",
                 url: "teacher/list",
                 defaults: new { controller = "Teacher", action = "list" }
@@ -85,6 +97,12 @@ namespace AskGenerator.App_Start.Routes
                url: "question/edit/{id}",
                defaults: new { controller = "Question", action = "Edit" }
            );
+
+            MapRoute(
+             name: "question/delete",
+             url: "question/delete/{id}",
+             defaults: new { controller = "Question", action = "Delete" }
+         );
 
             MapRoute(
               name: "question/list",

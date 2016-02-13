@@ -240,8 +240,6 @@
     <Content Include="Css\Theme\vendors\boostrap3-typeahead\bootstrap3-typeahead.min.js" />
     <Content Include="Css\Theme\vendors\bootstrap-datepicker\css\datepicker.css" />
     <Content Include="Css\Theme\vendors\bootstrap-datepicker\js\bootstrap-datepicker.js" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5-rails-b3\.gitignore" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5-rails-b3\testapp\.gitignore" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5-rails-b3\testapp\app\assets\images\rails.png" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5-rails-b3\testapp\app\assets\javascripts\application.js" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5-rails-b3\testapp\public\404.html" />
@@ -287,8 +285,6 @@
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5-rails-b3\vendor\assets\stylesheets\bootstrap-wysihtml5\core.css" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5-rails-b3\vendor\assets\stylesheets\bootstrap-wysihtml5\index.css" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5-rails-b3\vendor\assets\stylesheets\bootstrap-wysihtml5\wysiwyg-color.css" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\.gitignore" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\.settings\.gitignore" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\dist\bootstrap-wysihtml5-0.0.2.css" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\dist\bootstrap-wysihtml5-0.0.2.js" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\dist\bootstrap-wysihtml5-0.0.2.min.js" />
@@ -338,13 +334,6 @@
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.zh-CN.js" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\src\locales\bootstrap-wysihtml5.zh-TW.js" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\src\wysiwyg-color.css" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\test\bootstrap_wysihtml5\parserRules_test.js" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\test\browser_test.js" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\test\editor_test.js" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\test\incompatible_test.js" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\test\index.html" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\test\support\html_equal.js" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\test\undo_manager_test.js" />
     <Content Include="Css\Theme\vendors\chosen-sprite%402x.png" />
     <Content Include="Css\Theme\vendors\chosen-sprite.png" />
     <Content Include="Css\Theme\vendors\chosen.jquery.js" />
@@ -1063,7 +1052,6 @@
     <Content Include="Css\Theme\vendors\easypiechart\jquery.easy-pie-chart.css" />
     <Content Include="Css\Theme\vendors\easypiechart\jquery.easy-pie-chart.js" />
     <Content Include="Css\Theme\vendors\easypiechart\jquery.easy-pie-chart_custom.css" />
-    <Content Include="Css\Theme\vendors\flot\.gitignore" />
     <Content Include="Css\Theme\vendors\flot\examples\ajax\index.html" />
     <Content Include="Css\Theme\vendors\flot\examples\annotating\index.html" />
     <Content Include="Css\Theme\vendors\flot\examples\axes-interacting\index.html" />
@@ -1127,7 +1115,6 @@
     <Content Include="Css\Theme\vendors\fullcalendar\fullcalendar.min.js" />
     <Content Include="Css\Theme\vendors\fullcalendar\fullcalendar.print.css" />
     <Content Include="Css\Theme\vendors\fullcalendar\gcal.js" />
-    <Content Include="Css\Theme\vendors\jGrowl\.gitignore" />
     <Content Include="Css\Theme\vendors\jGrowl\examples\iphone.png" />
     <Content Include="Css\Theme\vendors\jGrowl\examples\jgrowl-pool.html" />
     <Content Include="Css\Theme\vendors\jGrowl\examples\jgrowl.html" />
@@ -1421,7 +1408,6 @@
     <Content Include="Css\Theme\vendors\twitter-bootstrap-wizard\MIT-LICENSE.txt" />
     <Content Include="Css\Theme\vendors\twitter-bootstrap-wizard\prettify.css" />
     <Content Include="Css\Theme\vendors\twitter-bootstrap-wizard\prettify.js" />
-    <Content Include="Css\Theme\vendors\uniform\.gitignore" />
     <Content Include="Css\Theme\vendors\uniform\demo\demo.html" />
     <Content Include="Css\Theme\vendors\uniform\jquery.uniform.js" />
     <Content Include="Css\Theme\vendors\uniform\jquery.uniform.min.js" />
@@ -1591,8 +1577,6 @@
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\LICENCE" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\Rakefile" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\readme.textile" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\test\lib" />
-    <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\test\README" />
     <Content Include="Css\Theme\vendors\bootstrap-wysihtml5\VERSION" />
     <Content Include="Css\Theme\vendors\ckeditor\CHANGES.md" />
     <Content Include="Css\Theme\vendors\ckeditor\LICENSE.md" />
@@ -1706,8 +1690,9 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Question\TeacherList.cshtml" />
     <Content Include="Areas\Admin\Views\Question\_List.cshtml" />
-    <None Include="Properties\PublishProfiles\askgenerator - FTP %282%29.pubxml" />
-    <None Include="Properties\PublishProfiles\askgenerator - Web Deploy %282%29.pubxml" />
+    <Content Include="Areas\Admin\Views\Student\Edit.cshtml" />
+    <None Include="Properties\PublishProfiles\ztu-fikt - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ztu-fikt - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -1768,6 +1753,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Fonts\" />
+    <Folder Include="Css\Theme\vendors\bootstrap-wysihtml5\.settings\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>

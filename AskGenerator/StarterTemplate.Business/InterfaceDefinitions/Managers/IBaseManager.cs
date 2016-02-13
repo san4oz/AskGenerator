@@ -12,7 +12,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 
         bool Update(T entity);
 
-        bool Delete(T entity);
+        bool Delete(string id);
 
         T Get(string id);
 

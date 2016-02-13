@@ -192,6 +192,8 @@
     <Compile Include="ViewModels\StudentViewModel.cs" />
     <Compile Include="ViewModels\TeacherComposeViewModel.cs" />
     <Compile Include="ViewModels\TeacherViewModel.cs" />
+    <Compile Include="ViewModels\TeacherVotingViewModel.cs" />
+    <Compile Include="ViewModels\VotingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
