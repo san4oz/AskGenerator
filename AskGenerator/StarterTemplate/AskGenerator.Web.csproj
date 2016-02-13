@@ -1691,10 +1691,10 @@
     <Content Include="Areas\Admin\Views\Question\TeacherList.cshtml" />
     <Content Include="Areas\Admin\Views\Question\_List.cshtml" />
     <Content Include="Areas\Admin\Views\Team\Create.cshtml" />
-	<Content Include="Areas\Admin\Views\Team\List.cshtml" />
+	  <Content Include="Areas\Admin\Views\Team\List.cshtml" />
     <Content Include="Areas\Admin\Views\Student\Edit.cshtml" />
-    <None Include="Properties\PublishProfiles\ztu-fikt - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\ztu-fikt - Web Deploy.pubxml" />
+    <!--<None Include="Properties\PublishProfiles\ztu-fikt - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ztu-fikt - Web Deploy.pubxml" />-->
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
