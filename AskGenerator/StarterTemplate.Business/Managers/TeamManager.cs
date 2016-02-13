@@ -23,7 +23,7 @@ namespace AskGenerator.Business.Managers
             {
                 var team = Get(id);
                 if (team != null)
-                    Delete(team);
+                    Provider.Delete(team);
                 return team;
             });
             
