@@ -40,10 +40,9 @@
                                                 <a class="thumbnail" style="background:url(@student.Image)"></a>
                                                 <div class="contact">
                                                     <div>
-                                                        @Html.LabelFor(x => student.FirstName):@student.FirstName
+                                                        @student.FirstName @student.LastName  <br/>
+                                                        @student.Group.Name
                                                     </div>
-                                                    <div>@Html.LabelFor(x => student.LastName): @student.LastName</div>
-                                                    <div>@Html.LabelFor(x => student.Group): @student.Group.Name</div>
                                                 </div>
                                             </div>
                                         }

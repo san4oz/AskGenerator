@@ -370,3 +370,5 @@ C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\bin\Debug\ru\Sy
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\obj\Debug\AskGenerator.Mvc.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\obj\Debug\AskGenerator.Mvc.Helpers.MailsData.resources
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\obj\Debug\AskGenerator.Mvc.csproj.GenerateResource.Cache
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\bin\Debug\Ionic.Zip.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\bin\Debug\Ionic.Zip.xml

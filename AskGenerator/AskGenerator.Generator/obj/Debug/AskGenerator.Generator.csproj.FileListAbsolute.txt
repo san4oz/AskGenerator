@@ -130,3 +130,5 @@ C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Genera
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Debug\ru\System.Net.Http.Formatting.resources.dll
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Debug\ru\System.Web.Http.resources.dll
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\obj\Debug\AskGenerator.Generator.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Debug\Ionic.Zip.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Debug\Ionic.Zip.xml

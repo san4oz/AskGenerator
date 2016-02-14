@@ -1,0 +1,14 @@
+﻿@model  IList<AskGenerator.ViewModels.QuestionViewModel>
+
+@{
+    ViewBag.Title = "Питання про викладачів";
+}
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("CreateTeacher", "Question")">+ Добавить вопрос</a></div>
+        </div>
+        @Html.Partial("_List")
+    </div>
+</div>

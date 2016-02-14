@@ -189,3 +189,5 @@ C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate\bin
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate\obj\Release\AskGenerator.Web.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate\obj\Release\StarterTemplate.dll
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate\obj\Release\StarterTemplate.pdb
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate\bin\Ionic.Zip.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate\bin\Ionic.Zip.xml
