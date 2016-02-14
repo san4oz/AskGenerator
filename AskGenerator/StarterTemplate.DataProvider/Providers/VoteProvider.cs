@@ -10,5 +10,9 @@ namespace AskGenerator.DataProvider.Providers
 {
     public class VoteProvider : BaseProvider<Vote>, IVoteProvider
     {
+        public List<Vote> List(string userId)
+        {
+            return GetSet(set => set.AsQueryable().Where(v => v.AccountId.Equals(userId)).ToList());
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
 {
     public interface IVoteProvider : IBaseProvider<Vote>
     {
+        List<Vote> List(string userId);
     }
 }

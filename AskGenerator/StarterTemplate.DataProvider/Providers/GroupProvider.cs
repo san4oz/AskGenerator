@@ -19,6 +19,14 @@ namespace AskGenerator.DataProvider.Providers
             });
         }
 
+        public override Group Get(string id)
+        {
+            return GetSet(set =>
+            {
+                return set.Include(x => x.Teachers).SingleOrDefault(g => g.Id == id);
+            });
+        }
+
         public List<Group> GetById(IEnumerable<string> ids)
         {
             return Execute(context =>

@@ -42,6 +42,11 @@ namespace AskGenerator.Business.Managers
             return Provider.Get(id);
         }
 
+        public virtual Task<T> GetAsync(string id)
+        {
+            return new TaskFactory().StartNew(() => Provider.Get(id));
+        }
+
         public virtual List<T> All()
         {
             return Provider.All();

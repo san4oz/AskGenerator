@@ -23,5 +23,15 @@ namespace AskGenerator.Business.Managers
         {
             return Provider.List(isAboutTeacher);
         }
+
+        /// <summary>
+        /// Gets questions for certain category.
+        /// </summary>
+        /// <param name="isAboutTeacher">Indicates whether question about teachers should be retrived.</param>
+        /// <returns>List of retrived questions.</returns>
+        public Task<List<Question>> ListAsync(bool isAboutTeacher = false)
+        {
+            return new TaskFactory().StartNew(() => Provider.List(isAboutTeacher));
+        }
     }
 }

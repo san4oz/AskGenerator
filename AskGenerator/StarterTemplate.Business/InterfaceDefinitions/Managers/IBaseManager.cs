@@ -16,6 +16,8 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 
         T Get(string id);
 
+        Task<T> GetAsync(string id);
+
         List<T> All();
     }
 }

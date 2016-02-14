@@ -15,5 +15,12 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// <param name="isAboutTeacher">Indicates whether question about teachers should be retrived.</param>
         /// <returns>List of retrived questions.</returns>
         List<Question> List(bool isAboutTeacher = false);
+
+        /// <summary>
+        /// Gets questions for certain category.
+        /// </summary>
+        /// <param name="isAboutTeacher">Indicates whether question about teachers should be retrived.</param>
+        /// <returns>List of retrived questions.</returns>
+        Task<List<Question>> ListAsync(bool isAboutTeacher = false);
     }
 }
