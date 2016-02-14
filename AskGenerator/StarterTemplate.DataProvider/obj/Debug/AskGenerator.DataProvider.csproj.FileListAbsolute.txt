@@ -98,3 +98,5 @@ C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.Dat
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Debug\AskGenerator.DataProvider.Migrations.DataMigration.resources
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Debug\AskGenerator.DataProvider.Migrations.Person.resources
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Debug\AskGenerator.DataProvider.csproj.GenerateResource.Cache
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Debug\AskGenerator.DataProvider.Migrations.Team.resources
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Debug\AskGenerator.DataProvider.Migrations.Team1.resources

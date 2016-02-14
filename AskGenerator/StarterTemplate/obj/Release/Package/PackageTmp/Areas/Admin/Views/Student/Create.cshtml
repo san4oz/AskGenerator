@@ -1,0 +1,66 @@
+﻿@model AskGenerator.ViewModels.CreateStudentViewModel
+
+@{
+    ViewBag.Title = "Новый студент";
+}
+
+<div class="col-md-10">
+    <div class="row">
+        <div class="panel panel-default bootstrap-admin-no-table-panel">
+            <div class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">Студент</div>
+            </div>
+            <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
+                @using (Html.BeginForm("Create", "Student", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+                {
+                    <fieldset>
+                        <legend>Создание студента</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Student.FirstName, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.Student.FirstName, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Student.LastName, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.Student.LastName, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Student.Group, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.DropDownListFor(x => x.Student.Group.Id,
+                                    new List<SelectListItem>(Model.Groups.Select(x => new SelectListItem() { Text = x.Name, Value = x.Id })), new { @class = "chzn-select", style = "width: 150px" })                                
+                                @*@Html.TextBoxFor(x => x.Group, htmlAttributes: new { @clas = "form-control" })*@
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Student.ImageFile, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.Student.ImageFile, new { type = "file"})
+                                @*@Html.TextBoxFor(x => x.Group, htmlAttributes: new { @clas = "form-control" })*@
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <button type="reset" class="btn btn-default">Очистить</button>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Student_Group_Id").select2({
+                placeholder: "Выберите группу",
+                width: 400
+            });
+        });
+    </script>
+}

@@ -1,0 +1,85 @@
+.question-wrapper{
+    text-align: center;
+    margin-left: 10px;
+    border: 1px dotted lightgrey;
+}
+
+.lower{
+    float: left;
+    font-weight: 700;
+}
+
+.higher{
+    float: right;
+    font-weight: 700;
+}
+
+.question
+{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.questions-h2{
+   text-align: center;
+}
+
+.rate-number{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.rate{
+    padding: 5px;
+}
+
+.rate-row{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.student{
+    float: left;
+    padding: 10px;   
+}
+
+.student > .thumbnail{
+    width: 80px;
+    height: 80px;    
+    float: left;
+    margin-right: 10px;
+    background-position: center center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat, no-repeat;
+}
+
+.techer-name
+{
+    text-align: center;
+}
+
+.student > .contact {
+    float: left;
+}  
+
+.student-question-table {
+    margin: 0 auto;
+}
+   
+
+
+.student-question-table > thead  td{
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.student-question-table tbody td{
+    width: 150px;
+    height: 50px;
+    border-bottom: 1px solid lightgrey;
+}
+
+
+.student-question-table  tr{
+    text-align: center;
+}

@@ -76,6 +76,7 @@ namespace AskGenerator.Controllers.Admin
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult Students(string teacherId)
         {
             var model = CreateTeacherVotingViewModel(teacherId);
@@ -83,6 +84,7 @@ namespace AskGenerator.Controllers.Admin
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult GeneratePDF(string teacherId)
         {
             var teacher = Site.TeacherManager.Get(teacherId);
