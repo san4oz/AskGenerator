@@ -29,9 +29,12 @@ namespace AskGenerator.Mvc.Controllers
         /// </summary>
         /// <returns>Returns data for current user.</returns>
         [HttpPost]
-        [Authorize]
         public async Task<JsonResult> NgData()
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Json(new { url = Url.Action("Login", "Account") }, 403);
+            }
             var userId = User.Identity.GetGroupId();
             var group = await Site.GroupManager.GetAsync(userId);
             var quesstions = await Site.QuestionManager.ListAsync(true);
@@ -78,11 +81,11 @@ namespace AskGenerator.Mvc.Controllers
                     image = string.IsNullOrEmpty(teacher.Image) ? "/Content/Images/teacher/noImage.png" : teacher.Image,
                     name = teacher.FirstName + ' ' + teacher.LastName
                 };
-                var teacherVotes = votes.FirstOrDefault();
+                var teacherVotes = votes.FirstOrDefault(g => g.Key == teacher.Id);
                 if (teacherVotes == null)
                     data.status = new List<Answer>();
                 else
-                    data.status = teacherVotes.Select(v => new Answer() { id = v.Id, value = v.Answer }).ToList();
+                    data.status = teacherVotes.Select(v => new Answer() { id = v.QuestionId.Id, value = v.Answer }).ToList();
 
                 teachers.Add(data);
             }
@@ -103,6 +106,9 @@ namespace AskGenerator.Mvc.Controllers
 
         public class Answer
         {
+            /// <summary>
+            /// Question ID.
+            /// </summary>
             public string id { get; set; }
 
             public int value { get; set; }

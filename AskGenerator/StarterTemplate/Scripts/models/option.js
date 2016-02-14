@@ -15,8 +15,10 @@
         }
     };
 
+    var token = $('input[name="__RequestVerificationToken"]').val();
+
     self.vote = function (teacherId, $index) {
-        self.teachers[teacherId].vote(self.id, $index);
+        self.teachers[teacherId].vote(self.id, $index, token);
         self.voted += 1;
     };
 

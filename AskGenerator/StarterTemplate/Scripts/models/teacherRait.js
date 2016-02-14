@@ -17,8 +17,8 @@
     self.enableRevote = function () {
         self.revoute = false;
     };
-    self.vote = function (option, $index) {
-        var data = { id: self.id, questionId: option, answer: $index + 1 };
+    self.vote = function (option, $index, token) {
+        var data = { id: self.id, questionId: option, answer: $index + 1, '__RequestVerificationToken': token };
         self.revoute = true;
         $http.post('/home/addAnswer', data).then(function () {
             self.value = $index + 1;

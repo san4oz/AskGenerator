@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace AskGenerator.DataProvider.Providers
 {
@@ -12,7 +13,7 @@ namespace AskGenerator.DataProvider.Providers
     {
         public List<Vote> List(string userId)
         {
-            return GetSet(set => set.AsQueryable().Where(v => v.AccountId.Equals(userId)).ToList());
+            return GetSet(set => set.Include(x => x.QuestionId).AsQueryable().Where(v => v.AccountId.Equals(userId)).ToList());
         }
 
 
