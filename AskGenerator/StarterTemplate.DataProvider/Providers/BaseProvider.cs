@@ -51,15 +51,20 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                var original = context.Set<T>().First(x => x.Id == entity.Id);
-                if(original != null)
-                {
-                    context.Entry(original).CurrentValues.SetValues(entity);
-                    context.SaveChanges();
-                    return true;
-                }
-                return false;
+                return Update(context, entity);
             });
+        }
+
+        protected bool Update(AppContext context, T entity)
+        {
+            var original = context.Set<T>().First(x => x.Id == entity.Id);
+            if (original != null)
+            {
+                context.Entry(original).CurrentValues.SetValues(entity);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
         }
 
         public virtual bool Delete(T entity)

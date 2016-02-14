@@ -10,5 +10,11 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
     public interface IVoteProvider : IBaseProvider<Vote>
     {
         List<Vote> List(string userId);
+
+        bool Create(Vote vote, string questionId);
+
+        bool Update(Vote vote, string questionId);
+
+        Vote Get(string userId, string questionId);
     }
 }

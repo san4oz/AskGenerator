@@ -1,4 +1,4 @@
-﻿function TeacherRating(option, teacher) {
+﻿function TeacherRating(option, teacher, $http) {
     var self = this;
     self.id = teacher.id;
     self.name = teacher.name;
@@ -6,8 +6,8 @@
     self.value = "";
     self.points = [];
     for (var val in teacher.status) {
-        if (teacher.status[val][option]) {
-            self.value = teacher.status[val][option];
+        if (teacher.status[val].id == option) {
+            self.value = teacher.status[val].value;
         }
     }
     self.revoute = self.value ? true : false;
@@ -18,7 +18,14 @@
         self.revoute = false;
     };
     self.vote = function (option, $index) {
+        var data = { id: self.id, questionId: option, answer: $index + 1 };
         self.revoute = true;
-        self.value = $index + 1;
+        $http.post('/home/addAnswer', data).then(function () {
+            self.value = $index + 1;
+        }, function () {
+            self.revoute = false;
+            console.log('Woooops, something going wrong');
+        });
+
     }
 }

@@ -10,5 +10,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
     public interface IVoteManager : IBaseManager<Vote>
     {
         Task<List<Vote>> ListAsync(string userId);
+
+        Task<bool> Save(Vote vote, string questionId);
     }
 }

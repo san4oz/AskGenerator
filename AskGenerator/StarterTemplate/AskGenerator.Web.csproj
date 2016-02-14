@@ -1769,6 +1769,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Fonts\" />
+    <Folder Include="Content\Images\teacher\" />
     <Folder Include="Css\Theme\vendors\bootstrap-wysihtml5\.settings\" />
     <Folder Include="Extensions\" />
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AskGenerator.Business.Entities;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -35,13 +36,46 @@ namespace AskGenerator.Mvc.Controllers
             var group = await Site.GroupManager.GetAsync(userId);
             var quesstions = await Site.QuestionManager.ListAsync(true);
             var votes = (await Site.VoteManager.ListAsync(userId)).GroupBy(v => v.TeacherId);
+            var teachers = MapTeachers(group, votes);
+            
+            return Json(new {
+                options = quesstions.Select(q => new Option() { id = q.Id, label = q.QuestionBody }).ToList(),
+                teachers = teachers
+            });
+        }
+
+        /// <summary>
+        /// Saves answer for current user.
+        /// </summary>
+        /// <param name="id">Teacher ID.</param>
+        /// <param name="questionId">Question ID.</param>
+        /// <param name="answer">Answer.</param>
+        [HttpPost]
+        [Authorize]
+        public async Task<JsonResult> AddAnswer(string id, string questionId, short answer)
+        {
+            var vote = new Vote()
+            {
+                TeacherId = id,
+                Answer = answer,
+                AccountId = User.Identity.GetGroupId()
+            };
+            var result = await Site.VoteManager.Save(vote, questionId);
+            if (result)
+                return Json(true);
+
+            return Json(false, 505);
+        }
+
+        private List<TeacherDataModel> MapTeachers(Business.Entities.Group group, IEnumerable<IGrouping<string, Business.Entities.Vote>> votes)
+        {
             var teachers = new List<TeacherDataModel>();
-            foreach(var teacher in group.Teachers)
+            foreach (var teacher in group.Teachers)
             {
                 var data = new TeacherDataModel()
                 {
                     id = teacher.Id,
-                    image = teacher.Image,
+                    image = string.IsNullOrEmpty(teacher.Image) ? "/Content/Images/teacher/noImage.png" : teacher.Image,
                     name = teacher.FirstName + ' ' + teacher.LastName
                 };
                 var teacherVotes = votes.FirstOrDefault();
@@ -52,13 +86,10 @@ namespace AskGenerator.Mvc.Controllers
 
                 teachers.Add(data);
             }
-            ;
-            return Json(new {
-                options = quesstions.Select(q => new Option() { id = q.Id, label = q.QuestionBody }).ToList(),
-                teachers = teachers
-            });
+            return teachers;
         }
 
+        #region Nested
         public class TeacherDataModel
         {
             public string id { get; set; }
@@ -83,5 +114,6 @@ namespace AskGenerator.Mvc.Controllers
 
             public string label { get; set; }
         }
+        #endregion
     }
 }

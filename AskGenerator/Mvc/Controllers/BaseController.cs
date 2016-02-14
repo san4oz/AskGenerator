@@ -30,10 +30,15 @@ namespace AskGenerator.Mvc.Controllers
             }
         }
 
+        protected JsonResult Json(object data, int code)
+        {
+            Response.StatusCode = code;
+            return Json(data);
+        }
+
         protected JsonResult Json404(object data)
         {
-            Response.StatusCode = 404;
-            return Json(data);
+            return Json(data, 404);
         }
 
         /// <summary>

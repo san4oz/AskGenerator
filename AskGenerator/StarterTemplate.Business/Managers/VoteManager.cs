@@ -21,5 +21,19 @@ namespace AskGenerator.Business.Managers
         {
             return new TaskFactory().StartNew(() => Provider.List(userId));
         }
+
+        public Task<bool> Save(Vote vote, string questionId)
+        {
+            return new TaskFactory().StartNew(() => {
+                var prev = Provider.Get(vote.AccountId, questionId);
+                if (prev == null)
+                {
+                    vote.Id = Guid.NewGuid().ToString();
+                    return Provider.Create(vote, questionId);
+                }
+                vote.Id = prev.Id;
+                return Provider.Update(vote, questionId);
+            });
+        }
     }
 }

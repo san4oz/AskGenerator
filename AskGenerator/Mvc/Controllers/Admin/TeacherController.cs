@@ -71,7 +71,7 @@ namespace AskGenerator.Controllers.Admin
         {
             var teacher = Map<TeacherViewModel, Teacher>(model);
             if(model.ImageFile != null && model.ImageFile.ContentLength > 0)
-                teacher.Image = SaveImage(model.ImageFile, model.Id);
+                teacher.Image = SaveImage(model.ImageFile, model.Id, "teacher");
             return teacher;
         }
 
