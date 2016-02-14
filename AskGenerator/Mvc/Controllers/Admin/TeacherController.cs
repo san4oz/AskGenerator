@@ -3,6 +3,7 @@ using AskGenerator.Mvc.Controllers;
 using AskGenerator.Mvc.ViewModels;
 using AskGenerator.ViewModels;
 using AutoMapper;
+using Ionic.Zip;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -105,6 +106,42 @@ namespace AskGenerator.Controllers.Admin
             return pdf;
         }
 
+        [HttpPost]
+        public ActionResult GetZippedPdf()
+        {
+            var teachers = Site.TeacherManager.All();
+
+            var files = new List<FileStreamResult>();
+
+            foreach(var teacher in teachers)
+            {
+                var parameters = new RouteValueDictionary();
+                var url = Url.Action("Students", "Teacher", new { teacherId = teacher.Id }, Request.Url.Scheme);
+
+                var pdf = Site.PDFGenerator.Generate(HttpContext.ApplicationInstance.Context,
+                string.Format("{0} {1}", teacher.FirstName, teacher.LastName),
+                url);
+
+                files.Add(pdf);
+            }
+
+            using(var outputStream = new MemoryStream())
+            {
+                using(var zip = new ZipFile())
+                {
+                    foreach(var file in files)
+                    {
+                        zip.AddEntry(file.FileDownloadName, ReadFully(file.FileStream));
+                    }
+
+                    zip.Save();
+                }
+
+                outputStream.Position = 0;
+                return File(outputStream, "application/zip", "students.zip");
+            }
+        }
+
         public TeacherVotingViewModel CreateTeacherVotingViewModel(string teacherId)
         {
             var model = new TeacherVotingViewModel();
@@ -118,6 +155,20 @@ namespace AskGenerator.Controllers.Admin
             model.Vote = new VotingViewModel();
 
             return model;            
+        }
+
+        public static byte[] ReadFully(Stream input)
+        {
+            byte[] buffer = new byte[16 * 1024];
+            using (MemoryStream ms = new MemoryStream())
+            {
+                int read;
+                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    ms.Write(buffer, 0, read);
+                }
+                return ms.ToArray();
+            }
         }
     }
 }

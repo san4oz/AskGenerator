@@ -34,3 +34,4 @@ C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.Dat
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Release\StarterTemplate.DataProvider.pdb
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Release\AskGenerator.DataProvider.Migrations.Team.resources
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Release\AskGenerator.DataProvider.Migrations.Team1.resources
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\StarterTemplate.DataProvider\obj\Release\AskGenerator.DataProvider.Migrations.ChangeVote.resources

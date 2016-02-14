@@ -68,3 +68,5 @@ C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\obj\Release\Ask
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\obj\Release\AskGenerator.Mvc.csproj.GenerateResource.Cache
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\obj\Release\Mvc.dll
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\obj\Release\Mvc.pdb
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\bin\Release\Ionic.Zip.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\Mvc\bin\Release\Ionic.Zip.xml

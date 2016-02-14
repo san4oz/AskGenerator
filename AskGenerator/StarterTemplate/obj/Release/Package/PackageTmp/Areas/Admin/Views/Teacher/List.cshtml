@@ -17,7 +17,12 @@
                         <th>Фамилия</th>
                         <th>Студенты</th>
                         <th>Фото</th>
-                        <th>Создать .pdf</th>
+                        <th>
+                            @using (Html.BeginForm("GetZippedPdf", "Teacher", FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-success">Скачать zip архив</button>
+                            }
+                        </th>
                         <th></th>
                     </tr>
                 </thead>

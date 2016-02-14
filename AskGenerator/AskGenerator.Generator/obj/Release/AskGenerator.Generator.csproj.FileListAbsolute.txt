@@ -38,3 +38,5 @@ C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Genera
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\obj\Release\AskGenerator.Generator.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\obj\Release\AskGenerator.Generator.dll
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\obj\Release\AskGenerator.Generator.pdb
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\Ionic.Zip.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\Ionic.Zip.xml

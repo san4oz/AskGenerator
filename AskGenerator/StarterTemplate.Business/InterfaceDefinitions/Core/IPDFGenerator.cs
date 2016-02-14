@@ -11,5 +11,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Core
     public interface IPDFGenerator
     {
         FileStreamResult Generate(HttpContext context, string fileName, string url);
+
+        byte[] GetBytes(HttpContext context, string fileName, string url);
     }
 }

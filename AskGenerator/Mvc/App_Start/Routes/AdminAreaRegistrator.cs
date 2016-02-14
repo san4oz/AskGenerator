@@ -63,6 +63,12 @@ namespace AskGenerator.App_Start.Routes
             );
 
             MapRoute(
+                name: "teacher/getallpdfs",
+                url: "teacher/getallpdfs",
+                defaults: new { controller = "Teacher", action = "GetZippedPdf" }
+                );
+
+            MapRoute(
                 name: "teacher/create",
                 url: "teacher/create",
                 defaults: new { controller = "Teacher", action = "create" }
