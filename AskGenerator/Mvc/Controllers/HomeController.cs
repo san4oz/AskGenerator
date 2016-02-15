@@ -38,8 +38,8 @@ namespace AskGenerator.Mvc.Controllers
             var userId = User.Identity.GetGroupId();
             var group = await Site.GroupManager.GetAsync(userId);
             var quesstions = await Site.QuestionManager.ListAsync(true);
-            var votes = (await Site.VoteManager.ListAsync(userId)).GroupBy(v => v.TeacherId);
-            var teachers = MapTeachers(group, votes);
+            var votes = await Site.VoteManager.ListAsync(userId);
+            var teachers = MapTeachers(group, votes.GroupBy(v => v.TeacherId));
             
             return Json(new {
                 options = quesstions.Select(q => new Option() { id = q.Id, label = q.QuestionBody }).ToList(),

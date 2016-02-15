@@ -22,6 +22,13 @@ namespace AskGenerator.DataProvider.Providers
             return GetSet(set => set.AsQueryable().FirstOrDefault(v => v.AccountId.Equals(userId) && v.QuestionId.Id.Equals(questionId)));
         }
 
+        public Vote Get(string userId, string teacherId, string questionId)
+        {
+            return GetSet(set => set.AsQueryable().FirstOrDefault(v => v.AccountId.Equals(userId)
+                && v.TeacherId.Equals(teacherId)
+                && v.QuestionId.Id.Equals(questionId)));
+        }
+
         public bool Create(Vote vote, string questionId)
         {
             return Execute(context => {

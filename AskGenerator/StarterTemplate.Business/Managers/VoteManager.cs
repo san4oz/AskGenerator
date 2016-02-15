@@ -25,7 +25,7 @@ namespace AskGenerator.Business.Managers
         public Task<bool> Save(Vote vote, string questionId)
         {
             return new TaskFactory().StartNew(() => {
-                var prev = Provider.Get(vote.AccountId, questionId);
+                var prev = Provider.Get(vote.AccountId, vote.TeacherId, questionId);
                 if (prev == null)
                 {
                     vote.Id = Guid.NewGuid().ToString();

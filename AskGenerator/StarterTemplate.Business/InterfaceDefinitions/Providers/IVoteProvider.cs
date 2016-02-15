@@ -16,5 +16,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
         bool Update(Vote vote, string questionId);
 
         Vote Get(string userId, string questionId);
+
+        Vote Get(string userId, string teacherId, string questionId);
     }
 }
