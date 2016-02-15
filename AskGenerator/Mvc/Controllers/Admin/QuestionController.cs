@@ -65,6 +65,15 @@ namespace AskGenerator.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        public ActionResult CreateTeacher(QuestionViewModel viewModel)
+        {
+            var model = Map<QuestionViewModel, Question>(viewModel);
+            Site.QuestionManager.Create(model);
+            return RedirectToAction("TeacherList");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(QuestionViewModel viewModel)
         {
             var model = Map<QuestionViewModel, Question>(viewModel);
