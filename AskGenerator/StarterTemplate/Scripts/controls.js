@@ -12,8 +12,8 @@
             if (d) {
                 var line = target.parents('tr, .raw, li');
                 if (line.length > 0)
-                    line = line[0];
-                $(line).remove();
+                    line = $(line[0]);
+                line.animate({ height: 0, opacity: 0}, 250, function () { line.remove() });
             }
         });
     });
