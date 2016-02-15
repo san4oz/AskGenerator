@@ -42,7 +42,9 @@ namespace AskGenerator.Mvc.Controllers
             var teachers = MapTeachers(group, votes.GroupBy(v => v.TeacherId));
             
             return Json(new {
-                options = quesstions.Select(q => new Option() { id = q.Id, label = q.QuestionBody }).ToList(),
+                options = quesstions.Select(q => new Option() {
+                    id = q.Id, label = q.QuestionBody,
+                    low = q.LowerRateDescription, hight = q.HigherRateDescription }).ToList(),
                 teachers = teachers
             });
         }
@@ -119,6 +121,10 @@ namespace AskGenerator.Mvc.Controllers
             public string id { get; set; }
 
             public string label { get; set; }
+
+            public string low { get; set; }
+
+            public string hight { get; set; }
         }
         #endregion
     }

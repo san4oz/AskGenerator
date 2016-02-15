@@ -83,13 +83,19 @@ namespace AskGenerator.Controllers.Admin
             return RedirectToAction("List");
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(string id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return Json(new { url = Url.Action("Login", "Account") }, 403);
+            }
             if (!string.IsNullOrEmpty(id))
             {                
                 Site.QuestionManager.Delete(id);
             }
-            return RedirectToAction("List");
+#warning ToDO return deleted item.
+            return Json(true);
         }
     }
 }
