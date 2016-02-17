@@ -1,26 +1,26 @@
 ﻿@model  List<AskGenerator.ViewModels.TeacherViewModel>
 
 @{
-    ViewBag.Title = "Список преподователей";
+    ViewBag.Title = @Resources.Resource.ListTeachers;
 }
 
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("Create", "Teacher")">+ Добавить преподавателя</a></div>
+            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("Create", "Teacher")">+ @Resources.Resource.AddTeacher</a></div>
         </div>
         <div class="bootstrap-admin-panel-content">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Имя</th>
-                        <th>Фамилия</th>
-                        <th>Студенты</th>
-                        <th>Фото</th>
+                        <th>@Resources.Resource.FirstName</th>
+                        <th>@Resources.Resource.LastName</th>
+                        <th>@Resources.Resource.Students</th>
+                        <th>@Resources.Resource.Image</th>
                         <th>
                             @using (Html.BeginForm("GetZippedPdf", "Teacher", FormMethod.Post))
                             {
-                                <button type="submit" class="btn btn-success">Скачать zip архив</button>
+                                <button type="submit" class="btn btn-success">@Resources.Resource.Download .zip</button>
                             }
                         </th>
                         <th></th>
@@ -32,16 +32,16 @@
                         <tr>
                             <td>@teacher.FirstName</td>
                             <td>@teacher.LastName</td>
-                            <th><a href="@Url.Action("Students", "Teacher", new { teacherId = teacher.Id })">Перейти к списку</a></th>
-                            <td>@(teacher.Image.YesNo().ToString() == "Yes" ? "Так" : "Ні")</td>
+                            <th><a href="@Url.Action("Students", "Teacher", new { teacherId = teacher.Id })">@Resources.Resource.BackToTheList</a></th>
+                            <td>@(teacher.Image.YesNo().ToString() == "Yes" ? @Resources.Resource.Yes : @Resources.Resource.No)</td>
                             <td>
                                 @using (Html.BeginForm("GeneratePDF", "Teacher", FormMethod.Post))
                                 {
                                     <input name="TeacherId" hidden="hidden" value="@teacher.Id"/>
-                                    <button type="submit" class="btn btn-success">Скачать .pdf файл</button>
+                                    <button type="submit" class="btn btn-success">@Resources.Resource.Download .pdf</button>
                                 }
                             </td>                            
-                            <td><a class="btn btn-primary" href="@Url.Action("Edit", "Teacher", new {id=teacher.Id})">Редактировать</a></td>
+                            <td><a class="btn btn-primary" href="@Url.Action("Edit", "Teacher", new {id=teacher.Id})">@Resources.Resource.Edit</a></td>
                         </tr>
                     }                    
                 </tbody>

@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountId" xml:space="preserve">
+    <value>Студент</value>
+  </data>
+  <data name="AccountIdRequired" xml:space="preserve">
+    <value>Поле "Студент" повино бути заповнене</value>
+  </data>
+  <data name="AddDepartment" xml:space="preserve">
+    <value>Додати кафедру</value>
+  </data>
+  <data name="AddGroup" xml:space="preserve">
+    <value>+ додати групу</value>
+  </data>
+  <data name="AddQuestion" xml:space="preserve">
+    <value>Додати запитання</value>
+  </data>
+  <data name="AddStudent" xml:space="preserve">
+    <value>Додати студента</value>
+  </data>
+  <data name="AddTeacher" xml:space="preserve">
+    <value>Додати викладача</value>
+  </data>
+  <data name="Answer" xml:space="preserve">
+    <value>Відповіть</value>
+  </data>
+  <data name="AnswerRequired" xml:space="preserve">
+    <value>Поле "Відповіть" повино бути заповнене</value>
+  </data>
+  <data name="BackToTheList" xml:space="preserve">
+    <value>Перейти до списку</value>
+  </data>
+  <data name="CheckPost" xml:space="preserve">
+    <value>На вказану вами електронну адресу буде надіслано лист, для закінчення реєстраціі.</value>
+  </data>
+  <data name="Clean" xml:space="preserve">
+    <value>Чистити</value>
+  </data>
+  <data name="CleanForm" xml:space="preserve">
+    <value>Очистити форму</value>
+  </data>
+  <data name="CreateDepartment" xml:space="preserve">
+    <value>Створити кафедру</value>
+  </data>
+  <data name="CreateGroup" xml:space="preserve">
+    <value>Створити групу</value>
+  </data>
+  <data name="CreateQuestion" xml:space="preserve">
+    <value>Створення питання</value>
+  </data>
+  <data name="CreateStudent" xml:space="preserve">
+    <value>Створення студента</value>
+  </data>
+  <data name="CreatreTeacher" xml:space="preserve">
+    <value>Створення викладача</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Кафедра</value>
+  </data>
+  <data name="Departments" xml:space="preserve">
+    <value>Кафедри</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Заватнажити файл</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="EditDepartment" xml:space="preserve">
+    <value>Редагувати кафедру</value>
+  </data>
+  <data name="EditGroup" xml:space="preserve">
+    <value>Редагування групи</value>
+  </data>
+  <data name="EditQuestion" xml:space="preserve">
+    <value>Редагування питання</value>
+  </data>
+  <data name="EditStudent" xml:space="preserve">
+    <value>Редагування студента</value>
+  </data>
+  <data name="EditTeacher" xml:space="preserve">
+    <value>Редагування викладача</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Ім'я</value>
+  </data>
+  <data name="FirstNameRequired" xml:space="preserve">
+    <value>Поле "Ім'я" повино бути заповнене</value>
+  </data>
+  <data name="Generator" xml:space="preserve">
+    <value>Генератор</value>
+  </data>
+  <data name="Group" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="GroupName" xml:space="preserve">
+    <value>Назва групи</value>
+  </data>
+  <data name="GroupRequired" xml:space="preserve">
+    <value>Вкажіть группу у якій навчається студент</value>
+  </data>
+  <data name="Groups" xml:space="preserve">
+    <value>Групи</value>
+  </data>
+  <data name="HigherRateDescription" xml:space="preserve">
+    <value>Пояснення найвищої оцінки</value>
+  </data>
+  <data name="HigherRateDescriptionRequired" xml:space="preserve">
+    <value>Поле "Пояснення найвищої оцінки" повино бути заповнене</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Фотографія</value>
+  </data>
+  <data name="ImageRequired" xml:space="preserve">
+    <value>Завантажте будь-ласка фотографію</value>
+  </data>
+  <data name="IndexHeader" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="IsAboutTeacher" xml:space="preserve">
+    <value>Це запитання стосується викладача?</value>
+  </data>
+  <data name="IsAboutTeacherRequired" xml:space="preserve">
+    <value>Поле "Це запитання стосується викладача?" повино бути заповнене</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Фамілія</value>
+  </data>
+  <data name="LastNameRequired" xml:space="preserve">
+    <value>Поле "Фамілія" повино бути заповнене</value>
+  </data>
+  <data name="ListDepartments" xml:space="preserve">
+    <value>Список кафедр</value>
+  </data>
+  <data name="ListGroup" xml:space="preserve">
+    <value>Список груп</value>
+  </data>
+  <data name="ListQuestion" xml:space="preserve">
+    <value>Лист запитань</value>
+  </data>
+  <data name="ListStudents" xml:space="preserve">
+    <value>Список студентів</value>
+  </data>
+  <data name="ListTeachers" xml:space="preserve">
+    <value>Список викладачів</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Вхід!</value>
+  </data>
+  <data name="LowerRateDescription" xml:space="preserve">
+    <value>Пояснення найнижчої оцінки</value>
+  </data>
+  <data name="LowerRateDescriptionRequired" xml:space="preserve">
+    <value>Поле "Пояснення найнижчої оцінки" повино бути заповнене</value>
+  </data>
+  <data name="MyMVCAdminTemplate" xml:space="preserve">
+    <value>*My MVC Admin Template</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Група</value>
+  </data>
+  <data name="NameDepart" xml:space="preserve">
+    <value>Назва</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Поле "Група" повино бути заповнене</value>
+  </data>
+  <data name="NewDepartment" xml:space="preserve">
+    <value>Нова кафедра</value>
+  </data>
+  <data name="NewGroup" xml:space="preserve">
+    <value>Нова група</value>
+  </data>
+  <data name="NewQuestion" xml:space="preserve">
+    <value>Нове запитання</value>
+  </data>
+  <data name="NewStudent" xml:space="preserve">
+    <value>Новий студент</value>
+  </data>
+  <data name="NewTeacher" xml:space="preserve">
+    <value>Новий викладач</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Ні</value>
+  </data>
+  <data name="OldDepartment" xml:space="preserve">
+    <value>Стара кафедра</value>
+  </data>
+  <data name="OldQuestion" xml:space="preserve">
+    <value>Старе запитання</value>
+  </data>
+  <data name="OldTeacher" xml:space="preserve">
+    <value>Старий викладач</value>
+  </data>
+  <data name="QuestionAbTeacher" xml:space="preserve">
+    <value>Питання про викладачів</value>
+  </data>
+  <data name="QuestionBody" xml:space="preserve">
+    <value>Запитання</value>
+  </data>
+  <data name="QuestionBodyRequired" xml:space="preserve">
+    <value>Поле "Запитання" повино бути заповнене</value>
+  </data>
+  <data name="QuestionId" xml:space="preserve">
+    <value>Номер запитання</value>
+  </data>
+  <data name="QuestionIdRequired" xml:space="preserve">
+    <value>Поле "Номер запитання" повино бути заповнене</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Реєстрація</value>
+  </data>
+  <data name="RegisterFinish" xml:space="preserve">
+    <value>Ви закінчили реєстрацію, тепер ви можете</value>
+  </data>
+  <data name="RegisterUser" xml:space="preserve">
+    <value>Реєстрація користувача</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Зберігти</value>
+  </data>
+  <data name="SelectDepartment" xml:space="preserve">
+    <value>Виберіть кафедру</value>
+  </data>
+  <data name="SelectGroup" xml:space="preserve">
+    <value>Виберіть группу</value>
+  </data>
+  <data name="SelectGroups" xml:space="preserve">
+    <value>Вибріть групи</value>
+  </data>
+  <data name="SomethingElseHere" xml:space="preserve">
+    <value>Нахера это?))</value>
+  </data>
+  <data name="Student" xml:space="preserve">
+    <value>Студент</value>
+  </data>
+  <data name="Students" xml:space="preserve">
+    <value>Студенти</value>
+  </data>
+  <data name="Teacher" xml:space="preserve">
+    <value>Викладач</value>
+  </data>
+  <data name="TeacherId" xml:space="preserve">
+    <value>Викладач</value>
+  </data>
+  <data name="TeacherIdRequired" xml:space="preserve">
+    <value>Поле "Викладач" повино бути заповнене</value>
+  </data>
+  <data name="Teachers" xml:space="preserve">
+    <value>Викладачі</value>
+  </data>
+  <data name="TeacherStudent" xml:space="preserve">
+    <value>Студенти викладача</value>
+  </data>
+  <data name="ToggleNavigation" xml:space="preserve">
+    <value>Переключення навігації</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Вітаємо!</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Так</value>
+  </data>
+</root>

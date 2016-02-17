@@ -1,4 +1,5 @@
 ﻿using AskGenerator.Business.Entities;
+using AskGenerator.Business.Filters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -6,12 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 
 namespace AskGenerator.Mvc.Controllers
 {
+    [Culture]
     public class HomeController : BaseController
     {
+
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -23,12 +28,38 @@ namespace AskGenerator.Mvc.Controllers
         {
             return PartialView();
         }
+       
+        public ActionResult ChangeCulture(string lang)
+        {
+            string returnUrl = Request.UrlReferrer.AbsolutePath;
+            // Список культур
+            List<string> cultures = new List<string>() { "ru", "en", "de" };
+            if (!cultures.Contains(lang))
+            {
+                lang = "ru";
+            }
+            // Сохраняем выбранную культуру в куки
+            HttpCookie cookie = Request.Cookies["lang"];
+            if (cookie != null)
+                cookie.Value = lang;   // если куки уже установлено, то обновляем значение
+            else
+            {
 
-        /// <summary>
-        /// Gets data for voting page.
-        /// </summary>
-        /// <returns>Returns data for current user.</returns>
-        [HttpPost]
+                cookie = new HttpCookie("lang");
+                cookie.HttpOnly = false;
+                cookie.Value = lang;
+                cookie.Expires = DateTime.Now.AddYears(1);
+            }
+            Response.Cookies.Add(cookie);
+            return Redirect(returnUrl);
+        }
+    
+
+    /// <summary>
+    /// Gets data for voting page.
+    /// </summary>
+    /// <returns>Returns data for current user.</returns>
+    [HttpPost]
         public async Task<JsonResult> NgData()
         {
             if (!User.Identity.IsAuthenticated)
