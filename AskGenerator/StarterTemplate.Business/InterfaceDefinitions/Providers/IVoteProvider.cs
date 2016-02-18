@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Providers
 {
-    public interface IVoteProvider : IBaseProvider<Vote>
+    public interface IVoteProvider : IBaseEntityProvider<Vote>
     {
         List<Vote> List(string userId);
 

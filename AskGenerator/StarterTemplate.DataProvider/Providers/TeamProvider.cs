@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.DataProvider.Providers
 {
-    public class TeamProvider : BaseProvider<Team>, ITeamProvider
+    public class TeamProvider : BaseEntityProvider<Team>, ITeamProvider
     {
         public override List<Team> All()
         {

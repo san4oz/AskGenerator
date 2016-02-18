@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.DataProvider.Providers
 {
-    public class QuestionProvider : BaseProvider<Question>, IQuestionProvider
+    public class QuestionProvider : BaseEntityProvider<Question>, IQuestionProvider
     {
         /// <summary>
         /// Gets questions for certain category.

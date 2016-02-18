@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace AskGenerator.DataProvider.Providers
 {
-    public class VoteProvider : BaseProvider<Vote>, IVoteProvider
+    public class VoteProvider : BaseEntityProvider<Vote>, IVoteProvider
     {
         public List<Vote> List(string userId)
         {

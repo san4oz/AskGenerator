@@ -9,9 +9,6 @@ namespace AskGenerator.Business.Entities
 {
     public class Student : Person
     {
-        [Required(ErrorMessageResourceType = typeof(Resources.Resource),
-                 ErrorMessageResourceName = "GroupRequired")]
-        [Display(Name = "Group", ResourceType = typeof(Resources.Resource))]
         public Group Group { get; set; }
     }
 }

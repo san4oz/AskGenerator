@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace AskGenerator.DataProvider.Providers
 {
-    public class TeacherProvider : BaseProvider<Teacher>, ITeacherProvider
+    public class TeacherProvider : BaseEntityProvider<Teacher>, ITeacherProvider
     {
         public override Teacher Get(string id)
         {

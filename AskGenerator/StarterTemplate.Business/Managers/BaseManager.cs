@@ -11,7 +11,7 @@ namespace AskGenerator.Business.Managers
 {
     public abstract class BaseManager<T, TProvider> : IBaseManager<T>
         where T : Entity
-        where TProvider : IBaseProvider<T>
+        where TProvider : IBaseEntityProvider<T>
     {
         protected TProvider Provider;
 
