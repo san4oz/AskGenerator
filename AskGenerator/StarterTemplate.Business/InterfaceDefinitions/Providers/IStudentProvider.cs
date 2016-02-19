@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Providers
 {
-    public interface IStudentProvider : IBaseProvider<Student>
+    public interface IStudentProvider : IBaseEntityProvider<Student>
     {
     }
 }

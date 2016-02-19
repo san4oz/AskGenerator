@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Providers
 {
-    public interface ITeamProvider : IBaseProvider<Team>
+    public interface ITeamProvider : IBaseEntityProvider<Team>
     {
     }
 }

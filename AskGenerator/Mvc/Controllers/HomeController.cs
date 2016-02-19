@@ -1,5 +1,7 @@
 ﻿using AskGenerator.Business.Entities;
 using AskGenerator.Business.Filters;
+using AskGenerator.Mvc.ViewModels;
+using AskGenerator.ViewModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -15,8 +17,7 @@ namespace AskGenerator.Mvc.Controllers
     [Culture]
     public class HomeController : BaseController
     {
-
-
+        #region Voting
         [HttpGet]
         public ActionResult Index()
         {
@@ -28,7 +29,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             return PartialView();
         }
-       
+
         public ActionResult ChangeCulture(string lang)
         {
             string returnUrl = Request.UrlReferrer.AbsolutePath;
@@ -53,13 +54,13 @@ namespace AskGenerator.Mvc.Controllers
             Response.Cookies.Add(cookie);
             return Redirect(returnUrl);
         }
-    
 
-    /// <summary>
-    /// Gets data for voting page.
-    /// </summary>
-    /// <returns>Returns data for current user.</returns>
-    [HttpPost]
+
+        /// <summary>
+        /// Gets data for voting page.
+        /// </summary>
+        /// <returns>Returns data for current user.</returns>
+        [HttpPost]
         public async Task<JsonResult> NgData()
         {
             if (!User.Identity.IsAuthenticated)
@@ -71,11 +72,16 @@ namespace AskGenerator.Mvc.Controllers
             var quesstions = await Site.QuestionManager.ListAsync(true);
             var votes = await Site.VoteManager.ListAsync(userId);
             var teachers = MapTeachers(group, votes.GroupBy(v => v.TeacherId));
-            
-            return Json(new {
-                options = quesstions.Select(q => new Option() {
-                    id = q.Id, label = q.QuestionBody,
-                    low = q.LowerRateDescription, hight = q.HigherRateDescription }).ToList(),
+
+            return Json(new
+            {
+                options = quesstions.Select(q => new Option()
+                {
+                    id = q.Id,
+                    label = q.QuestionBody,
+                    low = q.LowerRateDescription,
+                    hight = q.HigherRateDescription
+                }).ToList(),
                 teachers = teachers
             });
         }
@@ -101,6 +107,15 @@ namespace AskGenerator.Mvc.Controllers
                 return Json(true);
 
             return Json(false, 505);
+        }
+        #endregion
+
+        [HttpGet]
+        public async Task<ViewResult> Board()
+        {
+            var teachers = await Site.TeacherManager.All(true);
+            var model = new TeacherListViewModel(MapList<Teacher, TeacherViewModel>(teachers));
+            return View(model);
         }
 
         private List<TeacherDataModel> MapTeachers(Business.Entities.Group group, IEnumerable<IGrouping<string, Business.Entities.Vote>> votes)

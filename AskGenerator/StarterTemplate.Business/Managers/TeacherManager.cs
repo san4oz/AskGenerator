@@ -12,7 +12,13 @@ namespace AskGenerator.Business.Managers
 {
     public class TeacherManager : BaseManager<Teacher, ITeacherProvider>, ITeacherManager
     {
-        public TeacherManager(ITeacherProvider provider) : base(provider) { }
+        protected ITeacherQuestionManager TQ { get; private set; }
+
+        public TeacherManager(ITeacherProvider provider, ITeacherQuestionManager tqManager)
+            : base(provider)
+        {
+            TQ = tqManager;
+        }
 
         public List<Student> GetRelatedStudents(string teacherId)
         {
@@ -27,6 +33,34 @@ namespace AskGenerator.Business.Managers
         public bool Update(Teacher teacher, ICollection<string> ids)
         {
             return Provider.Update(teacher, ids);
+        }
+
+        public List<Teacher> List()
+        {
+            return Provider.List();
+        }
+
+        public Task<List<Teacher>> All(bool loadMarks)
+        {
+            return new TaskFactory().StartNew(() => {
+                var teachers = this.List();
+                if (!loadMarks)
+                    return teachers;
+                var answers = TQ.All().ToLookup(tq => tq.TeacherId);
+                foreach (var t in teachers)
+                {
+                    var list = answers[t.Id];
+                    t.Marks = list.Select(x => new Mark() { Answer = x.Answer, QuestionId = x.QuestionId }).ToList();
+                    float avg = t.Marks.Aggregate(0f, (a, m) => a+m.Answer);
+                    if (avg != 0)
+                        avg /= (float)t.Marks.Count;
+                    else
+                        avg = -0.001f;
+                    t.Marks.Insert(0, new Mark() { Answer = avg, QuestionId = Question.AvarageId });
+
+                }
+                return teachers.OrderByDescending(t => t.Marks[0].Answer).ToList();
+            });
         }
     }
 }

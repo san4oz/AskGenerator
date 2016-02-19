@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Providers
 {
-    public interface IQuestionProvider : IBaseProvider<Question>
+    public interface IQuestionProvider : IBaseEntityProvider<Question>
     {
         /// <summary>
         /// Gets questions for certain category.

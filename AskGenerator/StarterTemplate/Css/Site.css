@@ -118,12 +118,34 @@
     cursor: pointer;
 }
 
+.teacher-item .teacher-tile {
+    margin-bottom: 5px;
+    width: 130px;
+}
+
+#teacherBoard .teacher-tile {
+    margin-bottom:4px;
+}
+
+.teacher-tile .badge {
+    border-radius: 50%;
+    height: 24px;
+    line-height: 24px;
+    padding: 0;
+    text-align: center;
+    width: 24px;
+}
+
 .teacher-img {
+    background-color: bisque;
     background-repeat: no-repeat;
     background-position: center top;
     background-size: cover;
-    min-width: 80px;
-    min-height: 100px;
+    min-width: 65px;
+    min-height: 90px;
+    max-width: 75px;
+    max-height: 100px;
+    margin: 0 auto;
 }
 
     .teacher-img::before {

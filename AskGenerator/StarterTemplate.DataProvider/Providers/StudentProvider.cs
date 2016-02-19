@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.DataProvider.Providers
 {
-    public class StudentProvider : BaseProvider<Student>, IStudentProvider
+    public class StudentProvider : BaseEntityProvider<Student>, IStudentProvider
     {
         public override bool Create(Student item)
         {

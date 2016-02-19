@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Providers
 {
-    public interface ITeacherProvider : IBaseProvider<Teacher>
+    public interface ITeacherProvider : IBaseEntityProvider<Teacher>
     {
         List<Student> GetRelatedStudents(string teacherId);
+
+        /// <summary>
+        /// Loads data from one table.
+        /// </summary>
+        /// <returns></returns>
+        List<Teacher> List();
 
         bool Create(Teacher teacher, ICollection<string> ids);
 

@@ -125,6 +125,7 @@
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\Teacher.cs" />
+    <Compile Include="Entities\Marks.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Vote.cs" />
@@ -135,15 +136,17 @@
     <Compile Include="InterfaceDefinitions\Managers\ITeacherManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\IGroupManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\IStudentManager.cs" />
+    <Compile Include="InterfaceDefinitions\Managers\ITeacherQuestionManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\IVoteManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\ITeamManager.cs" />
-    <Compile Include="InterfaceDefinitions\Providers\IBaseProvider.cs" />
+    <Compile Include="InterfaceDefinitions\Providers\IBaseEntityProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\IGroupProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\IQuestionProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\ITeacherProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\IStudentProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\IVoteProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\ITeamProvider.cs" />
+    <Compile Include="InterfaceDefinitions\Providers\ITeacherQuestionProvider.cs" />
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\GroupManager.cs" />
     <Compile Include="Managers\QuestionManager.cs" />
@@ -151,6 +154,7 @@
     <Compile Include="Managers\TeacherManager.cs" />
     <Compile Include="Managers\VoteManager.cs" />
     <Compile Include="Managers\TeamManager.cs" />
+    <Compile Include="Managers\TeacherQuestionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs">
       <DependentUpon>Resource.resx</DependentUpon>

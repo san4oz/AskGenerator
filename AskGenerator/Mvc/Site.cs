@@ -24,6 +24,8 @@ namespace AskGenerator
 
         public static ITeamManager TeamManager { get { return Get<ITeamManager>(); } }
 
+        public static ITeacherQuestionManager TQManager { get { return Get<ITeacherQuestionManager>(); } }
+
         public static IPDFGenerator PDFGenerator { get { return Get<IPDFGenerator>(); } }
 
         #region private

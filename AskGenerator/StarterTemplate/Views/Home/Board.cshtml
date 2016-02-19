@@ -1,0 +1,18 @@
+﻿@model TeacherListViewModel
+@{
+    ViewBag.Title = @Resources.Resource.TeacherBoard;
+}
+
+<h1>@Resources.Resource.TeacherBoard</h1>
+<section id="teacherBoard">
+    @foreach(var t in Model.List) {
+        @Teacher(t)
+    }
+</section>
+
+@helper Teacher(TeacherViewModel teacher) {
+    <article class="col-md-3 teacher-tile" id="@teacher.Id">
+        <span class="badge avg">@Math.Round(teacher.AverageMark, 1)</span>
+        <span>@teacher.FullName</span>
+    </article>
+}

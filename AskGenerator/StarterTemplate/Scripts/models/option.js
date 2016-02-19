@@ -17,8 +17,8 @@
 
     var token = $('input[name="__RequestVerificationToken"]').val();
 
-    self.vote = function (teacherId, $index) {
-        self.teachers[teacherId].vote(self.id, $index, token);
+    self.vote = function (teacherIndex, $index) {
+        self.teachers[teacherIndex].vote(self.id, $index, token);
         self.voted += 1;
     };
 

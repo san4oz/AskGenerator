@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace AskGenerator.DataProvider.Providers
 {
-    public class GroupProvider : BaseProvider<Group>, IGroupProvider
+    public class GroupProvider : BaseEntityProvider<Group>, IGroupProvider
     {
         public override List<Group> All()
         {

@@ -9,19 +9,9 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.DataProvider.Providers
 {
-    public class BaseProvider<T> : IBaseProvider<T>
-        where T : Entity
+    public class BaseProvider
     {
-
-        protected virtual TEntity GetSet<TEntity>(Func<DbSet<T>, TEntity> expression)
-        {
-            using (var context = new AppContext())
-            {
-                return expression(context.Set<T>());
-            }
-        }
-
-        protected virtual TEntity Execute<TEntity>(Func<AppContext, TEntity> expression)
+        protected virtual T Execute<T>(Func<AppContext, T> expression)
         {
             using (var context = new AppContext())
             {
@@ -29,45 +19,7 @@ namespace AskGenerator.DataProvider.Providers
             }
         }
 
-        protected virtual bool Execute(Func<AppContext, bool> expression)
-        {
-            using (var context = new AppContext())
-            {
-                return expression(context);
-            }
-        }
-
-        public virtual bool Create(T entity)
-        {
-            return Execute(context =>
-            {
-                context.Set<T>().Add(entity);
-                context.SaveChanges();
-                return true;
-            });
-        }
-
-        public virtual bool Update(T entity)
-        {
-            return Execute(context =>
-            {
-                return Update(context, entity);
-            });
-        }
-
-        protected bool Update(AppContext context, T entity)
-        {
-            var original = context.Set<T>().First(x => x.Id == entity.Id);
-            if (original != null)
-            {
-                context.Entry(original).CurrentValues.SetValues(entity);
-                context.SaveChanges();
-                return true;
-            }
-            return false;
-        }
-
-        public virtual bool Delete(T entity)
+        public virtual bool Delete<T>(T entity) where T:class
         {
             return Execute(context =>
             {
@@ -79,33 +31,12 @@ namespace AskGenerator.DataProvider.Providers
             });
         }
 
-        public virtual bool Delete(string id)
-        {
-            return Execute(context =>
-            {
-                var entity = context.Set<T>().Single(x => x.Id == id);
-                context.Set<T>().Remove(entity);
-                context.SaveChanges();
-                return true;
-            });
-        }
-
-        public virtual T Get(string id)
-        {
-            return Execute(context =>
-            {
-                return context.Set<T>().SingleOrDefault(x => x.Id == id);
-            });
-        }
-
-        public virtual List<T> All()
+        public virtual List<T> All<T>() where T : class
         {
             return Execute(context =>
             {
                 return context.Set<T>().ToList<T>();
             });
         }
-
-
     }
 }

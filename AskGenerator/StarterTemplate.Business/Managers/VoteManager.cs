@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace AskGenerator.Business.Managers
 {
     public class VoteManager : BaseManager<Vote, IVoteProvider>, IVoteManager
     {
-        public VoteManager(IVoteProvider provider)
+        protected ITeacherQuestionManager TQ { get; private set; }
+
+        public VoteManager(IVoteProvider provider, ITeacherQuestionManager tqManager)
             : base(provider)
         {
-
+            TQ = tqManager;
         }
 
         public Task<List<Vote>> ListAsync(string userId)
@@ -24,15 +27,30 @@ namespace AskGenerator.Business.Managers
 
         public Task<bool> Save(Vote vote, string questionId)
         {
-            return new TaskFactory().StartNew(() => {
+            return new TaskFactory().StartNew(() =>
+            {
                 var prev = Provider.Get(vote.AccountId, vote.TeacherId, questionId);
+                bool success;
                 if (prev == null)
                 {
                     vote.Id = Guid.NewGuid().ToString();
-                    return Provider.Create(vote, questionId);
+                    success = Provider.Create(vote, questionId);
                 }
-                vote.Id = prev.Id;
-                return Provider.Update(vote, questionId);
+                else
+                {
+                    vote.Id = prev.Id;
+                    success = Provider.Update(vote, questionId);
+                }
+                if (success)
+                {
+                    TQ.Save(new TeacherQuestion()
+                    {
+                        QuestionId = questionId,
+                        TeacherId = vote.TeacherId,
+                        Answer = vote.Answer
+                    }).Wait();
+                }
+                return success;
             });
         }
     }

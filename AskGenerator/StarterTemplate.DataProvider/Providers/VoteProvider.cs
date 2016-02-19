@@ -1,15 +1,12 @@
 ﻿using AskGenerator.Business.Entities;
 using AskGenerator.Business.InterfaceDefinitions.Providers;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Linq;
 
 namespace AskGenerator.DataProvider.Providers
 {
-    public class VoteProvider : BaseProvider<Vote>, IVoteProvider
+    public class VoteProvider : BaseEntityProvider<Vote>, IVoteProvider
     {
         public List<Vote> List(string userId)
         {
@@ -24,7 +21,14 @@ namespace AskGenerator.DataProvider.Providers
 
         public Vote Get(string userId, string teacherId, string questionId)
         {
-            return GetSet(set => set.AsQueryable().FirstOrDefault(v => v.AccountId.Equals(userId)
+            return Execute(c => c.Votes.AsQueryable().FirstOrDefault(v => v.AccountId.Equals(userId)
+                && v.TeacherId.Equals(teacherId)
+                && v.QuestionId.Id.Equals(questionId)));
+        }
+
+        public Vote GetWithGroup(string userId, string teacherId, string questionId)
+        {
+            return Execute(c => c.Votes.Include(x => x.QuestionId).FirstOrDefault(v => v.AccountId.Equals(userId)
                 && v.TeacherId.Equals(teacherId)
                 && v.QuestionId.Id.Equals(questionId)));
         }
