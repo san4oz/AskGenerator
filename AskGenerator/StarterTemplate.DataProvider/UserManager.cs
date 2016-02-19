@@ -37,5 +37,13 @@ namespace AskGenerator.DataProvider
 
             return result;
         }
+
+        public override Task<IdentityResult> CreateAsync(User user, string password)
+        {
+            if (string.IsNullOrEmpty(user.Id))
+                user.Id = Guid.NewGuid().ToString();
+
+            return base.CreateAsync(user, password);
+        }
     }
 }

@@ -17,5 +17,6 @@ namespace AskGenerator.Business.Entities
 
         public bool IsAboutTeacher { get; set; }
 
+        public const string AvarageId = "AVARAGEID";
     }
 }

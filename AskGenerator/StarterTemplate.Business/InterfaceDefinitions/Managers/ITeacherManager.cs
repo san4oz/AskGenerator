@@ -14,5 +14,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         bool Create(Teacher teacher, ICollection<string> ids);
 
         bool Update(Teacher teacher, ICollection<string> ids);
+
+        Task<List<Teacher>> All(bool loadMarks);
     }
 }

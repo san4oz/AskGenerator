@@ -47,7 +47,9 @@ namespace AskGenerator.DataProvider.Providers
             {
                 return context.Teachers.Include(x => x.Groups)
                     .Include(x => x.Groups.Select(y => y.Teachers))
-                    .Include(x => x.Groups.Select(y => y.Students)).ToList();
+                    .Include(x => x.Groups.Select(y => y.Students))
+                    .OrderBy(x => x.FirstName)
+                    .ToList();
             });
         }
 
@@ -79,6 +81,12 @@ namespace AskGenerator.DataProvider.Providers
                 context.SaveChanges();
                 return true;
             });
+        }
+
+
+        public List<Teacher> List()
+        {
+            return new AppContext().Teachers.AsQueryable().ToList();
         }
     }
 }

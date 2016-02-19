@@ -29,6 +29,9 @@ namespace AskGenerator.DataProvider.Providers
                 var original = context.TeacherQuestion.First(x => x.QuestionId == entity.QuestionId && x.TeacherId == entity.TeacherId);
                 if (original != null)
                 {
+                    if (original.Equals(entity))
+                        return false;
+
                     context.Entry(original).CurrentValues.SetValues(entity);
                     context.SaveChanges();
                     return true;
@@ -52,7 +55,7 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                return context.TeacherQuestion.Single(x => x.TeacherId == teacherId && x.QuestionId == questionId);
+                return context.TeacherQuestion.SingleOrDefault(x => x.TeacherId == teacherId && x.QuestionId == questionId);
             });
         }
 

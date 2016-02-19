@@ -11,9 +11,11 @@
             <div ng-repeat="teacher in option.teachers">
                 <div class="row">
                     <div class="col-sm-offset-1 col-sm-2 teacher-item">
-                        <div class="teacher-img" ng-style="{'background-image': 'url(' + teacher.image+ ')'}">
+                        <div class="teacher-tile">
+                            <div class="teacher-img" ng-style="{'background-image': 'url(' + teacher.image+ ')'}">
+                            </div>
+                            <span>{{teacher.name}}</span>
                         </div>
-                        <span>{{teacher.name}}</span>
                     </div>
                     <div class="col-sm-9 btn-group votes-options" data-toggle="buttons" >
                         <label class="btn btn-default point" ng-repeat="point in teacher.points"

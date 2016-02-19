@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace AskGenerator.Business.Managers
 {
@@ -18,46 +19,57 @@ namespace AskGenerator.Business.Managers
             Provider = provider;
         }
 
-
         public bool Create(TeacherQuestion entity)
         {
-            throw new NotImplementedException();
+            return Provider.Create(entity);
         }
 
         public bool Update(TeacherQuestion entity)
         {
-            throw new NotImplementedException();
+            return Provider.Update(entity);
         }
 
         public bool Delete(TeacherQuestion entity)
         {
-            throw new NotImplementedException();
+            return Provider.Delete(entity);
         }
 
         public bool Delete(string teacherId, string questionId)
         {
-            throw new NotImplementedException();
+            return Provider.Delete(teacherId, questionId);
         }
 
-        public List<TeacherQuestion> Get(string teacherId, string questionId)
+        public TeacherQuestion Get(string teacherId, string questionId)
         {
-            throw new NotImplementedException();
+            return Provider.Get(teacherId, questionId);
         }
 
         public List<TeacherQuestion> List(string teacherId)
         {
-            throw new NotImplementedException();
+            return Provider.List(teacherId);
         }
 
         public List<TeacherQuestion> All()
         {
-            throw new NotImplementedException();
+            return Provider.All();
         }
 
 
         public Task<bool> Save(TeacherQuestion entity)
         {
-            throw new NotImplementedException();
+            return new TaskFactory().StartNew(() =>
+            {
+                var row = Get(entity.TeacherId, entity.QuestionId);
+                if (row == null)
+                {
+                    Create(entity);
+                    return true;
+                }
+
+                entity += row;
+                Update(entity);
+                return false;
+            });
         }
     }
 }

@@ -125,7 +125,7 @@
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\Teacher.cs" />
-    <Compile Include="Entities\TeacherQuestion.cs" />
+    <Compile Include="Entities\Marks.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Vote.cs" />

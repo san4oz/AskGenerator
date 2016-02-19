@@ -18,5 +18,6 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
         Vote Get(string userId, string questionId);
 
         Vote Get(string userId, string teacherId, string questionId);
+        Vote GetWithGroup(string userId, string teacherId, string questionId);
     }
 }

@@ -11,6 +11,12 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
     {
         List<Student> GetRelatedStudents(string teacherId);
 
+        /// <summary>
+        /// Loads data from one table.
+        /// </summary>
+        /// <returns></returns>
+        List<Teacher> List();
+
         bool Create(Teacher teacher, ICollection<string> ids);
 
         bool Update(Teacher teacher, ICollection<string> ids);
