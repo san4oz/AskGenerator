@@ -1,14 +1,14 @@
 ﻿@model AskGenerator.ViewModels.RegistrationModel
 
 @{
-    ViewBag.Title = "Реєстрація користувача";
+    ViewBag.Title = @Resources.Resource.RegisterUser;
 }
 
 <div class="col-md-10">
     <div class="row">
         <div class="panel panel-default bootstrap-admin-no-table-panel">
             <div class="panel-heading">
-                <div class="text-muted bootstrap-admin-box-title">Реєстрація</div>
+                <div class="text-muted bootstrap-admin-box-title">@Resources.Resource.Register</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", id="form" }))
@@ -24,8 +24,8 @@
                     </fieldset>
                     <div class="form-group">
                         <div id="g-recaptcha"></div>
-                        <button type="submit" id="sendBtn" disabled="disabled" class="btn btn-primary">Зберігти</button>
-                        <button type="reset" class="btn btn-default">Очистити форму</button>
+                        <button type="submit" id="sendBtn" disabled="disabled" class="btn btn-primary">@Resources.Resource.Save</button>
+                        <button type="reset" class="btn btn-default">@Resources.Resource.CleanForm</button>
                     </div>
                 }
             </div>

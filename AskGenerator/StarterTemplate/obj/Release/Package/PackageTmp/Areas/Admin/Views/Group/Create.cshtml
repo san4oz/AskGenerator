@@ -1,27 +1,27 @@
 ﻿@model AskGenerator.ViewModels.GroupViewModel
 @{
-    ViewBag.Title = "Новая группа";
+    ViewBag.Title = @Resources.Resource.NewGroup;
 }
 
 <div class="col-md-10">
     <div class="row">
         <div class="panel panel-default bootstrap-admin-no-table-panel">
             <div class="panel-heading">
-                <div class="text-muted bootstrap-admin-box-title">Группа</div>
+                <div class="text-muted bootstrap-admin-box-title">@Resources.Resource.Group;</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
                 @using (Html.BeginForm("Create", "Group", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
                     <fieldset>
-                        <legend>Создание группы</legend>
+                        <legend>@Resources.Resource.CreateGroup</legend>
                         <div class="form-group">
                             @Html.LabelFor(x => x.Name, htmlAttributes: new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
                                 @Html.TextBoxFor(x => x.Name, htmlAttributes: new { @clas = "form-control" })
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Сохранить</button>
-                        <button type="reset" class="btn btn-default">Очистить</button>
+                        <button type="submit" class="btn btn-primary">@Resources.Resource.Save</button>
+                        <button type="reset" class="btn btn-default">@Resources.Resource.Clean</button>
                     </fieldset>
                 }
             </div>
@@ -34,7 +34,7 @@
     $(document).ready(function () {
         debugger;
         $("#Teacher_Groups").select2({
-            placeholder: "Выберите группы",
+            placeholder: @Resources.Resource.SelectGroups,
             width: 400
         });
     });

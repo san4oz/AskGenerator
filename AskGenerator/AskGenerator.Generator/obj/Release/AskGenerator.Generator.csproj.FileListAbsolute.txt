@@ -40,3 +40,15 @@ C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Genera
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\obj\Release\AskGenerator.Generator.pdb
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\Ionic.Zip.dll
 C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\Ionic.Zip.xml
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.Helpers.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.Mvc.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.Razor.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.WebPages.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.WebPages.Razor.dll
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.Helpers.xml
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.Mvc.xml
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.Razor.xml
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.WebPages.xml
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Users\Alex\Desktop\askgenerator\AskGenerator\AskGenerator\AskGenerator.Generator\bin\Release\System.Web.WebPages.Razor.xml

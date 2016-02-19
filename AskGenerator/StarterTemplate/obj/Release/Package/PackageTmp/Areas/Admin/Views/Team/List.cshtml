@@ -1,20 +1,20 @@
 ﻿@model  List<AskGenerator.Mvc.ViewModels.TeamViewModel>
 
 @{
-    ViewBag.Title = "Список кафедр";
+    ViewBag.Title = @Resources.Resource.ListDepartments;
 }
 
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("Create", "Team")">+ Додати кафедру</a></div>
+            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("Create", "Team")">+  @Resources.Resource.AddDepartment</a></div>
         </div>
         <div class="bootstrap-admin-panel-content">
             @Html.AntiForgeryToken()
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Назва</th>
+                        <th>@Resources.Resource.NameDepart</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -25,8 +25,8 @@
                             <td>@team.Name</td>
                             <td>
                                 <div class="btn-group">
-                                    <a class="btn btn-primary" href="@Url.Action("Edit", "Team", new {id=team.Id})">Edit</a>
-                                    <a class="btn btn-warning delete" data-id="@team.Id" href="@Url.Action("Delete", "Team")">Delete</a>
+                                    <a class="btn btn-primary" href="@Url.Action("Edit", "Team", new {id=team.Id})">@Resources.Resource.Edit</a>
+                                    <a class="btn btn-warning delete" data-id="@team.Id" href="@Url.Action("Delete", "Team")">@Resources.Resource.Remove</a>
                                 </div>
                             </td>
                         </tr>

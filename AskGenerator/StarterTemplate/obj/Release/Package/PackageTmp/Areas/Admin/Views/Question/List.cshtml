@@ -1,13 +1,13 @@
 ﻿@model  IList<AskGenerator.ViewModels.QuestionViewModel>
 
 @{
-    ViewBag.Title = "Список вопросов";
+    ViewBag.Title = @Resources.Resource.ListQuestion;
 }
-
+@Html.AntiForgeryToken()
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("Create", "Question")">+ Добавить вопрос</a></div>
+            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("Create", "Question")">+ @Resources.Resource.AddQuestion</a></div>
         </div>
         @Html.Partial("_List")
     </div>

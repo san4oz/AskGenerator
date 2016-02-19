@@ -7,9 +7,9 @@
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>Вопрос</th>
-                <th>Описание нижней отметки</th>
-                <th>Описание верхней отметки</th>
+                <th>@Resources.Resource.QuestionBody</th>
+                <th>@Resources.Resource.LowerRateDescription</th>
+                <th>@Resources.Resource.HigherRateDescription</th>
                 <th></th>
             </tr>
         </thead>
@@ -20,8 +20,8 @@
                     <td>@question.QuestionBody</td>
                     <td>@question.LowerRateDescription</td>
                     <td>@question.HigherRateDescription</td>
-                    <td><a class="btn btn-primary" href="@Url.Action("Edit", "Question", new {id=question.Id})">Редактировать</a></td>
-                    <td><a class="btn btn-danger" href="@Url.Action("Delete", "Question", new {id=question.Id})">Удалить</a></td>
+                    <td><a class="btn btn-primary" href="@Url.Action("Edit", "Question", new {id=question.Id})">@Resources.Resource.Edit</a></td>
+                    <td><a class="btn btn-danger delete" data-id="@question.Id" href="@Url.Action("Delete", "Question", new {id=question.Id})">@Resources.Resource.Remove</a></td>
                 </tr>
             }                    
         </tbody>

@@ -1,7 +1,7 @@
 ﻿@model  AskGenerator.Mvc.ViewModels.TeacherVotingViewModel
 @using System.Web.Optimization
 @{
-    ViewBag.Title = "Студенты преподователя";
+    ViewBag.Title = @Resources.Resource.TeacherStudent;
     var questions = Site.QuestionManager.All();
     Layout = null;
 }
@@ -12,7 +12,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Генератор</title>
+    <title>@ViewBag.Title -@Resources.Resource.Generator </title>
     @Styles.Render("~/Content/Theme")
     @Styles.Render("~/Content/Vendors")
     @Styles.Render("~/Content/select2")
@@ -53,7 +53,7 @@
                                     <table class="student-question-table">
                                         <thead>
                                             <tr>
-                                                <td>Студент</td>
+                                                <td>@Resources.Resource.Student</td>
                                                 @foreach (var question in questions.Where(x => !x.IsAboutTeacher))
                                                 {
                                                     <td>@question.QuestionBody</td>

@@ -1,19 +1,19 @@
 ﻿@model  IList<AskGenerator.ViewModels.GroupViewModel>
 
 @{
-    ViewBag.Title = "Список груп";
+    ViewBag.Title = @Resources.Resource.ListGroup;
 }
 
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("Create", "Group")">+ Добавить группу</a></div>
+            <div class="text-muted bootstrap-admin-box-title"><a href="@Url.Action("Create", "Group")">@Resources.Resource.AddGroup</a></div>
         </div>
         <div class="bootstrap-admin-panel-content">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Название группы</th>
+                        <th>@Resources.Resource.GroupName</th>
                     </tr>
                 </thead>
                 <tbody>

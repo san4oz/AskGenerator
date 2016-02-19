@@ -8,7 +8,7 @@ namespace AskGenerator.Generator
 {
     public static class Credentials
     {
-        public const string Key = "d0985b72-c187-4915-babd-a5f06dc4d3e2";
+        public const string Key = "b1498d41-4d60-4113-a400-f185e448fc03";
 
         public const string Api = "http://api.html2pdfrocket.com/pdf";
     }
