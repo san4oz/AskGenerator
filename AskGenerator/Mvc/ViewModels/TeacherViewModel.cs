@@ -13,6 +13,11 @@ namespace AskGenerator.ViewModels
 {
     public class TeacherViewModel : BaseViewModel, IHaveCustomMappings
     {
+        public TeacherViewModel():base()
+        {
+            IsMale = true;
+        }
+
         [HiddenInput(DisplayValue=false)]
         public override string Id { get; set; }
 
@@ -23,6 +28,13 @@ namespace AskGenerator.ViewModels
         public List<Group> Groups { get; set; }
 
         public List<string> SelectedGroups { get; set; }
+
+        /// <summary>
+        /// Gets or sets value indicating sex of teacher.
+        /// </summary>
+        [Required]
+        [Display(Name="Is male")]
+        public bool IsMale { get; set; }
 
         [Display(Name = "Фото")]
         public HttpPostedFileBase ImageFile { get; set; }

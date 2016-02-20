@@ -1,0 +1,64 @@
+.container {
+    max-width: 100%;
+}
+
+.navbar .navbar-nav > .active > a {
+    background-color: #252525;
+}
+
+#navbar-collapse {
+    position: relative;
+}
+
+
+#teacherBoard .teacher-tile {
+    height: 200px;
+    margin-bottom: 5px;
+    min-width: 220px;
+}
+
+.teacher-tile .badges {
+    height: 100%;
+    margin-bottom: -100%;
+    padding: 5px 3px;
+    position: relative;
+    top: -100%;
+}
+
+    .teacher-tile .badges .badge {
+        border-radius: 50%;
+        display: block;
+        height: 24px;
+        line-height: 24px;
+        padding: 0;
+        text-align: center;
+        width: 24px;
+    }
+
+.teacher-tile .img-thumbnail {
+    height: 100%;
+    padding: 5px 5px;
+    width: 100%;
+}
+
+    .teacher-tile .img-thumbnail img {
+        display: block;
+        height: 100%;
+        margin: 0 auto;
+        min-width: 55%;
+    }
+
+    .teacher-tile .img-thumbnail + span {
+        background-color: rgb(200, 200, 200);
+        color: #100000;
+        display: block;
+        margin-top: -1.8em;
+        opacity: 0.8;
+        position: relative;
+        text-align: center;
+        width: 100%;
+    }
+
+.teacher-tile:hover .img-thumbnail + span {
+    opacity: 1;
+}

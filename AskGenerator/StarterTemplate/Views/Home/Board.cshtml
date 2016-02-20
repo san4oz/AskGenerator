@@ -1,18 +1,27 @@
-﻿@model TeacherListViewModel
+﻿@using AskGenerator.ViewModels
+@model TeacherListViewModel
 @{
     ViewBag.Title = @Resources.Resource.TeacherBoard;
 }
 
 <h1>@Resources.Resource.TeacherBoard</h1>
+
 <section id="teacherBoard">
-    @foreach(var t in Model.List) {
+    @foreach (var t in Model.List)
+    {
         @Teacher(t)
     }
 </section>
 
-@helper Teacher(TeacherViewModel teacher) {
-    <article class="col-md-3 teacher-tile" id="@teacher.Id">
-        <span class="badge avg">@Math.Round(teacher.AverageMark, 1)</span>
+@helper Teacher(TeacherViewModel teacher)
+{
+    <article class="col-lg-2 col-md-3 col-sm-4 col-xs-8 teacher-tile" id="@teacher.Id">
+        <div class="img-thumbnail">
+            <img src="@this.R.Image(teacher.Image, teacher.IsMale)" />
+        </div>
         <span>@teacher.FullName</span>
+        <div class="badges">
+            <span class="badge avg">@Math.Round(teacher.AverageMark, 1)</span>
+        </div>
     </article>
 }

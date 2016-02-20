@@ -167,6 +167,7 @@
     <Compile Include="App_Start\Routes\BaseAreaRegistrator.cs" />
     <Compile Include="App_Start\Routes\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Components\Resolver.cs" />
     <Compile Include="Components\WebViewPage.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\TeamController.cs" />

@@ -151,6 +151,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Дошка.
+        /// </summary>
+        public static string Board {
+            get {
+                return ResourceManager.GetString("Board", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на На вказану вами електронну адресу буде надіслано лист, для закінчення реєстраціі..
         /// </summary>
         public static string CheckPost {
@@ -840,6 +849,15 @@ namespace Resources {
         public static string ToggleNavigation {
             get {
                 return ResourceManager.GetString("ToggleNavigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сторінка голосування.
+        /// </summary>
+        public static string VotePage {
+            get {
+                return ResourceManager.GetString("VotePage", resourceCulture);
             }
         }
         

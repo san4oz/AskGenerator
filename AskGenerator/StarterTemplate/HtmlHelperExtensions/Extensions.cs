@@ -22,7 +22,7 @@ namespace System.Web
             return CreateMenuItem(htmlHelper, text, null, liCssClass, url);
         }
 
-        public static MvcHtmlString MenuItem(
+        public static MvcHtmlString MenuRouteItem(
             this HtmlHelper htmlHelper,
             string text,
             string routeName,

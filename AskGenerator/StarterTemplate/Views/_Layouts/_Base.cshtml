@@ -1,0 +1,32 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Resources.Resource.Generator</title>
+    @Styles.Render("~/Content/Theme")
+    @Styles.Render("~/Content/Vendors")
+    @Styles.Render("~/Css/Site.css")
+    @RenderSection("Styles", required: false)
+</head>
+@{
+    var bdClass = ViewBag.BodyClass ?? string.Empty;
+}
+<body class="@bdClass">
+    @RenderSection("NavBar", required: false)
+
+    <div class="container">
+        @RenderBody()
+        <footer class="row" role="contentinfo">
+            <div class="divider">
+                &copy; 2016 - @DateTime.Now.Year <a href="https://github.com/san4oz" target="_blank">san4oz</a>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

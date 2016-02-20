@@ -4,9 +4,10 @@
 
 <d-expand-collapse id="temp.html" ng-repeat="option in options | orderBy: 'done'">
     <div ng-class="{'even': $index%2!=0,'odd': $index%2==0}">
-        <div class="faqPlus option" ng-click="option.collapse()" ng-class="{'done': option.done}">
+        <div class="faqPlus option" ng-click="option.collapse()" ng-class="{'alert-success': option.done}">
             <span class="collapse-mark" ng-class="{'plus': option.collapsed, 'minus': !option.collapsed}"></span>
-                {{option.label}}</div>
+            {{option.label}}
+        </div>
         <div class="votes answer">
             <div ng-repeat="teacher in option.teachers">
                 <div class="row">
@@ -22,7 +23,7 @@
                                 ng-class="{'active': $index === teacher.value-1, 'disabled': teacher.revoute}"
                                 ng-click="option.vote(teacher.index, $index)" >
                             <input ng-disabled="teacher.revoute" type="radio"
-                                    ng-checked="point.checked""
+                                    ng-checked="point.checked"
                                     ng-click="option.vote(teacher.index, $index)"
                                     name="{{option.id + teacher.id}}" >
                             {{$index+1}}

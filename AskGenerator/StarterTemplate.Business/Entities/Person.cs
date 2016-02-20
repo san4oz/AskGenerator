@@ -17,5 +17,7 @@ namespace AskGenerator.Business.Entities
         /// Gets or sets path to the person image.
         /// </summary>
         public string Image { get; set; }
+
+        public bool IsMale { get; set; }
     }
 }

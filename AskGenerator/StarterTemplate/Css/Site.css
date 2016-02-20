@@ -82,6 +82,19 @@
         text-align: center;
     }
 
+footer {
+    padding: 1px;
+}
+
+div.divider{
+    border-top: thin ridge #252525;
+    height: 1px;
+    margin: 0 auto;
+    width:96%;
+}
+footer .divider{
+    text-align: right;
+}
 /*
     Kravchuk
 */
@@ -121,19 +134,6 @@
 .teacher-item .teacher-tile {
     margin-bottom: 5px;
     width: 130px;
-}
-
-#teacherBoard .teacher-tile {
-    margin-bottom:4px;
-}
-
-.teacher-tile .badge {
-    border-radius: 50%;
-    height: 24px;
-    line-height: 24px;
-    padding: 0;
-    text-align: center;
-    width: 24px;
 }
 
 .teacher-img {
@@ -190,11 +190,6 @@ hr {
     margin: 0 5px;
 }
 
-.done {
-    background: rgb(165, 246, 71) !important;
-    background: rgba(0,0,0,0.04);
-}
-
 .collapse-mark {
     display: inline-block;
     text-align: center;
@@ -204,6 +199,6 @@ hr {
 
 
 /*how fix ETO PIZDEC!!!!*/
-.panel-default{
+.panel-default {
     width: 100% !important;
 }

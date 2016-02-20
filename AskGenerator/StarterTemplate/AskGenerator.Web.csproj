@@ -251,17 +251,22 @@
     <Content Include="Content\Images\f3201a7f-8a4e-486a-97bd-65e7e12f74a4.jpg" />
     <Content Include="Content\Images\f3e8b929-d21d-4d19-b614-1b769b779967.jpg" />
     <Content Include="Content\Images\fac178e2-d296-4df6-8f12-99813fe634b4.jpg" />
+    <Content Include="Content\Images\Female.png" />
     <Content Include="Content\Images\ff9cf187-8733-4fdb-bbb6-80ed2c59533e.jpg" />
+    <Content Include="Content\Images\Male.png" />
+    <Content Include="Content\Images\teacher\noImage.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Css\bootstrap-theme.css" />
     <Content Include="Css\bootstrap-theme.min.css" />
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\bootstrap.min.css" />
+    <Content Include="Content\Admin.css" />
     <Content Include="Css\img\expander-minus.png" />
     <Content Include="Css\img\expander-plus.png" />
     <Content Include="Css\img\img1.jpeg" />
     <Content Include="Css\img\img2.png" />
     <Content Include="Css\img\img3.png" />
+    <Content Include="Content\FE.css" />
     <Content Include="Css\Site.css" />
     <Content Include="Css\select2.css" />
     <Content Include="Css\select2.min.css" />
@@ -1832,7 +1837,7 @@
     </Content>
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_Layouts\_Layout.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -1849,6 +1854,7 @@
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Home\Board.cshtml" />
+    <Content Include="Views\_Layouts\_Base.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1858,7 +1864,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Fonts\" />
-    <Folder Include="Content\Images\teacher\" />
     <Folder Include="Css\Theme\vendors\bootstrap-wysihtml5\.settings\" />
   </ItemGroup>
   <ItemGroup>

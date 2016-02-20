@@ -7,17 +7,51 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Mvc.Components
 {
-    public class BaseWebViewPage<TModel> : WebViewPage<TModel>
+    public interface IBaseWebViewPage
     {
+        bool IsEditing { get; set; }
+
+        Resolver R { get; set; }
+    }
+    public class BaseWebViewPage<TModel> : WebViewPage<TModel>, IBaseWebViewPage
+    {
+        public bool IsEditing { get; set; }
+
+        public Resolver R { get; set; }
+
         public override void Execute()
         {
         }
+        public override void InitHelpers()
+        {
+            base.InitHelpers();
+            Initializer.Init(this);
+        }
     }
 
-    public class BaseWebViewPage : WebViewPage
+    public class BaseWebViewPage : WebViewPage, IBaseWebViewPage
     {
+        public bool IsEditing { get; set; }
+
+        public Resolver R { get; set; }
+
         public override void Execute()
         {
+        }
+
+        public override void InitHelpers()
+        {
+            base.InitHelpers();
+            Initializer.Init(this);
+        }
+    }
+
+    static class Initializer
+    {
+        public static void Init<T>(T page) where T : WebViewPage, IBaseWebViewPage
+        {
+            page.IsEditing = page.ViewBag.IsEditing ?? false;
+            page.R = new Resolver();
         }
     }
 }
