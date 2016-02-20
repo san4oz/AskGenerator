@@ -3,6 +3,7 @@
 ################################################################################
 
 /AskGenerator/AskGenerator.Generator/bin
+/AskGenerator/AskGenerator.Generator/obj
 /AskGenerator/Mvc/bin
 /AskGenerator/Mvc/obj
 /AskGenerator/StarterTemplate/bin
@@ -12,8 +13,3 @@
 /AskGenerator/StarterTemplate.Business/FakesAssemblies
 /AskGenerator/StarterTemplate.DataProvider/bin
 /AskGenerator/StarterTemplate.DataProvider/obj
-/AskGenerator/AskGenerator.Generator/obj
-/AskGenerator/StarterTemplate/bin
-/AskGenerator/StarterTemplate.DataProvider/bin/Debug
-/AskGenerator/StarterTemplate.DataProvider/bin/Debug
-/AskGenerator/StarterTemplate/bin

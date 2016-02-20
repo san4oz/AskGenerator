@@ -154,8 +154,8 @@
     <Compile Include="Providers\TeamProvider.cs" />
     <Compile Include="Providers\TeacherQuestionProvider.cs" />
     <Compile Include="Providers\BaseProvider.cs" />
-    <Compile Include="UserManager.cs" />
     <Compile Include="RoleManager.cs" />
+    <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StarterTemplate.Business\AskGenerator.Business.csproj">

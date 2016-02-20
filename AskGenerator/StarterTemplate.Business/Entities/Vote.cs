@@ -31,5 +31,10 @@ namespace AskGenerator.Business.Entities
                 && Answer == obj.Answer
                 && obj.QuestionId.Id.Equals(QuestionId.Id, StringComparison.OrdinalIgnoreCase);
         }
+
+        public override int GetHashCode()
+        {
+            return this.TeacherId.GetHashCode() * 11 + this.QuestionId.GetHashCode();
+        }
     }
 }

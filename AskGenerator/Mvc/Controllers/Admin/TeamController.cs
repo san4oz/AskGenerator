@@ -56,7 +56,7 @@ namespace AskGenerator.Controllers.Admin
             if (string.IsNullOrEmpty(id))
                 return Json404("ID was not specified.");
 
-            var team = await Site.TeamManager.Delete(id);
+            var team = await Site.TeamManager.Extract(id);
             if (team == null)
                 return Json404("Team was not found.");
 

@@ -7,8 +7,7 @@
                 $(element).find(".answer").slideToggle('200', function () {
                     $(element).find(".answer").toggleClass('faqPlus faqMinus');
                 });
-            }
-            )
+            });
         }
-    }
+    };
 });

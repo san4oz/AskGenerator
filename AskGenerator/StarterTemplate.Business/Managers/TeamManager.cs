@@ -17,7 +17,7 @@ namespace AskGenerator.Business.Managers
 
         }
 
-        public Task<Team> Delete(string id)
+        public Task<Team> Extract(string id)
         {
             return new TaskFactory<Team>().StartNew(() =>
             {

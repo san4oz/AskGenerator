@@ -14,6 +14,6 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// </summary>
         /// <param name="id">ID of the team.</param>
         /// <returns>Deleted team or <c>null</c> if team was not found.</returns>
-        Task<Team> Delete(string id);
+        Task<Team> Extract(string id);
     }
 }
