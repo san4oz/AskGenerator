@@ -192,13 +192,14 @@
     <Compile Include="ViewModels\CreateStudentViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\LimitViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\RegistrationModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
-    <Compile Include="ViewModels\TeacherComposeViewModel.cs" />
-    <Compile Include="ViewModels\TeacherListViewModel.cs" />
-    <Compile Include="ViewModels\TeacherViewModel.cs" />
-    <Compile Include="ViewModels\TeacherVotingViewModel.cs" />
+    <Compile Include="ViewModels\Teacher\TeacherComposeViewModel.cs" />
+    <Compile Include="ViewModels\Teacher\TeacherListViewModel.cs" />
+    <Compile Include="ViewModels\Teacher\TeacherViewModel.cs" />
+    <Compile Include="ViewModels\Teacher\TeacherVotingViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\VotingViewModel.cs" />
   </ItemGroup>

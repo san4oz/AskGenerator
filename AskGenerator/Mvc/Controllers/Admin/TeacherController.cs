@@ -22,9 +22,9 @@ namespace AskGenerator.Controllers.Admin
     public class TeacherController : BaseController
     {
         [HttpGet]
-        public ActionResult List()
+        public async Task<ActionResult> List()
         {
-            var teachers = Site.TeacherManager.All();
+            var teachers = await Site.TeacherManager.ListAsync();
             var viewModel = Map<IList<Teacher>, IList<TeacherViewModel>>(teachers);
             return View(viewModel);
         }

@@ -40,7 +40,7 @@ namespace AskGenerator.Business.Managers
             return Provider.List();
         }
 
-        public Task<List<Teacher>> All(bool loadMarks)
+        public Task<List<Teacher>> AllAsync(bool loadMarks)
         {
             return new TaskFactory().StartNew(() => {
                 var teachers = this.List();
@@ -61,6 +61,12 @@ namespace AskGenerator.Business.Managers
                 }
                 return teachers.OrderByDescending(t => t.Marks[0].Answer).ToList();
             });
+        }
+
+
+        public Task<List<Teacher>> ListAsync()
+        {
+            return new TaskFactory().StartNew(() => this.List());
         }
     }
 }

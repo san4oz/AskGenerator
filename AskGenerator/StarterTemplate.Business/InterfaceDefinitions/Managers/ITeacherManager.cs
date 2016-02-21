@@ -15,6 +15,12 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 
         bool Update(Teacher teacher, ICollection<string> ids);
 
-        Task<List<Teacher>> All(bool loadMarks);
+        /// <summary>
+        /// Loads list of teachers.
+        /// </summary>
+        /// <returns>Task with loading.</returns>
+        Task<List<Teacher>> ListAsync();
+
+        Task<List<Teacher>> AllAsync(bool loadMarks);
     }
 }

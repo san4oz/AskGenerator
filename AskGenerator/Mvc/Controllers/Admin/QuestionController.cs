@@ -56,7 +56,9 @@ namespace AskGenerator.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Create(QuestionViewModel viewModel)
         {
-            var model = Map<QuestionViewModel, Question>(viewModel);
+            if (!ModelState.IsValid)
+                return View(viewModel);
+            var model = DecomposeQuestionViewModel(viewModel);
             Site.QuestionManager.Create(model);
             if(viewModel.IsAboutTeacher)
                 return RedirectToAction("TeacherList");
@@ -67,7 +69,9 @@ namespace AskGenerator.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult CreateTeacher(QuestionViewModel viewModel)
         {
-            var model = Map<QuestionViewModel, Question>(viewModel);
+            if (!ModelState.IsValid)
+                return View(viewModel);
+            var model = DecomposeQuestionViewModel(viewModel);
             Site.QuestionManager.Create(model);
             return RedirectToAction("TeacherList");
         }
@@ -76,26 +80,43 @@ namespace AskGenerator.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Edit(QuestionViewModel viewModel)
         {
-            var model = Map<QuestionViewModel, Question>(viewModel);
+            if (!ModelState.IsValid)
+                return View(viewModel);
+            var model = DecomposeQuestionViewModel(viewModel);
             Site.QuestionManager.Update(model);
             if (viewModel.IsAboutTeacher)
                 return RedirectToAction("TeacherList");
             return RedirectToAction("List");
         }
 
+        private Question DecomposeQuestionViewModel(QuestionViewModel model)
+        {
+            var question = Map<QuestionViewModel, Question>(model);
+            if (model.LeftLimit != null && model.LeftLimit.ImageFile != null && model.LeftLimit.ImageFile.ContentLength > 0)
+                question.LeftLimit.Image = SaveImage(model.LeftLimit.ImageFile, model.Id + 'l', "question");
+
+            if (model.RightLimit != null && model.RightLimit.ImageFile != null && model.RightLimit.ImageFile.ContentLength > 0)
+                question.RightLimit.Image = SaveImage(model.RightLimit.ImageFile, model.Id + 'r', "question");
+            return question;
+        }
+
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string id)
         {
             if (!User.Identity.IsAuthenticated)
-            {
                 return Json(new { url = Url.Action("Login", "Account") }, 403);
-            }
+
             if (!string.IsNullOrEmpty(id))
             {                
-                Site.QuestionManager.Delete(id);
+                var q = Site.QuestionManager.Extract(id);
+                if (q != null)
+                {
+                    base.DeleteImage(q.LeftLimit.Image);
+                    base.DeleteImage(q.RightLimit.Image);
+                    return Json(q);
+                }
             }
-#warning ToDO return deleted item.
-            return Json(true);
+            return Json(false);
         }
     }
 }

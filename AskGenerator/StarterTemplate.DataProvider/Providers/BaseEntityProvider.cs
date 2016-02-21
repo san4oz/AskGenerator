@@ -81,5 +81,19 @@ namespace AskGenerator.DataProvider.Providers
         {
             return base.All<T>();
         }
+
+
+        public T Extract(string id)
+        {
+            return Execute(context =>
+            {
+                var entity = context.Set<T>().Single(x => x.Id == id);
+                if(entity != null){
+                    context.Set<T>().Remove(entity);
+                    context.SaveChanges();
+                }
+                return entity;
+            });
+        }
     }
 }

@@ -14,6 +14,8 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 
         bool Delete(string id);
 
+        T Extract(string id);
+
         T Get(string id);
 
         Task<T> GetAsync(string id);

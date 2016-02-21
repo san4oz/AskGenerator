@@ -51,5 +51,11 @@ namespace AskGenerator.Business.Managers
         {
             return Provider.All();
         }
+
+
+        public T Extract(string id)
+        {
+            return Provider.Extract(id);
+        }
     }
 }

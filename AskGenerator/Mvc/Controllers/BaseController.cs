@@ -124,6 +124,20 @@ namespace AskGenerator.Mvc.Controllers
 
         }
 
+        /// <summary>
+        /// Deletes file with specified <paramref name="path"/>.
+        /// </summary>
+        /// <param name="path">File path.</param>
+        protected void DeleteImage(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return;
+
+            var serverPath = Server.MapPath(path);
+            if (System.IO.File.Exists(serverPath))
+                System.IO.File.Delete(serverPath);
+        }
+
         public class CaptchaResponse
         {
             public bool success { get; set; }

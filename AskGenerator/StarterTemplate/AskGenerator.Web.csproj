@@ -8,7 +8,7 @@
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2C12563C-D63F-4E41-AE10-8B0E4CB7F335}</ProjectGuid>
-    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Web</RootNamespace>
@@ -1784,7 +1784,6 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\GroupSelector.cshtml" />
     <Content Include="Areas\Admin\Views\Student\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Student\List.cshtml" />
     <Content Include="Areas\Admin\Views\Student\Update.cshtml" />
@@ -1799,6 +1798,7 @@
     <Content Include="Areas\Admin\Views\Student\Edit.cshtml" />
     <!--<None Include="Properties\PublishProfiles\ztu-fikt - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ztu-fikt - Web Deploy.pubxml" />-->
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\GroupSelector - Копировать.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

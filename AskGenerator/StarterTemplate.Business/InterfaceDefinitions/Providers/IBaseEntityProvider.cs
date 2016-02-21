@@ -14,6 +14,8 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
 
         bool Delete(T entity);
 
+        T Extract(string id);
+
         bool Delete(string id);
 
         T Get(string id);

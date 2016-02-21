@@ -1,5 +1,5 @@
-﻿@model AskGenerator.ViewModels.QuestionViewModel
-
+﻿@model QuestionViewModel
+@using AskGenerator.ViewModels
 @{
     var isEdit = ViewBag.IsEditing ?? false;
     var legend = isEdit ? @Resources.Resource.EditQuestion : @Resources.Resource.CreateQuestion;
@@ -13,7 +13,7 @@
                 <div class="text-muted bootstrap-admin-box-title">@Resources.Resource.QuestionBody</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                <form method="POST" class = "form-horizontal" enctype = "multipart/form-data">
+                <form method="POST" class="form-horizontal" enctype="multipart/form-data">
                     @Html.AntiForgeryToken()
                     @Html.HiddenFor(x => x.Id)
                     <fieldset>
@@ -36,8 +36,9 @@
                                 @Html.TextBoxFor(x => x.HigherRateDescription, htmlAttributes: new { @clas = "form-control" })
                             </div>
                         </div>
-                        @Html.HiddenFor(x => x.IsAboutTeacher)
 
+                        @Advanced()
+                        @Html.HiddenFor(x => x.IsAboutTeacher)
                         <button type="submit" class="btn btn-primary">@Resources.Resource.Save</button>
                         <button type="reset" class="btn btn-default">@Resources.Resource.Clean</button>
                     </fieldset>
@@ -46,3 +47,47 @@
         </div>
     </div>
 </div>
+
+@helper Advanced()
+{
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        @Resources.Resource.Advanced
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    @Limit(Model.LeftLimit)
+                    <hr/>
+                    @Limit(Model.RightLimit)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@helper Limit(LimitViewModel limit, int maxSize = 30)
+{
+    if(limit != null){ 
+        var size = maxSize.ToString() + "px";
+        if(limit.Image != null){
+            <img src="@limit.Image" alt="@limit.Image.Split('/').Last()" style="float:right; max-width:@size; max-height:@size;" />
+        }
+        <div class="form-group">
+            @Html.LabelFor(x => limit.ImageFile, htmlAttributes: new { @class = "col-xs-1 control-label" })
+            <div class="col-xs-1">
+                @Html.EditorFor(x => limit.AvgLimit)
+            </div>
+            @Html.LabelFor(x => limit.ImageFile, htmlAttributes: new { @class = "col-md-1 control-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(x => limit.ImageFile, new { type = "file" })
+                @Html.EditorFor(x => limit.Image)
+                @Html.ValidationMessageFor(x => limit.Image)
+            </div>
+        </div>
+    }
+}

@@ -390,4 +390,7 @@
   <data name="VotePage" xml:space="preserve">
     <value>Сторінка голосування</value>
   </data>
+  <data name="Advanced" xml:space="preserve">
+    <value>Розширено</value>
+  </data>
 </root>

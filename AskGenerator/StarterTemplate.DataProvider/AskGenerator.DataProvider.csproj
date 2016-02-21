@@ -147,6 +147,10 @@
     <Compile Include="Migrations\201602201900522_TeacherSex.Designer.cs">
       <DependentUpon>201602201900522_TeacherSex.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602211900440_Limits.cs" />
+    <Compile Include="Migrations\201602211900440_Limits.Designer.cs">
+      <DependentUpon>201602211900440_Limits.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseEntityProvider.cs" />
@@ -192,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602201900522_TeacherSex.resx">
       <DependentUpon>201602201900522_TeacherSex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602211900440_Limits.resx">
+      <DependentUpon>201602211900440_Limits.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

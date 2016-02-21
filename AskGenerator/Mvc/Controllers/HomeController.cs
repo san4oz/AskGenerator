@@ -113,7 +113,7 @@ namespace AskGenerator.Mvc.Controllers
         [HttpGet]
         public async Task<ViewResult> Board()
         {
-            var teachers = await Site.TeacherManager.All(true);
+            var teachers = await Site.TeacherManager.AllAsync(true);
             var model = new TeacherListViewModel(MapList<Teacher, TeacherViewModel>(teachers));
             return View(model);
         }
