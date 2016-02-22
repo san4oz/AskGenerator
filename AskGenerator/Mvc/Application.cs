@@ -3,6 +3,7 @@ using AskGenerator.App_Start.Autofac;
 using AskGenerator.App_Start.AutoMapper;
 using AskGenerator.App_Start.Routes;
 using AskGenerator.DataProvider;
+using AskGenerator.Mvc.Components.Binders;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -28,8 +29,21 @@ namespace AskGenerator.Mvc
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfig.RegisterDependencies();
             AutoMapperConfig.Configure();
-
+            SetModelBinders();
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
+        }
+
+        private void SetModelBinders()
+        {
+            var floarBinder = new FloatBinder();
+            ModelBinders.Binders.Add(typeof(decimal), floarBinder);
+            ModelBinders.Binders.Add(typeof(decimal?), floarBinder);
+
+            ModelBinders.Binders.Add(typeof(float), floarBinder);
+            ModelBinders.Binders.Add(typeof(float?), floarBinder);
+
+            ModelBinders.Binders.Add(typeof(double), floarBinder);
+            ModelBinders.Binders.Add(typeof(double?), floarBinder);
         }
     }
 }

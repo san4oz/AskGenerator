@@ -13,6 +13,7 @@ namespace AskGenerator.ViewModels
 {
     public class LimitViewModel : IMapFrom<Question.Limit>
     {
+        [Range(0, 10.0)]
         public float AvgLimit { get; set; }
 
         [Display(Name = "Фото")]

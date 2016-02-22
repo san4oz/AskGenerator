@@ -1799,6 +1799,7 @@
     <!--<None Include="Properties\PublishProfiles\ztu-fikt - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ztu-fikt - Web Deploy.pubxml" />-->
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\GroupSelector - Копировать.cshtml" />
+    <Content Include="Areas\Admin\Views\Question\EditorTemplates\Limit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -1864,6 +1865,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Fonts\" />
+    <Folder Include="Content\Images\question\" />
     <Folder Include="Css\Theme\vendors\bootstrap-wysihtml5\.settings\" />
   </ItemGroup>
   <ItemGroup>

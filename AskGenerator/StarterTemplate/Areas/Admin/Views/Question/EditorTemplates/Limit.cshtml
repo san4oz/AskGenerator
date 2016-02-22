@@ -1,0 +1,23 @@
+﻿@model LimitViewModel
+@using System.Globalization
+@using AskGenerator.ViewModels
+
+@if(Model != null){ 
+        
+        if(Model.Image != null){
+            var size = (ViewBag.maxSize ?? 30).ToString() + "px";
+            <img src="@Model.Image" alt="@Model.Image.Split('/').Last()" style="float:right; max-width:@size; max-height:@size;" />
+        }
+        <div class="form-group">
+            @Html.LabelFor(x => Model.ImageFile, htmlAttributes: new { @class = "col-xs-1 control-label" })
+            <div class="col-xs-2">
+                @Html.TextBoxFor(x => Model.AvgLimit, new { type = "number", step = "0.1", @Value = Model.AvgLimit.ToString("F", CultureInfo.InvariantCulture) })
+            </div>
+            @Html.LabelFor(x => Model.ImageFile, htmlAttributes: new { @class = "col-md-1 control-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(x => Model.ImageFile, new { type = "file" })
+                @Html.EditorFor(x => Model.Image)
+                @Html.ValidationMessageFor(x => Model.Image)
+            </div>
+        </div>
+    }

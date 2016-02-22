@@ -24,8 +24,10 @@ namespace AskGenerator.ViewModels
         [HiddenInput]
         public bool IsAboutTeacher { get; set; }
 
+        [UIHint("Limit")]
         public LimitViewModel RightLimit { get; set; }
 
+        [UIHint("Limit")]
         public LimitViewModel LeftLimit { get; set; }
     }
 }

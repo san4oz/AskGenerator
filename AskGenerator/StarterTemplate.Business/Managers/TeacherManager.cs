@@ -59,7 +59,7 @@ namespace AskGenerator.Business.Managers
                     t.Marks.Insert(0, new Mark() { Answer = avg, QuestionId = Question.AvarageId });
 
                 }
-                return teachers.OrderByDescending(t => t.Marks[0].Answer).ToList();
+                return teachers;
             });
         }
 

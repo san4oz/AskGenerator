@@ -1,5 +1,6 @@
 ﻿using AskGenerator.App_Start.AutoMapper;
 using AskGenerator.Business.Entities;
+using AskGenerator.Mvc.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,12 +14,14 @@ namespace AskGenerator.ViewModels
 {
     public class TeacherViewModel : BaseViewModel, IHaveCustomMappings
     {
-        public TeacherViewModel():base()
+        public TeacherViewModel()
+            : base()
         {
             IsMale = true;
+            Badges = new List<TeacherBadge>();
         }
 
-        [HiddenInput(DisplayValue=false)]
+        [HiddenInput(DisplayValue = false)]
         public override string Id { get; set; }
 
         public string FirstName { get; set; }
@@ -33,7 +36,7 @@ namespace AskGenerator.ViewModels
         /// Gets or sets value indicating sex of teacher.
         /// </summary>
         [Required]
-        [Display(Name="Is male")]
+        [Display(Name = "Is male")]
         public bool IsMale { get; set; }
 
         [Display(Name = "Фото")]
@@ -49,11 +52,21 @@ namespace AskGenerator.ViewModels
 
         public float AverageMark { get; set; }
 
+        public IList<TeacherBadge> Badges { get; set; }
+
         public void CreateMappings(AutoMapper.IConfiguration configuration)
         {
             var conf = (AutoMapper.IMapperConfiguration)configuration;
-            conf.CreateMap<Teacher, TeacherViewModel>().AfterMap((m, v) => v.AverageMark = m.Marks.Any() ? m.Marks[0].Answer : 0f)
+            var defaultMark = new Mark() { Answer = -0.001f };
+            conf.CreateMap<Teacher, TeacherViewModel>()
             .ReverseMap();
         }
+    }
+
+    public class TeacherBadge
+    {
+        public string Id { get; set; }
+
+        public float Mark { get; set; }
     }
 }

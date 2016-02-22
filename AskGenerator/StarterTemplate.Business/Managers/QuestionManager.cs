@@ -33,5 +33,37 @@ namespace AskGenerator.Business.Managers
         {
             return new TaskFactory().StartNew(() => Provider.List(isAboutTeacher));
         }
+
+        public Dictionary<string, Badge> CreateBadges()
+        {
+            var questions = this.List(true);
+            var result = new Dictionary<string, Badge>(questions.Count * 2);
+            foreach (var question in questions)
+            {
+                if (question.LeftLimit.AvgLimit > 0)
+                {
+                    var badge = new Badge()
+                    {
+                        Id = question.Id,
+                        Image = question.LeftLimit.Image,
+                        ToolTipFormat = "{0}",
+                        Limit = question.LeftLimit.AvgLimit
+                    };
+                    result.Add(badge.Id + "l", badge);
+                }
+                if (question.RightLimit.AvgLimit > 0)
+                {
+                    var badge = new Badge()
+                    {
+                        Id = question.Id,
+                        Image = question.RightLimit.Image,
+                        ToolTipFormat = "{0}",
+                        Limit = question.RightLimit.AvgLimit
+                    };
+                    result.Add(badge.Id + "r", badge);
+                }
+            }
+            return result;
+        }
     }
 }

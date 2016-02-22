@@ -163,10 +163,12 @@
     <Compile Include="App_Start\AutoMapper\IHaveCustomMappings.cs" />
     <Compile Include="App_Start\AutoMapper\IMapFrom.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\Extentions\CollectionExtentions.cs" />
     <Compile Include="App_Start\Routes\AdminAreaRegistrator.cs" />
     <Compile Include="App_Start\Routes\BaseAreaRegistrator.cs" />
     <Compile Include="App_Start\Routes\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Components\Binders\FloatBinder.cs" />
     <Compile Include="Components\Resolver.cs" />
     <Compile Include="Components\WebViewPage.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -179,6 +181,7 @@
     <Compile Include="Controllers\Admin\TeacherController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Components\CultureAttribute.cs" />
+    <Compile Include="Filters\CultureAttribute.cs" />
     <Compile Include="Helpers\IdentityExtensions.cs" />
     <Compile Include="Helpers\Mailer.cs" />
     <Compile Include="Helpers\MailsData.Designer.cs">

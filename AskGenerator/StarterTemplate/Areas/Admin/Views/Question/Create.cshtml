@@ -3,7 +3,7 @@
 @{
     var isEdit = ViewBag.IsEditing ?? false;
     var legend = isEdit ? @Resources.Resource.EditQuestion : @Resources.Resource.CreateQuestion;
-    ViewBag.Title = isEdit ? @Resources.Resource.OldQuestion : @Resources.Resource.NewGroup;
+    ViewBag.Title = isEdit ? @Resources.Resource.OldQuestion : @Resources.Resource.NewQuestion;
 }
 
 <div class="col-md-10">
@@ -61,33 +61,11 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    @Limit(Model.LeftLimit)
+                    @Html.EditorFor(x => x.LeftLimit)
                     <hr/>
-                    @Limit(Model.RightLimit)
+                    @Html.EditorFor(x => x.RightLimit)
                 </div>
             </div>
         </div>
     </div>
-}
-
-@helper Limit(LimitViewModel limit, int maxSize = 30)
-{
-    if(limit != null){ 
-        var size = maxSize.ToString() + "px";
-        if(limit.Image != null){
-            <img src="@limit.Image" alt="@limit.Image.Split('/').Last()" style="float:right; max-width:@size; max-height:@size;" />
-        }
-        <div class="form-group">
-            @Html.LabelFor(x => limit.ImageFile, htmlAttributes: new { @class = "col-xs-1 control-label" })
-            <div class="col-xs-1">
-                @Html.EditorFor(x => limit.AvgLimit)
-            </div>
-            @Html.LabelFor(x => limit.ImageFile, htmlAttributes: new { @class = "col-md-1 control-label" })
-            <div class="col-md-9">
-                @Html.TextBoxFor(x => limit.ImageFile, new { type = "file" })
-                @Html.EditorFor(x => limit.Image)
-                @Html.ValidationMessageFor(x => limit.Image)
-            </div>
-        </div>
-    }
 }

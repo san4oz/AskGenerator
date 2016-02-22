@@ -81,7 +81,7 @@ namespace AskGenerator.Controllers.Admin
         public ActionResult Edit(QuestionViewModel viewModel)
         {
             if (!ModelState.IsValid)
-                return View(viewModel);
+                return View("Create", viewModel);
             var model = DecomposeQuestionViewModel(viewModel);
             Site.QuestionManager.Update(model);
             if (viewModel.IsAboutTeacher)

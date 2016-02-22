@@ -22,5 +22,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// <param name="isAboutTeacher">Indicates whether question about teachers should be retrived.</param>
         /// <returns>List of retrived questions.</returns>
         Task<List<Question>> ListAsync(bool isAboutTeacher = false);
+
+        Dictionary<string, Badge> CreateBadges();
     }
 }

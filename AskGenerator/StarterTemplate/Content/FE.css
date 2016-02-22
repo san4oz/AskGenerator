@@ -30,10 +30,17 @@
         display: block;
         height: 24px;
         line-height: 24px;
+        margin-bottom: 4px;
         padding: 0;
         text-align: center;
         width: 24px;
     }
+
+        .teacher-tile .badges .badge[style] {
+            background-color: #ffffff;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
 
 .teacher-tile .img-thumbnail {
     height: 100%;

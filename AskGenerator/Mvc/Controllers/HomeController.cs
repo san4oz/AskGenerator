@@ -11,12 +11,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace AskGenerator.Mvc.Controllers
 {
     [Culture]
     public class HomeController : BaseController
     {
+        /// <summary>
+        /// Cache duration for board page in minutes.
+        /// </summary>
+        public const int CacheDuration = 1;
+
         #region Voting
         [HttpGet]
         public ActionResult Index()
@@ -111,11 +117,43 @@ namespace AskGenerator.Mvc.Controllers
         #endregion
 
         [HttpGet]
+        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
         public async Task<ViewResult> Board()
         {
             var teachers = await Site.TeacherManager.AllAsync(true);
-            var model = new TeacherListViewModel(MapList<Teacher, TeacherViewModel>(teachers));
+            var model = CreateTeacherListViewModel(teachers);
             return View(model);
+        }
+
+        private TeacherListViewModel CreateTeacherListViewModel(List<Teacher> teachers)
+        {
+            var badges = Site.QuestionManager.CreateBadges();
+            var models = new List<TeacherViewModel>(teachers.Count);
+            foreach (var teacher in teachers)
+            {
+                var tmodel = Map<Teacher, TeacherViewModel>(teacher);
+                var avg = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == Question.AvarageId);
+                if (avg != null)
+                {
+                    tmodel.AverageMark = avg.Answer;
+                    teacher.Marks.Remove(avg);
+                }
+                foreach (var mark in teacher.Marks)
+                {
+                    var id = mark.QuestionId + 'l';
+                    var badge = badges.GetOrDefault(id);
+                    if (badge != null && badge.Limit > mark.Answer)
+                        tmodel.Badges.Add(new TeacherBadge() { Id = id, Mark = mark.Answer });
+
+                    id = mark.QuestionId + 'r';
+                    badge = badges.GetOrDefault(id);
+                    if (badge != null && badge.Limit < mark.Answer)
+                        tmodel.Badges.Add(new TeacherBadge() { Id = id, Mark = mark.Answer });
+                }
+                models.Add(tmodel);
+            }
+            var model = new TeacherListViewModel(models, badges);
+            return model;
         }
 
         private List<TeacherDataModel> MapTeachers(Business.Entities.Group group, IEnumerable<IGrouping<string, Business.Entities.Vote>> votes)
