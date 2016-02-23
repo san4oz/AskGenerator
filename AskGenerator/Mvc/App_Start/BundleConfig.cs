@@ -14,6 +14,9 @@ namespace AskGenerator.Mvc
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/pages").Include(
+                        "~/Scripts/pages/*.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular/angular.min.js",
                         "~/Scripts/angular/angular-route.min.js"));

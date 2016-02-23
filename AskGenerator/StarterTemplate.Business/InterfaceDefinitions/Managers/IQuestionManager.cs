@@ -23,6 +23,8 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// <returns>List of retrived questions.</returns>
         Task<List<Question>> ListAsync(bool isAboutTeacher = false);
 
+        Task<Dictionary<string, Badge>> CreateBadgesAsync();
+
         Dictionary<string, Badge> CreateBadges();
     }
 }

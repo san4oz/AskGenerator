@@ -124,15 +124,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Розширено.
-        /// </summary>
-        public static string Advanced {
-            get {
-                return ResourceManager.GetString("Advanced", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Ищет локализованную строку, похожую на Відповіть.
         /// </summary>
         public static string Answer {
@@ -466,6 +457,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Лівий ліміт.
+        /// </summary>
+        public static string LeftLimit {
+            get {
+                return ResourceManager.GetString("LeftLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ліміти.
+        /// </summary>
+        public static string Limits {
+            get {
+                return ResourceManager.GetString("Limits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Список кафедр.
         /// </summary>
         public static string ListDepartments {
@@ -732,6 +741,15 @@ namespace Resources {
         public static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Правий ліміт.
+        /// </summary>
+        public static string RightLimit {
+            get {
+                return ResourceManager.GetString("RightLimit", resourceCulture);
             }
         }
         

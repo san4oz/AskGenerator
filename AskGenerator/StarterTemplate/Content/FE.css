@@ -70,3 +70,21 @@
 .teacher-tile:hover .img-thumbnail + span {
     opacity: 1;
 }
+
+#loader {
+    background-image: url("/Content/loader.gif");
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: block;
+    height: 100px;
+    margin: 15px auto;
+    position: unset;
+    width: 100px;
+}
+.loading {
+    background-image: url("/Content/loader.gif");
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 70px;
+    min-width: 70px;
+}

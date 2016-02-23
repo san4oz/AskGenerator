@@ -7,38 +7,12 @@
 
 <h1>@Resources.Resource.TeacherBoard</h1>
 
-<section id="teacherBoard">
-    @foreach (var t in Model.List)
-    {
-        @Teacher(t)
-    }
+<section id="teacherBoard" data-src="@Url.Action("Board")">
+    <div id="loader" class="popover"></div>
 </section>
 
-@helper Teacher(TeacherViewModel teacher)
-{
-    <article class="col-lg-2 col-md-3 col-sm-4 col-xs-8 teacher-tile" id="@teacher.Id">
-        <div class="img-thumbnail">
-            <img src="@this.R.Image(teacher.Image, teacher.IsMale)" />
-        </div>
-        <span>@teacher.FullName</span>
-        <div class="badges">
-            <span class="badge avg">@Math.Round(teacher.AverageMark, 1)</span>
-            @foreach(var tbadge in teacher.Badges) {
-                @Badge(tbadge)
-            }
-        </div>
-    </article>
-}
-
-@helper Badge(TeacherBadge tbadge){
-    var badge = Model.Badges.GetOrDefault(tbadge.Id);
-    if(badge != null){
-        var ttip = string.Format(badge.ToolTipFormat, tbadge.Mark);
-        if(string.IsNullOrEmpty(badge.Image)){
-            <span class="badge" title="@ttip"></span>
-        }
-        else{
-            <span class="badge" style="background-image: url(@badge.Image)" title="@ttip"></span>
-        }
-    }
+@section Scripts{ 
+    <script>
+        Pages.Board.init();
+    </script>
 }

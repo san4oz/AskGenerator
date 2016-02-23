@@ -390,7 +390,13 @@
   <data name="VotePage" xml:space="preserve">
     <value>Сторінка голосування</value>
   </data>
-  <data name="Advanced" xml:space="preserve">
-    <value>Розширено</value>
+  <data name="LeftLimit" xml:space="preserve">
+    <value>Лівий ліміт</value>
+  </data>
+  <data name="Limits" xml:space="preserve">
+    <value>Ліміти</value>
+  </data>
+  <data name="RightLimit" xml:space="preserve">
+    <value>Правий ліміт</value>
   </data>
 </root>

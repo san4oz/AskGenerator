@@ -11,7 +11,8 @@ namespace AskGenerator.Business.Managers
 {
     public class QuestionManager : BaseManager<Question, IQuestionProvider>, IQuestionManager
     {
-        public QuestionManager(IQuestionProvider provider) : base(provider)
+        public QuestionManager(IQuestionProvider provider)
+            : base(provider)
         { }
 
         /// <summary>
@@ -64,6 +65,12 @@ namespace AskGenerator.Business.Managers
                 }
             }
             return result;
+        }
+
+
+        public Task<Dictionary<string, Badge>> CreateBadgesAsync()
+        {
+            return new TaskFactory().StartNew((Func<Dictionary<string, Badge>>)CreateBadges);
         }
     }
 }

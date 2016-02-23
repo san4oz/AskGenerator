@@ -120,9 +120,19 @@ namespace AskGenerator.Mvc.Controllers
         [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
         public async Task<ViewResult> Board()
         {
+            var badges = await Site.QuestionManager.CreateBadgesAsync();
+            var model = new TeacherListViewModel(badges: badges);
+            return View(model);
+        }
+
+        [HttpPost]
+        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
+        [ActionName("Board")]
+        public async Task<ViewResult> BoardPost()
+        {
             var teachers = await Site.TeacherManager.AllAsync(true);
             var model = CreateTeacherListViewModel(teachers);
-            return View(model);
+            return View("_Board", model);
         }
 
         private TeacherListViewModel CreateTeacherListViewModel(List<Teacher> teachers)

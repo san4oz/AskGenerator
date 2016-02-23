@@ -255,6 +255,7 @@
     <Content Include="Content\Images\ff9cf187-8733-4fdb-bbb6-80ed2c59533e.jpg" />
     <Content Include="Content\Images\Male.png" />
     <Content Include="Content\Images\teacher\noImage.png" />
+    <Content Include="Content\loader.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="Css\bootstrap-theme.css" />
     <Content Include="Css\bootstrap-theme.min.css" />
@@ -1817,6 +1818,7 @@
     <Content Include="Scripts\models\option.js" />
     <Content Include="Scripts\models\teacherRait.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pages\board.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\Teacher.js" />
@@ -1856,6 +1858,7 @@
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Home\Board.cshtml" />
     <Content Include="Views\_Layouts\_Base.cshtml" />
+    <Content Include="Views\Home\_Board.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
