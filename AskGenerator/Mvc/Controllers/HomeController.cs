@@ -19,9 +19,9 @@ namespace AskGenerator.Mvc.Controllers
     public class HomeController : BaseController
     {
         /// <summary>
-        /// Cache duration for board page in minutes.
+        /// Cache duration for board page in seconds.
         /// </summary>
-        public const int CacheDuration = 1;
+        public const int CacheDuration = 60;
 
         #region Voting
         [HttpGet]
@@ -86,7 +86,7 @@ namespace AskGenerator.Mvc.Controllers
                     id = q.Id,
                     label = q.QuestionBody,
                     low = q.LowerRateDescription,
-                    hight = q.HigherRateDescription
+                    hight = q.HigherRateDescription,
                 }).ToList(),
                 teachers = teachers
             });
@@ -152,7 +152,7 @@ namespace AskGenerator.Mvc.Controllers
                 }
                 models.Add(tmodel);
             }
-            var model = new TeacherListViewModel(models, badges);
+            var model = new TeacherListViewModel(models.OrderByDescending(m => m.AverageMark).ToList(), badges);
             return model;
         }
 
@@ -173,6 +173,7 @@ namespace AskGenerator.Mvc.Controllers
                 else
                     data.status = teacherVotes.Select(v => new Answer() { id = v.QuestionId.Id, value = v.Answer }).ToList();
 
+                data.image = Resolver.Image(teacher.Image, teacher.IsMale);
                 teachers.Add(data);
             }
             return teachers;

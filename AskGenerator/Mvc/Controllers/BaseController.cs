@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using AskGenerator.Mvc.Components;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -39,6 +40,18 @@ namespace AskGenerator.Mvc.Controllers
         protected JsonResult Json404(object data)
         {
             return Json(data, 404);
+        }
+
+        private Resolver resolver;
+        protected Resolver Resolver
+        {
+            get
+            {
+                if (resolver != null)
+                    return resolver;
+                else
+                    return resolver = new Resolver();
+            }
         }
 
         /// <summary>

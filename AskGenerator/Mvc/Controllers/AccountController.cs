@@ -46,6 +46,7 @@ namespace AskGenerator.Mvc.Controllers
         #endregion
 
         #region Login
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Login(string returnUrl)
         {
             if(User.Identity.IsAuthenticated)
@@ -92,6 +93,7 @@ namespace AskGenerator.Mvc.Controllers
         #endregion
 
         #region Register
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Register( )
         {
             return View();

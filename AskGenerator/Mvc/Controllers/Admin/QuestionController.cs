@@ -29,12 +29,14 @@ namespace AskGenerator.Controllers.Admin
         }
 
         [HttpGet]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create()
         {            
             return View();
         }
 
         [HttpGet]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult CreateTeacher()
         {
             var model = new QuestionViewModel()
