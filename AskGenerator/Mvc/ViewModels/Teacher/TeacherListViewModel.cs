@@ -10,14 +10,14 @@ namespace AskGenerator.Mvc.ViewModels
 {
     public class TeacherListViewModel
     {
-        public TeacherListViewModel(IList<TeacherViewModel> list = null, Dictionary<string, Badge> badges = null)
+        public TeacherListViewModel(IList<TeacherViewModel> list = null, Dictionary<string, LimitViewModel> badges = null)
         {
             List = list ?? new List<TeacherViewModel>();
-            Badges = badges ?? new Dictionary<string, Badge>();
+            Badges = badges ?? new Dictionary<string, LimitViewModel>();
         }
 
         public IList<TeacherViewModel> List { get; set; }
 
-        public Dictionary<string, Badge> Badges { get; set; }
+        public Dictionary<string, LimitViewModel> Badges { get; set; }
     }
 }

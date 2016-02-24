@@ -7,9 +7,18 @@
 
 <h1>@Resources.Resource.TeacherBoard</h1>
 
+<section id="legend">
+    @foreach(var pair in Model.Badges) {
+        @Badge(pair.Value)
+    }
+</section>
 <section id="teacherBoard" data-src="@Url.Action("Board")">
     <div id="loader" class="popover"></div>
 </section>
+
+@helper Badge(LimitViewModel badge) {
+    
+}
 
 @section Scripts{ 
     <script>

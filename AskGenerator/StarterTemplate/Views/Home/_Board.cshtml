@@ -29,7 +29,7 @@
 @helper Badge(TeacherBadge tbadge){
     var badge = Model.Badges.GetOrDefault(tbadge.Id);
     if(badge != null){
-        var ttip = string.Format(badge.ToolTipFormat, tbadge.Mark);
+        var ttip = string.Format(badge.ToolTip, @Math.Round(tbadge.Mark, 2));
         if(string.IsNullOrEmpty(badge.Image)){
             <span class="badge" title="@ttip"></span>
         }

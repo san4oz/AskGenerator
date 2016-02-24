@@ -1,5 +1,6 @@
 ﻿using AskGenerator.Business.Entities;
 using AskGenerator.Business.Filters;
+using AskGenerator.Business.InterfaceDefinitions.Managers;
 using AskGenerator.Mvc.ViewModels;
 using AskGenerator.ViewModels;
 using Newtonsoft.Json;
@@ -22,6 +23,13 @@ namespace AskGenerator.Mvc.Controllers
         /// Cache duration for board page in seconds.
         /// </summary>
         public const int CacheDuration = 60;
+
+        protected IQuestionManager QuestionManager { get; set; }
+
+        public HomeController()
+        {
+            QuestionManager = Site.QuestionManager;
+        }
 
         #region Voting
         [HttpGet]
@@ -120,7 +128,7 @@ namespace AskGenerator.Mvc.Controllers
         [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
         public async Task<ViewResult> Board()
         {
-            var badges = await Site.QuestionManager.CreateBadgesAsync();
+            var badges = await new TaskFactory().StartNew<Dictionary<string, LimitViewModel>>(CreateBadges);
             var model = new TeacherListViewModel(badges: badges);
             return View(model);
         }
@@ -135,9 +143,31 @@ namespace AskGenerator.Mvc.Controllers
             return View("_Board", model);
         }
 
-        private TeacherListViewModel CreateTeacherListViewModel(List<Teacher> teachers)
+        protected Dictionary<string, LimitViewModel> CreateBadges()
         {
-            var badges = Site.QuestionManager.CreateBadges();
+            var questions = QuestionManager.List(true);
+            var result = new Dictionary<string, LimitViewModel>(questions.Count * 2);
+            foreach (var question in questions)
+            {
+                if (question.LeftLimit.AvgLimit > 0)
+                {
+                    var badge = Map<Question.Limit, LimitViewModel>(question.LeftLimit);
+                    badge.Id = question.Id;
+                    result.Add(badge.Id + "l", badge);
+                }
+                if (question.RightLimit.AvgLimit > 0)
+                {
+                    var badge = Map<Question.Limit, LimitViewModel>(question.RightLimit);
+                    badge.Id = question.Id;
+                    result.Add(badge.Id + "r", badge);
+                }
+            }
+            return result;
+        }
+
+        protected TeacherListViewModel CreateTeacherListViewModel(List<Teacher> teachers)
+        {
+            var badges = CreateBadges();
             var models = new List<TeacherViewModel>(teachers.Count);
             foreach (var teacher in teachers)
             {
@@ -152,12 +182,12 @@ namespace AskGenerator.Mvc.Controllers
                 {
                     var id = mark.QuestionId + 'l';
                     var badge = badges.GetOrDefault(id);
-                    if (badge != null && badge.Limit > mark.Answer)
+                    if (badge != null && badge.AvgLimit > mark.Answer)
                         tmodel.Badges.Add(new TeacherBadge() { Id = id, Mark = mark.Answer });
 
                     id = mark.QuestionId + 'r';
                     badge = badges.GetOrDefault(id);
-                    if (badge != null && badge.Limit < mark.Answer)
+                    if (badge != null && badge.AvgLimit < mark.Answer)
                         tmodel.Badges.Add(new TeacherBadge() { Id = id, Mark = mark.Answer });
                 }
                 models.Add(tmodel);

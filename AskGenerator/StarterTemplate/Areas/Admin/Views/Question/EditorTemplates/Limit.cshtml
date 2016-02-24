@@ -2,8 +2,7 @@
 @using System.Globalization
 @using AskGenerator.ViewModels
 
-@if(Model != null){ 
-        
+@if(Model != null){         
         if(Model.Image != null){
             var size = (ViewBag.maxSize ?? 30).ToString() + "px";
             <img src="@Model.Image" alt="@Model.Image.Split('/').Last()" style="float:right; max-width:@size; max-height:@size;" />
@@ -20,4 +19,16 @@
                 @Html.ValidationMessageFor(x => Model.Image)
             </div>
         </div>
-    }
+
+        <div class="form-group">
+            @Html.LabelFor(x => Model.ToolTip, htmlAttributes: new { @class = "col-xs-1 control-label" })
+            <div class="col-xs-2">
+                @Html.EditorFor(x => Model.ToolTip)
+            </div>
+            @Html.LabelFor(x => Model.Description, htmlAttributes: new { @class = "col-md-1 control-label" })
+            <div class="col-md-8">
+                @Html.EditorFor(x => Model.Description)
+                @Html.ValidationMessageFor(x => Model.Description)
+            </div>
+        </div>
+}

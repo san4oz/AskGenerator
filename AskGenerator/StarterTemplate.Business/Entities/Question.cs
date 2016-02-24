@@ -37,6 +37,12 @@ namespace AskGenerator.Business.Entities
             /// Gets or sets path to the person image.
             /// </summary>
             public string Image { get; set; }
+
+            [MaxLength(50)]
+            public string ToolTip { get; set; }
+
+            [MaxLength(250)]
+            public string Description { get; set; }
         }
     }
 

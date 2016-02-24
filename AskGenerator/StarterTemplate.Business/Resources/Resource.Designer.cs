@@ -250,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Опис.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Заватнажити файл.
         /// </summary>
         public static string Download {
@@ -664,6 +673,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Фото.
+        /// </summary>
+        public static string Photo {
+            get {
+                return ResourceManager.GetString("Photo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Питання про викладачів.
         /// </summary>
         public static string QuestionAbTeacher {
@@ -876,6 +894,15 @@ namespace Resources {
         public static string ToggleNavigation {
             get {
                 return ResourceManager.GetString("ToggleNavigation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Тултіп.
+        /// </summary>
+        public static string Tooltip {
+            get {
+                return ResourceManager.GetString("Tooltip", resourceCulture);
             }
         }
         

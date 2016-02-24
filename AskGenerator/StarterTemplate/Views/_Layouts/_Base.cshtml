@@ -17,9 +17,11 @@
     @RenderSection("NavBar", required: false)
 
     <div class="container">
-        @RenderBody()
+        <div class="row">
+            @RenderBody()
+        </div>
         <footer class="row" role="contentinfo">
-            <div class="divider col-xs-12">
+            <div class="divider">
                 &copy; 2016 - @DateTime.Now.Year <a href="https://github.com/san4oz" target="_blank">san4oz</a>
             </div>
         </footer>

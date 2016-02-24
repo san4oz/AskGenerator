@@ -54,17 +54,30 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                        @Resources.Resource.Limits
+                    <a data-toggle="collapse" data-parent="#accordion" href="#leftLimit">
+                        @Resources.Resource.LeftLimit
                     </a>
                 </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
+            <div id="leftLimit" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    LeftLimit
                     @Html.EditorFor(x => x.LeftLimit)
-                    <hr/>
+                    <hr/>                    
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#rightLimit">
+                        @Resources.Resource.RightLimit
+                    </a>
+                </h4>
+            </div>
+            <div id="rightLimit" class="panel-collapse collapse in">
+                <div class="panel-body">
                     @Html.EditorFor(x => x.RightLimit)
+                    <hr/>                    
                 </div>
             </div>
         </div>

@@ -399,4 +399,13 @@
   <data name="RightLimit" xml:space="preserve">
     <value>Правий ліміт</value>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Опис</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Фото</value>
+  </data>
+  <data name="Tooltip" xml:space="preserve">
+    <value>Тултіп</value>
+  </data>
 </root>

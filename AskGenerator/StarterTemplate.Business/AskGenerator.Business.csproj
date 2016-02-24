@@ -119,7 +119,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Badge.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Group.cs" />
