@@ -31,8 +31,9 @@ namespace AskGenerator.Controllers.Admin
         [HttpGet]
         [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Create()
-        {            
-            return View();
+        {
+            var model = new QuestionViewModel();
+            return View(model);
         }
 
         [HttpGet]

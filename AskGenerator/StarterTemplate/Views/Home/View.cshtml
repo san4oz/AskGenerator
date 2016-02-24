@@ -2,7 +2,7 @@
     Layout = null;
 }
 
-<d-expand-collapse id="temp.html" ng-repeat="option in options | orderBy: 'done'">
+<d-expand-collapse id="temp.html" data-optiond-id="{{option.id}}" ng-repeat="option in options | orderBy: 'done'">
     <div ng-class="{'even': $index%2!=0,'odd': $index%2==0}">
         <div class="faqPlus option" ng-click="option.collapse()" ng-class="{'alert-success': option.done}">
             <span class="collapse-mark" ng-class="{'plus': option.collapsed, 'minus': !option.collapsed}"></span>

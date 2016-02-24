@@ -29,5 +29,11 @@ namespace AskGenerator.ViewModels
 
         [UIHint("Limit")]
         public LimitViewModel LeftLimit { get; set; }
+
+        public QuestionViewModel()
+        {
+            LeftLimit = new LimitViewModel();
+            RightLimit = new LimitViewModel();
+        }
     }
 }

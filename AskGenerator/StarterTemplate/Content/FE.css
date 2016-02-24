@@ -1,3 +1,7 @@
+body {
+    background-color: #f2f2f2;
+}
+
 .container {
     max-width: 100%;
 }
@@ -40,7 +44,8 @@
             background-color: #ffffff;
             background-position: center center;
             background-repeat: no-repeat;
-            background-size: contain;
+            background-size: 102% 102%;
+            overflow: hidden;
         }
 
 .teacher-tile .img-thumbnail {
@@ -75,16 +80,128 @@
     background-image: url("/Content/loader.gif");
     background-position: center center;
     background-repeat: no-repeat;
+    box-shadow: 0 5px 10px rgba(16, 16, 16, 0.35);
     display: block;
     height: 100px;
     margin: 15px auto;
     position: unset;
     width: 100px;
 }
+
 .loading {
     background-image: url("/Content/loader.gif");
     background-position: center center;
     background-repeat: no-repeat;
+    display: block;
+    height: 100px;
     min-height: 70px;
     min-width: 70px;
+    position: unset;
+    width: 100px;
+}
+
+/*
+    Board
+*/
+[data-optiond-id="{{option.id}}"] {
+    display: none; /*Hide unfilled tags*/
+}
+
+.odd {
+    position: relative;
+    background: rgb(246,246,246);
+    background: rgba(0,0,0,0.04);
+}
+
+.votes {
+    margin-bottom: 10px;
+    display: none;
+}
+
+.option {
+    font-size: 20px;
+    padding: 20px 20px 20px 5px;
+    color: black;
+    cursor: pointer;
+    font-family: georgia,serif;
+    font-weight: normal;
+    font-style: italic;
+}
+
+.plus {
+    background: transparent url('img/expander-plus.png') 20px center no-repeat;
+}
+
+.minus {
+    background: transparent url('img/expander-minus.png') 20px center no-repeat;
+}
+
+.option > * {
+    cursor: pointer;
+}
+
+.teacher-item .teacher-tile {
+    margin-bottom: 5px;
+    width: 130px;
+}
+
+.teacher-img {
+    background-color: bisque;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: cover;
+    min-width: 65px;
+    min-height: 90px;
+    max-width: 75px;
+    max-height: 100px;
+    margin: 0 auto;
+}
+
+    .teacher-img::before {
+        content: "";
+        display: block;
+        padding-top: 60% !important;
+    }
+
+.teacher-item {
+    border-right: 1px inset lightgray;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+    .teacher-item span {
+        background-color: rgba(200, 200, 200, 0.5);
+        display: inline-block;
+        margin-top: -1em;
+        text-align: center;
+        width: 100%;
+    }
+
+hr {
+    margin: 5px 5px 5px 13.5%;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.disabled {
+    background-color: darkgray;
+}
+
+.votes input[disabled="disabled"] {
+    color: red;
+}
+
+.point {
+    margin: 0 5px;
+}
+
+.collapse-mark {
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+    padding: 5px 20px 10px 15px;
 }

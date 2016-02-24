@@ -2,7 +2,7 @@
     var token = $('input[name="__RequestVerificationToken"]').val();
     return $http.post('/home/NgData', { '__RequestVerificationToken': token })
         .success(function (data) {
-            $('#view').removeClass('loading');
+            $('#view').removeClass('loading popover');
             return data;
         })
         .error(function (data) {
