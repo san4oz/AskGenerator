@@ -31,10 +31,10 @@
     if(badge != null){
         var ttip = string.Format(badge.ToolTip, @Math.Round(tbadge.Mark, 2));
         if(string.IsNullOrEmpty(badge.Image)){
-            <span class="badge" title="@ttip"></span>
+            <span class="badge" data-toggle="tooltip" title="@ttip"></span>
         }
         else{
-            <span class="badge" style="background-image: url(@badge.Image)" title="@ttip"></span>
+            <span class="badge" data-toggle="tooltip" style="background-image: url(@badge.Image)" title="@ttip"></span>
         }
     }
 }

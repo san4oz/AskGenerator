@@ -125,7 +125,7 @@ namespace AskGenerator.Mvc.Controllers
         #endregion
 
         [HttpGet]
-        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
+        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Client)]
         public async Task<ViewResult> Board()
         {
             var badges = await new TaskFactory().StartNew<Dictionary<string, LimitViewModel>>(CreateBadges);

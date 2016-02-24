@@ -9,8 +9,10 @@ Pages.Board = (function () {
         var url = root.data('src');
         if (url) {
             $.post(url, undefined, function (data) {
-                if (data)
+                if (data) {
                     root.html(data);
+                    Controls.TTips('[data-toggle="tooltip"]');
+                }
             });
         }
     };

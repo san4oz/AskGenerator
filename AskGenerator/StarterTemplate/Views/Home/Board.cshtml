@@ -7,7 +7,7 @@
 
 <h1>@Resources.Resource.TeacherBoard</h1>
 
-<section id="legend">
+<section id="legend" class="row">
     @foreach(var pair in Model.Badges) {
         @Badge(pair.Value)
     }
@@ -17,7 +17,17 @@
 </section>
 
 @helper Badge(LimitViewModel badge) {
-    
+    <div class="col-xs-3 col-md-2 col-lg-1 thumbnail">
+        <img src="@badge.Image" data-toggle="tooltip" title="@string.Format(badge.ToolTip, string.Empty)" />
+        <div class="caption">
+            @if(badge.Description.EndsWith("?")){
+                @badge.Description.Substring(0, badge.Description.Length-1)
+            }
+            else{
+                @badge.Description
+            }
+        </div>
+    </div>
 }
 
 @section Scripts{ 
