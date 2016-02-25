@@ -28,7 +28,10 @@ namespace AskGenerator.Controllers.Admin
 
         public ActionResult Edit(string id)
         {
-            var model = Map<Team, TeamViewModel>(Site.TeamManager.Get(id));
+            var team = Site.TeamManager.Get(id);
+            if (team == null)
+                return HttpNotFound("Team ({0}) was not found.".FormatWith(id));
+            var model = Map<Team, TeamViewModel>(team);
             return View("Create", model);
         }
 
@@ -36,6 +39,8 @@ namespace AskGenerator.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Create(TeamViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+                return View(viewModel);
             var model = Map<TeamViewModel, Team>(viewModel);
             Site.TeamManager.Create(model);
             return RedirectToAction("List");
@@ -45,6 +50,8 @@ namespace AskGenerator.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Edit(TeamViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+                return View("Create", viewModel);
             var model = Map<TeamViewModel, Team>(viewModel);
             Site.TeamManager.Update(model);
             return RedirectToAction("List");
@@ -56,7 +63,7 @@ namespace AskGenerator.Controllers.Admin
             if (string.IsNullOrEmpty(id))
                 return Json404("ID was not specified.");
 
-            var team = await Site.TeamManager.Extract(id);
+            var team = await Site.TeamManager.ExtractAsync(id);
             if (team == null)
                 return Json404("Team was not found.");
 

@@ -408,4 +408,13 @@
   <data name="Tooltip" xml:space="preserve">
     <value>Тултіп</value>
   </data>
+  <data name="OldGroup" xml:space="preserve">
+    <value>Стара група</value>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>Кафедра</value>
+  </data>
+  <data name="TeamName" xml:space="preserve">
+    <value>Назва кафедри</value>
+  </data>
 </root>

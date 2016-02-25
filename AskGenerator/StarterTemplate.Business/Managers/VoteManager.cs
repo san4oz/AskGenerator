@@ -22,12 +22,12 @@ namespace AskGenerator.Business.Managers
 
         public Task<List<Vote>> ListAsync(string userId)
         {
-            return new TaskFactory().StartNew(() => Provider.List(userId));
+            return Task.Factory.StartNew(() => Provider.List(userId));
         }
 
         public Task<bool> Save(Vote vote, string questionId)
         {
-            return new TaskFactory().StartNew(() =>
+            return Task.Factory.StartNew(() =>
             {
                 var prev = Provider.Get(vote.AccountId, vote.TeacherId, questionId);
                 bool success;

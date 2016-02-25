@@ -16,10 +16,19 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 
         T Extract(string id);
 
+        /// <summary>
+        /// Deletes and returns entity by specified ID.
+        /// </summary>
+        /// <param name="id">ID of the entity.</param>
+        /// <returns>Deleted entity or <c>null</c> if entity was not found.</returns>
+        Task<T> ExtractAsync(string id);
+
         T Get(string id);
 
         Task<T> GetAsync(string id);
 
         List<T> All();
+
+        Task<List<T>> AllAsync();
     }
 }

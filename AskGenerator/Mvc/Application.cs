@@ -3,7 +3,7 @@ using AskGenerator.App_Start.Autofac;
 using AskGenerator.App_Start.AutoMapper;
 using AskGenerator.App_Start.Routes;
 using AskGenerator.DataProvider;
-using AskGenerator.Mvc.Components.Binders;
+using AskGenerator.Core.Binders;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

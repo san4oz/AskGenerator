@@ -1,4 +1,5 @@
 ﻿using AskGenerator.Business.Entities;
+using AskGenerator.Business.InterfaceDefinitions.Managers;
 using AskGenerator.Mvc.Controllers;
 using AskGenerator.ViewModels;
 using AutoMapper;
@@ -14,6 +15,13 @@ namespace AskGenerator.Controllers.Admin
     [Authorize(Roles = "admin")]
     public class QuestionController : BaseController
     {
+        protected IQuestionManager QuestionManager { get; private set; }
+
+        public QuestionController()
+        {
+            QuestionManager = Site.QuestionManager;
+        }
+
         [HttpGet]
         public ActionResult List(bool isAboutTeacher = false)
         {
@@ -47,7 +55,7 @@ namespace AskGenerator.Controllers.Admin
             return View("Create", model);
         }
 
-        
+
         public ActionResult Edit(string id)
         {
             var model = Map<Question, QuestionViewModel>(Site.QuestionManager.Get(id));
@@ -63,7 +71,7 @@ namespace AskGenerator.Controllers.Admin
                 return View(viewModel);
             var model = DecomposeQuestionViewModel(viewModel);
             Site.QuestionManager.Create(model);
-            if(viewModel.IsAboutTeacher)
+            if (viewModel.IsAboutTeacher)
                 return RedirectToAction("TeacherList");
             return RedirectToAction("List");
         }
@@ -104,22 +112,24 @@ namespace AskGenerator.Controllers.Admin
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id)
+        public async Task<ActionResult> Delete(string id)
         {
             if (!User.Identity.IsAuthenticated)
-                return Json(new { url = Url.Action("Login", "Account") }, 403);
+                return Json(new { url = Url.Action("Login", "Account", new { returnUrl = Url.Action("TeacherList") }) }, 403);
+            if (string.IsNullOrEmpty(id))
+                return Json(false);
 
-            if (!string.IsNullOrEmpty(id))
-            {                
-                var q = Site.QuestionManager.Extract(id);
+            return await Task.Factory.StartNew(() =>
+            {
+                var q = QuestionManager.Extract(id);
                 if (q != null)
                 {
                     base.DeleteImage(q.LeftLimit.Image);
                     base.DeleteImage(q.RightLimit.Image);
                     return Json(q);
                 }
-            }
-            return Json(false);
+                return Json(false);
+            });
         }
     }
 }

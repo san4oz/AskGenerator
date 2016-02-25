@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = @Resources.Resource.ListGroup;
 }
-
+@Html.AntiForgeryToken()
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -14,13 +14,18 @@
                 <thead>
                     <tr>
                         <th>@Resources.Resource.GroupName</th>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var student in Model.OrderBy(x => x.Name))
+                    @foreach (var group in Model.OrderBy(x => x.Name))
                     {
                         <tr>
-                            <td>@student.Name</td>
+                            <td>@group.Name</td>
+                            <td>
+                                <a class="btn btn-primary" href="@Url.Action("Edit", "Group", new {id=group.Id})">@Resources.Resource.Edit</a>
+                                <a class="btn btn-danger delete" data-id="@group.Id" href="@Url.Action("Delete", "Group", new {id=group.Id})">@Resources.Resource.Remove</a
+                            </td>
                         </tr>
                     }                    
                 </tbody>

@@ -11,11 +11,8 @@ namespace AskGenerator.ViewModels
 {
     public class GroupViewModel : BaseViewModel, IMapFrom<Group>
     {
-        [Display(Name="Группа")]
+        [Display(Name = "Group", ResourceType=typeof(Resources.Resource))]
+        [Required]
         public string Name { get; set; }
-
-        public List<Student> Students { get; set; }
-
-        public List<Teacher> Teachers { get; set; }
     }
 }

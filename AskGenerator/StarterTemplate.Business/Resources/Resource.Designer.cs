@@ -655,6 +655,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Стара група.
+        /// </summary>
+        public static string OldGroup {
+            get {
+                return ResourceManager.GetString("OldGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Старе запитання.
         /// </summary>
         public static string OldQuestion {
@@ -885,6 +894,24 @@ namespace Resources {
         public static string TeacherStudent {
             get {
                 return ResourceManager.GetString("TeacherStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Кафедра.
+        /// </summary>
+        public static string Team {
+            get {
+                return ResourceManager.GetString("Team", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Назва кафедри.
+        /// </summary>
+        public static string TeamName {
+            get {
+                return ResourceManager.GetString("TeamName", resourceCulture);
             }
         }
         

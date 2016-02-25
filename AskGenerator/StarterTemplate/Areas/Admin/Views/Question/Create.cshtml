@@ -1,9 +1,8 @@
 ﻿@model QuestionViewModel
 @using AskGenerator.ViewModels
 @{
-    var isEdit = ViewBag.IsEditing ?? false;
-    var legend = isEdit ? @Resources.Resource.EditQuestion : @Resources.Resource.CreateQuestion;
-    ViewBag.Title = isEdit ? @Resources.Resource.OldQuestion : @Resources.Resource.NewQuestion;
+    var legend = IsEditing ? @Resources.Resource.EditQuestion : @Resources.Resource.CreateQuestion;
+    ViewBag.Title = IsEditing ? @Resources.Resource.OldQuestion : @Resources.Resource.NewQuestion;
 }
 
 <div class="col-md-10">

@@ -57,7 +57,7 @@ namespace AskGenerator.Business.Managers
 
         public Task<bool> Save(TeacherQuestion entity)
         {
-            return new TaskFactory().StartNew(() =>
+            return Task.Factory.StartNew(() =>
             {
                 var row = Get(entity.TeacherId, entity.QuestionId);
                 if (row == null)

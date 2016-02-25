@@ -12,7 +12,8 @@ namespace AskGenerator.Mvc.ViewModels
 {
     public class TeamViewModel : BaseViewModel, IMapFrom<Team>
     {
-        [Display(Name="Назва кафедри")]
+        [Display(Name = "TeamName", ResourceType = typeof(Resources.Resource))]
+        [Required]
         public string Name { get; set; }
     }
 }

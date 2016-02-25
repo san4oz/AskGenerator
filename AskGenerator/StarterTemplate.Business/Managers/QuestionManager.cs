@@ -32,7 +32,7 @@ namespace AskGenerator.Business.Managers
         /// <returns>List of retrived questions.</returns>
         public Task<List<Question>> ListAsync(bool isAboutTeacher = false)
         {
-            return new TaskFactory().StartNew(() => Provider.List(isAboutTeacher));
+            return Task.Factory.StartNew(() => Provider.List(isAboutTeacher));
         }
     }
 }

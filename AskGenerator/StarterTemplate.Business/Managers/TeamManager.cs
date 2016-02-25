@@ -16,17 +16,5 @@ namespace AskGenerator.Business.Managers
         {
 
         }
-
-        public Task<Team> Extract(string id)
-        {
-            return new TaskFactory<Team>().StartNew(() =>
-            {
-                var team = Get(id);
-                if (team != null)
-                    Provider.Delete(team);
-                return team;
-            });
-            
-        }
     }
 }

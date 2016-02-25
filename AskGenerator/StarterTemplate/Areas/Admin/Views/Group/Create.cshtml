@@ -1,6 +1,7 @@
 ﻿@model AskGenerator.ViewModels.GroupViewModel
 @{
-    ViewBag.Title = @Resources.Resource.NewGroup;
+    ViewBag.Title = IsEditing?Resources.Resource.OldGroup:Resources.Resource.NewGroup;
+    var legend = IsEditing?Resources.Resource.EditGroup:Resources.Resource.CreateGroup;
 }
 
 <div class="col-md-10">
@@ -10,10 +11,9 @@
                 <div class="text-muted bootstrap-admin-box-title">@Resources.Resource.Group;</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                @using (Html.BeginForm("Create", "Group", FormMethod.Post, new { @class = "form-horizontal" }))
-                {
+                <form method="post" class="form-horizontal">
                     <fieldset>
-                        <legend>@Resources.Resource.CreateGroup</legend>
+                        <legend>@legend</legend>
                         <div class="form-group">
                             @Html.LabelFor(x => x.Name, htmlAttributes: new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
@@ -23,7 +23,7 @@
                         <button type="submit" class="btn btn-primary">@Resources.Resource.Save</button>
                         <button type="reset" class="btn btn-default">@Resources.Resource.Clean</button>
                     </fieldset>
-                }
+                </form>
             </div>
         </div>
     </div>

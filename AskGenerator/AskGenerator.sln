@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskGenerator.Web", "StarterTemplate\AskGenerator.Web.csproj", "{2C12563C-D63F-4E41-AE10-8B0E4CB7F335}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskGenerator.Mvc", "Mvc\AskGenerator.Mvc.csproj", "{1A682A54-1547-4548-9CE6-028C2F859A06}"
@@ -12,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskGenerator.DataProvider", "StarterTemplate.DataProvider\AskGenerator.DataProvider.csproj", "{49C087EB-CBF2-49EE-B638-4339E8B4F14C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskGenerator.Generator", "AskGenerator.Generator\AskGenerator.Generator.csproj", "{468A5BF6-637C-400F-A8DC-186623535AC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AskGenerator.Core", "AskGenerator.Core\AskGenerator.Core.csproj", "{77896584-1CA2-468E-BBE8-BA4A3827C4A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +39,10 @@ Global
 		{468A5BF6-637C-400F-A8DC-186623535AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{468A5BF6-637C-400F-A8DC-186623535AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{468A5BF6-637C-400F-A8DC-186623535AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77896584-1CA2-468E-BBE8-BA4A3827C4A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77896584-1CA2-468E-BBE8-BA4A3827C4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77896584-1CA2-468E-BBE8-BA4A3827C4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77896584-1CA2-468E-BBE8-BA4A3827C4A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

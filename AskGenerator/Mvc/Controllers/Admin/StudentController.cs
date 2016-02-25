@@ -18,9 +18,9 @@ namespace AskGenerator.Controllers.Admin
     public class StudentController : BaseController
     {
         [HttpGet]
-        public ActionResult List()
+        public async Task<ActionResult> List()
         {
-            var students = Site.StudentManager.All();
+            var students = await Site.StudentManager.AllAsync();
             var viewModel = Map<IList<Student>, IList<StudentViewModel>>(students);
             return View(viewModel);
         }

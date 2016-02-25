@@ -42,7 +42,7 @@ namespace AskGenerator.Business.Managers
 
         public Task<List<Teacher>> AllAsync(bool loadMarks)
         {
-            return new TaskFactory().StartNew(() => {
+            return Task.Factory.StartNew(() => {
                 var teachers = this.List();
                 if (!loadMarks)
                     return teachers;
@@ -66,7 +66,7 @@ namespace AskGenerator.Business.Managers
 
         public Task<List<Teacher>> ListAsync()
         {
-            return new TaskFactory().StartNew(() => this.List());
+            return Task.Factory.StartNew(() => this.List());
         }
     }
 }

@@ -44,7 +44,7 @@ namespace AskGenerator.Business.Managers
 
         public virtual Task<T> GetAsync(string id)
         {
-            return new TaskFactory().StartNew(() => Provider.Get(id));
+            return Task.Factory.StartNew(() => Provider.Get(id));
         }
 
         public virtual List<T> All()
@@ -52,10 +52,22 @@ namespace AskGenerator.Business.Managers
             return Provider.All();
         }
 
+        public virtual Task<List<T>> AllAsync()
+        {
+            return Task.Factory.StartNew<List<T>>(this.All);
+        }
+
 
         public T Extract(string id)
         {
+            if (id.IsEmpty())
+                return null;
             return Provider.Extract(id);
+        }
+        public Task<T> ExtractAsync(string id)
+        {
+            return Task.Factory.StartNew(() => Extract(id));
+
         }
     }
 }
