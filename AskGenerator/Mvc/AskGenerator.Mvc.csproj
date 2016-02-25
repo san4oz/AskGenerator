@@ -199,6 +199,7 @@
     <Compile Include="ViewModels\Teacher\TeacherListViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherVotingViewModel.cs" />
+    <Compile Include="ViewModels\Teacher\BoardViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\VotingViewModel.cs" />
   </ItemGroup>

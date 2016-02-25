@@ -19,6 +19,7 @@ Pages.Board = (function () {
 
     self.init = function () {
         self.loadBoard();
+        Controls.Popover('[data-toggle="popover"]');
     };
     return self;
 })();

@@ -213,8 +213,20 @@ hr {
 
     #legend .thumbnail {
         margin: 5px 15px;
+        padding: 0;
     }
 
     #legend img {
+        margin: 4px auto 0;
         max-width: 100%;
+        padding: 4px;
+        width: 80%;
     }
+
+a.help {
+    color: #4e97d6;
+    font-size: 1.2em;
+    line-height: 1em;
+    padding: 2px;
+    text-decoration: underline dotted;
+}

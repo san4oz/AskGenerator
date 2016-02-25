@@ -8,10 +8,13 @@
 
     self.Popover = function (selector) {
         selector = $(selector);
-        selector.popover({ animation: false, placement: 'top', delay: 100 });
+        selector.popover({ animation: false, placement: 'top', delay: 100, container: 'body' });
+        selector.on('click.popover', function (e) {
+            e.preventDefault();
+        });/*
         $(document).on('click', function () {
             selector.popover('hide');
-        });
+        });*/
     };
 
     self.initDelete = function () {

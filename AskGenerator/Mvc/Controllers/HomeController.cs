@@ -128,8 +128,9 @@ namespace AskGenerator.Mvc.Controllers
         [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Client)]
         public async Task<ViewResult> Board()
         {
-            var badges = await new TaskFactory().StartNew<Dictionary<string, LimitViewModel>>(CreateBadges);
-            var model = new TeacherListViewModel(badges: badges);
+            var badges = await Task.Factory.StartNew<Dictionary<string, LimitViewModel>>(CreateBadges);
+            var questions = Site.QuestionManager.List(true).ToDictionary(q => q.Id, q => q.QuestionBody);
+            var model = new BoardViewModel(questions, badges);
             return View(model);
         }
 
