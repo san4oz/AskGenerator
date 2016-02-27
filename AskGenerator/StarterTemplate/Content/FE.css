@@ -3,6 +3,10 @@ body {
     padding-top: 50px;
 }
 
+h1 {
+    margin-bottom: 5px;
+}
+
 .container {
     max-width: 100%;
 }
@@ -182,12 +186,6 @@ hr {
     margin: 5px 5px 5px 13.5%;
 }
 
-.row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .disabled {
     background-color: darkgray;
 }
@@ -209,10 +207,13 @@ hr {
 
 #legend {
     padding: 0 5%;
+    text-align: center;
 }
 
     #legend .thumbnail {
-        margin: 5px 15px;
+        display: inline-block;
+        float: none;
+        margin: 0 15px 5px;
         padding: 0;
     }
 
