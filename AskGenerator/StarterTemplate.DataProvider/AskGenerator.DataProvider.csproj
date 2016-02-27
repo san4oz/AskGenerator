@@ -155,6 +155,10 @@
     <Compile Include="Migrations\201602241947107_Limits descr.Designer.cs">
       <DependentUpon>201602241947107_Limits descr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602271902134_IndexFirstName.cs" />
+    <Compile Include="Migrations\201602271902134_IndexFirstName.Designer.cs">
+      <DependentUpon>201602271902134_IndexFirstName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseEntityProvider.cs" />
@@ -206,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602241947107_Limits descr.resx">
       <DependentUpon>201602241947107_Limits descr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602271902134_IndexFirstName.resx">
+      <DependentUpon>201602271902134_IndexFirstName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
