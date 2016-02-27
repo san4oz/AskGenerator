@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace AskGenerator.Business.Parsers
+namespace AskGenerator.Core
 {
     public class BaseParser
     {
@@ -46,6 +46,58 @@ namespace AskGenerator.Business.Parsers
                         result.Add(sr.ReadLine());
             }
             return result;
+        }
+    }
+
+    public class Column
+    {
+        #region Ctors
+        public Column(string key)
+            : this(key, byte.MaxValue)
+        {
+        }
+
+        public Column(string key, byte value)
+        {
+            Key = key;
+            Index = value;
+            IsInitialized = Exists;
+        }
+        #endregion
+
+        public string Key { get; protected set; }
+
+        public byte Index { get; set; }
+
+        /// <summary>
+        /// Sets not existing <see cref="Index"/>.
+        /// </summary>
+        public void NotExists()
+        {
+            Index = byte.MaxValue;
+        }
+
+        /// <summary>
+        /// Determines whether column can be found if line by <see cref="Index"/>.
+        /// </summary>
+        public bool Exists { get { return Index != byte.MaxValue; } }
+
+        /// <summary>
+        /// Determines whether column <see cref="Index"/> has default value and could not be used.
+        /// </summary>
+        public bool IsInitialized { get; set; }
+    }
+
+    public static class LineExtentions
+    {
+        public static string Col(this IList<string> line, Column column)
+        {
+            if (!column.IsInitialized)
+                throw new InvalidOperationException("Not initialized column");
+            if (column.Exists)
+                return line[column.Index];
+
+            return null;
         }
     }
 }

@@ -2,19 +2,24 @@
     var self = {};
     var token = $('input[name="__RequestVerificationToken"]').val();
 
-    self.TTips = function (selector) {
-        $(selector).tooltip();
+    self.TTips = function (selector, title) {
+        if (title)
+            $(selector).tooltip({ title: title });
+        else
+            $(selector).tooltip();
     };
 
-    self.Popover = function (selector) {
+    self.Popover = function (selector, shown, hidden) {
         selector = $(selector);
-        selector.popover({ animation: false, placement: 'top', delay: 100, container: 'body' });
-        selector.on('click.popover', function (e) {
+        selector.popover({ animation: false, placement: 'top', delay: 100, container: 'body', trigger: 'focus' });
+        selector.on('click', function (e) {
             e.preventDefault();
-        });/*
-        $(document).on('click', function () {
-            selector.popover('hide');
-        });*/
+        });
+        
+        if (shown && typeof (shown) === 'function')
+            selector.on('shown.bs.popover', shown);
+        if (hidden && typeof (hidden) === 'function')
+            selector.on('hidden.bs.popover', hidden);
     };
 
     self.initDelete = function () {

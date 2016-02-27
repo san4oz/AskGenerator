@@ -19,7 +19,16 @@ Pages.Board = (function () {
 
     self.init = function () {
         self.loadBoard();
-        Controls.Popover('[data-toggle="popover"]');
+        var helps = $('.help');
+        helps.each(function () {
+            var h = $(this);
+            Controls.TTips(h, h.data('content'));
+            Controls.Popover(h, function (e) {
+                h.tooltip('destroy');
+            }, function (e) {
+                Controls.TTips(h, h.data('content'));
+            });
+        });
     };
     return self;
 })();

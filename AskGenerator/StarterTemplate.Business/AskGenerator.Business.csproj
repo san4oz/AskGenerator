@@ -155,6 +155,7 @@
     <Compile Include="Managers\VoteManager.cs" />
     <Compile Include="Managers\TeamManager.cs" />
     <Compile Include="Managers\TeacherQuestionManager.cs" />
+    <Compile Include="Parsers\StudentTextParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs">
       <DependentUpon>Resource.resx</DependentUpon>

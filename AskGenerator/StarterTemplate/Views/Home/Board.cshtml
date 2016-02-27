@@ -24,10 +24,10 @@
 
 @helper Badge(LimitViewModel badge) {
     <div class="col-xs-3 col-md-2 col-lg-1 thumbnail">
-        <img src="@badge.Image" data-toggle="tooltip" title="@string.Format(badge.ToolTip, string.Empty)" />
+        <img src="@badge.Image" data-toggle="tooltip" title="@badge.ToolTip.TrimEnd('?')" />
         <div class="caption">
             @if(badge.Description.EndsWith("?")){
-                @badge.Description.Substring(0, badge.Description.Length-1)
+                @badge.Description.TrimEnd('?')
                 @Popover(badge)
             }
             else{
@@ -39,7 +39,7 @@
 
 @helper Popover(LimitViewModel badge){
     var q = Model.Questions.GetOrDefault(badge.Id);
-    if(q != null){
+    if(q != null) {
         <a href="#" class="help" type="button" data-toggle="popover" data-content="@q">
             ?
         </a>
