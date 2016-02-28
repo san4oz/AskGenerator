@@ -1860,6 +1860,8 @@
     <Content Include="Views\Home\Board.cshtml" />
     <Content Include="Views\_Layouts\_Base.cshtml" />
     <Content Include="Views\Home\_Board.cshtml" />
+    <Content Include="Views\Account\EditorTemplates\RegistrationModel.cshtml" />
+    <Content Include="Views\Account\EditorTemplates\LoginViewModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

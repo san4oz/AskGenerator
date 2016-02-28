@@ -1,6 +1,6 @@
 body {
     background-color: #f2f2f2;
-    padding-top: 50px;
+    padding-top: 60px;
 }
 
 h1 {
@@ -230,4 +230,17 @@ a.help {
     line-height: 1em;
     padding: 2px;
     text-decoration: underline dotted;
+}
+
+.min-form {
+    min-width: 255px;
+    overflow: hidden;
+}
+
+    .min-form form {
+        overflow: hidden;
+    }
+
+.field-validation-error {
+    display: inline-block;
 }

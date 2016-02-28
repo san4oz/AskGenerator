@@ -9,37 +9,47 @@ namespace System.Web
 {
     public static class MenuExtensions
     {
+        const string DefaultGlyphicon = "glyphicon-chevron-right";
+
         public static MvcHtmlString MenuItem(
             this HtmlHelper htmlHelper,
             string text,
             string action,
             string controller,
+            string glyphicon = DefaultGlyphicon,
             string liCssClass = null,
             string area = ""
         )
         {
             var url = new UrlHelper(htmlHelper.ViewContext.RequestContext).Action(action, controller, new { area = area }).ToString();
-            return CreateMenuItem(htmlHelper, text, null, liCssClass, url);
+            return CreateMenuItem(htmlHelper, text, null, liCssClass, url, glyphicon);
         }
 
         public static MvcHtmlString MenuRouteItem(
             this HtmlHelper htmlHelper,
             string text,
             string routeName,
+            string glyphicon = DefaultGlyphicon,
             string liCssClass = null
         )
         {
             var url = new UrlHelper(htmlHelper.ViewContext.RequestContext).RouteUrl(routeName).ToString();
-            return CreateMenuItem(htmlHelper, text, null, liCssClass, url);
+            return CreateMenuItem(htmlHelper, text, null, liCssClass, url, glyphicon);
         }
 
-        private static MvcHtmlString CreateMenuItem(HtmlHelper htmlHelper, string text, bool? isActive, string liCssClass, string url)
+        private static MvcHtmlString CreateMenuItem(HtmlHelper htmlHelper, string text,
+            bool? isActive,
+            string liCssClass,
+            string url,
+            string glyphicon)
         {
             if (!isActive.HasValue)
             {
                 var uri = new Uri(url, UriKind.RelativeOrAbsolute);
+                if (!uri.IsAbsoluteUri)
+                    uri = new Uri(htmlHelper.ViewContext.HttpContext.Request.Url, uri);
                 isActive = htmlHelper.ViewContext.HttpContext.Request.Url.AbsolutePath
-                    .StartsWith(uri.IsAbsoluteUri ? uri.LocalPath:url, StringComparison.OrdinalIgnoreCase);
+                    .Equals(uri.AbsolutePath, StringComparison.OrdinalIgnoreCase);
             }
             var li = new TagBuilder("li");
             if (!String.IsNullOrEmpty(liCssClass))
@@ -50,9 +60,8 @@ namespace System.Web
             {
                 li.AddCssClass("active");
             }
-            li.InnerHtml = String.Format("<a href=\"{0}\"><i class=\"glyphicon glyphicon-chevron-right\"></i>{1}</a>",
-               url
-               , text);
+            li.InnerHtml = "<a href=\"{0}\"><i class=\"glyphicon {1}\"></i>{2}</a>"
+                .FormatWith(glyphicon, url, text);
             return MvcHtmlString.Create(li.ToString());
         }
     }

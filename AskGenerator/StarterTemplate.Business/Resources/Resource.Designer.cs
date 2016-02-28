@@ -529,7 +529,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Вхід!.
+        ///   Ищет локализованную строку, похожую на Вхід.
         /// </summary>
         public static string LogIn {
             get {
