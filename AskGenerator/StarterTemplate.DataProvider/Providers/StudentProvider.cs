@@ -44,7 +44,7 @@ namespace AskGenerator.DataProvider.Providers
             return Execute(context =>
             {
                 bool created;
-                var existing = context.Students.Where(s => s.FirstName == student.FirstName).Include(x => x.Group)
+                var existing = context.Students.Where(s => s.LastName == student.LastName).Include(x => x.Group)
                     .FirstOrDefault(s => s.Group.Id == student.Group.Id);
                 if (existing == null)
                 {

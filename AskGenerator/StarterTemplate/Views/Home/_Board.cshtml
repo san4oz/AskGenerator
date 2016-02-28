@@ -17,7 +17,7 @@
         <div class="img-thumbnail">
             <img src="@this.R.Image(teacher.Image, teacher.IsMale)" />
         </div>
-        <span>@teacher.FullName</span>
+        <span title="@teacher.FullName">@teacher.GetShortName()</span>
         <div class="badges">
             <span class="badge avg" data-togglee="tooltip" title="@avg">@Math.Round(avg, 1)</span>
             @foreach(var tbadge in teacher.Badges) {

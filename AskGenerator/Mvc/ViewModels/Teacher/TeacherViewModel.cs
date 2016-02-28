@@ -48,11 +48,26 @@ namespace AskGenerator.ViewModels
         public string TeamId { get; set; }
 
         [ScaffoldColumn(false)]
-        public string FullName { get { return FirstName + ' ' + LastName; } }
+        public string FullName { get { return LastName + ' ' + FirstName; } }
 
         public float AverageMark { get; set; }
 
         public IList<TeacherBadge> Badges { get; set; }
+
+        public string GetShortName()
+        {
+            if (FirstName.IsEmpty())
+                return LastName;
+            if(FirstName.EndsWith("."))
+                return FullName;
+
+            var names = FirstName.Trim(' ').Split(' ');
+            var result = LastName + ' ' + names[0].First() + '.';
+            if (names.Length > 1)
+                result += names[names.Length - 1].First() + ".";
+
+            return result;
+        }
 
         public void CreateMappings(AutoMapper.IConfiguration configuration)
         {

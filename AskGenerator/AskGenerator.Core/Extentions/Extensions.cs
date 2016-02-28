@@ -61,7 +61,7 @@ namespace System.Web
                 li.AddCssClass("active");
             }
             li.InnerHtml = "<a href=\"{0}\"><i class=\"glyphicon {1}\"></i>{2}</a>"
-                .FormatWith(glyphicon, url, text);
+                .FormatWith(url, glyphicon, text);
             return MvcHtmlString.Create(li.ToString());
         }
     }
