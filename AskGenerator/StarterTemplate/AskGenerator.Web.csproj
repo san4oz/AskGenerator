@@ -1819,9 +1819,11 @@
     <Content Include="Scripts\models\teacherRait.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\board.js" />
+    <Content Include="Scripts\admin\students.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
-    <Content Include="Scripts\Teacher.js" />
+    <Content Include="Scripts\students.js" />
+    <Content Include="Scripts\admin\Teacher.js" />
     <Content Include="Scripts\twitter-bootstrap-hover-dropdown.js" />
     <Content Include="Scripts\twitter-bootstrap-hover-dropdown.min.js" />
     <None Include="Scripts\_references.js" />
@@ -1858,6 +1860,8 @@
     <Content Include="Views\Home\Board.cshtml" />
     <Content Include="Views\_Layouts\_Base.cshtml" />
     <Content Include="Views\Home\_Board.cshtml" />
+    <Content Include="Views\Account\EditorTemplates\RegistrationModel.cshtml" />
+    <Content Include="Views\Account\EditorTemplates\LoginViewModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

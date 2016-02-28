@@ -174,6 +174,10 @@
     <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AskGenerator.Core\AskGenerator.Core.csproj">
+      <Project>{77896584-1ca2-468e-bbe8-ba4a3827c4a6}</Project>
+      <Name>AskGenerator.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StarterTemplate.Business\AskGenerator.Business.csproj">
       <Project>{c8d76b99-b3be-4a3f-abf5-d2bf4b99377f}</Project>
       <Name>AskGenerator.Business</Name>

@@ -11,12 +11,13 @@ namespace AskGenerator.DataProvider.Providers
 {
     public class StudentProvider : BaseEntityProvider<Student>, IStudentProvider
     {
-        public override bool Create(Student item)
+        public override bool Create(Student student)
         {
             return Execute(context =>
             {
-                context.Set<Student>().Add(item);
-                context.Entry(item.Group).State = EntityState.Modified;
+                student.Group.Teachers = null;
+                context.Students.Add(student);
+                context.Entry(student.Group).State = EntityState.Modified;
                 context.SaveChanges();
                 return true;
             });
@@ -24,17 +25,46 @@ namespace AskGenerator.DataProvider.Providers
 
         public override Student Get(string id)
         {
-            return Execute(context =>
+            return GetSet(set =>
             {
-                return context.Students.Include(x => x.Group).Include(x => x.Group.Students).Include(y => y.Group.Teachers).SingleOrDefault(x => x.Id == id);
+                return set.Include(x => x.Group).Include(x => x.Group.Students).Include(y => y.Group.Teachers).SingleOrDefault(x => x.Id == id);
             });
         }
 
         public override List<Student> All()
         {
+            return GetSet(set =>
+            {
+                return set.Include(x => x.Group).Include(x => x.Group.Students).Include(x => x.Group.Teachers).ToList();
+            });
+        }
+
+        public bool MergeOrCreate(Student student)
+        {
             return Execute(context =>
             {
-                return context.Students.Include(x => x.Group).Include(x => x.Group.Students).Include(x => x.Group.Teachers).ToList();
+                bool created;
+                var existing = context.Students.Where(s => s.FirstName == student.FirstName).Include(x => x.Group)
+                    .FirstOrDefault(s => s.Group.Id == student.Group.Id);
+                if (existing == null)
+                {
+                    if (student.Id.IsEmpty())
+                        student.Id = Guid.NewGuid().ToString();
+                    student.Group.Students = null;
+                    context.Students.Add(student);
+                    context.Entry(student.Group).State = EntityState.Modified;
+                    context.SaveChanges();
+                    created = true;
+                }
+                else
+                {
+                    existing.Merge(student);
+                    if(base.Update(context, existing))
+                        context.SaveChanges();
+                    created = false;
+                }
+
+                return created;
             });
         }
     }

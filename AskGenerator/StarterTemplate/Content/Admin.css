@@ -1,7 +1,19 @@
 input {
-    display: inline-block;
+    display: inline-block !important;
     max-width: 100%;
     width: 100%;
+}
+
+.inline {
+    display: inline-block;
+}
+
+form.inline {
+    text-align: right;
+}
+
+.inline input {
+    width: 70%;
 }
 
 .panel-title a {

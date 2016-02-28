@@ -16,6 +16,6 @@
 }
 else
 {
-    <li>@Html.ActionLink("Реєстрація", "Register", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "registerLink" })</li>
-    <li>@Html.ActionLink("Вхід", "Login", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "loginLink" })</li>
+    @Html.MenuRouteItem(Resources.Resource.Register, "Registration", glyphicon: null)
+    @Html.MenuRouteItem(Resources.Resource.LogIn, "Login", glyphicon: null)
 }

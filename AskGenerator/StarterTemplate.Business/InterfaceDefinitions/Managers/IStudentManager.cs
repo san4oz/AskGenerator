@@ -9,6 +9,12 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 {
     public interface IStudentManager : IBaseManager<Student>
     {
-
+        /// <summary>
+        /// Creates new or merges with existing.
+        /// Search existing student by <see cref="Student.FirstName"/> and <see cref="Student.Group"/>.
+        /// </summary>
+        /// <param name="student">The student to create or merge.</param>
+        /// <returns>Value indicating whether new entity was created.</returns>
+        bool MergeOrCreate(Student student);
     }
 }

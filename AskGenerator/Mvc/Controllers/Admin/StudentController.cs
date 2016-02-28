@@ -1,13 +1,8 @@
 ﻿using AskGenerator.Business.Entities;
+using AskGenerator.Business.Parsers;
 using AskGenerator.Mvc.Controllers;
 using AskGenerator.ViewModels;
-using AutoMapper;
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -25,6 +20,7 @@ namespace AskGenerator.Controllers.Admin
             return View(viewModel);
         }
 
+        #region Create
         [HttpGet]
         public ActionResult Create()
         {
@@ -35,11 +31,13 @@ namespace AskGenerator.Controllers.Admin
         [HttpPost]
         public ActionResult Create(CreateStudentViewModel model)
         {
-            var student = DecomposeStudentViewModel(model);            
+            var student = DecomposeStudentViewModel(model);
             Site.StudentManager.Create(student);
             return RedirectToAction("List");
         }
+        #endregion
 
+        #region Edit
         [HttpGet]
         public ActionResult Edit(string id)
         {
@@ -58,15 +56,32 @@ namespace AskGenerator.Controllers.Admin
             Site.StudentManager.Update(edited);
             return RedirectToAction("List");
         }
+        #endregion
 
         [HttpPost]
         public ActionResult Delete(string id)
         {
-            if(!string.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(id))
             {
                 Site.StudentManager.Delete(id);
             }
             return RedirectToAction("List");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Import(HttpPostedFileBase file)
+        {
+            if (!file.FileName.EndsWith(".txt"))
+                return Json("Use .txt", 500);
+            var parser = new StudentTextParser(Site.GroupManager, Site.StudentManager);
+
+            return await Task.Factory.StartNew(() =>
+            {
+                parser.ParseStream(file.InputStream);
+                return Json(parser.Info);
+            });
+
         }
 
         private CreateStudentViewModel CreateCompositeModel(string studentId = null)

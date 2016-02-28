@@ -12,5 +12,10 @@ namespace AskGenerator.Business.Managers
     public class StudentManager : BaseManager<Student, IStudentProvider>, IStudentManager
     {
         public StudentManager(IStudentProvider provider) : base(provider) { }
+
+        public bool MergeOrCreate(Student student)
+        {
+            return Provider.MergeOrCreate(student);
+        }
     }
 }

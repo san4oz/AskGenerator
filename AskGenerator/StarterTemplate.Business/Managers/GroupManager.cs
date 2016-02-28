@@ -11,11 +11,17 @@ namespace AskGenerator.Business.Managers
 {
     public class GroupManager : BaseManager<Group, IGroupProvider>, IGroupManager
     {
+
         public GroupManager(IGroupProvider provider) : base(provider) { }
 
         public List<Group> GetByIds(IEnumerable<String> ids)
         {
             return ((IGroupProvider)Provider).GetById(ids);
+        }
+
+        public new IGroupProvider Provider
+        {
+            get { return base.Provider; }
         }
     }
 }

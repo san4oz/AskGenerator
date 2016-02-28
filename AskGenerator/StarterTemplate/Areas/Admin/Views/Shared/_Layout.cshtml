@@ -4,9 +4,9 @@
     ViewBag.BodyClass = "bootstrap-admin-with-small-navbar";
 }
 @section Styles{
+    @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/select2")
     @Styles.Render("~/Content/Admin.css")
-    @Scripts.Render("~/bundles/modernizr")
 }
 
 @section NavBar{
@@ -44,8 +44,7 @@
 @section Scripts{
     @Scripts.Render("~/Script/select2")
     @Scripts.Render("~/Scripts/controls.js")
-    @Scripts.Render("~/Scripts/Teacher.js")
-
+    @Scripts.Render("~/bundles/admin")
     @RenderSection("Scripts", required: false)
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=uk"
             async defer>
