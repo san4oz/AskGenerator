@@ -1,14 +1,29 @@
 ﻿using AskGenerator.Business.Entities;
 using AskGenerator.Business.InterfaceDefinitions.Managers;
+using AskGenerator.Business.InterfaceDefinitions.Providers;
 using AskGenerator.Core;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace AskGenerator.Business.Parsers
 {
+    /// <summary>
+    /// Parser to parse text with students and save them.
+    /// </summary>
+    /// <remarks>
+    /// Use following text format:
+    /// index		secondname		firstname		fathername		group		course
+    /// 10		Криворот		Людмила		Володимирівна		СІ-68В		4
+    /// 20		Тищенко		Сергій		*		СІ-68В		4
+    /// 'Group' and 'firstname' columns are required.
+    /// Columns possitions can be changed.
+    /// To skip using some column use '*', ' ', or '' cell.
+    /// </remarks>
     public class StudentTextParser : BaseParser
     {
         #region Managers
@@ -40,41 +55,72 @@ namespace AskGenerator.Business.Parsers
         }
 
         /// <summary>
-        /// Parse students text file asynchronously.
+        /// Parse students stream.
         /// </summary>
         /// <param name="path"></param>
-        public override async void ParseText(string path)
+        public void ParseStream(Stream stream)
         {
-            var groups = await GroupManager.AllAsync();
-            Groups = groups.ToDictionary(g => g.Name);
-            base.ParseText(path, HandleLine);
+            using (this.Info = new ParseInfo())
+            {
+                InitGroups();
+                base.ParseText(stream, HandleLine);
+            }
+        }
+
+        /// <summary>
+        /// Parse students text file.
+        /// </summary>
+        /// <param name="path"></param>
+        public override void ParseText(string path)
+        {
+            using (this.Info = new ParseInfo())
+            {
+                InitGroups();
+                base.ParseText(path, HandleLine);
+            }
         }
 
         protected virtual void HandleLine(IList<string> line)
         {
-            if (Group.IsInitialized)
+            if (!Group.IsInitialized || !Group.Exists || !FirstName.IsInitialized || !FirstName.Exists)
             {
                 HandleHeadLine(line);
             }
             else
             {
-                var student = new Student()
-                {
-                    FirstName = line.Col(FirstName),
-                    IsMale = true,
-                    LastName = line.Col(SecondName)
-                };
-                student.Group = GetGroup(line);
-                var fatherName = line.Col(FatherName);
-                if (!fatherName.IsEmpty())
-                    student.LastName += ' ' + fatherName;
-                StudentManager.Create(student);
+                HandleSudentLine(line);
             }
+        }
+
+        private void HandleSudentLine(IList<string> line)
+        {
+            var student = new Student()
+            {
+                FirstName = line.Col(FirstName),
+                IsMale = true,
+                LastName = line.Col(SecondName)
+            };
+            student.Group = GetGroup(line);
+            if (student.Group == null)
+            {
+                this.Info.Scipped.Add(line.Join("  "));
+                return;
+            }
+
+            var fatherName = line.Col(FatherName);
+            if (!fatherName.IsEmpty() && fatherName != "*")
+                student.FirstName += ' ' + fatherName;
+            if (StudentManager.MergeOrCreate(student))
+                this.Info.New++;
         }
 
         protected Entities.Group GetGroup(IList<string> line)
         {
-            var groupName = prepareGroupName(line.Col(Group));
+            var groupName = line.Col(Group);
+            if (groupName.IsEmpty())
+                return null;
+            groupName = prepareGroupName(groupName);
+
             var group = Groups.GetOrDefault(groupName);
             if (group == null)
             {
@@ -89,7 +135,8 @@ namespace AskGenerator.Business.Parsers
             byte i = 0;
             foreach (var col in line)
             {
-                var column = Columns.SingleOrDefault(c => c.Key == col.ToUpperInvariant());
+                var key = col.ToUpperInvariant();
+                var column = Columns.SingleOrDefault(c => c.Key == key);
                 if (column != null)
                     column.Index = i;
                 else
@@ -100,7 +147,7 @@ namespace AskGenerator.Business.Parsers
         }
 
         #region private
-        private string prepareGroupName(string groupName)
+        protected virtual string prepareGroupName(string groupName)
         {
             var letter = groupName.Last();
             if (char.IsLetter(letter))
@@ -108,6 +155,15 @@ namespace AskGenerator.Business.Parsers
             else
                 groupName = groupName.ToUpperInvariant();
             return groupName;
+        }
+
+        private void InitGroups()
+        {
+            var groups = GroupManager.Provider.AllWithoutIncl();
+
+            Groups = new Dictionary<string, Group>();
+            foreach (var g in groups)
+                Groups[g.Name] = g;
         }
         #endregion
     }

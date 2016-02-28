@@ -15,7 +15,8 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                return context.Groups.Include(x => x.Students).Include(x => x.Teachers).ToList();
+                return context.Groups.Include(x => x.Students).Include(x => x.Teachers)
+                    .OrderBy(g => g.Name).ToList();
             });
         }
 
@@ -32,6 +33,14 @@ namespace AskGenerator.DataProvider.Providers
             return Execute(context =>
             {
                 return context.Groups.Include(x => x.Students).Include(x => x.Teachers).Where(x => ids.Contains(x.Id)).ToList();
+            });
+        }
+
+        public List<Group> AllWithoutIncl()
+        {
+            return Execute(context =>
+            {
+                return context.Groups.ToList();
             });
         }
     }

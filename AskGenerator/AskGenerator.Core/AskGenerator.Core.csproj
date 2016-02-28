@@ -73,7 +73,7 @@
     <Compile Include="Attributes\CultureAttribute.cs" />
     <Compile Include="BaseAreaRegistrator.cs" />
     <Compile Include="BaseParser.cs" />
-    <Compile Include="Binders\FloatBinder.cs" />
+    <Compile Include="Extentions\Binders\FloatBinder.cs" />
     <Compile Include="Extentions\CollectionExtentions.cs" />
     <Compile Include="Extentions\Extensions.cs" />
     <Compile Include="Extentions\StringExtentions.cs" />

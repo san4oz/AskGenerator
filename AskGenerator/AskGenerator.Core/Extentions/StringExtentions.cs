@@ -39,6 +39,11 @@ namespace System
             return string.Format(str, args);
         }
 
+        public static string Or(this string str, string defaultStr)
+        {
+            return str.IsEmpty() ? defaultStr : str;
+        }
+
         /// <summary>
         /// Creates HTML string with 'Yes' text if string is not null or whitespace.
         /// Otherwise 'No'.
