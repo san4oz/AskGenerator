@@ -63,6 +63,7 @@ h1 {
         display: block;
         height: 100%;
         margin: 0 auto;
+        max-width: 97%;
         min-width: 55%;
     }
 

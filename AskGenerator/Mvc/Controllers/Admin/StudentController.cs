@@ -1,4 +1,5 @@
 ﻿using AskGenerator.Business.Entities;
+using AskGenerator.Business.InterfaceDefinitions.Managers;
 using AskGenerator.Business.Parsers;
 using AskGenerator.Mvc.Controllers;
 using AskGenerator.ViewModels;
@@ -12,10 +13,16 @@ namespace AskGenerator.Controllers.Admin
     [Authorize(Roles = "admin")]
     public class StudentController : BaseController
     {
+        protected IStudentManager StudentManager { get; private set; }
+
+        public StudentController()
+        {
+            StudentManager = Site.StudentManager;
+        }
         [HttpGet]
         public async Task<ActionResult> List()
         {
-            var students = await Site.StudentManager.AllAsync();
+            var students = await StudentManager.AllAsync();
             var viewModel = Map<IList<Student>, IList<StudentViewModel>>(students);
             return View(viewModel);
         }
@@ -32,7 +39,7 @@ namespace AskGenerator.Controllers.Admin
         public ActionResult Create(CreateStudentViewModel model)
         {
             var student = DecomposeStudentViewModel(model);
-            Site.StudentManager.Create(student);
+            StudentManager.Create(student);
             return RedirectToAction("List");
         }
         #endregion
@@ -53,26 +60,35 @@ namespace AskGenerator.Controllers.Admin
                 return View(model);
 
             var edited = DecomposeStudentViewModel(model);
-            Site.StudentManager.Update(edited);
+            StudentManager.Update(edited);
             return RedirectToAction("List");
         }
         #endregion
 
         [HttpPost]
-        public ActionResult Delete(string id)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Delete(string id)
         {
-            if (!string.IsNullOrEmpty(id))
+            if (!User.Identity.IsAuthenticated)
+                return Json(new { url = Url.Action("Login", "Account", new { returnUrl = Url.Action("List") }) }, 403);
+
+            if (string.IsNullOrEmpty(id))
+                return Json(false);
+
+            return await Task.Factory.StartNew(() =>
             {
-                Site.StudentManager.Delete(id);
-            }
-            return RedirectToAction("List");
+                var q = StudentManager.Extract(id);
+                if (q != null)
+                    return Json(q);
+                return Json(false);
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Import(HttpPostedFileBase file)
         {
-            if (!file.FileName.EndsWith(".txt"))
+            if (file == null || !file.FileName.EndsWith(".txt"))
                 return Json("Use .txt", 500);
             var parser = new StudentTextParser(Site.GroupManager, Site.StudentManager);
 

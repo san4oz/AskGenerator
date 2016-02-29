@@ -35,11 +35,7 @@
                             <td>@student.Group.Name</td>
                             <td>
                                 <a class="btn btn-primary" style="float: left; margin-right: 10px;"  href="@Url.Action("Edit", "Student", new {id=student.Id}) ">Редактировать</a>
-                                @using(@Html.BeginForm("Delete", "Student", FormMethod.Post))
-                                {
-                                    <input type="hidden" id="id" value="@student.Id" name="Id" />
-                                    <button class="btn btn-danger" type="submit">@Resources.Resource.Remove</button>
-                                }
+                                <a class="btn btn-danger delete" data-id="@student.Id" href="@Url.Action("Delete", new {id=student.Id})">@Resources.Resource.Remove</a
                             </td>
                         </tr>
                     }                    

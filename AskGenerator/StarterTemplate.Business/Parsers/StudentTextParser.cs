@@ -125,6 +125,7 @@ namespace AskGenerator.Business.Parsers
             if (group == null)
             {
                 group = new Group() { Name = groupName };
+                Groups.Add(group.Name, group);
                 GroupManager.Create(group);
             }
             return group;
@@ -151,7 +152,7 @@ namespace AskGenerator.Business.Parsers
         {
             var letter = groupName.Last();
             if (char.IsLetter(letter))
-                groupName = groupName.Substring(0, groupName.Length - 1).ToUpperInvariant() + char.ToUpperInvariant(letter);
+                groupName = groupName.Substring(0, groupName.Length - 1).ToUpperInvariant() + char.ToLowerInvariant(letter);
             else
                 groupName = groupName.ToUpperInvariant();
             return groupName;
