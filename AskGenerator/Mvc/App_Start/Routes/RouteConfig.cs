@@ -35,7 +35,7 @@ namespace AskGenerator.App_Start.Routes
             routes.MapRoute(
                 name: "Registration",
                 url: "registration",
-                defaults: new { controller = "Account", action = "Registration" }
+                defaults: new { controller = "Account", action = "Register" }
             );
 
             routes.MapRoute(
