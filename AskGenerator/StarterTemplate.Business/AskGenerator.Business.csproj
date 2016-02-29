@@ -87,6 +87,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.0\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -147,6 +148,7 @@
     <Compile Include="InterfaceDefinitions\Providers\IVoteProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\ITeamProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\ITeacherQuestionProvider.cs" />
+    <Compile Include="Managers\BaseEntityManager.cs" />
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\GroupManager.cs" />
     <Compile Include="Managers\QuestionManager.cs" />

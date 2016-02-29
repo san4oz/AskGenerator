@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = @Resources.Resource.ListTeachers;
 }
-
+@Html.AntiForgeryToken()
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -17,31 +17,24 @@
                         <th>@Resources.Resource.LastName</th>
                         <th>@Resources.Resource.Students</th>
                         <th>@Resources.Resource.Image</th>
-                        <th>
-                            @using (Html.BeginForm("GetZippedPdf", "Teacher", FormMethod.Post))
-                            {
-                                <button type="submit" class="btn btn-success">@Resources.Resource.Download .zip</button>
-                            }
-                        </th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var teacher in Model.OrderBy(x => x.FirstName))
+                    @foreach (var teacher in Model.OrderBy(x => x.LastName))
                     {
                         <tr>
                             <td>@teacher.FirstName</td>
                             <td>@teacher.LastName</td>
                             <th><a href="@Url.Action("Students", "Teacher", new { teacherId = teacher.Id })">@Resources.Resource.BackToTheList</a></th>
-                            <td>@(teacher.Image.YesNo().ToString() == "Yes" ? @Resources.Resource.Yes : @Resources.Resource.No)</td>
+                            <td>@(teacher.Image.YesNo().ToString() == "Yes" ? @Resources.Resource.Yes : @Resources.Resource.No)</td>                         
                             <td>
-                                @using (Html.BeginForm("GeneratePDF", "Teacher", FormMethod.Post))
-                                {
-                                    <input name="TeacherId" hidden="hidden" value="@teacher.Id"/>
-                                    <button type="submit" class="btn btn-success">@Resources.Resource.Download .pdf</button>
-                                }
-                            </td>                            
-                            <td><a class="btn btn-primary" href="@Url.Action("Edit", "Teacher", new {id=teacher.Id})">@Resources.Resource.Edit</a></td>
+                                <a class="btn btn-primary" href="@Url.Action("Edit", "Teacher", new {id=teacher.Id})">@Resources.Resource.Edit</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger delete" data-id="@teacher.Id" href="@Url.Action("Delete", new {id=teacher.Id})">@Resources.Resource.Remove</a>
+                            </td>
                         </tr>
                     }                    
                 </tbody>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Managers
 {
-    public interface IStudentManager : IBaseManager<Student>
+    public interface IStudentManager : IBaseEntityManager<Student>
     {
         /// <summary>
         /// Creates new or merges with existing.
@@ -16,5 +16,12 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// <param name="student">The student to create or merge.</param>
         /// <returns>Value indicating whether new entity was created.</returns>
         bool MergeOrCreate(Student student);
+
+        /// <summary>
+        /// Gets list of students by specified group ID.
+        /// </summary>
+        /// <param name="groupId">Group identifier.</param>
+        /// <returns>List of students.</returns>
+        List<Student> GroupList(string groupId);
     }
 }

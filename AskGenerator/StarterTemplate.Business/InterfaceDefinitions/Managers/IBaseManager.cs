@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Managers
 {
-    public interface IBaseManager<T>
+    public interface IBaseEntityManager<T>
     {
         bool Create(T entity);
 

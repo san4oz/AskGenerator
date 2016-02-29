@@ -19,11 +19,20 @@ h1 {
     position: relative;
 }
 
+#teacherBoard {
+    text-align: center;
+}
 
-#teacherBoard .teacher-tile {
-    height: 200px;
-    margin-bottom: 5px;
-    min-width: 220px;
+    #teacherBoard .teacher-tile {
+        display: inline-block;
+        height: 200px;
+        margin-bottom: 12px;
+        min-width: 200px;
+    }
+@media (max-width: 767px) {
+    #teacherBoard .teacher-tile {
+        float: unset;
+    }
 }
 
 .teacher-tile .badges {
@@ -55,7 +64,7 @@ h1 {
 
 .teacher-tile .img-thumbnail {
     height: 100%;
-    padding: 5px 5px;
+    padding: 0 5px;
     width: 100%;
 }
 

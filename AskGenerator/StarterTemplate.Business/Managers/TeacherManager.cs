@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Business.Managers
 {
-    public class TeacherManager : BaseManager<Teacher, ITeacherProvider>, ITeacherManager
+    public class TeacherManager : BaseEntityManager<Teacher, ITeacherProvider>, ITeacherManager
     {
         protected ITeacherQuestionManager TQ { get; private set; }
 
@@ -27,7 +27,10 @@ namespace AskGenerator.Business.Managers
 
         public bool Create(Teacher teacher, ICollection<string> ids)
         {
-            return Provider.Create(teacher, ids);
+            var r = Provider.Create(teacher, ids);
+            if (r)
+                OnCreated(teacher);
+            return r;
         }
 
         public bool Update(Teacher teacher, ICollection<string> ids)
@@ -62,7 +65,6 @@ namespace AskGenerator.Business.Managers
                 return teachers;
             });
         }
-
 
         public Task<List<Teacher>> ListAsync()
         {

@@ -25,6 +25,8 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 
         bool Delete(TeacherQuestion entity);
 
+        void Delete(string teacherId);
+
         bool Delete(string teacherId, string questionId);
 
         TeacherQuestion Get(string teacherId, string questionId);

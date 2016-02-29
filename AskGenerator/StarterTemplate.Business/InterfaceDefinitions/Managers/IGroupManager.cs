@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Managers
 {
-    public interface IGroupManager : IBaseManager<Group>
+    public interface IGroupManager : IBaseEntityManager<Group>
     {
         IGroupProvider Provider { get; }
 

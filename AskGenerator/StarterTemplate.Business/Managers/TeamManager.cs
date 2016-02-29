@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.Managers
 {
-    public class TeamManager : BaseManager<Team, ITeamProvider>, ITeamManager
+    public class TeamManager : BaseEntityManager<Team, ITeamProvider>, ITeamManager
     {
         public TeamManager(ITeamProvider provider)
             : base(provider)

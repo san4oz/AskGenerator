@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Managers
 {
-    public interface ITeacherManager : IBaseManager<Teacher>
+    public interface ITeacherManager : IBaseEntityManager<Teacher>
     {
         List<Student> GetRelatedStudents(string teacherId);
 

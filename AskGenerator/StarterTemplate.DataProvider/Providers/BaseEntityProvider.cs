@@ -58,14 +58,16 @@ namespace AskGenerator.DataProvider.Providers
             return base.Delete(entity);
         }
 
-        public virtual bool Delete(string id)
+        public virtual T Delete(string id)
         {
             return Execute(context =>
             {
-                var entity = context.Set<T>().Single(x => x.Id == id);
+                var entity = context.Set<T>().SingleOrDefault(x => x.Id == id);
+                if (entity == null)
+                    return entity;
                 context.Set<T>().Remove(entity);
                 context.SaveChanges();
-                return true;
+                return entity;
             });
         }
 

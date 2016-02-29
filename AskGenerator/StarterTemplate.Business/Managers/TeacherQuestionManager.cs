@@ -29,15 +29,22 @@ namespace AskGenerator.Business.Managers
             return Provider.Update(entity);
         }
 
+        #region Delete
         public bool Delete(TeacherQuestion entity)
         {
             return Provider.Delete(entity);
+        }
+
+        public void Delete(string teacherId)
+        {
+            Provider.Delete(teacherId);
         }
 
         public bool Delete(string teacherId, string questionId)
         {
             return Provider.Delete(teacherId, questionId);
         }
+        #endregion
 
         public TeacherQuestion Get(string teacherId, string questionId)
         {

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Business.Managers
 {
-    public class VoteManager : BaseManager<Vote, IVoteProvider>, IVoteManager
+    public class VoteManager : BaseEntityManager<Vote, IVoteProvider>, IVoteManager
     {
         protected ITeacherQuestionManager TQ { get; private set; }
 

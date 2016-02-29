@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Managers
 {
-    public interface IVoteManager : IBaseManager<Vote>
+    public interface IVoteManager : IBaseEntityManager<Vote>
     {
         Task<List<Vote>> ListAsync(string userId);
 

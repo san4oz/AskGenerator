@@ -79,7 +79,10 @@ namespace AskGenerator.Controllers.Admin
             {
                 var q = StudentManager.Extract(id);
                 if (q != null)
+                {
+                    DeleteImage(q.Image);
                     return Json(q);
+                }
                 return Json(false);
             });
         }

@@ -1,73 +1,172 @@
-﻿using AskGenerator.Business.Entities;
-using AskGenerator.Business.InterfaceDefinitions.Managers;
-using AskGenerator.Business.InterfaceDefinitions.Providers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Caching;
 
 namespace AskGenerator.Business.Managers
 {
-    public abstract class BaseManager<T, TProvider> : IBaseManager<T>
-        where T : Entity
-        where TProvider : IBaseEntityProvider<T>
+    public abstract class BaseManager
     {
-        protected TProvider Provider;
+        MemoryCache cache;
 
-        public BaseManager(TProvider provider)
+        protected abstract string Name { get; }
+
+        public BaseManager()
         {
-            Provider = provider;
+            cache = MemoryCache.Default;
         }
 
-        public virtual bool Create(T entity)
+        #region GetKey
+        protected string GetKey<T>(T arg)
         {
-            if (entity.Id == null)
-                entity.Id = Guid.NewGuid().ToString();
-            return Provider.Create(entity);
+            return ToString(arg);
         }
 
-        public virtual bool Update(T entity)
+        protected string GetKey<T1, T2>(T1 arg1, T2 arg2)
         {
-            return Provider.Update(entity);
+            var sb = new StringBuilder(ToString(arg1));
+            sb.Append('.');
+            sb.Append(ToString(arg2));
+            return sb.ToString();
         }
 
-        public virtual bool Delete(string id)
+        protected string GetKey<T1, T2, T3>(T1 arg1, T2 arg2, T3 arg3)
         {
-            return Provider.Delete(id);
+            var sb = new StringBuilder(ToString(arg1));
+            sb.Append('.');
+            sb.Append(ToString(arg2));
+            sb.Append('.');
+            sb.Append(ToString(arg3));
+            return sb.ToString();
         }
 
-        public virtual T Get(string id)
+        protected string GetKey<T1>(T1 arg1, params object[] args)
         {
-            return Provider.Get(id);
+            var sb = new StringBuilder(ToString(arg1));
+            for (var i = 0; i < args.Length; i++)
+            {
+                sb.Append('.');
+                sb.Append(ToString(args[i]));
+            }
+            return sb.ToString();
         }
 
-        public virtual Task<T> GetAsync(string id)
+        #region List
+        private const string List = "list_";
+
+        protected string GetListKey<T>(T arg)
         {
-            return Task.Factory.StartNew(() => Provider.Get(id));
+            return List + GetKey(arg);
         }
 
-        public virtual List<T> All()
+        protected string GetListKey<T1, T2>(T1 arg1, T2 arg2)
         {
-            return Provider.All();
+            return List + GetKey(arg1, arg2);
         }
 
-        public virtual Task<List<T>> AllAsync()
+        protected string GetListKey<T1, T2, T3>(T1 arg1, T2 arg2, T3 arg3)
         {
-            return Task.Factory.StartNew<List<T>>(this.All);
+            return List + GetKey(arg1, arg2, arg3);
         }
 
-
-        public T Extract(string id)
+        protected string GetListKey<T1>(T1 arg1, params object[] args)
         {
-            if (id.IsEmpty())
+            return List + GetKey(arg1, args);
+        }
+        #endregion
+
+        #endregion
+
+        #region FromCache
+        protected TValue FromCache<TValue>(string key, Func<TValue> function, DateTime? expiration = null)
+        {
+            key = Name + '_' + key;
+            var obj = cache.Get(key);
+            if (obj != null)
+            {
+                var item = (TValue)obj;
+                if (item != null)
+                    return item;
+            }
+
+            var itemToSave = function();
+            ToCache<TValue>(key, () => itemToSave, expiration);
+
+            return itemToSave;
+        }
+
+        protected TValue FromCache<TValue>(string key, DateTime? expiration = null)
+        {
+            key = Name + '_' + key;
+            var obj = cache.Get(key);
+            if (obj != null)
+            {
+                var item = (TValue)obj;
+                if (item != null)
+                    return item;
+            }
+
+            return default(TValue);
+        }
+        #endregion
+
+        #region ToCache
+        protected CacheItem ToCache<TValue>(string key, Func<TValue> function, DateTime? expiration = null)
+        {
+            var itemToSave = function();
+
+            return ToCache(key, itemToSave, expiration);
+        }
+
+        protected CacheItem ToCache<TValue>(string key, TValue itemToSave, DateTime? expiration = null)
+        {
+            if (itemToSave == null)
                 return null;
-            return Provider.Extract(id);
-        }
-        public Task<T> ExtractAsync(string id)
-        {
-            return Task.Factory.StartNew(() => Extract(id));
 
+            key = Name + '_' + key;
+            var cacheItem = RemoveFromCacheCore(key);
+
+            cacheItem = new CacheItem(key, itemToSave);
+            cache.Set(cacheItem, policy(expiration.Value));
+
+            return cacheItem;
         }
+        #endregion
+
+        protected void RemoveFromCache(string key)
+        {
+            key = Name + '_' + key;
+            var removed = RemoveFromCacheCore(key);
+        }
+
+        #region private
+        private CacheItem RemoveFromCacheCore(string key)
+        {
+            CacheItem cacheItem = cache.GetCacheItem(key);
+            if (cacheItem != null)
+            {
+                cache.Remove(cacheItem.Key);
+            }
+            return cacheItem;
+        }
+
+        private CacheItemPolicy policy(DateTime? expiration = null)
+        {
+            var policy = new CacheItemPolicy();
+
+            policy.AbsoluteExpiration = expiration.HasValue ? expiration.Value : DateTimeOffset.Now.AddHours(1);
+
+            return policy;
+        }
+
+        private string ToString<T>(T arg)
+        {
+            if (arg == null)
+                return string.Empty;
+            return arg.ToString();
+        }
+        #endregion
     }
 }

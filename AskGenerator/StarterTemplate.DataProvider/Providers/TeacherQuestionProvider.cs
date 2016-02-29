@@ -40,17 +40,6 @@ namespace AskGenerator.DataProvider.Providers
             });
         }
 
-        public bool Delete(string teacherId, string questionId)
-        {
-            return Execute(context =>
-            {
-                var entity = context.TeacherQuestion.Single(x => x.TeacherId == teacherId && x.QuestionId == questionId);
-                context.TeacherQuestion.Remove(entity);
-                context.SaveChanges();
-                return true;
-            });
-        }
-
         public TeacherQuestion Get(string teacherId, string questionId)
         {
             return Execute(context =>
@@ -72,11 +61,31 @@ namespace AskGenerator.DataProvider.Providers
             return base.All<TeacherQuestion>();
         }
 
-
+        #region Delete
         public bool Delete(TeacherQuestion entity)
         {
             return base.Delete(entity);
         }
+
+        public void Delete(string teacherId)
+        {
+            Execute(context =>
+            {
+                context.TeacherQuestion.RemoveRange(context.TeacherQuestion.Where(tq => tq.TeacherId == teacherId));
+            });
+        }
+
+        public bool Delete(string teacherId, string questionId)
+        {
+            return Execute(context =>
+            {
+                var entity = context.TeacherQuestion.Single(x => x.TeacherId == teacherId && x.QuestionId == questionId);
+                context.TeacherQuestion.Remove(entity);
+                context.SaveChanges();
+                return true;
+            });
+        }
+        #endregion
 
         #region Stubs
         public override bool Delete<T>(T entity)

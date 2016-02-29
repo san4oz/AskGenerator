@@ -11,6 +11,14 @@ namespace AskGenerator.DataProvider.Providers
 {
     public class BaseProvider
     {
+        protected virtual void Execute(Action<AppContext> expression)
+        {
+            using (var context = new AppContext())
+            {
+                expression(context);
+            }
+        }
+
         protected virtual T Execute<T>(Func<AppContext, T> expression)
         {
             using (var context = new AppContext())

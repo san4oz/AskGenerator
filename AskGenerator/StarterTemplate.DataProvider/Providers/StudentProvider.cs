@@ -59,13 +59,19 @@ namespace AskGenerator.DataProvider.Providers
                 else
                 {
                     existing.Merge(student);
-                    if(base.Update(context, existing))
+                    if (base.Update(context, existing))
                         context.SaveChanges();
                     created = false;
                 }
 
                 return created;
             });
+        }
+
+
+        public List<Student> GroupList(string groupId)
+        {
+            return GetSet(set => set.Where(s => s.Group.Id == groupId).ToList());
         }
     }
 }
