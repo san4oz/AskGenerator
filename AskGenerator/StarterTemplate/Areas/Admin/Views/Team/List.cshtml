@@ -22,7 +22,7 @@
                     @foreach (var team in Model)
                     {
                         <tr>
-                            <td>@team.Name</td>
+                            <td class="line-key">@team.Name</td>
                             <td>
                                 <div class="btn-group">
                                     <a class="btn btn-primary" href="@Url.Action("Edit", "Team", new {id=team.Id})">@Resources.Resource.Edit</a>

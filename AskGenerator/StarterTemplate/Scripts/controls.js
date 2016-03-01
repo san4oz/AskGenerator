@@ -15,7 +15,7 @@
         selector.on('click', function (e) {
             e.preventDefault();
         });
-        
+
         if (shown && typeof (shown) === 'function')
             selector.on('shown.bs.popover', shown);
         if (hidden && typeof (hidden) === 'function')
@@ -26,6 +26,16 @@
         $('.delete').click(function (e) {
             e.preventDefault();
             var target = $(this);
+            var line = target.parents('tr, .raw, li');
+
+            var lineKey = line.find('.line-key');
+            var key = lineKey.data('key');
+            if (!key)
+                key = lineKey.text();
+            key = key && key.length > 20 ? key.substr(0, 20) : '';
+            if (!confirm('Delete ' + key + ' item?'))
+                return;
+
             var id = target.data('id'),
                 href = this.href;
             var data;
@@ -35,7 +45,7 @@
                 method: 'post', data: data,
                 success: function (d) {
                     if (d) {
-                        var line = target.parents('tr, .raw, li');
+
                         if (line.length > 0)
                             line = $(line[0]);
                         line.animate({ height: 0, opacity: 0 }, 250, function () { line.remove() });

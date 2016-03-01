@@ -17,7 +17,7 @@
             @foreach (var question in Model.OrderBy(x => x.QuestionBody))
             {
                 <tr>
-                    <td>@question.QuestionBody</td>
+                    <td line-key="line-key">@question.QuestionBody</td>
                     <td>@question.LowerRateDescription</td>
                     <td>@question.HigherRateDescription</td>
                     <td><a class="btn btn-primary" href="@Url.Action("Edit", "Question", new {id=question.Id})">@Resources.Resource.Edit</a></td>

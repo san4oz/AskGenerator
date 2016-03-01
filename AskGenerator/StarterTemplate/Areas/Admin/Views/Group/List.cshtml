@@ -21,7 +21,7 @@
                     @foreach (var group in Model.OrderBy(x => x.Name))
                     {
                         <tr>
-                            <td>@group.Name</td>
+                            <td class="line-key">@group.Name</td>
                             <td>
                                 <a class="btn btn-primary" href="@Url.Action("Edit", "Group", new {id=group.Id})">@Resources.Resource.Edit</a>
                                 <a class="btn btn-danger delete" data-id="@group.Id" href="@Url.Action("Delete", "Group", new {id=group.Id})">@Resources.Resource.Remove</a

@@ -26,7 +26,7 @@
                     {
                         <tr>
                             <td>@teacher.FirstName</td>
-                            <td>@teacher.LastName</td>
+                            <td class="line-key">@teacher.LastName</td>
                             <th><a href="@Url.Action("Students", "Teacher", new { teacherId = teacher.Id })">@Resources.Resource.BackToTheList</a></th>
                             <td>@(teacher.Image.YesNo().ToString() == "Yes" ? @Resources.Resource.Yes : @Resources.Resource.No)</td>                         
                             <td>
