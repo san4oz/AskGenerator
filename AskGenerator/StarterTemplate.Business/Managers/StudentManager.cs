@@ -23,8 +23,10 @@ namespace AskGenerator.Business.Managers
             return Provider.MergeOrCreate(student);
         }
 
-        public List<Student> GroupList(string groupId)
+        public IList<Student> GroupList(string groupId)
         {
+            if (groupId.IsEmpty())
+                return new Student[0];
             var key = GetListKey(groupId);
 
             return FromCache(key, () => Provider.GroupList(groupId));

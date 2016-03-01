@@ -12,6 +12,7 @@ using AskGenerator.ViewModels;
 using AskGenerator.Business.Entities;
 using AskGenerator.Helpers;
 using Microsoft.Owin.Security;
+using Resources;
 
 namespace AskGenerator.Mvc.Controllers
 {
@@ -105,17 +106,27 @@ namespace AskGenerator.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                var student = checkLastName(model.LastName, model.GroupId);
+                if (student == null || student.HasUserAccount)
+                {
+                    ModelState.AddModelError("LastName", Resource.NoLastNameFound);
+                    return View(model);
+                }
                 if (!await CheckCaptcha())
                 {
-                    ModelState.AddModelError("", "Підтвердіть, що ви не робот.");
+                    ModelState.AddModelError("", Resource.ConfirmNoRobot);
                     return View(model);
                 }
 
                 model.Email = TransformEmail(model.Email);
                 var user = Map<RegistrationModel, User>(model);
+                user.StudentId = student.Id;
+
                 IdentityResult result = await Manager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    student.HasUserAccount = true;
+                    Site.StudentManager.Update(student);
                     Mailer.Send(ConirmRegistrationMail, model.Email, CreateConfirmTags(model.Id));
                     return View("_Success");
                 }
@@ -128,6 +139,13 @@ namespace AskGenerator.Mvc.Controllers
                 }
             }
             return View(model);
+        }
+
+        public JsonResult CheckLastName(string lastName, string groupId)
+        {
+            var student = checkLastName(lastName, groupId);
+            bool result = student == null ? false : !student.HasUserAccount;
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
 
         public async Task<ActionResult> Confirm(string id, string param = null)
@@ -146,6 +164,18 @@ namespace AskGenerator.Mvc.Controllers
             return View();
         }
         #endregion
+
+        protected Student checkLastName(string lastName, string groupId)
+        {
+            if (!lastName.IsEmpty())
+            {
+                lastName = lastName.ToUpperInvariant();
+                var students = Site.StudentManager.GroupList(groupId);
+                return students.FirstOrDefault(s => s.LastName.ToUpperInvariant() == lastName);
+            }
+
+            return null;
+        }
 
         protected string TransformEmail(string email)
         {

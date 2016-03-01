@@ -241,7 +241,7 @@
     <value>Поле "Це запитання стосується викладача?" повино бути заповнене</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Фамілія</value>
+    <value>Прізвище</value>
   </data>
   <data name="LastNameRequired" xml:space="preserve">
     <value>Поле "Фамілія" повино бути заповнене</value>
@@ -416,5 +416,14 @@
   </data>
   <data name="TeamName" xml:space="preserve">
     <value>Назва кафедри</value>
+  </data>
+  <data name="ConfirmNoRobot" xml:space="preserve">
+    <value>Підтвердіть, що ви не робот.</value>
+  </data>
+  <data name="NoLastNameFound" xml:space="preserve">
+    <value>Введене прізвище не знайдено у вказаній групі або вже використовується</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
   </data>
 </root>

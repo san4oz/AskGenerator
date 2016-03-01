@@ -11,6 +11,8 @@ namespace AskGenerator.Business.Entities
     {
         public Group Group { get; set; }
 
+        public bool HasUserAccount { get; set; }
+
         public void Merge(Student student)
         {
             this.FirstName = student.FirstName.Or(this.FirstName);

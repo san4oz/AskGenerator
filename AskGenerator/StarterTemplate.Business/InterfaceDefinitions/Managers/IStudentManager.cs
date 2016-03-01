@@ -22,6 +22,6 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// </summary>
         /// <param name="groupId">Group identifier.</param>
         /// <returns>List of students.</returns>
-        List<Student> GroupList(string groupId);
+        IList<Student> GroupList(string groupId);
     }
 }

@@ -187,6 +187,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Підтвердіть, що ви не робот..
+        /// </summary>
+        public static string ConfirmNoRobot {
+            get {
+                return ResourceManager.GetString("ConfirmNoRobot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Створити кафедру.
         /// </summary>
         public static string CreateDepartment {
@@ -448,7 +457,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Фамілія.
+        ///   Ищет локализованную строку, похожую на Прізвище.
         /// </summary>
         public static string LastName {
             get {
@@ -646,6 +655,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Введене прізвище не знайдено у вказаній групі або вже використовується.
+        /// </summary>
+        public static string NoLastNameFound {
+            get {
+                return ResourceManager.GetString("NoLastNameFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Стара кафедра.
         /// </summary>
         public static string OldDepartment {
@@ -678,6 +696,15 @@ namespace Resources {
         public static string OldTeacher {
             get {
                 return ResourceManager.GetString("OldTeacher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Пароль.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
             }
         }
         

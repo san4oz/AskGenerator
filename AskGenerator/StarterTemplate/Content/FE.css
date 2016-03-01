@@ -254,5 +254,5 @@ a.help {
 .field-validation-error {
     color: #eb1414;
     display: inline-block;
-    padding-top: 1px;
+    padding: 2px 0 0;
 }

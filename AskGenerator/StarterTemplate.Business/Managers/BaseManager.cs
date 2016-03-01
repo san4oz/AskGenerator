@@ -129,7 +129,7 @@ namespace AskGenerator.Business.Managers
             var cacheItem = RemoveFromCacheCore(key);
 
             cacheItem = new CacheItem(key, itemToSave);
-            cache.Set(cacheItem, policy(expiration.Value));
+            cache.Set(cacheItem, policy(expiration));
 
             return cacheItem;
         }

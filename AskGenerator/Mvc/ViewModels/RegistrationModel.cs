@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.ViewModels
 {
+    using R = Resources.Resource;
     public class RegistrationModel : BaseViewModel, IMapFrom<User>
     {
         [ScaffoldColumn(false)]
@@ -25,7 +26,13 @@ namespace AskGenerator.ViewModels
         public string GroupId { get; set; }
 
         [Required]
-        [Display(Name = "Пароль")]
+        [Display(Name = "LastName", ResourceType = typeof(R))]
+        [System.Web.Mvc.Remote("CheckLastName", "Account", AdditionalFields = "GroupId",
+            ErrorMessageResourceName = "NoLastNameFound", ErrorMessageResourceType = typeof(R))]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Password", ResourceType = typeof(R))]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
