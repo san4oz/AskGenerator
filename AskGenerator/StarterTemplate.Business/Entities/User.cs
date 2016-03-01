@@ -15,11 +15,11 @@ namespace AskGenerator.Business.Entities
         [ForeignKey("Group")]
         public string GroupId { get; set; }
 
-        //[ForeignKey("Student")]
+        [ForeignKey("Student")]
         public string StudentId { get; set; }
 
         public Group Group { get; set; }
-        //public Student Student { get; set; }
+        public Student Student { get; set; }
 
         public override string UserName
         {

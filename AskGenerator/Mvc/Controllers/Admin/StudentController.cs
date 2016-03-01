@@ -3,6 +3,7 @@ using AskGenerator.Business.InterfaceDefinitions.Managers;
 using AskGenerator.Business.Parsers;
 using AskGenerator.Mvc.Controllers;
 using AskGenerator.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
@@ -125,7 +126,7 @@ namespace AskGenerator.Controllers.Admin
             var student = Map<StudentViewModel, Student>(model.Student);
             var group = Site.GroupManager.Get(model.Student.Group.Id);
             student.Group = group;
-            student.Image = SaveImage(model.Student.ImageFile, model.Student.Id);
+            student.Image = SaveImage(model.Student.ImageFile, model.Student.Id).Or(model.Student.Image);
             return student;
         }
     }
