@@ -159,6 +159,10 @@
     <Compile Include="Migrations\201602271902134_IndexFirstName.Designer.cs">
       <DependentUpon>201602271902134_IndexFirstName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603011929583_Foreign Group key for student.cs" />
+    <Compile Include="Migrations\201603011929583_Foreign Group key for student.Designer.cs">
+      <DependentUpon>201603011929583_Foreign Group key for student.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseEntityProvider.cs" />
@@ -217,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602271902134_IndexFirstName.resx">
       <DependentUpon>201602271902134_IndexFirstName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603011929583_Foreign Group key for student.resx">
+      <DependentUpon>201603011929583_Foreign Group key for student.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
