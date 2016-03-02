@@ -15,17 +15,21 @@ namespace AskGenerator.ViewModels
         [ScaffoldColumn(false)]
         public override string Id { get; set; }
 
-        [Required]
-        [Display(Name = "Електронна адреса")]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource),
+                  ErrorMessageResourceName = "Required")]
+        [Display(Name = "Email", ResourceType = typeof(Resources.Resource))]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessageResourceName = "RegularAddress",
+                                                                               ErrorMessageResourceType = typeof(Resources.Resource))]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Група")]
+        [Display(Name = "Group", ResourceType = typeof(Resources.Resource))]
         [UIHint("GroupSelector")]
         public string GroupId { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(Resources.Resource),
+                  ErrorMessageResourceName = "Required")]
         [Display(Name = "LastName", ResourceType = typeof(R))]
         [System.Web.Mvc.Remote("CheckLastName", "Account", AdditionalFields = "GroupId",
             ErrorMessageResourceName = "NoLastNameFound", ErrorMessageResourceType = typeof(R))]
@@ -37,8 +41,8 @@ namespace AskGenerator.ViewModels
         public string Password { get; set; }
 
         [Required]
-        [Display(Name = "Підтвердіть пароль")]
-        [Compare("Password", ErrorMessage = "Паролі не співпадають")]
+        [Display(Name = "RepitPassword", ResourceType = typeof(R))]
+        [Compare("Password", ErrorMessageResourceName = "NoRepitPassword", ErrorMessageResourceType = typeof(R))]
         [DataType(DataType.Password)]
         public string PasswordConfirm { get; set; }
     }

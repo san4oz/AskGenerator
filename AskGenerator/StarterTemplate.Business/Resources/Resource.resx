@@ -426,4 +426,28 @@
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>Електронна адреса</value>
+  </data>
+  <data name="IsPersistent" xml:space="preserve">
+    <value>Запам`ятати мене</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>Довжина поля повинна бути від 3-х до 20-ти символів</value>
+  </data>
+  <data name="NoRepitPassword" xml:space="preserve">
+    <value>Паролі не співпадаюсь</value>
+  </data>
+  <data name="RegularAddress" xml:space="preserve">
+    <value>Некоректна ареса</value>
+  </data>
+  <data name="RegularGroup" xml:space="preserve">
+    <value>Введіть валідну группу</value>
+  </data>
+  <data name="RepitPassword" xml:space="preserve">
+    <value>Повторіть  пароль</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Поле повинно бути встановлене!</value>
+  </data>
 </root>

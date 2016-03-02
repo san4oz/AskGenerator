@@ -10,16 +10,16 @@ namespace AskGenerator.ViewModels
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Електронна адреса")]
+        [Display(Name = "Email", ResourceType = typeof(Resources.Resource))]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Пароль")]
+        [Display(Name = "Password", ResourceType = typeof(Resources.Resource))]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Запам`ятати мене")]
+        [Display(Name = "IsPersistent", ResourceType = typeof(Resources.Resource))]
         public bool IsPersistent { get; set; }
     }
 }
