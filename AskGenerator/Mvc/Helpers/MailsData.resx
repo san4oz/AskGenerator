@@ -121,61 +121,61 @@
     <value>&lt;h1&gt;&lt;span style="font-family: 'Lucida Grande CY', Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif; font-size: 24px; font-weight: bold; line-height: 31px;"&gt;Вас приветствует &lt;em&gt;&lt;a href="[siteURL]" title="NoM"&gt;[siteName]&lt;/a&gt;&lt;/em&gt;&lt;/span&gt;&lt;/h1&gt; 
 
 &lt;table border="0" cellpadding="0" cellspacing="0" style="font-family: 'Lucida Grande CY', Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif; line-height: normal;" width="100%"&gt;
-	&lt;tbody&gt;
-		&lt;tr&gt;
-			&lt;td style="border-collapse: collapse;"&gt;
-			&lt;table bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0" width="100%"&gt;
-				&lt;tbody&gt;
-					&lt;tr&gt;
-						&lt;td style="border-collapse: collapse;"&gt;
-						&lt;table bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0" width="100%"&gt;
-							&lt;tbody&gt;
-								&lt;tr&gt;
-									&lt;td style="border-collapse: collapse; font-family: Arial;"&gt;
-									&lt;table border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
-										&lt;tbody&gt;
-											&lt;tr&gt;
-												&lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 14px;" valign="top"&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Благодарим за регистрацию в &lt;em&gt;&lt;a href="[siteURL]" title="NoM"&gt;[siteName]&lt;/a&gt;&lt;/em&gt;. Подтвердите свой статус учащегося для получения доступа к возможности голосования.&amp;nbsp;&lt;/span&gt;&lt;/font&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style="border-collapse: collapse;"&gt;
+      &lt;table bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0" width="100%"&gt;
+        &lt;tbody&gt;
+          &lt;tr&gt;
+            &lt;td style="border-collapse: collapse;"&gt;
+            &lt;table bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0" width="100%"&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;
+                  &lt;td style="border-collapse: collapse; font-family: Arial;"&gt;
+                  &lt;table border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
+                    &lt;tbody&gt;
+                      &lt;tr&gt;
+                        &lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 14px;" valign="top"&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Благодарим за регистрацию в &lt;em&gt;&lt;a href="[siteURL]" title="NoM"&gt;[siteName]&lt;/a&gt;&lt;/em&gt;. Подтвердите свой статус учащегося для получения доступа к возможности голосования.&amp;nbsp;&lt;/span&gt;&lt;/font&gt;
 
-												&lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt; 
+                        &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt; 
 &lt;p&gt;Для окончания регистрации перейдите по ссылке &lt;a href="[confirmURL]"&gt;[confirmURL]&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Если вы не проходили регистрацию просто проигнорируйте это сообщение.&lt;/p&gt;
 .&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
 
-												&lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Посетите так же сайт на котором отображаются результаты оценивания лучших студентов преподавателями &lt;a href="http://BEST.ztu.edu"&gt;BEST.ztu.edu.ua&lt;/a&gt;. Так же вступайте в сообщество &amp;quot;&lt;a href="https://vk.com/dekanatfikt"&gt;Студентське життя ФІКТ&lt;/a&gt;&amp;quot;!&amp;nbsp;&lt;br /&gt;
-												&lt;br /&gt;
-												С уважением,&amp;nbsp;&lt;br /&gt;
-												&lt;br /&gt;
-												Администрация сайта!&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+                        &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Посетите так же сайт на котором отображаются результаты оценивания лучших студентов преподавателями &lt;a href="http://BEST.ztu.edu"&gt;BEST.ztu.edu.ua&lt;/a&gt;. Так же вступайте в сообщество &amp;quot;&lt;a href="https://vk.com/dekanatfikt"&gt;Студентське життя ФІКТ&lt;/a&gt;&amp;quot;!&amp;nbsp;&lt;br /&gt;
+                        &lt;br /&gt;
+                        С уважением,&amp;nbsp;&lt;br /&gt;
+                        &lt;br /&gt;
+                        Администрация сайта!&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
 
-												&lt;p&gt;&lt;br /&gt;
-												&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&lt;a data-href="http://click.email.microsoftemail.com/?qs=14eb77d381d6b79a17a911e513ad1d907a32222045f34c6a10ff9389620eb1f0109d23c2852b74ea" href="https://mail.rambler.ru/m/redirect?url=http%3A//click.email.microsoftemail.com/%3Fqs%3D14eb77d381d6b79a17a911e513ad1d907a32222045f34c6a10ff9389620eb1f0109d23c2852b74ea&amp;amp;hash=5176a83e4d25bf16fcab41dfd885af3c" target="_blank"&gt;www.&lt;/a&gt;*********&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+                        &lt;p&gt;&lt;br /&gt;
+                        &lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&lt;a href="http://halloffame-networkofmentors.rhcloud.com/" target="_blank"&gt;www.best.ztu.edu.ua&lt;/a&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
 
-												&lt;table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" id="RMCLRRHIfooter" style="border-collapse:collapse;" width="100%"&gt;
-													&lt;tbody&gt;
-														&lt;tr&gt;
-															&lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 11px;" valign="top"&gt;
-															&lt;div style="background:#eee;border:1px solid #ccc;padding:5px 10px;"&gt;&lt;br /&gt;
-															&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Мы соблюдаем вашу конфиденциальность.&amp;nbsp;&lt;br /&gt;
-															&lt;br /&gt;
-															Норм типочки&lt;br /&gt;
-															Ваще ребята&lt;br /&gt;
-															Житомир, Украина&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;
+                        &lt;table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" id="RMCLRRHIfooter" style="border-collapse:collapse;" width="100%"&gt;
+                          &lt;tbody&gt;
+                            &lt;tr&gt;
+                              &lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 11px;" valign="top"&gt;
+                              &lt;div style="background:#eee;border:1px solid #ccc;padding:5px 10px;"&gt;&lt;br /&gt;
+                              &lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Мы соблюдаем вашу конфиденциальность.&amp;nbsp;&lt;br /&gt;
+                              &lt;br /&gt;
+                              Норм типочки&lt;br /&gt;
+                              Ваще ребята&lt;br /&gt;
+                              Житомир, Украина&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;
 
-															&lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
-															&lt;/td&gt;
-															&lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 11px;" valign="top"&gt;
-															&lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&lt;span style="background-color: rgb(238, 238, 238);"&gt;Связь с нами в соц сетях:&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+                              &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+                              &lt;/td&gt;
+                              &lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 11px;" valign="top"&gt;
+                              &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&lt;span style="background-color: rgb(238, 238, 238);"&gt;Связь с нами в соц сетях:&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
 
-															&lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&lt;a href="https://vk.com/semka148"&gt;vk.com/semka148&lt;/a&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+                              &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&lt;a href="https://vk.com/semka148"&gt;vk.com/semka148&lt;/a&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
 
-															&lt;p&gt;&lt;a href="https://www.facebook.com/semka148"&gt;facebook.com/semka148&lt;/a&gt;&lt;/p&gt;
+                              &lt;p&gt;&lt;a href="https://www.facebook.com/semka148"&gt;facebook.com/semka148&lt;/a&gt;&lt;/p&gt;
 
-															&lt;p&gt;или по телефону:&lt;br /&gt;
-															+3 8(097) 87 30 150&lt;br /&gt;
-															+3 8(063) 60 57 647&lt;/p&gt;
-&lt;p&gt;&lt;a data-href="http://click.email.microsoftemail.com/?qs=4d41ee0903d2f0e612d325cbe2648332950265d29867df55ee99c262d8baacfca3e6672477e7ef08" href="https://mail.rambler.ru/m/redirect?url=http%3A//click.email.microsoftemail.com/%3Fqs%3D4d41ee0903d2f0e612d325cbe2648332950265d29867df55ee99c262d8baacfca3e6672477e7ef08&amp;amp;hash=2f5bdf56a4547d262d9a1973fecc4ec4" style="text-align: -webkit-right; font-size: 13px; line-height: 20.8px;" target="_blank"&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;img alt="MicrosoftFooterLogo" border="0" data-src="http://image.email.microsoftemail.com/lib/fecf15737365007c/m/2/Microsoft_new_logo.png" height="48" hspace="0" src="https://mail.rambler.ru/p/nwVlOzgt0NcXthKyVtEJOA/http/image.email.microsoftemail.com/lib/fecf15737365007c/m/2/Microsoft_new_logo.png" style="margin: 0px; padding: 0px; outline: 0px; width: 110px; height: 48px;" thid="250c6d89-08ad-409e-a40a-a103930512d0" title="MicrosoftFooterLogo" width="110" /&gt;&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
+                              &lt;p&gt;или по телефону:&lt;br /&gt;
+                              +3 8(097) 87 30 150&lt;br /&gt;
+                              +3 8(063) 60 57 647&lt;/p&gt;
+&lt;p&gt;&lt;a  href="http://halloffame-networkofmentors.rhcloud.com/" style="text-align: -webkit-right; font-size: 13px; line-height: 20.8px;" target="_blank"&gt;&lt;img alt="EvaluateFooterLogo" border="0" data-src="http://discoveryoursolutions.com/images/evaluate.png" height="48" hspace="0" src="http://discoveryoursolutions.com/images/evaluate.png" style="margin: 0px; padding: 0px; outline: 0px; width: 110px; height: 48px;" thid="250c6d89-08ad-409e-a40a-a103930512d0" title="MicrosoftFooterLogo" width="110" /&gt;&lt;/font&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</value>
   </data>
   <data name="ConirmRegistration_Plain" xml:space="preserve">
