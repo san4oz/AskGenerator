@@ -18,17 +18,17 @@
                             <span>{{teacher.name}}</span>
                         </div>
                     </div>
-                    <div class="col-sm-12 btn-group votes-options" data-toggle="buttons" >
+                    <div class="col-sm-12 btn-group votes-options" data-toggle="buttons" ng-mouseleave="teacher.mouseOut()">
                         <label class="point" ng-repeat="point in teacher.points"
+                                title="{{$index+1}}"
                                 ng-class="{'active': $index <= teacher.value-1, 'disabled': teacher.revoute, 'even': $index%2!=0,'odd': $index%2==0}"
-                                ng-click="option.vote(teacher.index, $index)" >
-                            <input ng-disabled="teacher.revoute" type="radio"
+                                ng-click="option.vote(teacher.index, $index)"
+                                ng-mouseover="teacher.mouseOver($index)" >
+                            <input type="radio"
                                     ng-checked="point.checked"
-                                    ng-click="option.vote(teacher.index, $index)"
                                     name="{{option.id + teacher.id}}" >
                             {{$index+1}}
                         </label>
-                        <button class="btn btn-info" ng-click="option.enableRevote($index)" ng-hide="!teacher.revoute">@Resource.Revote</button>
                     </div>
                 
             </div>
