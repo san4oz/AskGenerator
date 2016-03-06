@@ -50,7 +50,7 @@ namespace AskGenerator.Mvc.Controllers
         [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Login(string returnUrl)
         {
-            if(User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated)
                 return RedirectToAction("Index", "Home");
             ViewBag.returnUrl = returnUrl;
             return View();
@@ -95,7 +95,7 @@ namespace AskGenerator.Mvc.Controllers
 
         #region Register
         [OutputCache(CacheProfile = "Cache1Hour")]
-        public ActionResult Register( )
+        public ActionResult Register()
         {
             return View();
         }
@@ -106,7 +106,8 @@ namespace AskGenerator.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var student = checkLastName(model.LastName, model.GroupId);
+                var task = checkLastNameAsync(model.LastName, model.GroupId);
+                var student = task != null ? await task : null;
                 if (student == null || student.HasUserAccount)
                 {
                     ModelState.AddModelError("LastName", Resource.NoLastNameFound);
@@ -154,7 +155,7 @@ namespace AskGenerator.Mvc.Controllers
                 return HttpNotFound();
 
             var user = await Manager.FindByIdAsync(id);
-            if (user == null ||  user.EmailConfirmed)
+            if (user == null || user.EmailConfirmed)
                 return HttpNotFound();
 
             user.EmailConfirmed = true;
@@ -164,6 +165,22 @@ namespace AskGenerator.Mvc.Controllers
             return View();
         }
         #endregion
+
+        protected Task<Student> checkLastNameAsync(string lastName, string groupId)
+        {
+            var manager = Site.StudentManager;
+            if (!lastName.IsEmpty())
+            {
+                return Task.Factory.StartNew(() =>
+                {
+                    lastName = lastName.ToUpperInvariant();
+                    var students = manager.GroupList(groupId);
+                    return students.FirstOrDefault(s => s.LastName.ToUpperInvariant() == lastName);
+                });
+            }
+
+            return null;
+        }
 
         protected Student checkLastName(string lastName, string groupId)
         {
