@@ -262,12 +262,15 @@
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Content\Admin.css" />
+    <Content Include="Css\img\a1.png" />
     <Content Include="Css\img\expander-minus.png" />
     <Content Include="Css\img\expander-plus.png" />
     <Content Include="Css\img\img1.jpeg" />
     <Content Include="Css\img\img2.png" />
     <Content Include="Css\img\img3.png" />
     <Content Include="Content\FE.css" />
+    <Content Include="Css\img\logo_nom1.jpg" />
+    <Content Include="Css\img\sprite.png" />
     <Content Include="Css\Site.css" />
     <Content Include="Css\select2.css" />
     <Content Include="Css\select2.min.css" />
