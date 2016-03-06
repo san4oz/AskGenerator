@@ -450,4 +450,28 @@
   <data name="Required" xml:space="preserve">
     <value>Поле повинно бути встановлене!</value>
   </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>Зв'язок з нами</value>
+  </data>
+  <data name="facebook" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="ValidPassword" xml:space="preserve">
+    <value>Длина поля {0} должна быть от 6 до 20 символов</value>
+  </data>
+  <data name="mail" xml:space="preserve">
+    <value>Semka148@rambler.ru</value>
+  </data>
+  <data name="nom" xml:space="preserve">
+    <value>NoM</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>+38(097)-87-30-150</value>
+  </data>
+  <data name="vk" xml:space="preserve">
+    <value>VK</value>
+  </data>
+  <data name="workforyou" xml:space="preserve">
+    <value>Працювали для вас</value>
+  </data>
 </root>

@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Зв&apos;язок з нами.
+        /// </summary>
+        public static string AboutUs {
+            get {
+                return ResourceManager.GetString("AboutUs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Студент.
         /// </summary>
         public static string AccountId {
@@ -340,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Facebook.
+        /// </summary>
+        public static string facebook {
+            get {
+                return ResourceManager.GetString("facebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Ім&apos;я.
         /// </summary>
         public static string FirstName {
@@ -592,6 +610,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Semka148@rambler.ru.
+        /// </summary>
+        public static string mail {
+            get {
+                return ResourceManager.GetString("mail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на *My MVC Admin Template.
         /// </summary>
         public static string MyMVCAdminTemplate {
@@ -691,6 +718,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на NoM.
+        /// </summary>
+        public static string nom {
+            get {
+                return ResourceManager.GetString("nom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Паролі не співпадаюсь.
         /// </summary>
         public static string NoRepitPassword {
@@ -741,6 +777,15 @@ namespace Resources {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на +38(097)-87-30-150.
+        /// </summary>
+        public static string phone {
+            get {
+                return ResourceManager.GetString("phone", resourceCulture);
             }
         }
         
@@ -1033,6 +1078,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Длина поля {0} должна быть от 6 до 20 символов.
+        /// </summary>
+        public static string ValidPassword {
+            get {
+                return ResourceManager.GetString("ValidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на VK.
+        /// </summary>
+        public static string vk {
+            get {
+                return ResourceManager.GetString("vk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Сторінка голосування.
         /// </summary>
         public static string VotePage {
@@ -1047,6 +1110,15 @@ namespace Resources {
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Працювали для вас.
+        /// </summary>
+        public static string workforyou {
+            get {
+                return ResourceManager.GetString("workforyou", resourceCulture);
             }
         }
         

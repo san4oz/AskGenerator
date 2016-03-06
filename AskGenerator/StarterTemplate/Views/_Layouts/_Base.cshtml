@@ -39,18 +39,18 @@
 @helper Footer() {
     <ul>
         <li>
-            <p class="home">Працювали для вас</p>
-            <a href="#" class="up"></a>
-            <a class="logo" href="#">NOM <i>&copy; 2016 - @DateTime.Now.Year</i></a>
+            <p class="reachus">@Resources.Resource.AboutUs</p>
+            <ul>
+                <li>@Resources.Resource.mail</li>
+                <li><a href="https://vk.com/semka148">@Resources.Resource.vk</a></li>
+                <li><a href="https://www.facebook.com/semka148">@Resources.Resource.facebook</a></li>
+                <li>@Resources.Resource.phone</li>
+            </ul>
         </li>
         <li>
-            <p class="reachus">Зв'язок з нами</p>
-            <ul>
-                <li>Semka148@rambler.ru</li>
-                <li><a href="https://vk.com/semka148">VK</a></li>
-                <li><a href="https://www.facebook.com/semka148">Facebook</a></li>
-                <li>+38(097)-87-30-150</li>
-            </ul>
+            <p class="home">@Resources.Resource.workforyou</p>
+            <a href="#" class="up"></a>
+            <a class="logo" href="#">@Resources.Resource.nom <i>&copy; 2016 - @DateTime.Now.Year</i></a>
         </li>
     </ul>
 }
