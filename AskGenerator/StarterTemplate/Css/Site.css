@@ -92,25 +92,30 @@
     width: 100% !important;
 }
 /*Footer*/
+body {
+    padding-bottom: 185px;
+}
 .main-footer {
+    bottom: 0;
     font: 15px/1.3 'PT Sans', sans-serif;
     color: #5e5b64;
     height: 185px;
     color: #ccc;
     font-size: 12px;
-    position: relative;
+    position: fixed;
     z-index: -2;
     background-color: #31353a;
     background-image: -webkit-linear-gradient(top, #31353a, #2f3337);
     background-image: -moz-linear-gradient(top, #31353a, #2f3337);
     background-image: linear-gradient(top, #31353a, #2f3337);
+    width: 100%;
 }
 
     /* Set a width to the outermost UL and center it */
 
     .main-footer > ul {
         width: 960px;
-        position: fixed;
+        position: relative;
         left: 50%;
         bottom: 0;
         margin-left: -480px;
