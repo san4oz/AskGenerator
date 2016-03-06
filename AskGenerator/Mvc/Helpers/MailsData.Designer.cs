@@ -61,13 +61,13 @@ namespace AskGenerator.Mvc.Helpers {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на &lt;h1&gt;&lt;span style=&quot;font-family: &apos;Lucida Grande CY&apos;, Arial, &apos;Liberation Sans&apos;, &apos;DejaVu Sans&apos;, sans-serif; font-size: 24px; font-weight: bold; line-height: 31px;&quot;&gt;Вас приветствует &lt;em&gt;&lt;a href=&quot;[siteURL]&quot; title=&quot;NoM&quot;&gt;[siteName]&lt;/a&gt;&lt;/em&gt;&lt;/span&gt;&lt;/h1&gt; 
+        ///   Ищет локализованную строку, похожую на &lt;h1&gt;&lt;span style=&quot;font-family: &apos;Lucida Grande CY&apos;, Arial, &apos;Liberation Sans&apos;, &apos;DejaVu Sans&apos;, sans-serif; font-size: 24px; font-weight: bold; line-height: 31px;&quot;&gt;Вас вітає &lt;em&gt;&lt;a href=&quot;[siteURL]&quot; title=&quot;NoM&quot;&gt;[siteName]&lt;/a&gt;&lt;/em&gt;&lt;/span&gt;&lt;/h1&gt; 
         ///
         ///&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;font-family: &apos;Lucida Grande CY&apos;, Arial, &apos;Liberation Sans&apos;, &apos;DejaVu Sans&apos;, sans-serif; line-height: normal;&quot; width=&quot;100%&quot;&gt;
         ///  &lt;tbody&gt;
         ///    &lt;tr&gt;
         ///      &lt;td style=&quot;border-collapse: collapse;&quot;&gt;
-        ///      &lt;table bgc [остаток строки не уместился]&quot;;.
+        ///      &lt;table bgcolor=&quot;&quot; [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string ConirmRegistration_Body {
             get {
@@ -93,7 +93,7 @@ namespace AskGenerator.Mvc.Helpers {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Завершите регистрацию!.
+        ///   Ищет локализованную строку, похожую на Завершити реєстрацію!.
         /// </summary>
         internal static string ConirmRegistration_Subj {
             get {

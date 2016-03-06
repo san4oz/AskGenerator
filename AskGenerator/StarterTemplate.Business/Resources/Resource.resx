@@ -450,4 +450,7 @@
   <data name="Required" xml:space="preserve">
     <value>Поле повинно бути встановлене!</value>
   </data>
+  <data name="Revote" xml:space="preserve">
+    <value>Переголосувати</value>
+  </data>
 </root>

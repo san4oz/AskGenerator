@@ -7,9 +7,11 @@
     <title>@ViewBag.Title - @Resources.Resource.Generator</title>
     @Styles.Render("~/Content/Theme")
     @Styles.Render("~/Content/Vendors")
+    @Styles.Render("~/Css/select2.css")
     @Styles.Render("~/Css/Site.css")
     @RenderSection("Styles", required: false)
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:700" rel="stylesheet" />
 </head>
 @{
     var bdClass = ViewBag.BodyClass ?? string.Empty;
@@ -21,16 +23,35 @@
         <div class="row">
             @RenderBody()
         </div>
-        <footer class="row" role="contentinfo">
-            <div class="divider">
-                &copy; 2016 - @DateTime.Now.Year <a href="https://github.com/san4oz" target="_blank">san4oz</a>
-            </div>
-        </footer>
     </div>
 
+    <footer class="main-footer">
+        @Footer()
+    </footer>
+
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/select2.js")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("Scripts", required: false)
 </body>
 </html>
+
+@helper Footer() {
+    <ul>
+        <li>
+            <p class="home">Працювали для вас</p>
+            <a href="#" class="up"></a>
+            <a class="logo" href="#">NOM <i>&copy; 2016 - @DateTime.Now.Year</i></a>
+        </li>
+        <li>
+            <p class="reachus">Зв'язок з нами</p>
+            <ul>
+                <li>Semka148@rambler.ru</li>
+                <li><a href="https://vk.com/semka148">VK</a></li>
+                <li><a href="https://www.facebook.com/semka148">Facebook</a></li>
+                <li>+38(097)-87-30-150</li>
+            </ul>
+        </li>
+    </ul>
+}

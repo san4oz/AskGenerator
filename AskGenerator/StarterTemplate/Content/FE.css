@@ -25,22 +25,22 @@ h1 {
 
     #teacherBoard .teacher-tile {
         display: inline-block;
-        height: 200px;
-        margin-bottom: 12px;
-        min-width: 200px;
+        margin: 10px 0;
+        position: relative;
+        width: 100%;
     }
+
 @media (max-width: 767px) {
-    #teacherBoard .teacher-tile {
+    #teacherBoard .teacher-tile-wrapper {
         float: unset;
+        margin: 0 auto;
     }
 }
 
 .teacher-tile .badges {
-    height: 100%;
-    margin-bottom: -100%;
-    padding: 5px 3px;
-    position: relative;
-    top: -100%;
+    position: absolute;
+    left: 10px;
+    top: 10px;
 }
 
     .teacher-tile .badges .badge {
@@ -58,7 +58,7 @@ h1 {
             background-color: #ffffff;
             background-position: center center;
             background-repeat: no-repeat;
-            background-size: 102% 102%;
+            background-size: 110% 110%;
             overflow: hidden;
         }
 
@@ -77,11 +77,12 @@ h1 {
     }
 
     .teacher-tile .img-thumbnail + span {
-        background-color: rgb(200, 200, 200);
-        color: #100000;
+        background-color: #fff;
+        color: black;
         display: block;
-        margin-top: -1.8em;
-        opacity: 0.8;
+        font-weight: 600;
+        margin-top: -1.9em;
+        opacity: 0.9;
         position: relative;
         text-align: center;
         width: 100%;
@@ -141,6 +142,7 @@ h1 {
     font-family: georgia,serif;
     font-weight: normal;
     font-style: italic;
+    text-align: center;
 }
 
 .plus {
@@ -158,6 +160,15 @@ h1 {
 .teacher-item .teacher-tile {
     margin-bottom: 5px;
 }
+
+.votes-options {
+    text-align: center;
+}
+
+    .votes-options .btn {
+        display: inline-block;
+        max-width: 50%;
+    }
 
 .teacher-img {
     background-color: bisque;
@@ -201,8 +212,32 @@ hr {
 }
 
 .point {
-    margin: 0 5px;
+    border: 2px solid red;
+    cursor: pointer;
+    height: 0;
+    margin: 0;
+    overflow: hidden; /*to*/
+    text-indent: 100%; /*hide*/
+    white-space: nowrap; /*text*/
+    width: 9%;
+    padding-top: 15%;
 }
+    .point.active {
+        background-color: green;
+    }
+
+    .point.odd {
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+        border-right: none;
+    }
+
+    .point.even {
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
+        margin-right: 1px !important;
+        border-left: none;
+    }
 
 .collapse-mark {
     display: inline-block;
@@ -247,9 +282,40 @@ a.help {
         overflow: hidden;
     }
 
+        .min-form form input {
+            width: 80%;
+        }
+
 .field-validation-error {
     color: #eb1414;
     display: inline-block;
     font-size: 0.9em;
     padding: 2px 0 0;
 }
+
+.img-thumbnail {
+    position: relative;
+    overflow: hidden;
+}
+
+    .img-thumbnail::before {
+        content: "";
+        display: block;
+        padding-top: 120% !important;
+    }
+
+.teacher-tile .img-thumbnail {
+    position: relative;
+}
+
+.teacher-tile .img-thumbnail {
+    position: relative;
+}
+
+    .teacher-tile .img-thumbnail > .photo {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }

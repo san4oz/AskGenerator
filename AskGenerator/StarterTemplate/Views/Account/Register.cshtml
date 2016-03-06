@@ -16,6 +16,7 @@
                     <fieldset>
                         <legend></legend>
                         @Html.ValidationSummary(true)
+
                         @Html.EditorForModel()
                     </fieldset>
                     <div class="col-md-offset-6 col-md-6">
@@ -29,4 +30,13 @@
 </div>
 @section scripts{
     @Scripts.Render("~/Scripts/captcha.js")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#GroupId").select2({
+                placeholder: "@Resources.Resource.SelectGroup",
+                width: '80%',
+                maximumSelectionLength: 20
+            });
+        });
+    </script>
 }
