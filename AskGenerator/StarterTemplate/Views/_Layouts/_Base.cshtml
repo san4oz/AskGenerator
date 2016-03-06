@@ -7,9 +7,9 @@
     <title>@ViewBag.Title - @Resources.Resource.Generator</title>
     @Styles.Render("~/Content/Theme")
     @Styles.Render("~/Content/Vendors")
-    @Styles.Render("~/Content/select2")
     @Styles.Render("~/Css/Site.css")
     @RenderSection("Styles", required: false)
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:700" rel="stylesheet" />
 </head>
 @{
     var bdClass = ViewBag.BodyClass ?? string.Empty;
@@ -21,14 +21,49 @@
         <div class="row">
             @RenderBody()
         </div>
-        <footer class="row" role="contentinfo">
-            <div class="divider">
-                &copy; 2016 - @DateTime.Now.Year <a href="https://github.com/san4oz" target="_blank">san4oz</a>
-            </div>
-        </footer>
     </div>
+        <footer>
+
+            <ul>
+                <li>
+                    <p class="home">Home</p>
+                    <a class="logo" href="http://nom-networkofmentors.rhcloud.com/about">NOM <i>&copy; 2016 - @DateTime.Now.Year</i></a>
+                </li>
+                <li>
+                    <p class="services">Add Information</p>
+
+                    <ul>
+                        <li><a href="https://vk.com/dekanatfikt">VK FIKT</a></li>
+                        <li><a href="https://www.facebook.com/groups/zstu.pi/">ZTU FIKT FB</a></li>
+                        <li><a href="https://vk.com/decanat_fikt">ZTU FIKT VK</a></li>
+                        <li><a href="http://agar.io/">Pushpin</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="reachus">Reach us</p>
+
+                    <ul>
+                        <li>Semka148@rambler.ru</li>
+                        <li><a href="https://vk.com/semka148">VK</a></li>
+                        <li><a href="https://www.facebook.com/semka148">Facebook</a></li>
+                        <li>+38(097)-87-30-150</li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="clients">Clients</p>
+
+                    <ul>
+                        <li><a href="#" class="up"></a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="https://www.google.com.ua/search?q=%D1%81%D1%82%D1%80%D0%B5%D0%BB%D0%BE%D1%87%D0%BA%D0%B0+%D0%B2%D0%B2%D0%B5%D1%80%D1%85&sa=X&biw=1366&bih=599&tbm=isch&tbo=u&source=univ&ved=0ahUKEwiqjZfS06vLAhXhJZoKHRoDCfUQsAQIIw#tbm=isch&q=%D1%80%D1%83%D0%BA%D0%B8+%D0%B1%D0%B5%D0%BB%D0%BA%D0%B8&imgrc=zaTuAhrBQzd7UM%3A">FAQ</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </footer>
+  
+
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Script/select2")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("Scripts", required: false)
