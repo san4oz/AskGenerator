@@ -159,8 +159,16 @@ h1 {
 
 .teacher-item .teacher-tile {
     margin-bottom: 5px;
-    width: 130px;
 }
+
+.votes-options {
+    text-align: center;
+}
+
+    .votes-options .btn {
+        display: inline-block;
+        max-width: 50%;
+    }
 
 .teacher-img {
     background-color: bisque;
@@ -207,8 +215,32 @@ hr {
 }
 
 .point {
-    margin: 0 5px;
+    border: 2px solid red;
+    cursor: pointer;
+    height: 0;
+    margin: 0;
+    overflow: hidden; /*to*/
+    text-indent: 100%; /*hide*/
+    white-space: nowrap; /*text*/
+    width: 9%;
+    padding-top: 15%;
 }
+    .point.active {
+        background-color: green;
+    }
+
+    .point.odd {
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+        border-right: none;
+    }
+
+    .point.even {
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
+        margin-right: 1px !important;
+        border-left: none;
+    }
 
 .collapse-mark {
     display: inline-block;
