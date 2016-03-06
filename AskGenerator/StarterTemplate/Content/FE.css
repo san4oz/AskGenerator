@@ -2,47 +2,48 @@ body {
     background-color: #f2f2f2;
     padding-top: 60px;
 }
- 
+
 h1 {
     margin-bottom: 5px;
 }
- 
+
 .container {
     max-width: 100%;
 }
- 
+
 .navbar .navbar-nav > .active > a {
     background-color: #252525;
 }
- 
+
 #navbar-collapse {
     position: relative;
 }
- 
+
 #teacherBoard {
     text-align: center;
 }
- 
+
     #teacherBoard .teacher-tile {
         display: inline-block;
         margin-bottom: 12px;
         width: 100%;
-        margin:  5px 5px;
+        margin: 5px 5px;
         position: relative;
     }
+
 @media (max-width: 767px) {
     #teacherBoard .teacher-tile-wrapper {
         float: unset;
-         margin: 0 auto;
+        margin: 0 auto;
     }
 }
- 
+
 .teacher-tile .badges {
     position: absolute;
     left: 10px;
     top: 10px;
 }
- 
+
     .teacher-tile .badges .badge {
         border-radius: 50%;
         display: block;
@@ -53,21 +54,21 @@ h1 {
         text-align: center;
         width: 24px;
     }
- 
+
         .teacher-tile .badges .badge[style] {
             background-color: #ffffff;
             background-position: center center;
             background-repeat: no-repeat;
-            background-size: 102% 102%;
+            background-size: 110% 110%;
             overflow: hidden;
         }
- 
+
 .teacher-tile .img-thumbnail {
     height: 100%;
     padding: 0 5px;
     width: 100%;
 }
- 
+
     .teacher-tile .img-thumbnail img {
         display: block;
         height: 100%;
@@ -75,7 +76,7 @@ h1 {
         max-width: 97%;
         min-width: 55%;
     }
- 
+
     .teacher-tile .img-thumbnail + span {
         background-color: #fff;
         color: black;
@@ -87,11 +88,11 @@ h1 {
         text-align: center;
         width: 100%;
     }
- 
+
 .teacher-tile:hover .img-thumbnail + span {
     opacity: 1;
 }
- 
+
 #loader {
     background-image: url("/Content/loader.gif");
     background-position: center center;
@@ -103,7 +104,7 @@ h1 {
     position: unset;
     width: 100px;
 }
- 
+
 .loading {
     background-image: url("/Content/loader.gif");
     background-position: center center;
@@ -115,25 +116,25 @@ h1 {
     position: unset;
     width: 100px;
 }
- 
+
 /*
     Board
 */
 [data-optiond-id="{{option.id}}"] {
     display: none; /*Hide unfilled tags*/
 }
- 
+
 .odd {
     position: relative;
     background: rgb(246,246,246);
     background: rgba(0,0,0,0.04);
 }
- 
+
 .votes {
     margin-bottom: 10px;
     display: none;
 }
- 
+
 .option {
     font-size: 20px;
     padding: 20px 20px 20px 5px;
@@ -144,24 +145,24 @@ h1 {
     font-style: italic;
     text-align: center;
 }
- 
+
 .plus {
     background: transparent url('img/expander-plus.png') 20px center no-repeat;
 }
- 
+
 .minus {
     background: transparent url('img/expander-minus.png') 20px center no-repeat;
 }
- 
+
 .option > * {
     cursor: pointer;
 }
- 
+
 .teacher-item .teacher-tile {
     margin-bottom: 5px;
     width: 130px;
 }
- 
+
 .teacher-img {
     background-color: bisque;
     background-repeat: no-repeat;
@@ -173,19 +174,19 @@ h1 {
     max-height: 100px;
     margin: 0 auto;
 }
- 
+
     .teacher-img::before {
         content: "";
         display: block;
         padding-top: 60% !important;
     }
- 
+
 .teacher-item {
     border-right: 1px inset lightgray;
     margin-top: 0;
     margin-bottom: 0;
 }
- 
+
     .teacher-item span {
         background-color: rgba(200, 200, 200, 0.5);
         display: inline-block;
@@ -193,49 +194,49 @@ h1 {
         text-align: center;
         width: 100%;
     }
- 
+
 hr {
     margin: 5px 5px 5px 13.5%;
 }
- 
+
 .disabled {
     background-color: darkgray;
 }
- 
+
 .votes input[disabled="disabled"] {
     color: red;
 }
- 
+
 .point {
     margin: 0 5px;
 }
- 
+
 .collapse-mark {
     display: inline-block;
     text-align: center;
     margin-right: 10px;
     padding: 5px 20px 10px 15px;
 }
- 
+
 #legend {
     padding: 0 5%;
     text-align: center;
 }
- 
+
     #legend .thumbnail {
         display: inline-block;
         float: none;
         margin: 0 15px 5px;
         padding: 0;
     }
- 
+
     #legend img {
         margin: 4px auto 0;
         max-width: 100%;
         padding: 4px;
         width: 80%;
     }
- 
+
 a.help {
     color: #4e97d6;
     font-size: 1.2em;
@@ -243,42 +244,50 @@ a.help {
     padding: 2px;
     text-decoration: underline dotted;
 }
- 
+
 .min-form {
     min-width: 255px;
     overflow: hidden;
 }
- 
+
     .min-form form {
         overflow: hidden;
     }
- 
+
+        .min-form form input {
+            width: 80%;
+        }
+
 .field-validation-error {
     color: #eb1414;
     display: inline-block;
     font-size: 0.9em;
     padding: 2px 0 0;
 }
- 
-.img-thumbnail{
-    position: relative;      
-    overflow: hidden;  
+
+.img-thumbnail {
+    position: relative;
+    overflow: hidden;
 }
-.img-thumbnail::before{
-    content: "";
-    display: block;
-    padding-top: 120% !important;
-}
-.teacher-tile .img-thumbnail{
+
+    .img-thumbnail::before {
+        content: "";
+        display: block;
+        padding-top: 120% !important;
+    }
+
+.teacher-tile .img-thumbnail {
     position: relative;
 }
-.teacher-tile .img-thumbnail{
+
+.teacher-tile .img-thumbnail {
     position: relative;
 }
-.teacher-tile .img-thumbnail > .photo{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-}
+
+    .teacher-tile .img-thumbnail > .photo {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+    }
