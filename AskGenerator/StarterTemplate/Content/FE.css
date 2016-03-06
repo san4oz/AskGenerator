@@ -25,10 +25,9 @@ h1 {
 
     #teacherBoard .teacher-tile {
         display: inline-block;
-        margin-bottom: 12px;
-        width: 100%;
-        margin: 5px 5px;
+        margin: 10px 0;
         position: relative;
+        width: 100%;
     }
 
 @media (max-width: 767px) {
@@ -159,20 +158,28 @@ h1 {
 }
 
 .teacher-item .teacher-tile {
+    height: 140px;
     margin-bottom: 5px;
-    width: 130px;
+    overflow: hidden;
 }
 
+.votes-options {
+    text-align: center;
+}
+
+    .votes-options .btn {
+        display: inline-block;
+        max-width: 50%;
+    }
+
 .teacher-img {
-    background-color: bisque;
-    background-repeat: no-repeat;
     background-position: center top;
-    background-size: cover;
-    min-width: 65px;
-    min-height: 90px;
-    max-width: 75px;
-    max-height: 100px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
     margin: 0 auto;
+    min-height: 90px;
+    min-width: 65px;
 }
 
     .teacher-img::before {
@@ -188,9 +195,10 @@ h1 {
 }
 
     .teacher-item span {
-        background-color: rgba(200, 200, 200, 0.5);
-        display: inline-block;
-        margin-top: -1em;
+        background-color: rgba(255, 255, 255, 0.8);
+        display: block;
+        font-weight: 600;
+        margin-top: -1.3em;
         text-align: center;
         width: 100%;
     }
@@ -208,8 +216,33 @@ hr {
 }
 
 .point {
-    margin: 0 5px;
+    border: 2px solid red;
+    cursor: pointer;
+    height: 0;
+    margin: 0;
+    overflow: hidden; /*to*/
+    text-indent: 100%; /*hide*/
+    white-space: nowrap; /*text*/
+    width: 9%;
+    padding-top: 15%;
 }
+
+    .point.active {
+        background-color: green;
+    }
+
+    .point.odd {
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+        border-right: none;
+    }
+
+    .point.even {
+        border-top-right-radius: 100px;
+        border-bottom-right-radius: 100px;
+        margin-right: 1px !important;
+        border-left: none;
+    }
 
 .collapse-mark {
     display: inline-block;

@@ -8,30 +8,29 @@
             <span class="collapse-mark" ng-class="{'plus': option.collapsed, 'minus': !option.collapsed}"></span>
             {{option.label}}
         </div>
-        <div class="votes answer">
-            <div ng-repeat="teacher in option.teachers">
-                <div class="row">
-                    <div class="col-sm-offset-1 col-sm-2 teacher-item">
+        <div class="row votes answer">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-7" ng-repeat="teacher in option.teachers">
+                
+                    <div class="col-sm-12 teacher-item">
                         <div class="teacher-tile">
                             <div class="teacher-img" ng-style="{'background-image': 'url(' + teacher.image+ ')'}">
                             </div>
                             <span>{{teacher.name}}</span>
                         </div>
                     </div>
-                    <div class="col-sm-9 btn-group votes-options" data-toggle="buttons" >
-                        <label class="btn btn-default point" ng-repeat="point in teacher.points"
-                                ng-class="{'active': $index === teacher.value-1, 'disabled': teacher.revoute}"
-                                ng-click="option.vote(teacher.index, $index)" >
-                            <input ng-disabled="teacher.revoute" type="radio"
+                    <div class="col-sm-12 btn-group votes-options" data-toggle="buttons" ng-mouseleave="teacher.mouseOut()">
+                        <label class="point" ng-repeat="point in teacher.points"
+                                title="{{$index+1}}"
+                                ng-class="{'active': $index <= teacher.value-1, 'disabled': teacher.revoute, 'even': $index%2!=0,'odd': $index%2==0}"
+                                ng-click="option.vote(teacher.index, $index)"
+                                ng-mouseover="teacher.mouseOver($index)" >
+                            <input type="radio"
                                     ng-checked="point.checked"
-                                    ng-click="option.vote(teacher.index, $index)"
                                     name="{{option.id + teacher.id}}" >
                             {{$index+1}}
                         </label>
-                        <button class="btn btn-info" ng-click="option.enableRevote($index)" ng-hide="!teacher.revoute">Переголосовать</button>
                     </div>
-                </div>
-                <hr/>
+                
             </div>
         </div>
     </div>

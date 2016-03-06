@@ -18,13 +18,7 @@
     var token = $('input[name="__RequestVerificationToken"]').val();
 
     self.vote = function (teacherIndex, $index) {
-        self.teachers[teacherIndex].vote(self.id, $index, token);
-        self.voted += 1;
-    };
-
-    self.enableRevote = function ($index) {
-        self.teachers[$index].enableRevote();
-        self.voted -= 1;
+        self.teachers[teacherIndex].vote(self.id, $index, token, function () { self.voted += 1; });
     };
 
     var index = 0;

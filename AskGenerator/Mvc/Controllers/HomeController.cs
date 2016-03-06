@@ -206,7 +206,7 @@ namespace AskGenerator.Mvc.Controllers
                 {
                     id = teacher.Id,
                     image = string.IsNullOrEmpty(teacher.Image) ? "/Content/Images/teacher/noImage.png" : teacher.Image,
-                    name = teacher.FirstName + ' ' + teacher.LastName
+                    name = teacher.LastName + ' ' + teacher.FirstName
                 };
                 var teacherVotes = votes.FirstOrDefault(g => g.Key == teacher.Id);
                 if (teacherVotes == null)

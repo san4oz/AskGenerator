@@ -93,7 +93,7 @@
 }
 /*Footer*/
 body {
-    padding-bottom: 185px;
+    padding-bottom: 155px;
 }
 .main-footer {
     bottom: 0;
@@ -292,7 +292,7 @@ a, a:visited {
         text-decoration: none;
     }
 
-section, main-footer, header, aside {
+section, footer, header, aside {
     display: block;
 }
 
