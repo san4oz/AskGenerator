@@ -251,6 +251,10 @@ a.help {
         overflow: hidden;
     }
 
+    .min-form form input{
+        width: 80%;
+    }
+
 .field-validation-error {
     color: #eb1414;
     display: inline-block;
