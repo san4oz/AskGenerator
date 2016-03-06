@@ -9,29 +9,15 @@
             {{option.label}}
         </div>
         <div class="votes answer">
-            <div ng-repeat="teacher in option.teachers">
-                <div class="row">
-                    <div class="col-sm-offset-1 col-sm-2 teacher-item">
-                        <div class="teacher-tile">
-                            <div class="teacher-img" ng-style="{'background-image': 'url(' + teacher.image+ ')'}">
-                            </div>
-                            <span>{{teacher.name}}</span>
+            <div class="col-sm-3" ng-repeat=" teacher in option.teachers">
+                <div class="teacher-item">
+                    <div class="teacher-tile">
+                        <div class="teacher-img" ng-style="{'background-image': 'url(' + teacher.image+ ')'}">
                         </div>
+                        <span>{{teacher.name}}</span>
                     </div>
-                    <div class="col-sm-9 btn-group votes-options" data-toggle="buttons" >
-                        <label class="btn btn-default point" ng-repeat="point in teacher.points"
-                                ng-class="{'active': $index === teacher.value-1, 'disabled': teacher.revoute}"
-                                ng-click="option.vote(teacher.index, $index)" >
-                            <input ng-disabled="teacher.revoute" type="radio"
-                                    ng-checked="point.checked"
-                                    ng-click="option.vote(teacher.index, $index)"
-                                    name="{{option.id + teacher.id}}" >
-                            {{$index+1}}
-                        </label>
-                        <button class="btn btn-info" ng-click="option.enableRevote($index)" ng-hide="!teacher.revoute">Переголосовать</button>
-                    </div>
+                    <star-rating readonly="teacher.readonly" ng-model="teacher.value" max="5" on-rating-select="option.vote(teacher.id, rating)"></star-rating>
                 </div>
-                <hr/>
             </div>
         </div>
     </div>

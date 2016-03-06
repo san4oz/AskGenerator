@@ -1566,6 +1566,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\captcha.js" />
     <Content Include="Scripts\controllers\expandCollapse.js" />
+    <Content Include="Scripts\controllers\stars.js" />
     <Content Include="Scripts\controllers\voteController.js" />
     <Content Include="Scripts\controllers\voteOptions.js" />
     <Content Include="Scripts\controls.js" />

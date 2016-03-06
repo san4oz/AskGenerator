@@ -97,6 +97,43 @@ footer .divider{
     text-align: right;
 }
 
+.star-rating {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+star-rating {
+    text-align: center;
+}
+.star-rating .star {
+  padding: 1px;
+  color: #ddd;
+  font-size: 20px;
+  text-shadow: .05em .05em #aaa;
+  list-style-type: none;
+  display: inline-block;
+  cursor: pointer;
+}
+.star-rating .star.filled {
+  color: #fd0;
+}
+.fa-star {
+    font-size: 60px!important;
+}
+.answer {
+    overflow: auto;
+}
+.teacher-tile {
+    height: 200px;
+    text-align:center;
+}
+.teacher-item {
+    margin-bottom: 15px;
+}
+.teacher-item  .teacher-img {
+    height: 180px;
+    width: 180px
+}
 /*how fix ETO PIZDEC!!!!*/
 .panel-default {
     width: 100% !important;

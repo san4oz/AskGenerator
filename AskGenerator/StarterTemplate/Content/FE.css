@@ -157,7 +157,6 @@ h1 {
 
 .teacher-item .teacher-tile {
     margin-bottom: 5px;
-    width: 130px;
 }
 
 .teacher-img {
@@ -165,10 +164,8 @@ h1 {
     background-repeat: no-repeat;
     background-position: center top;
     background-size: cover;
-    min-width: 65px;
-    min-height: 90px;
-    max-width: 75px;
-    max-height: 100px;
+    height: 180px;
+    width:180px;
     margin: 0 auto;
 }
 
@@ -179,9 +176,8 @@ h1 {
     }
 
 .teacher-item {
-    border-right: 1px inset lightgray;
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 30px;
 }
 
     .teacher-item span {
