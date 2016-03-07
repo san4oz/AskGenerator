@@ -36,7 +36,7 @@ namespace AskGenerator.ViewModels
         public string LastName { get; set; }
 
         [Required]
-        [StringLength(20, MinimumLength = 6, ErrorMessageResourceName = "ValidPassword", ErrorMessageResourceType = typeof(R))]
+        [StringLength(20, MinimumLength = 6, ErrorMessageResourceName = "ValidLenght", ErrorMessageResourceType = typeof(R))]
         [Display(Name = "Password", ResourceType = typeof(R))]
         [DataType(DataType.Password)]
         public string Password { get; set; }

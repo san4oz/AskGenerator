@@ -520,15 +520,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Довжина поля повинна бути від 3-х до 20-ти символів.
-        /// </summary>
-        public static string Length {
-            get {
-                return ResourceManager.GetString("Length", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Ищет локализованную строку, похожую на Ліміти.
         /// </summary>
         public static string Limits {
@@ -1078,11 +1069,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Длина поля {0} должна быть от 6 до 20 символов.
+        ///   Ищет локализованную строку, похожую на Довжина поля {0} повинна бути від {2}-х до {1}-ти символів.
         /// </summary>
-        public static string ValidPassword {
+        public static string ValidLenght {
             get {
-                return ResourceManager.GetString("ValidPassword", resourceCulture);
+                return ResourceManager.GetString("ValidLenght", resourceCulture);
             }
         }
         

@@ -432,8 +432,8 @@
   <data name="IsPersistent" xml:space="preserve">
     <value>Запам`ятати мене</value>
   </data>
-  <data name="Length" xml:space="preserve">
-    <value>Довжина поля повинна бути від 3-х до 20-ти символів</value>
+  <data name="ValidLenght" xml:space="preserve">
+    <value>Довжина поля {0} повинна бути від {2}-х до {1}-ти символів</value>
   </data>
   <data name="NoRepitPassword" xml:space="preserve">
     <value>Паролі не співпадаюсь</value>
@@ -455,9 +455,6 @@
   </data>
   <data name="facebook" xml:space="preserve">
     <value>Facebook</value>
-  </data>
-  <data name="ValidPassword" xml:space="preserve">
-    <value>Длина поля {0} должна быть от 6 до 20 символов</value>
   </data>
   <data name="mail" xml:space="preserve">
     <value>Semka148@rambler.ru</value>
