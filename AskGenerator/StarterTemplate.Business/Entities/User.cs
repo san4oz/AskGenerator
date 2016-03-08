@@ -18,6 +18,9 @@ namespace AskGenerator.Business.Entities
         [ForeignKey("Student")]
         public string StudentId { get; set; }
 
+        [MaxLength(8)]
+        public string LoginKey { get; set; }
+
         public Group Group { get; set; }
         public Student Student { get; set; }
 

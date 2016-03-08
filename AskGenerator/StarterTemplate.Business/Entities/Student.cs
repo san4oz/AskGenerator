@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AskGenerator.Business.Entities
 {
@@ -11,7 +12,13 @@ namespace AskGenerator.Business.Entities
     {
         public Group Group { get; set; }
 
+        /// <summary>
+        /// Indicates whether student has registred account.
+        /// </summary>
         public bool HasUserAccount { get; set; }
+
+        [MaxLength(128)]
+        public string AccountId { get; set; }
 
         public void Merge(Student student)
         {
