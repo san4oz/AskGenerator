@@ -25,7 +25,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             get
             {
-                return HttpContext.GetOwinContext().GetUserManager<UserManager>();
+                return Site.UserManager;
             }
         }
 
@@ -33,7 +33,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             get
             {
-                return HttpContext.GetOwinContext().GetUserManager<RoleManager>();
+                return Site.RoleManager;
             }
         }
 

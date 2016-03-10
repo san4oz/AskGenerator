@@ -18,7 +18,7 @@ var avg = Math.Round(teacher.AverageMark, 4);
             <div class="img-thumbnail">
                 <div class="photo" style="background: url('@this.R.Image(teacher.Image, teacher.IsMale)') no-repeat center top / cover"></div>
             </div>
-            <span title="@teacher.FullName">@teacher.GetShortName()</span>
+            <span title="@teacher.FullName()">@teacher.GetShortName()</span>
             <div class="badges">
                 <span class="badge avg" data-togglee="tooltip" title="@avg">@Math.Round(avg, 1)</span>
                 @foreach (var tbadge in teacher.Badges)

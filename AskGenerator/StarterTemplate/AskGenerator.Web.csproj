@@ -255,6 +255,8 @@
     <Content Include="Content\Images\ff9cf187-8733-4fdb-bbb6-80ed2c59533e.jpg" />
     <Content Include="Content\Images\Male.png" />
     <Content Include="Content\Images\teacher\noImage.png" />
+    <Content Include="Content\img\expander-minus.png" />
+    <Content Include="Content\img\expander-plus.png" />
     <Content Include="Content\loader.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="Css\bootstrap-theme.css" />
@@ -265,10 +267,8 @@
     <Content Include="Css\img\a1.png" />
     <Content Include="Css\img\expander-minus.png" />
     <Content Include="Css\img\expander-plus.png" />
-    <Content Include="Css\img\img1.jpeg" />
-    <Content Include="Css\img\img2.png" />
-    <Content Include="Css\img\img3.png" />
     <Content Include="Content\FE.css" />
+    <Content Include="Css\img\img1.jpeg" />
     <Content Include="Css\img\logo_nom1.jpg" />
     <Content Include="Css\img\sprite.png" />
     <Content Include="Css\Site.css" />
@@ -1804,6 +1804,7 @@
     <None Include="Properties\PublishProfiles\ztu-fikt - Web Deploy.pubxml" />-->
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\GroupSelector - Копировать.cshtml" />
     <Content Include="Areas\Admin\Views\Question\EditorTemplates\Limit.cshtml" />
+    <Content Include="Areas\Admin\Views\Student\AccountKeys.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

@@ -34,6 +34,11 @@
     @RenderBody()
 </div>
 
+@section Footer{
+    <footer class="main-footer">
+        @Footer()
+    </footer>
+}
 
 @section Scripts{
     @Scripts.Render("~/Scripts/controls.js")
@@ -42,4 +47,23 @@
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=uk"
             async defer>
     </script>
+}
+
+@helper Footer() {
+    <ul>
+        <li>
+            <p class="reachus">@Resources.Resource.AboutUs</p>
+            <ul>
+                <li>@Resources.Resource.mail</li>
+                <li><a href="https://vk.com/semka148">@Resources.Resource.vk</a></li>
+                <li><a href="https://www.facebook.com/semka148">@Resources.Resource.facebook</a></li>
+                <li>@Resources.Resource.phone</li>
+            </ul>
+        </li>
+        <li>
+            <p class="home">@Resources.Resource.workforyou</p>
+            <a href="#" class="up"></a>
+            <a class="logo" href="#">@Resources.Resource.nom <i>&copy; 2016 - @DateTime.Now.Year</i></a>
+        </li>
+    </ul>
 }

@@ -22,5 +22,17 @@ namespace System
                 sb.Append(delimiter + source[i]);
             return sb.ToString();
         }
+
+        /// <summary>
+        /// Returns with elements from sequence in randomized order.
+        /// </summary>
+        /// <typeparam name="T">Type of sequence's elements.</typeparam>
+        /// <param name="source">The sequence.</param>
+        /// <returns>Shuffled sequence.</returns>
+        public static IEnumerable<T> Shuffle<T>(this IEnumerable<T> source)
+        {
+            var rnd = new Random();
+            return source.OrderBy(x => rnd.Next());
+        }
     }
 }

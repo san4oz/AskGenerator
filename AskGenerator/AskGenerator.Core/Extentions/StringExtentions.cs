@@ -9,6 +9,13 @@ namespace System
 {
     public static class StringExtentions
     {
+        /// <summary>
+        /// Checks wheter current string is <c>null</c> or empty.
+        /// </summary>
+        /// <param name="str">The string to check.</param>
+        /// <returns>
+        ///   <c>true</c> if string is <c>null</c> or empty.
+        /// </returns>
         public static bool IsEmpty(this string str)
         {
             return string.IsNullOrEmpty(str);

@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AskGenerator.Business.Entities
 {
-    public class Person : Entity
+    public class Person : Entity, IPerson
     {
         [Index]
         [MaxLength(127)]

@@ -471,4 +471,7 @@
   <data name="workforyou" xml:space="preserve">
     <value>Працювали для вас</value>
   </data>
+  <data name="RegenerateLoginKeys" xml:space="preserve">
+    <value>Перестворити ключі</value>
+  </data>
 </root>

@@ -14,6 +14,7 @@
                     <input type="file" name="file" />
                     <button class="btn btn-primary" type="submit" data-loading-text="Importing...">Import</button>
                 </form>
+                <a id="regenerateKeys" class="btn btn-danger" href="@Url.Action("ResetAccountKeys", "Student")">@Resources.Resource.RegenerateLoginKeys</a>
             </div>
         </div>
         <div class="bootstrap-admin-panel-content">
@@ -46,6 +47,6 @@
 </div>
 @section Scripts{
     <script>
-        $(Pages.Students.initImport);
+        $(Pages.Students.init);
     </script>
 }

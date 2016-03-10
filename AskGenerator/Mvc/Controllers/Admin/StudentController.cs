@@ -1,13 +1,17 @@
 ﻿using AskGenerator.Business.Entities;
 using AskGenerator.Business.InterfaceDefinitions.Managers;
 using AskGenerator.Business.Parsers;
+using AskGenerator.DataProvider;
 using AskGenerator.Mvc.Controllers;
 using AskGenerator.ViewModels;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Text;
+using AskGenerator.Mvc.ViewModels;
 
 namespace AskGenerator.Controllers.Admin
 {
@@ -15,11 +19,14 @@ namespace AskGenerator.Controllers.Admin
     public class StudentController : BaseController
     {
         protected IStudentManager StudentManager { get; private set; }
+        protected UserManager UserManager { get; private set; }
 
         public StudentController()
         {
             StudentManager = Site.StudentManager;
+            UserManager = Site.UserManager;
         }
+
         [HttpGet]
         public async Task<ActionResult> List()
         {
@@ -39,7 +46,7 @@ namespace AskGenerator.Controllers.Admin
         [HttpPost]
         public ActionResult Create(CreateStudentViewModel model)
         {
-            var student = DecomposeStudentViewModel(model);
+            var student = DecomposeStudentViewModel(model.Student);
             StudentManager.Create(student);
             return RedirectToAction("List");
         }
@@ -55,7 +62,7 @@ namespace AskGenerator.Controllers.Admin
         }
 
         [HttpPost]
-        public ActionResult Edit(CreateStudentViewModel model)
+        public ActionResult Edit(StudentViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -68,7 +75,7 @@ namespace AskGenerator.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Delete(string id)
+        public async Task<JsonResult> Delete(string id)
         {
             if (!User.Identity.IsAuthenticated)
                 return Json(new { url = Url.Action("Login", "Account", new { returnUrl = Url.Action("List") }) }, 403);
@@ -76,16 +83,22 @@ namespace AskGenerator.Controllers.Admin
             if (string.IsNullOrEmpty(id))
                 return Json(false);
 
-            return await Task.Factory.StartNew(() =>
+            var s = await StudentManager.GetAsync(id);
+            if (!s.AccountId.IsEmpty())
             {
-                var q = StudentManager.Extract(id);
-                if (q != null)
-                {
-                    DeleteImage(q.Image);
-                    return Json(q);
-                }
-                return Json(false);
-            });
+                var u = await UserManager.FindByIdAsync(s.AccountId);
+                if (u != null)
+                    await UserManager.DeleteAsync(u);
+
+            }
+            var q = await StudentManager.ExtractAsync(id);
+            if (q != null)
+            {
+                DeleteImage(q.Image);
+                return Json(q);
+            }
+            return Json(false);
+
         }
 
         [HttpPost]
@@ -104,6 +117,67 @@ namespace AskGenerator.Controllers.Admin
 
         }
 
+        public async Task<ActionResult> AccountKeys()
+        {
+            var groups = await Site.GroupManager.AllAsync();
+            var users = UserManager.Users.ToDictionary(u => u.Id);
+            var model = new List<GroupLoginKeys>(groups.Count);
+            foreach (var g in groups)
+            {
+                var list = new GroupLoginKeys(g.Students.Count) { GroupName = g.Name };
+                foreach (var s in g.Students)
+                {
+                    if (s.AccountId.IsEmpty())
+                        continue;
+
+                    var user = users.GetOrDefault(s.AccountId);
+                    if (user == null || user.LoginKey.IsEmpty())
+                        continue;
+                    list.Add(new StudentKeyPair() { Name = s.GetShortName(), Key = user.LoginKey });
+                }
+                model.Add(list);
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetAccountKeys()
+        {
+            var list = await StudentManager.AllAsync();
+            var i = 0;
+            foreach (var s in list.Shuffle())
+            {
+                if (s.AccountId.IsEmpty())
+                {
+                    var user = new User(s.Group.Id, s.Id);
+                    user.GenerateLoginKey(i);
+                    var result = await UserManager.CreateAsync(user);
+                    if (result.Succeeded)
+                    {
+                        s.AccountId = user.Id;
+                        StudentManager.Update(s);
+                    }
+                    else
+                    {
+                        return CreateErrorResponse(result.Errors, s);
+                    }
+                }
+                else
+                {
+                    var user = await UserManager.FindByIdAsync(s.AccountId);
+                    user.GenerateLoginKey(i);
+                    var result = await UserManager.UpdateAsync(user);
+                    if (!result.Succeeded)
+                        return CreateErrorResponse(result.Errors, s);
+                }
+                i++;
+            }
+            return RedirectToAction("AccountKeys");
+        }
+
+        #region private
         private CreateStudentViewModel CreateCompositeModel(string studentId = null)
         {
             StudentViewModel student;
@@ -121,13 +195,22 @@ namespace AskGenerator.Controllers.Admin
             return viewModel;
         }
 
-        private Student DecomposeStudentViewModel(CreateStudentViewModel model)
+        private Student DecomposeStudentViewModel(StudentViewModel Student)
         {
-            var student = Map<StudentViewModel, Student>(model.Student);
-            var group = Site.GroupManager.Get(model.Student.Group.Id);
+            var student = Map<StudentViewModel, Student>(Student);
+            var group = Site.GroupManager.Get(Student.Group.Id);
             student.Group = group;
-            student.Image = SaveImage(model.Student.ImageFile, model.Student.Id).Or(model.Student.Image);
+            student.Image = SaveImage(Student.ImageFile, Student.Id).Or(Student.Image);
             return student;
         }
+
+        private JsonResult CreateErrorResponse(IEnumerable<string> errors, Student student)
+        {
+            var sb = new StringBuilder(("An error occured while reseting key for user {0}" + Environment.NewLine + "Errors: ").FormatWith(student.Id));
+            foreach (var l in errors)
+                sb.AppendLine(l);
+            return Json(sb.ToString(), 505);
+        }
+        #endregion
     }
 }

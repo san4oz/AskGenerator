@@ -1,0 +1,47 @@
+﻿@model IList<AskGenerator.Mvc.ViewModels.GroupLoginKeys>
+@{
+    Layout = null;
+    ViewBag.BodyClass = "print";
+}
+
+@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - @Resources.Resource.Generator</title>
+    @Styles.Render("~/Content/Theme")
+    @Styles.Render("~/Content/Vendors")
+    @Styles.Render("~/Css/select2.css")
+    @Styles.Render("~/Css/Site.css")
+</head>
+@{
+    var bdClass = ViewBag.BodyClass ?? string.Empty;
+}
+<body class="@bdClass">
+
+    @for(var i = 0; i < Model.Count; i++){
+    var g = Model[i];
+    var j = 0;
+    <div class="col-xs-6 no-breaks">
+        <h4>@g.GroupName</h4>
+        <table>
+            <tbody>
+                @foreach(var pair in g.OrderBy(p => p.Name)) {
+                        <tr>
+                            <td>@(++j)</td>
+                            <td>@pair.Name</td>
+                            <td>http://ztu-fikt.azurewebsites.net/login</td>
+                            <td>@pair.Key</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        if((i + 1)%2==0){
+            <div class="row"></div>
+        }
+    }
+</body>
+</html>

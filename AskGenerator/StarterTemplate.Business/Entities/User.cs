@@ -11,6 +11,20 @@ namespace AskGenerator.Business.Entities
 {
     public class User : IdentityUser
     {
+        #region ctors
+        public User()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
+
+        public User(string groupId, string studentId)
+            : this()
+        {
+            GroupId = groupId;
+            StudentId = studentId;
+        }
+        #endregion
+
         [Column(Order = 1)]
         [ForeignKey("Group")]
         public string GroupId { get; set; }
@@ -30,7 +44,7 @@ namespace AskGenerator.Business.Entities
             {
                 var name = base.UserName;
                 if (string.IsNullOrEmpty(name))
-                    base.UserName = name = Email.Split('@').FirstOrDefault();
+                    base.UserName = name = Email.IsEmpty() ? Guid.NewGuid().ToString("N") : Email.Split('@').FirstOrDefault();
                 return name;
             }
             set
@@ -38,6 +52,49 @@ namespace AskGenerator.Business.Entities
                 base.UserName = value;
             }
         }
+
+        #region GenerateLoginKey
+        private const short additionalElements = 4;
+        private static readonly char[] chars = "0123456789abcdefghijklmnopqrstuvwxyz".ToCharArray();
+
+        public void GenerateLoginKey(int number)
+        {
+            // To suttisfy max length validation
+            number %= 1000;
+
+            var rnd = new Random();
+            var additionalChars = new List<char>(4);
+
+            for (var i = 0; i < additionalElements; i++)
+            {
+                additionalChars.Add(chars[rnd.Next(chars.Length)]);
+            }
+
+            var sb = new StringBuilder();
+            for (var i = 0; i < 3; i++)
+            {
+                // Add additional character in random place
+                for (var j = 0; j < additionalChars.Count; j++)
+                {
+                    if (rnd.Next(additionalElements) + 1 == additionalElements)
+                    {
+                        sb.Append(additionalChars[j]);
+                        additionalChars.RemoveAt(j);
+                        j--;
+                    }
+                }
+
+                // Add digit from param
+                sb.Append(number % 10);
+                number /= 10;
+            }
+            // Add lefted additional characters
+            foreach (var c in additionalChars)
+                sb.Append(c);
+
+            LoginKey = sb.ToString();
+        }
+        #endregion
     }
 
     public class Role : IdentityRole
