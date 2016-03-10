@@ -1150,6 +1150,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Невірна електронна адреса чи пароль.
+        /// </summary>
+        public static string WrongEmailOrPassword {
+            get {
+                return ResourceManager.GetString("WrongEmailOrPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Невірний ключ. Спробуйте увійти за допомогою логіна або зареєструватись..
         /// </summary>
         public static string WrongLoginKey {
