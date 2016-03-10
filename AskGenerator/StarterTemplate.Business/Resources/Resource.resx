@@ -486,4 +486,7 @@
   <data name="WrongLoginKey" xml:space="preserve">
     <value>Невірний ключ. Спробуйте увійти за допомогою логіна або зареєструватись.</value>
   </data>
+  <data name="WrongEmailOrPassword" xml:space="preserve">
+    <value>Невірна електронна адреса чи пароль</value>
+  </data>
 </root>

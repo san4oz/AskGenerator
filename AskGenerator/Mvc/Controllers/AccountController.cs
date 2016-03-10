@@ -70,10 +70,7 @@ namespace AskGenerator.Mvc.Controllers
                     ModelState.Clear();
                     user = await Manager.FindByLoginKeyAsync(model.Key);
                     if (user == null)
-                    {
-
                         ModelState.AddModelError("Key", Resource.WrongLoginKey);
-                    }
                     else
                         return await Login(user, returnUrl, model.IsPersistent);
                 }
@@ -83,28 +80,12 @@ namespace AskGenerator.Mvc.Controllers
                 model.Email = TransformEmail(model.Email);
                 user = await Manager.FindByEmailAsync(model.Email);
                 if (user == null || !Manager.CheckPassword(user, model.Password))
-                    ModelState.AddModelError("Password", "Невірна електронна адреса чи пароль.");
+                    ModelState.AddModelError("Password", Resource.WrongEmailOrPassword);
                 else
                     return await Login(user, returnUrl, model.IsPersistent);
             }
             ViewBag.returnUrl = returnUrl;
             return View(model);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> KeyLogin(LoginViewModel model, string returnUrl)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = await Manager.FindByLoginKeyAsync(model.Key);
-                if (user == null)
-                    ModelState.AddModelError("Password", "Невірний ключ. Спробуйте увійти за допомогою логіна або зареєструватись.");
-                else
-                    return await Login(user, returnUrl, model.IsPersistent);
-            }
-            ViewBag.returnUrl = returnUrl;
-            return View("Login", model);
         }
 
         protected async Task<ActionResult> Login(User user, string returnUrl = null, bool isPersistent = false)
@@ -154,8 +135,20 @@ namespace AskGenerator.Mvc.Controllers
                     return View(model);
                 }
 
-                model.Email = TransformEmail(model.Email);
-                var user = Map<RegistrationModel, User>(model);
+                User user = null;
+                if(!student.AccountId.IsEmpty())
+                    user = await Manager.FindByIdAsync(student.AccountId);
+
+                if (user != null)
+                {
+                    user.GroupId = model.GroupId;
+                    user.Email = model.Email;
+                }
+                else
+                {
+                    model.Email = TransformEmail(model.Email);
+                    user = Map<RegistrationModel, User>(model);
+                }
                 user.StudentId = student.Id;
 
                 IdentityResult result = await Manager.CreateAsync(user, model.Password);

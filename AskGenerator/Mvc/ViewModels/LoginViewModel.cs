@@ -21,7 +21,6 @@ namespace AskGenerator.ViewModels
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(R))]
         [StringLength(7, MinimumLength = 7, ErrorMessageResourceName = "ExactLenghtError", ErrorMessageResourceType = typeof(R))]
         [Display(Name = "Key", ResourceType = typeof(R))]
         public string Key { get; set; }
