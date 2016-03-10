@@ -264,7 +264,7 @@
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Content\Admin.css" />
-    <Content Include="Css\img\a2.png" />
+    <Content Include="Css\img\ArrowUp.png" />
     <Content Include="Css\img\expander-minus.png" />
     <Content Include="Css\img\expander-plus.png" />
     <Content Include="Content\FE.css" />
@@ -1824,6 +1824,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\board.js" />
     <Content Include="Scripts\admin\students.js" />
+    <Content Include="Scripts\scroll.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\students.js" />

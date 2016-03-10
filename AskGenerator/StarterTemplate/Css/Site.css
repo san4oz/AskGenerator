@@ -189,9 +189,10 @@ body {
     .main-footer a.up {
         content: '';
         display: inline-block;
-        background: url('/Css/img/a1.png') no-repeat;
-        width: 36px;
-        height: 36px;
+        background: url('/Css/img/ArrowUp.png') no-repeat;
+        background-size: cover;
+        width: 47px;
+        height: 47px;
         vertical-align: text-top;
         padding-bottom: 5px;
     }
