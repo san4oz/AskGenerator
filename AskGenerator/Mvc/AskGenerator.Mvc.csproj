@@ -188,7 +188,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\CreateStudentViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\GroupLoginKeys.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

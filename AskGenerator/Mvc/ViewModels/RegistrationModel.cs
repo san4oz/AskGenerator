@@ -24,7 +24,7 @@ namespace AskGenerator.ViewModels
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Group", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "Group", ResourceType = typeof(R))]
         [UIHint("GroupSelector")]
         public string GroupId { get; set; }
 

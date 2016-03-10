@@ -10,23 +10,29 @@ using System.Web;
 
 namespace AskGenerator.ViewModels
 {
+    using R = Resources.Resource;
     public class StudentViewModel : BaseViewModel, IMapFrom<Student>
     {
-        [Display(Name = "FirstName", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "FirstName", ResourceType = typeof(R))]
         public string FirstName { get; set; }
 
-        [Display(Name = "LastName", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "LastName", ResourceType = typeof(R))]
         public string LastName { get; set; }
 
-        [Display(Name = "Group", ResourceType = typeof(Resources.Resource))]
+        [Required]
+        [Display(Name = "Group", ResourceType = typeof(R))]
+        [UIHint("GroupSelector")]
+        public string GroupId { get; set; }
+
+        [Display(Name = "Group", ResourceType = typeof(R))]
         public GroupViewModel Group { get; set; }
 
         public string Image { get; set; }
 
-        [Display(Name = "Photo", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "Photo", ResourceType = typeof(R))]
         public HttpPostedFileBase ImageFile { get; set; }
 
-        [Display(Name = "Student", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "Student", ResourceType = typeof(R))]
         public string Name 
         {
             get { return string.Format("{0} {1}", FirstName, LastName); }   

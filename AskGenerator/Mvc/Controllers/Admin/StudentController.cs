@@ -39,14 +39,14 @@ namespace AskGenerator.Controllers.Admin
         [HttpGet]
         public ActionResult Create()
         {
-            var viewModel = CreateCompositeModel();
+            var viewModel = new StudentViewModel();
             return View(viewModel);
         }
 
         [HttpPost]
-        public ActionResult Create(CreateStudentViewModel model)
+        public ActionResult Create(StudentViewModel model)
         {
-            var student = DecomposeStudentViewModel(model.Student);
+            var student = DecomposeStudentViewModel(model);
             StudentManager.Create(student);
             return RedirectToAction("List");
         }
@@ -56,8 +56,13 @@ namespace AskGenerator.Controllers.Admin
         [HttpGet]
         public ActionResult Edit(string id)
         {
+            if (id.IsEmpty())
+                return HttpNotFound("Student ID was not specified.");
             var student = Site.StudentManager.Get(id);
-            var model = CreateCompositeModel(id);
+            if(student == null)
+                return HttpNotFound("Student ('{0}') was not specified.".FormatWith(id));
+
+            var model = Map<Student, StudentViewModel>(student);
             return View(model);
         }
 
@@ -179,27 +184,11 @@ namespace AskGenerator.Controllers.Admin
         }
 
         #region private
-        private CreateStudentViewModel CreateCompositeModel(string studentId = null)
-        {
-            StudentViewModel student;
-
-            if (string.IsNullOrEmpty(studentId))
-                student = new StudentViewModel();
-            else
-                student = Map<Student, StudentViewModel>(Site.StudentManager.Get(studentId));
-
-            var groups = Site.GroupManager.All();
-            var groupViewModels = Map<IList<Group>, IList<GroupViewModel>>(groups);
-            var viewModel = new CreateStudentViewModel();
-            viewModel.Student = student;
-            viewModel.Groups = groupViewModels;
-            return viewModel;
-        }
-
+        
         private Student DecomposeStudentViewModel(StudentViewModel Student)
         {
             var student = Map<StudentViewModel, Student>(Student);
-            var group = Site.GroupManager.Get(Student.Group.Id);
+            var group = Site.GroupManager.Get(Student.GroupId);
             student.Group = group;
             student.Image = SaveImage(Student.ImageFile, Student.Id).Or(Student.Image);
             return student;

@@ -1,4 +1,4 @@
-﻿@model AskGenerator.ViewModels.CreateStudentViewModel
+﻿@model AskGenerator.ViewModels.StudentViewModel
 
 @{
     ViewBag.Title = @Resources.Resource.EditStudent;
@@ -16,36 +16,35 @@
                 {
                     <fieldset>
                         <legend>@Resources.Resource.EditStudent</legend>
-                        @Html.HiddenFor(x => x.Student.Id)
+                        @Html.HiddenFor(x => x.Id)
                         <div class="form-group">
-                            @Html.LabelFor(x => x.Student.FirstName, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            @Html.LabelFor(x => x.FirstName, htmlAttributes: new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
-                                @Html.TextBoxFor(x => x.Student.FirstName, htmlAttributes: new { @clas = "form-control" })
+                                @Html.TextBoxFor(x => x.FirstName, htmlAttributes: new { @clas = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(x => x.Student.LastName, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            @Html.LabelFor(x => x.LastName, htmlAttributes: new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
-                                @Html.TextBoxFor(x => x.Student.LastName, htmlAttributes: new { @clas = "form-control" })
+                                @Html.TextBoxFor(x => x.LastName, htmlAttributes: new { @clas = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(x => x.Student.Group, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            @Html.LabelFor(x => x.GroupId, htmlAttributes: new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
-                                @Html.DropDownListFor(x => x.Student.Group.Id,
-                                    new List<SelectListItem>(Model.Groups.Select(x => new SelectListItem() { Text = x.Name, Value = x.Id })),
-                                                                new { @class = "chzn-select", style = "width: 150px" })
+                                @Html.EditorFor(x => x.GroupId)
                             </div>
+                            @Html.ValidationMessageFor(x => x.GroupId, null, htmlAttributes: new { @class = "col-lg-10" })
                         </div>
 
-                        @if(!Model.Student.Image.IsNullOrWhiteSpace()){
-                            <img src="@Model.Student.Image" alt="@Model.Student.Image.Split('/').Last()" style ="float:right; max-width:@maxSize; max-height:@maxSize;"/>
+                        @if(!Model.Image.IsNullOrWhiteSpace()){
+                            <img src="@Model.Image" alt="@Model.Image.Split('/').Last()" style ="float:right; max-width:@maxSize; max-height:@maxSize;"/>
                         }
                         <div class="form-group">
-                            @Html.LabelFor(x => x.Student.ImageFile, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            @Html.LabelFor(x => x.ImageFile, htmlAttributes: new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
-                                @Html.TextBoxFor(x => x.Student.ImageFile, new { type = "file"})
-                                @Html.HiddenFor(x => x.Student.Image)
+                                @Html.TextBoxFor(x => x.ImageFile, new { type = "file"})
+                                @Html.HiddenFor(x => x.Image)
                             </div>
                         </div>
 
@@ -62,8 +61,8 @@
 {
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#Student_Group_Id").select2({
-                placeholder: @Resources.Resource.SelectGroup,
+            $("#GroupId").select2({
+                placeholder: '@Resources.Resource.SelectGroup',
                 width: 400
             });
         });
