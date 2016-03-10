@@ -146,12 +146,14 @@ namespace AskGenerator.Controllers.Admin
         public async Task<ActionResult> ResetAccountKeys()
         {
             var list = await StudentManager.AllAsync();
+            var users = UserManager.Users.ToDictionary(u => u.Id);
             var i = 0;
             foreach (var s in list.Shuffle())
             {
-                if (s.AccountId.IsEmpty())
+                var user = users.GetOrDefault(s.AccountId);
+                if (user == null)
                 {
-                    var user = new User(s.Group.Id, s.Id);
+                    user = new User(s.Group.Id, s.Id);
                     user.GenerateLoginKey(i);
                     var result = await UserManager.CreateAsync(user);
                     if (result.Succeeded)
@@ -166,7 +168,6 @@ namespace AskGenerator.Controllers.Admin
                 }
                 else
                 {
-                    var user = await UserManager.FindByIdAsync(s.AccountId);
                     user.GenerateLoginKey(i);
                     var result = await UserManager.UpdateAsync(user);
                     if (!result.Succeeded)

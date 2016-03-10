@@ -10,6 +10,8 @@ namespace System
     {
         public static TValue GetOrDefault<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
         {
+            if (key == null)
+                return default(TValue);
             var t = default(TValue);
             dictionary.TryGetValue(key, out t);
             return t;
