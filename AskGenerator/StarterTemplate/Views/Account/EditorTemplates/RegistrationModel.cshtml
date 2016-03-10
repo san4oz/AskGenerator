@@ -1,38 +1,38 @@
 ﻿@model AskGenerator.ViewModels.RegistrationModel
 
 <div class="form-group">
-    @Html.LabelFor(x => x.Email, htmlAttributes: new { @class = "col-md-6 control-label" })
-    <div class="col-md-6">
+    @Html.LabelFor(x => x.Email, htmlAttributes: new { @class = "col-md-5 control-label" })
+    <div class="col-md-7">
         @Html.EditorFor(x => x.Email)
         @Html.ValidationMessageFor(x => x.Email, null, htmlAttributes: new { @class = "col-xs-12" })
     </div>
 </div>
 <div class="form-group">
-    @Html.LabelFor(x => x.GroupId, htmlAttributes: new { @class = "col-md-6 control-label" })
-    <div class="col-md-6">
+    @Html.LabelFor(x => x.GroupId, htmlAttributes: new { @class = "col-md-5 control-label" })
+    <div class="col-md-7">
         @Html.EditorFor(x => x.GroupId)
         @Html.ValidationMessageFor(x => x.GroupId, null, htmlAttributes: new { @class = "col-xs-12" })
     </div>
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(x => x.LastName, htmlAttributes: new { @class = "col-md-6 control-label" })
-    <div class="col-md-6">
+    @Html.LabelFor(x => x.LastName, htmlAttributes: new { @class = "col-md-5 control-label" })
+    <div class="col-md-7">
         @Html.EditorFor(x => x.LastName)
         @Html.ValidationMessageFor(x => x.LastName, null, htmlAttributes: new { @class = "col-xs-12" })
     </div>
 </div>
 
 <div class="form-group">
-    @Html.LabelFor(x => x.Password, htmlAttributes: new { @class = "col-md-6 control-label" })
-    <div class="col-md-6">
+    @Html.LabelFor(x => x.Password, htmlAttributes: new { @class = "col-md-5 control-label" })
+    <div class="col-md-7">
         @Html.EditorFor(x => x.Password)
         @Html.ValidationMessageFor(x => x.Password, null, htmlAttributes: new { @class = "col-xs-12" })
     </div>
 </div>
 <div class="form-group">
-    @Html.LabelFor(x => x.PasswordConfirm, htmlAttributes: new { @class = "col-md-6 control-label" })
-    <div class="col-md-6">
+    @Html.LabelFor(x => x.PasswordConfirm, htmlAttributes: new { @class = "col-md-5 control-label" })
+    <div class="col-md-7">
         @Html.EditorFor(x => x.PasswordConfirm)
         @Html.ValidationMessageFor(x => x.PasswordConfirm, null, htmlAttributes: new { @class = "col-xs-12" })
     </div>

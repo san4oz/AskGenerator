@@ -433,7 +433,7 @@
     <value>Запам`ятати мене</value>
   </data>
   <data name="ValidLenght" xml:space="preserve">
-    <value>Довжина поля {0} повинна бути від {2}-х до {1}-ти символів</value>
+    <value>Поле {0} повинне бути довжиною від {1}  {2}</value>
   </data>
   <data name="NoRepitPassword" xml:space="preserve">
     <value>Паролі не співпадаюсь</value>
@@ -448,7 +448,7 @@
     <value>Повторіть  пароль</value>
   </data>
   <data name="Required" xml:space="preserve">
-    <value>Поле повинно бути встановлене!</value>
+    <value>Поле {0} повинно бути заповнене</value>
   </data>
   <data name="AboutUs" xml:space="preserve">
     <value>Зв'язок з нами</value>
@@ -479,5 +479,11 @@
   </data>
   <data name="Key" xml:space="preserve">
     <value>Ключ</value>
+  </data>
+  <data name="OrEnterTheKey" xml:space="preserve">
+    <value>Або введіть Ваш ключ</value>
+  </data>
+  <data name="WrongLoginKey" xml:space="preserve">
+    <value>Невірний ключ. Спробуйте увійти за допомогою логіна або зареєструватись.</value>
   </data>
 </root>

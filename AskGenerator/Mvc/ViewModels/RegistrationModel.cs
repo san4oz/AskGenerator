@@ -15,12 +15,12 @@ namespace AskGenerator.ViewModels
         [ScaffoldColumn(false)]
         public override string Id { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(Resources.Resource),
+        [Required(ErrorMessageResourceType = typeof(R),
                   ErrorMessageResourceName = "Required")]
-        [Display(Name = "Email", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "Email", ResourceType = typeof(R))]
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessageResourceName = "RegularAddress",
-                                                                               ErrorMessageResourceType = typeof(Resources.Resource))]
-        [DataType(DataType.EmailAddress)]
+                                                                               ErrorMessageResourceType = typeof(R))]
+        [DataType(DataType.EmailAddress, ErrorMessageResourceName = "RegularAddress", ErrorMessageResourceType = typeof(R))]
         public string Email { get; set; }
 
         [Required]

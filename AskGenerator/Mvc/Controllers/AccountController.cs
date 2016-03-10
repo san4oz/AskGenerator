@@ -60,27 +60,32 @@ namespace AskGenerator.Mvc.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            if (ModelState.IsValid)
+            User user;
+            
+            if (!model.Key.IsEmpty())
+            {
+                var keyError = ModelState.GetOrDefault("Key");
+                if (keyError != null && keyError.Errors.Count == 0)
+                {
+                    ModelState.Clear();
+                    user = await Manager.FindByLoginKeyAsync(model.Key);
+                    if (user == null)
+                    {
+
+                        ModelState.AddModelError("Key", Resource.WrongLoginKey);
+                    }
+                    else
+                        return await Login(user, returnUrl, model.IsPersistent);
+                }
+            }
+            else if (ModelState.IsValid)
             {
                 model.Email = TransformEmail(model.Email);
-                var user = await Manager.FindByEmailAsync(model.Email);
+                user = await Manager.FindByEmailAsync(model.Email);
                 if (user == null || !Manager.CheckPassword(user, model.Password))
-                {
                     ModelState.AddModelError("Password", "Невірна електронна адреса чи пароль.");
-                }
                 else
-                {
-                    var identity = await Manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthenticationManager.SignOut();
-                    AuthenticationManager.SignIn(new AuthenticationProperties
-                    {
-                        IsPersistent = model.IsPersistent
-                    }, identity);
-
-                    if (string.IsNullOrEmpty(returnUrl))
-                        return RedirectToAction("Index", "Home");
-                    return Redirect(returnUrl);
-                }
+                    return await Login(user, returnUrl, model.IsPersistent);
             }
             ViewBag.returnUrl = returnUrl;
             return View(model);
@@ -88,31 +93,32 @@ namespace AskGenerator.Mvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(KeyLoginViewModel model, string returnUrl)
+        public async Task<ActionResult> KeyLogin(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 var user = await Manager.FindByLoginKeyAsync(model.Key);
                 if (user == null)
-                {
-                    ModelState.AddModelError("key", "Невірний ключ.");
-                }
+                    ModelState.AddModelError("Password", "Невірний ключ. Спробуйте увійти за допомогою логіна або зареєструватись.");
                 else
-                {
-                    var identity = await Manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthenticationManager.SignOut();
-                    AuthenticationManager.SignIn(new AuthenticationProperties
-                    {
-                        IsPersistent = false
-                    }, identity);
-
-                    if (string.IsNullOrEmpty(returnUrl))
-                        return RedirectToAction("Index", "Home");
-                    return Redirect(returnUrl);
-                }
+                    return await Login(user, returnUrl, model.IsPersistent);
             }
             ViewBag.returnUrl = returnUrl;
-            return View(model);
+            return View("Login", model);
+        }
+
+        protected async Task<ActionResult> Login(User user, string returnUrl = null, bool isPersistent = false)
+        {
+            var identity = await Manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignOut();
+            AuthenticationManager.SignIn(new AuthenticationProperties
+            {
+                IsPersistent = isPersistent
+            }, identity);
+
+            if (string.IsNullOrEmpty(returnUrl))
+                return RedirectToAction("Index", "Home");
+            return Redirect(returnUrl);
         }
 
         public ActionResult Logout()

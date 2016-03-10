@@ -1,7 +1,6 @@
 ﻿@model AskGenerator.ViewModels.LoginViewModel
-
 @{
-    ViewBag.Title = @Resources.Resource.LogIn;
+    ViewBag.Title = @Resource.LogIn;
 }
 
 <div class="col-md-offset-3 col-md-6 min-form">
@@ -17,9 +16,24 @@
                         <legend></legend>
                         @Html.ValidationSummary(true)
                         @Html.EditorForModel()
-                        <div class="col-md-offset-6 col-md-6">
-                            <button type="submit" class="btn btn-primary">@Resources.Resource.LogIn </button>
-                            <button type="reset" class="btn btn-default">@Resources.Resource.Clean</button>
+                        <div class="col-md-offset-5 col-md-7">
+                            <button type="submit" class="btn btn-primary">@Resource.LogIn </button>
+                            <button type="reset" class="btn btn-default">@Resource.Clean</button>
+                        </div>
+                    </fieldset>
+            }
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <fieldset>
+                        <legend>@Resource.OrEnterTheKey</legend>
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Key, htmlAttributes: new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(x => x.Key)
+                                <button type="submit" class="btn btn-primary">@Resource.LogIn </button>
+                                @Html.ValidationMessageFor(x => x.Key, null, htmlAttributes: new { @class = "col-xs-12" })
+                            </div>
                         </div>
                     </fieldset>
             }

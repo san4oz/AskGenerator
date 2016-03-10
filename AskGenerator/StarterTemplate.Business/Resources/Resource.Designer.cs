@@ -781,6 +781,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Або введіть Ваш ключ.
+        /// </summary>
+        public static string OrEnterTheKey {
+            get {
+                return ResourceManager.GetString("OrEnterTheKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Пароль.
         /// </summary>
         public static string Password {
@@ -925,7 +934,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Поле повинно бути встановлене!.
+        ///   Ищет локализованную строку, похожую на Поле {0} повинно бути заповнене.
         /// </summary>
         public static string Required {
             get {
@@ -1096,7 +1105,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Довжина поля {0} повинна бути від {2}-х до {1}-ти символів.
+        ///   Ищет локализованную строку, похожую на Поле {0} повинне бути довжиною від {1}  {2}.
         /// </summary>
         public static string ValidLenght {
             get {
@@ -1137,6 +1146,15 @@ namespace Resources {
         public static string workforyou {
             get {
                 return ResourceManager.GetString("workforyou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Невірний ключ. Спробуйте увійти за допомогою логіна або зареєструватись..
+        /// </summary>
+        public static string WrongLoginKey {
+            get {
+                return ResourceManager.GetString("WrongLoginKey", resourceCulture);
             }
         }
         
