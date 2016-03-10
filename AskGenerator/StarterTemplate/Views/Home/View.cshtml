@@ -10,12 +10,12 @@
                 {{option.label}}
             </h3>
             <div class="answer-title-bar">
-                <span class="first-range h6">{{option.low}}</span>
-                <span class="first-range h6">{{option.hight}}</span>
+                <span class="first-range h4">{{option.low}}</span>
+                <span class="first-range h4">{{option.hight}}</span>
             </div>
         </div>
         <div class="row votes answer teachers-voit">
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-7  " ng-repeat="teacher in option.teachers">
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-7  teacher-item-wrapper-first" ng-repeat="teacher in option.teachers">
                 <div class="teacher-item-wrapper">
                     <div class="teacher-item">
                         <div class="teacher-img" ng-style="{'background': 'url(' + teacher.image+ ')' + ' no-repeat center top / cover'}">

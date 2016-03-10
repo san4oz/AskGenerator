@@ -1,6 +1,7 @@
 body {
     background-color: #f2f2f2;
     padding-top: 60px;
+    background-color: #ccc;
 }
 
 h1 {
@@ -46,7 +47,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .teacher-tile-wrapper {
-    margin-top: 30px;
+    margin: 20px 0 10px 0;
 }
 
 .teacher-tile .badges {
@@ -141,6 +142,10 @@ h1, h2, h3, h4, h5, h6,
     background: rgba(0,0,0,0.04);
 }
 
+.even{
+    position: relative;
+    background: #eee;
+}
 .votes {
     margin-bottom: 10px;
     display: none;
@@ -201,11 +206,13 @@ h4.teacher-title {
     -moz-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    background-color: #ccc;
 }
-
+.teacher-item-wrapper-first{
+     margin: 10px 0;
+}
 .teacher-item-wrapper {
     background-color: white;
-    margin-top: 10px;
     border-radius: 2px;
     overflow: hidden;
     height: 100%;
@@ -224,6 +231,8 @@ h4.teacher-title {
     display: block;
     position: relative;
     height: 20px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
     .answer-title-bar > *:first-child {
@@ -371,4 +380,8 @@ a.help {
         right: 0;
         top: 0;
         bottom: 0;
+    }
+
+    .container > .row{
+        background-color: #ccc;
     }
