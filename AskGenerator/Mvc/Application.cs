@@ -31,6 +31,13 @@ namespace AskGenerator.Mvc
             AutoMapperConfig.Configure();
             SetModelBinders();
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
+
+        }
+
+        protected void OnBefore(object sender, EventArgs e)
+        {
+            var x = 1 + 1;
+            Console.WriteLine(x);
         }
 
         private void SetModelBinders()

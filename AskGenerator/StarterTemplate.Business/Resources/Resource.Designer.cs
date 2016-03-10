@@ -349,6 +349,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Поле повинне {0} бути довжиною {1}.
+        /// </summary>
+        public static string ExactLenghtError {
+            get {
+                return ResourceManager.GetString("ExactLenghtError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Facebook.
         /// </summary>
         public static string facebook {
@@ -489,6 +498,15 @@ namespace Resources {
         public static string IsPersistent {
             get {
                 return ResourceManager.GetString("IsPersistent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Ключ.
+        /// </summary>
+        public static string Key {
+            get {
+                return ResourceManager.GetString("Key", resourceCulture);
             }
         }
         

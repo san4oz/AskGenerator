@@ -202,6 +202,7 @@
     <Compile Include="ViewModels\Teacher\BoardViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\VotingViewModel.cs" />
+    <Compile Include="ViewModels\KeyLoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

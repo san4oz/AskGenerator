@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -40,6 +41,20 @@ namespace AskGenerator.DataProvider
                 user.Id = Guid.NewGuid().ToString();
 
             return base.CreateAsync(user, password);
+        }
+
+        public virtual User FindByLoginKey(string key)
+        {
+            if (key.IsEmpty())
+                return null;
+            return this.Users.SingleOrDefault(u => u.LoginKey == key);
+        }
+
+        public virtual Task<User> FindByLoginKeyAsync(string key)
+        {
+            if (key.IsEmpty())
+                return null;
+            return Task.Factory.StartNew(() => FindByLoginKey(key));
         }
     }
 }

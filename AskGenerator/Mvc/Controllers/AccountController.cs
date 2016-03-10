@@ -86,6 +86,35 @@ namespace AskGenerator.Mvc.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(KeyLoginViewModel model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await Manager.FindByLoginKeyAsync(model.Key);
+                if (user == null)
+                {
+                    ModelState.AddModelError("key", "Невірний ключ.");
+                }
+                else
+                {
+                    var identity = await Manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    AuthenticationManager.SignOut();
+                    AuthenticationManager.SignIn(new AuthenticationProperties
+                    {
+                        IsPersistent = false
+                    }, identity);
+
+                    if (string.IsNullOrEmpty(returnUrl))
+                        return RedirectToAction("Index", "Home");
+                    return Redirect(returnUrl);
+                }
+            }
+            ViewBag.returnUrl = returnUrl;
+            return View(model);
+        }
+
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();

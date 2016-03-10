@@ -33,6 +33,7 @@ namespace AskGenerator.Business.Entities
         public string StudentId { get; set; }
 
         [MaxLength(8)]
+        [Index(IsUnique=true)]
         public string LoginKey { get; set; }
 
         public Group Group { get; set; }
