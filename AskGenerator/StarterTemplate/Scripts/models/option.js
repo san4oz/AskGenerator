@@ -2,6 +2,8 @@
     var self = this;
     self.id = option.id;
     self.label = option.label;
+    self.low = option.low;
+    self.hight = option.hight;
     self.teachers = [];
     self.collapsed = true;
     self.voted = 0;

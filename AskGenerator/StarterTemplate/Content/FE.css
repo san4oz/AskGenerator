@@ -5,6 +5,12 @@ body {
 
 h1 {
     margin-bottom: 5px;
+    
+}
+h1,h2,h3,h4,h5,h6,
+.h1,.h2,.h3,.h4,.h5,.h6{
+    font-family: 'PT Serif','PT Serif1', serif !important;
+    font-weight: bold ;
 }
 
 .container {
@@ -19,24 +25,28 @@ h1 {
     position: relative;
 }
 
-#teacherBoard {
+#teacherBoard, #TeachersVote {
     text-align: center;
 }
 
-    #teacherBoard .teacher-tile {
+    #teacherBoard .teacher-tile,
+    #TeachersVote .teacher-tile{
         display: inline-block;
-        margin: 10px 0;
         position: relative;
         width: 100%;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     }
 
 @media (max-width: 767px) {
-    #teacherBoard .teacher-tile-wrapper {
+    #teacherBoard .teacher-tile-wrapper,
+      #TeachersVote .teacher-tile-wrapper {
         float: unset;
         margin: 0 auto;
     }
 }
-
+.teacher-tile-wrapper{
+    margin-top: 30px;
+}
 .teacher-tile .badges {
     position: absolute;
     left: 10px;
@@ -135,13 +145,9 @@ h1 {
 }
 
 .option {
-    font-size: 20px;
-    padding: 20px 20px 20px 5px;
+    padding: 10px;
     color: black;
     cursor: pointer;
-    font-family: georgia,serif;
-    font-weight: normal;
-    font-style: italic;
     text-align: center;
 }
 
@@ -157,21 +163,18 @@ h1 {
     cursor: pointer;
 }
 
-.teacher-item .teacher-tile {
-    height: 140px;
-    margin-bottom: 5px;
-    overflow: hidden;
-}
-
 .votes-options {
     text-align: center;
+    margin: 2px 0;
 }
 
     .votes-options .btn {
         display: inline-block;
         max-width: 50%;
     }
-
+    h4.teacher-title{
+        margin: 5px;
+    }
 .teacher-img {
     background-position: center top;
     background-repeat: no-repeat;
@@ -185,9 +188,45 @@ h1 {
     .teacher-img::before {
         content: "";
         display: block;
-        padding-top: 60% !important;
+        padding-top: 100% !important;
     }
 
+    .teachers-voit{
+        display: flex;
+    -webkit-flex-wrap: wrap ;
+    -moz-flex-wrap: wrap ;
+    -ms-flex-wrap: wrap ;
+    flex-wrap: wrap;
+    }
+    .teacher-item-wrapper{
+         background-color: white;
+        margin-top: 10px;
+        border-radius: 2px;
+        overflow: hidden;
+        height: 100%;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+    .black-line{
+        height: 5px;
+        display: block;
+        width: 100%;
+        background-color: black;
+    }
+    .answer-title-bar{
+        width: 100%;
+        display: block;
+        position: relative;
+        height: 20px;
+    }
+    .answer-title-bar >*:first-child{
+        position: absolute;
+        left: 20px;
+        top: 0;
+    }
+    .answer-title-bar >*:last-child{
+        position: absolute;
+        right: 20px;
+    }
 .teacher-item {
     border-right: 1px inset lightgray;
     margin-top: 0;
@@ -216,19 +255,18 @@ hr {
 }
 
 .point {
-    border: 2px solid red;
+    border: 2px solid #f3a709;
     cursor: pointer;
     height: 0;
     margin: 0;
     overflow: hidden; /*to*/
-    text-indent: 100%; /*hide*/
     white-space: nowrap; /*text*/
     width: 9%;
     padding-top: 15%;
 }
 
     .point.active {
-        background-color: green;
+        background-color: yellow;
     }
 
     .point.odd {
@@ -243,7 +281,6 @@ hr {
         margin-right: 1px !important;
         border-left: none;
     }
-
 .collapse-mark {
     display: inline-block;
     text-align: center;
