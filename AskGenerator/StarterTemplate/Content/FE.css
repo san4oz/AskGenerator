@@ -5,12 +5,12 @@ body {
 
 h1 {
     margin-bottom: 5px;
-    
 }
-h1,h2,h3,h4,h5,h6,
-.h1,.h2,.h3,.h4,.h5,.h6{
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'PT Serif','PT Serif1', serif !important;
-    font-weight: bold ;
+    font-weight: bold;
 }
 
 .container {
@@ -30,23 +30,25 @@ h1,h2,h3,h4,h5,h6,
 }
 
     #teacherBoard .teacher-tile,
-    #TeachersVote .teacher-tile{
+    #TeachersVote .teacher-tile {
         display: inline-block;
         position: relative;
         width: 100%;
-            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     }
 
 @media (max-width: 767px) {
     #teacherBoard .teacher-tile-wrapper,
-      #TeachersVote .teacher-tile-wrapper {
+    #TeachersVote .teacher-tile-wrapper {
         float: unset;
         margin: 0 auto;
     }
 }
-.teacher-tile-wrapper{
+
+.teacher-tile-wrapper {
     margin-top: 30px;
 }
+
 .teacher-tile .badges {
     position: absolute;
     left: 10px;
@@ -172,9 +174,11 @@ h1,h2,h3,h4,h5,h6,
         display: inline-block;
         max-width: 50%;
     }
-    h4.teacher-title{
-        margin: 5px;
-    }
+
+h4.teacher-title {
+    margin: 5px;
+}
+
 .teacher-img {
     background-position: center top;
     background-repeat: no-repeat;
@@ -191,42 +195,48 @@ h1,h2,h3,h4,h5,h6,
         padding-top: 100% !important;
     }
 
-    .teachers-voit{
-        display: flex;
-    -webkit-flex-wrap: wrap ;
-    -moz-flex-wrap: wrap ;
-    -ms-flex-wrap: wrap ;
+.teachers-voit {
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    }
-    .teacher-item-wrapper{
-         background-color: white;
-        margin-top: 10px;
-        border-radius: 2px;
-        overflow: hidden;
-        height: 100%;
-            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-    }
-    .black-line{
-        height: 5px;
-        display: block;
-        width: 100%;
-        background-color: black;
-    }
-    .answer-title-bar{
-        width: 100%;
-        display: block;
-        position: relative;
-        height: 20px;
-    }
-    .answer-title-bar >*:first-child{
+}
+
+.teacher-item-wrapper {
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 2px;
+    overflow: hidden;
+    height: 100%;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.black-line {
+    height: 5px;
+    display: block;
+    width: 100%;
+    background-color: black;
+}
+
+.answer-title-bar {
+    width: 100%;
+    display: block;
+    position: relative;
+    height: 20px;
+}
+
+    .answer-title-bar > *:first-child {
         position: absolute;
         left: 20px;
         top: 0;
     }
-    .answer-title-bar >*:last-child{
+
+    .answer-title-bar > *:last-child {
         position: absolute;
         right: 20px;
     }
+
 .teacher-item {
     border-right: 1px inset lightgray;
     margin-top: 0;
@@ -281,6 +291,7 @@ hr {
         margin-right: 1px !important;
         border-left: none;
     }
+
 .collapse-mark {
     display: inline-block;
     text-align: center;
