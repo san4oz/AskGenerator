@@ -264,7 +264,7 @@
     <Content Include="Css\bootstrap.css" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Content\Admin.css" />
-    <Content Include="Css\img\a1.png" />
+    <Content Include="Css\img\a2.png" />
     <Content Include="Css\img\expander-minus.png" />
     <Content Include="Css\img\expander-plus.png" />
     <Content Include="Content\FE.css" />
