@@ -433,7 +433,7 @@
     <value>Запам`ятати мене</value>
   </data>
   <data name="ValidLenght" xml:space="preserve">
-    <value>Поле '{0}' повинне бути довжиною від {1} до {2}</value>
+    <value>Поле '{0}' повинне бути довжиною від {2} до {1}</value>
   </data>
   <data name="NoRepitPassword" xml:space="preserve">
     <value>Паролі не співпадаюсь</value>
