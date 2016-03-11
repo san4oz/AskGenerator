@@ -15,7 +15,6 @@ namespace AskGenerator.Business.Entities
         public User()
         {
             Id = Guid.NewGuid().ToString();
-            LoginKey = Guid.NewGuid().ToString("N").Substring(0, 8);
         }
 
         public User(string groupId, string studentId)

@@ -155,6 +155,7 @@ namespace AskGenerator.Mvc.Controllers
                 {
                     model.Email = TransformEmail(model.Email);
                     user = Map<RegistrationModel, User>(model);
+                    user.LoginKey = Guid.NewGuid().ToString("N").Substring(0, 8);
                 }
                 user.StudentId = student.Id;
 
