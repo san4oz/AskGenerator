@@ -238,9 +238,14 @@ namespace AskGenerator.Mvc.Controllers
         protected Dictionary<string, string> CreateConfirmTags(string id)
         {
             var result = new Dictionary<string, string>();
-            result.Add("siteURL", "http://google.com.ua");
-            result.Add("siteName", "Evaluate google");
+            result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
+            result.Add("siteName", "Evaluate");
             result.Add("confirmURL", HttpContext.Request.Url.GetLeftPart(UriPartial.Authority).TrimEnd('/') + Url.Action("Confirm", new { id = id }));
+            result.Add("vkURL", @Resource.vkURL);
+            result.Add("fbURL", @Resource.fbURL);
+            result.Add("vkdekURL", @Resource.vkdekURL);
+            result.Add("nomURL", @Resource.nomURL);
+            result.Add("bestURL", @Resource.bestURL);
 
             return result;
         }

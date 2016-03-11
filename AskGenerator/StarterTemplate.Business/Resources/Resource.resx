@@ -492,4 +492,19 @@
   <data name="Voting" xml:space="preserve">
     <value>Голосування</value>
   </data>
+  <data name="bestURL" xml:space="preserve">
+    <value>http://halloffame-networkofmentors.rhcloud.com/</value>
+  </data>
+  <data name="fbURL" xml:space="preserve">
+    <value>https://www.facebook.com/semka148</value>
+  </data>
+  <data name="nomURL" xml:space="preserve">
+    <value>http://nom-http://nom-networkofmentors.rhcloud.com/</value>
+  </data>
+  <data name="vkdekURL" xml:space="preserve">
+    <value>https://vk.com/dekanatfikt</value>
+  </data>
+  <data name="vkURL" xml:space="preserve">
+    <value>https://vk.com/semka148</value>
+  </data>
 </root>

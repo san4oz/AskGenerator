@@ -160,6 +160,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на http://halloffame-networkofmentors.rhcloud.com/.
+        /// </summary>
+        public static string bestURL {
+            get {
+                return ResourceManager.GetString("bestURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Дошка.
         /// </summary>
         public static string Board {
@@ -363,6 +372,15 @@ namespace Resources {
         public static string facebook {
             get {
                 return ResourceManager.GetString("facebook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на https://www.facebook.com/semka148.
+        /// </summary>
+        public static string fbURL {
+            get {
+                return ResourceManager.GetString("fbURL", resourceCulture);
             }
         }
         
@@ -732,6 +750,15 @@ namespace Resources {
         public static string nom {
             get {
                 return ResourceManager.GetString("nom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на http://nom-http://nom-networkofmentors.rhcloud.com/.
+        /// </summary>
+        public static string nomURL {
+            get {
+                return ResourceManager.GetString("nomURL", resourceCulture);
             }
         }
         
@@ -1119,6 +1146,24 @@ namespace Resources {
         public static string vk {
             get {
                 return ResourceManager.GetString("vk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на https://vk.com/dekanatfikt.
+        /// </summary>
+        public static string vkdekURL {
+            get {
+                return ResourceManager.GetString("vkdekURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на https://vk.com/semka148.
+        /// </summary>
+        public static string vkURL {
+            get {
+                return ResourceManager.GetString("vkURL", resourceCulture);
             }
         }
         

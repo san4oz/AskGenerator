@@ -144,14 +144,14 @@
 &lt;p&gt;Якщо ви не проходили реєстрацію просто ігноруйте це повідомлення.&lt;/p&gt;
 .&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
 
-                        &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Відвідайте також сайт на якому відображаються результати оцінювання кращих студентів викладачами &lt;a href="http://BEST.ztu.edu"&gt;BEST.ztu.edu.ua&lt;/a&gt;. Також вступайте в співтовариство &amp;quot;&lt;a href="https://vk.com/dekanatfikt"&gt;Студентське життя ФІКТ&lt;/a&gt;&amp;quot;!&amp;nbsp;&lt;br /&gt;
+                        &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Відвідайте також сайт на якому відображаються результати оцінювання кращих студентів викладачами &lt;a href="[bestURL]"&gt;BEST.ztu.edu.ua&lt;/a&gt;. Також вступайте в співтовариство &amp;quot;&lt;a href="[vkdekURL]"&gt;Студентське життя ФІКТ&lt;/a&gt;&amp;quot;!&amp;nbsp;&lt;br /&gt;
                         &lt;br /&gt;
                         З повагою,&amp;nbsp;&lt;br /&gt;
                         &lt;br /&gt;
                         Адміністрація сайту!&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
 
                         &lt;p&gt;&lt;br /&gt;
-                        &lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&lt;a href="http://nom-networkofmentors.rhcloud.com/" target="_blank"&gt;nom.ztu.edu.ua&lt;/a&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+                        &lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&lt;a href="[nomURL]" target="_blank"&gt;nom.ztu.edu.ua&lt;/a&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
 
                         &lt;table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" id="RMCLRRHIfooter" style="border-collapse:collapse;" width="100%"&gt;
                           &lt;tbody&gt;
@@ -171,9 +171,9 @@
 
 &lt;p&gt;&lt;a  href="http://nom-networkofmentors.rhcloud.com" target="_blank"&gt;&lt;img alt="EvaluateFooterLogo" border="0"  src="http://ztu-fikt.azurewebsites.net/Css/img/logo_nom1.jpg" style="margin: 0px; padding: 0px; outline: 0px; width: 48px; height: 48px;" title="EvaluateFooterLogo" width="110" /&gt;&lt;/a&gt;
 
-&lt;a  href="https://www.facebook.com/semka148" target="_blank"&gt;&lt;img alt="facebook.com/semka148" border="0"  src="https://www.facebook.com/images/fb_icon_325x325.png" style="margin: 0px; padding: 0px; outline: 0px; width: 48px; height: 48px;" title="facebook.com/semka148" width="110" /&gt;&lt;/a&gt;
+&lt;a  href="[fbURL]" target="_blank"&gt;&lt;img alt="facebook.com/semka148" border="0"  src="https://www.facebook.com/images/fb_icon_325x325.png" style="margin: 0px; padding: 0px; outline: 0px; width: 48px; height: 48px;" title="facebook.com/" width="110" /&gt;&lt;/a&gt;
 
-&lt;a  href="https://vk.com/semka148" target="_blank"&gt;&lt;img alt="vk.com/semka148" border="0"  src="https://trade-groups.ru/images/vk-group.png" style="margin: 0px; padding: 0px; outline: 0px; width: 48px; height: 48px;" title="vk.com/semka148" width="110" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;a  href="[vkURL]" target="_blank"&gt;&lt;img alt="vk.com/semka148" border="0"  src="https://trade-groups.ru/images/vk-group.png" style="margin: 0px; padding: 0px; outline: 0px; width: 48px; height: 48px;" title="vk.com/semka148" width="110" /&gt;&lt;/a&gt;&lt;/p&gt;
 
                               &lt;p&gt;або по телефону:&lt;br /&gt;
                               +3 8(097) 87 30 150&lt;br /&gt;
