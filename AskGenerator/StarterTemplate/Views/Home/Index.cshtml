@@ -1,10 +1,9 @@
 ﻿@{
-    ViewBag.Title = @Resources.Resource.IndexHeader;
+    ViewBag.Title = @Resource.Voting;
 }
 
-
-@Scripts.Render("~/Scripts/angular/angular.min.js")
-@Scripts.Render("~/Scripts/angular/angular-route.min.js")
+@Scripts.Render("~/bundles/angular")
+@Html.AntiForgeryToken()
 <div ng-app="TeachersVote" id="TeachersVote">
     <div ng-view id="view" class="container loading popover">
     </div>

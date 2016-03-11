@@ -58,9 +58,27 @@
             });
         });
     };
+
+    var initScroll = function () {
+        var toTop = $('#toTop');
+        $(window).scroll(function () {
+            $(this).scrollTop() != 0 ? toTop.fadeIn() : toTop.fadeOut();
+        });
+
+        toTop.click(function (e) {
+            e.preventDefault();
+            $('body, html').animate({ scrollTop: 0 }, 800);
+        });
+    };
+
+    self.init = function () {
+        initScroll();
+        self.initDelete();
+    };
+
     return self;
 })();
 
 $(function () {
-    Controls.initDelete();
+    Controls.init();
 });

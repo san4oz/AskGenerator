@@ -205,7 +205,7 @@
     <value>Поле "Ім'я" повино бути заповнене</value>
   </data>
   <data name="Generator" xml:space="preserve">
-    <value>Генератор</value>
+    <value>Evaluator</value>
   </data>
   <data name="Group" xml:space="preserve">
     <value>Группа</value>
@@ -328,7 +328,7 @@
     <value>Реєстрація</value>
   </data>
   <data name="RegisterFinish" xml:space="preserve">
-    <value>Ви закінчили реєстрацію, тепер ви можете</value>
+    <value>Ви закінчили реєстрацію, тепер ви можете увiйти</value>
   </data>
   <data name="RegisterUser" xml:space="preserve">
     <value>Реєстрація користувача</value>
@@ -433,7 +433,7 @@
     <value>Запам`ятати мене</value>
   </data>
   <data name="ValidLenght" xml:space="preserve">
-    <value>Поле {0} повинне бути довжиною від {1}  {2}</value>
+    <value>Поле '{0}' повинне бути довжиною від {1} до {2}</value>
   </data>
   <data name="NoRepitPassword" xml:space="preserve">
     <value>Паролі не співпадаюсь</value>
@@ -448,7 +448,7 @@
     <value>Повторіть  пароль</value>
   </data>
   <data name="Required" xml:space="preserve">
-    <value>Поле {0} повинно бути заповнене</value>
+    <value>Поле '{0}' повинно бути заповнене</value>
   </data>
   <data name="AboutUs" xml:space="preserve">
     <value>Зв'язок з нами</value>
@@ -475,7 +475,7 @@
     <value>Перестворити ключі</value>
   </data>
   <data name="ExactLenghtError" xml:space="preserve">
-    <value>Поле повинне {0} бути довжиною {1}</value>
+    <value>Поле повинне '{0}' бути довжиною {1}</value>
   </data>
   <data name="Key" xml:space="preserve">
     <value>Ключ</value>
@@ -488,5 +488,8 @@
   </data>
   <data name="WrongEmailOrPassword" xml:space="preserve">
     <value>Невірна електронна адреса чи пароль</value>
+  </data>
+  <data name="Voting" xml:space="preserve">
+    <value>Голосування</value>
   </data>
 </root>

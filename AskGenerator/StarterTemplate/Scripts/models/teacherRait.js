@@ -20,12 +20,13 @@
     self.vote = function (option, $index, token, success) {
         if (confirm('Change vote ?')) {
             var data = { id: self.id, questionId: option, answer: $index + 1, '__RequestVerificationToken': token };
-            $http.post('/home/addAnswer', data).then(function () {
+            $.post('/home/addAnswer', data, function () {
                 self.selected = self.value = $index + 1;
                 if (success)
                     success();
-            }, function () {
-                console.log('Woooops, something going wrong');
+            }).error(function (e) {
+                debugger;
+                console.log('Woooops, something going wrong' + JSON.stringify(e));
             });
         } else {
             self.mouseOut();

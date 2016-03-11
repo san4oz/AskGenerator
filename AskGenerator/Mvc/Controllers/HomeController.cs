@@ -31,19 +31,7 @@ namespace AskGenerator.Mvc.Controllers
             QuestionManager = Site.QuestionManager;
         }
 
-        #region Voting
-        [HttpGet]
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [ActionName("view")]
-        public PartialViewResult NgView()
-        {
-            return PartialView();
-        }
-
+        #region culture
         public ActionResult ChangeCulture(string lang)
         {
             string returnUrl = Request.UrlReferrer.AbsolutePath;
@@ -68,18 +56,33 @@ namespace AskGenerator.Mvc.Controllers
             Response.Cookies.Add(cookie);
             return Redirect(returnUrl);
         }
+        #endregion
 
+        #region Voting
+        [HttpGet]
+        [ActionName("Index")]
+        public ActionResult Vote()
+        {
+            return View();
+        }
+
+        [ActionName("view")]
+        public PartialViewResult NgView()
+        {
+            return PartialView();
+        }
 
         /// <summary>
         /// Gets data for voting page.
         /// </summary>
         /// <returns>Returns data for current user.</returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<JsonResult> NgData()
         {
             if (!User.Identity.IsAuthenticated)
             {
-                return Json(new { url = Url.Action("Login", "Account") }, 403);
+                return Json(new { url = Url.Action("Login", "Account", new {returnUrl = Url.Action("Index") }) }, 403);
             }
             var userId = User.Identity.GetGroupId();
             var group = await Site.GroupManager.GetAsync(userId);
@@ -144,6 +147,7 @@ namespace AskGenerator.Mvc.Controllers
             return View("_Board", model);
         }
 
+        #region protected
         protected Dictionary<string, LimitViewModel> CreateBadges()
         {
             var questions = QuestionManager.List(true);
@@ -197,7 +201,7 @@ namespace AskGenerator.Mvc.Controllers
             return model;
         }
 
-        private List<TeacherDataModel> MapTeachers(Business.Entities.Group group, IEnumerable<IGrouping<string, Business.Entities.Vote>> votes)
+        protected List<TeacherDataModel> MapTeachers(Business.Entities.Group group, IEnumerable<IGrouping<string, Business.Entities.Vote>> votes)
         {
             var teachers = new List<TeacherDataModel>();
             foreach (var teacher in group.Teachers)
@@ -219,6 +223,7 @@ namespace AskGenerator.Mvc.Controllers
             }
             return teachers;
         }
+        #endregion
 
         #region Nested
         public class TeacherDataModel
