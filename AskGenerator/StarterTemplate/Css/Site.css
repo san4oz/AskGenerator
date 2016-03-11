@@ -186,15 +186,16 @@ body {
             vertical-align: text-top;
         }
 
-    .main-footer a.up {
-        content: '';
+    .main-footer .up {
+        background: rgba(0, 0, 0, 0) url("/Css/img/ArrowUp.png") no-repeat scroll 0 0 / cover;
+        border: medium none;
+        border-radius: 100%;
+        content: "";
         display: inline-block;
-        background: url('/Css/img/ArrowUp.png') no-repeat;
-        background-size: cover;
-        width: 47px;
         height: 47px;
-        vertical-align: text-top;
         padding-bottom: 5px;
+        vertical-align: text-top;
+        width: 47px;
     }
 
     /* Common styles for the four color bars */
@@ -315,16 +316,16 @@ section, footer, header, aside {
 }
 
 @page :left {
-  margin-left: 1cm;
+    margin-left: 1cm;
 }
 
 @page :right {
-  margin-left: 1cm;
+    margin-left: 1cm;
 }
 
 @page {
-  size: A4 portrait;
-  margin: 0;
+    size: A4 portrait;
+    margin: 0;
 }
 
 body.print {
@@ -342,7 +343,7 @@ body.print {
     body.print .row {
         background-color: white;
         display: block;
-        position: unset;
+        position: static;
         page-break-after: always;
     }
 
@@ -359,6 +360,7 @@ body.print {
             border-bottom: 1px dashed #888888;
             padding: 2px 5px 1px;
         }
+
 .no-breaks {
     page-break-inside: avoid;
 }

@@ -28,8 +28,8 @@ namespace AskGenerator.App_Start.Routes
 
             routes.MapRoute(
                 name: "Login",
-                url: "login",
-                defaults: new { controller = "Account", action = "Login" }
+                url: "login/{returnUrl}",
+                defaults: new { controller = "Account", action = "Login", returnUrl = UrlParameter.Optional }
             );
 
             routes.MapRoute(
