@@ -72,7 +72,14 @@ namespace AskGenerator.Mvc.Controllers
                     if (user == null)
                         ModelState.AddModelError("Key", Resource.WrongLoginKey);
                     else
+                    {
+                        if (!await CheckCaptcha())
+                        {
+                            ModelState.AddModelError("Key", Resource.ConfirmNoRobot);
+                            return View(model);
+                        }
                         return await Login(user, returnUrl, model.IsPersistent);
+                    }
                 }
             }
             else if (ModelState.IsValid)
