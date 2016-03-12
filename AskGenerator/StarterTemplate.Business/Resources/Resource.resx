@@ -151,7 +151,7 @@
     <value>На вказану вами електронну адресу буде надіслано лист, для закінчення реєстраціі.</value>
   </data>
   <data name="Clean" xml:space="preserve">
-    <value>Чистити</value>
+    <value>Зкинути</value>
   </data>
   <data name="CleanForm" xml:space="preserve">
     <value>Очистити форму</value>
@@ -506,5 +506,8 @@
   </data>
   <data name="vkURL" xml:space="preserve">
     <value>https://vk.com/semka148</value>
+  </data>
+  <data name="NotRegistred" xml:space="preserve">
+    <value>Ще не зареєстровані?</value>
   </data>
 </root>

@@ -14,6 +14,14 @@ h1, h2, h3, h4, h5, h6,
     font-weight: bold;
 }
 
+legend {
+    margin-top: 2px;
+}
+
+    legend.h4 {
+        font-size: 20px;
+    }
+
 .container {
     max-width: 100%;
 }
@@ -27,24 +35,18 @@ h1, h2, h3, h4, h5, h6,
 }
 
 #teacherBoard, #TeachersVote {
+    min-width: 296px;
     text-align: center;
 }
 
     #teacherBoard .teacher-tile,
     #TeachersVote .teacher-tile {
         display: inline-block;
+        overflow: hidden;
         position: relative;
         width: 100%;
         box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     }
-
-@media (max-width: 767px) {
-    #teacherBoard .teacher-tile-wrapper,
-    #TeachersVote .teacher-tile-wrapper {
-        float: unset;
-        margin: 0 auto;
-    }
-}
 
 .teacher-tile-wrapper {
     margin: 20px 0 10px 0;
@@ -113,7 +115,7 @@ h1, h2, h3, h4, h5, h6,
     display: block;
     height: 100px;
     margin: 15px auto;
-    position: unset;
+    position: static;
     width: 100px;
 }
 
@@ -123,9 +125,9 @@ h1, h2, h3, h4, h5, h6,
     background-repeat: no-repeat;
     display: block;
     height: 100px;
-    min-height: 70px;
+    margin-bottom: 5px min-height: 70px;
     min-width: 70px;
-    position: unset;
+    position: static;
     width: 100px;
 }
 
@@ -142,10 +144,11 @@ h1, h2, h3, h4, h5, h6,
     background: rgba(0,0,0,0.04);
 }
 
-.even{
+.even {
     position: relative;
     background: #eee;
 }
+
 .votes {
     margin-bottom: 10px;
     display: none;
@@ -201,6 +204,7 @@ h4.teacher-title {
     }
 
 .teachers-voit {
+    display: inline-flexbox;
     display: flex;
     -webkit-flex-wrap: wrap;
     -moz-flex-wrap: wrap;
@@ -208,9 +212,11 @@ h4.teacher-title {
     flex-wrap: wrap;
     background-color: #ccc;
 }
-.teacher-item-wrapper-first{
-     margin: 10px 0;
+
+.teacher-item-wrapper-first {
+    margin: 10px 0;
 }
+
 .teacher-item-wrapper {
     background-color: white;
     border-radius: 2px;
@@ -235,13 +241,13 @@ h4.teacher-title {
     margin: 0 auto;
 }
 
-    .answer-title-bar > *:first-child {
+    .answer-title-bar > .first-range {
         position: absolute;
         left: 20px;
         top: 0;
     }
 
-    .answer-title-bar > *:last-child {
+    .answer-title-bar > .last-range {
         position: absolute;
         right: 20px;
     }
@@ -336,24 +342,35 @@ a.help {
 }
 
 .min-form {
-    min-width: 255px;
+    min-width: 300px;
     overflow: hidden;
 }
 
     .min-form form {
         overflow: hidden;
+        padding-left: 2px;
+        padding-right: 2px;
     }
 
         .min-form form input {
             width: 80%;
         }
 
+.field-validation-valid {
+    display: none;
+}
+
 .field-validation-error {
     color: #eb1414;
     display: inline-block;
     font-size: 0.9em;
-    padding: 2px 0 0;
+    padding-left: 2px;
 }
+
+    .field-validation-error span {
+        display: inline-block;
+        padding-right: 17%;
+    }
 
 .img-thumbnail {
     position: relative;
@@ -382,6 +399,48 @@ a.help {
         bottom: 0;
     }
 
-    .container > .row{
-        background-color: #ccc;
+.container > .row {
+    background-color: #ccc;
+}
+
+
+@media (max-width: 767px) {
+    .hidden-xs-initial {
+        display: none !important;
     }
+
+    #teacherBoard .teacher-tile-wrapper,
+    #TeachersVote .teacher-tile-wrapper {
+        margin: 5px auto;
+    }
+
+    .option {
+        padding: 4px;
+    }
+
+        .option h3 {
+            border-bottom: 3px dotted;
+            color: #000040;
+            font-size: 22px;
+            padding: 2px;
+        }
+
+    .answer-title-bar > .first-range {
+        font-size: 14px;
+        font-weight: 500;
+        left: -1px;
+    }
+
+    .answer-title-bar > .last-range {
+        font-size: 14px;
+        font-weight: 500;
+        right: -1px;
+    }
+
+    .teacher-tile .img-thumbnail + span {
+        font-size: 14px;
+        height: 1.45em;
+        margin-top: -2.2em;
+        opacity: 0.8;
+    }
+}

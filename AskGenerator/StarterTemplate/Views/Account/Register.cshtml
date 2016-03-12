@@ -10,20 +10,20 @@
             <div class=" bootstrap-admin-box-title h3">@Resources.Resource.Register</div>
         </div>
         <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", id="form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <fieldset>
-                        <legend></legend>
-                        @Html.ValidationSummary(true)
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <fieldset>
+                    <legend></legend>
+                    @Html.ValidationSummary(true)
 
-                        @Html.EditorForModel()
-                    </fieldset>
-                    <div class="col-md-offset-5 col-md-7">
-                        <div id="g-recaptcha"></div>
-                        <button type="submit" id="sendBtn" disabled="disabled" class="btn btn-primary">@Resources.Resource.Save</button>
-                        <button type="reset" class="btn btn-default">@Resources.Resource.CleanForm</button>
-                    </div>
+                    @Html.EditorForModel()
+                </fieldset>
+                <div class="col-md-offset-5 col-md-7" style="padding: 0">
+                    <div id="g-recaptcha"></div>
+                    <button type="submit" id="sendBtn" disabled="disabled" class="btn btn-primary">@Resources.Resource.Save</button>
+                    <button type="reset" class="btn btn-default">@Resources.Resource.CleanForm</button>
+                </div>
             }
         </div>
     </div>

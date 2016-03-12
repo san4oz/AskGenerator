@@ -54,8 +54,8 @@
 }
 
 @helper Footer() {
-    <ul>
-        <li>
+    <ul class="col-xs-12">
+        <li class="col-xs-12 col-sm-4 col-sm-offset-2">
             <p class="reachus">@Resource.AboutUs</p>
             <ul>
                 <li>@Resource.mail</li>
@@ -64,9 +64,9 @@
                 <li>@Resource.phone</li>
             </ul>
         </li>
-        <li>
+        <li class="col-xs-12 col-sm-4">
             <p class="home">@Resource.workforyou</p>
-            <button ID="toTop" class="up"></button>
+            <button id="toTop" class="up"></button>
             <a class="logo" href="http://nom-networkofmentors.rhcloud.com/about">@Resource.nom <i>&copy; 2016 - @DateTime.Now.Year</i></a>
         </li>
     </ul>
