@@ -16,6 +16,7 @@
     var bdClass = ViewBag.BodyClass ?? string.Empty;
 }
 <body class="@bdClass">
+    @RenderSection("GTM", false)
     @RenderSection("NavBar", required: false)
 
     <div class="container">

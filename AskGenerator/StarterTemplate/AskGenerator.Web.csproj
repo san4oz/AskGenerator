@@ -2832,6 +2832,7 @@
     <Content Include="Views\Home\_Board.cshtml" />
     <Content Include="Views\Account\EditorTemplates\RegistrationModel.cshtml" />
     <Content Include="Views\Account\EditorTemplates\LoginViewModel.cshtml" />
+    <Content Include="Views\Shared\_gtm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
