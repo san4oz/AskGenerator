@@ -10,10 +10,8 @@
     self.done = false;
     self.collapse = function () {
         self.collapsed = !self.collapsed;
-        if (self.collapsed) {
-            if (self.voted == self.teachers.length) {
+        if (self.collapsed && self.voted == self.teachers.length) {
                 self.done = true;
-            }
         }
     };
 

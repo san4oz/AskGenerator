@@ -20,6 +20,7 @@
     var sendVote = function (option, $index, token, success) {
         var data = { id: self.id, questionId: option, answer: $index + 1, '__RequestVerificationToken': token };
         $.post('/home/addAnswer', data, function () {
+            GTM.trackVote(self.selected);
             self.selected = self.value = $index + 1;
             if (success)
                 success();
@@ -37,9 +38,12 @@
         });
     }
     self.vote = function (option, $index, token, success) {
+        GTM.trackVoteClick(self.selected);
         if (!self.selected) sendVote(option, $index, token, success);
-        else if (confirm('Change vote ?')) sendVote(option, $index, token, success);
-        else self.mouseOut();
+        else if (self.selected !== self.value) {
+            if (confirm('Change vote ?')) sendVote(option, $index, token, success);
+            else self.mouseOut();
+        }
 
     };
 

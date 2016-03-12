@@ -2420,6 +2420,7 @@
     <Content Include="Scripts\controllers\voteController.js" />
     <Content Include="Scripts\controllers\voteOptions.js" />
     <Content Include="Scripts\controls.js" />
+    <Content Include="Scripts\gtm.js" />
     <Content Include="Scripts\i18n\ar.js" />
     <Content Include="Scripts\i18n\az.js" />
     <Content Include="Scripts\i18n\bg.js" />
