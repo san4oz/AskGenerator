@@ -25,7 +25,15 @@
                 if (success)
                     success();
             }).error(function (e) {
-                debugger;
+                if ((e.status == 403 || e.status == 401) && typeof (e.responseText) != 'string')
+                    location.assign('/login');
+                else {
+                    var response = JSON.parse(e.responseText);
+                    if (response.url)
+                        location.assign(response.url);
+                    else
+                        console.error(e.responseText);
+                }
                 console.log('Woooops, something going wrong' + JSON.stringify(e));
             });
         } else {

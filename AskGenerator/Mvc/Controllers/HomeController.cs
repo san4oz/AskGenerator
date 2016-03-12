@@ -60,6 +60,7 @@ namespace AskGenerator.Mvc.Controllers
 
         #region Voting
         [HttpGet]
+        [Authorize]
         [ActionName("Index")]
         public ActionResult Vote()
         {
