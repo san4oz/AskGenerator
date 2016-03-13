@@ -29,7 +29,7 @@ namespace AskGenerator.DataProvider
         {
             var result = await base.CreateIdentityAsync(user, authenticationType);
 
-            result.AddClaim(new Claim(ClaimTypes.Email, user.Email));
+            result.AddClaim(new Claim(ClaimTypes.Email, user.Email.Or(string.Empty)));
             result.AddClaim(new Claim("GroupId", user.GroupId));
 
             return result;

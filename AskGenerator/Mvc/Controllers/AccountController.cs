@@ -13,6 +13,7 @@ using AskGenerator.Business.Entities;
 using AskGenerator.Helpers;
 using Microsoft.Owin.Security;
 using Resources;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AskGenerator.Mvc.Controllers
 {
@@ -143,28 +144,37 @@ namespace AskGenerator.Mvc.Controllers
                 }
 
                 User user = null;
+                IdentityResult result;
                 if(!student.AccountId.IsEmpty())
                     user = await Manager.FindByIdAsync(student.AccountId);
+
+
 
                 if (user != null)
                 {
                     user.GroupId = model.GroupId;
-                    user.Email = model.Email;
+                    user.Email = TransformEmail(model.Email);
+                    user.StudentId = student.Id;
+                    var hashedNewPassword = Manager.PasswordHasher.HashPassword(model.Password);
+                    user.PasswordHash = hashedNewPassword;
+                    result = await Manager.UpdateAsync(user);
+                    /*var store = new UserStore<User>();
+                    await store.SetPasswordHashAsync(user, hashedNewPassword);*/
                 }
                 else
                 {
                     model.Email = TransformEmail(model.Email);
                     user = Map<RegistrationModel, User>(model);
                     user.LoginKey = Guid.NewGuid().ToString("N").Substring(0, 8);
+                    user.StudentId = student.Id;
+                    result = await Manager.CreateAsync(user, model.Password);
                 }
-                user.StudentId = student.Id;
-
-                IdentityResult result = await Manager.CreateAsync(user, model.Password);
+                
                 if (result.Succeeded)
                 {
                     student.HasUserAccount = true;
                     Site.StudentManager.Update(student);
-                    Mailer.Send(ConirmRegistrationMail, model.Email, CreateConfirmTags(model.Id));
+                    Mailer.Send(ConirmRegistrationMail, model.Email, CreateConfirmTags(user.Id.Or(model.Id)));
                     return View("_Success");
                 }
                 else
