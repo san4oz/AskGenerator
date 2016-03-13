@@ -53,5 +53,11 @@ namespace AskGenerator.Business.Managers
                 return success;
             });
         }
+
+        public int UniqueUserCount()
+        {
+            var key = GetKey("UserCount");
+            return FromCache(key, () => Provider.All().GroupBy(tq => tq.AccountId).Count());
+        }
     }
 }

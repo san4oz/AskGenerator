@@ -56,6 +56,11 @@ namespace AskGenerator.Business.Managers
         #region List
         private const string List = "list_";
 
+        protected string GetListKey()
+        {
+            return List;
+        }
+
         protected string GetListKey<T>(T arg)
         {
             return List + GetKey(arg);

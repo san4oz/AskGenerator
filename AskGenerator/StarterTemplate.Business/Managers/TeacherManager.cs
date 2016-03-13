@@ -40,7 +40,8 @@ namespace AskGenerator.Business.Managers
 
         public List<Teacher> List()
         {
-            return Provider.List();
+            var key = GetListKey();
+            return FromCache(key, Provider.List);
         }
 
         public Task<List<Teacher>> AllAsync(bool loadMarks)

@@ -62,12 +62,14 @@ namespace AskGenerator.Mvc.Controllers
         [HttpGet]
         [Authorize]
         [ActionName("Index")]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Vote()
         {
             return View();
         }
 
         [ActionName("view")]
+        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
         public PartialViewResult NgView()
         {
             return PartialView();
@@ -128,13 +130,15 @@ namespace AskGenerator.Mvc.Controllers
         }
         #endregion
 
+        #region Board
         [HttpGet]
-        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Client)]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public async Task<ViewResult> Board()
         {
             var badges = await Task.Factory.StartNew<Dictionary<string, LimitViewModel>>(CreateBadges);
             var questions = Site.QuestionManager.List(true).ToDictionary(q => q.Id, q => q.QuestionBody);
             var model = new BoardViewModel(questions, badges);
+            model.UniqueUsers = Site.VoteManager.UniqueUserCount();
             return View(model);
         }
 
@@ -147,6 +151,7 @@ namespace AskGenerator.Mvc.Controllers
             var model = CreateTeacherListViewModel(teachers);
             return View("_Board", model);
         }
+        #endregion
 
         #region protected
         protected Dictionary<string, LimitViewModel> CreateBadges()

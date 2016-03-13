@@ -151,7 +151,7 @@
     <value>На вказану вами електронну адресу буде надіслано лист, для закінчення реєстраціі.</value>
   </data>
   <data name="Clean" xml:space="preserve">
-    <value>Зкинути</value>
+    <value>Скинути</value>
   </data>
   <data name="CleanForm" xml:space="preserve">
     <value>Очистити форму</value>
@@ -385,7 +385,7 @@
     <value>Дошка вчителів</value>
   </data>
   <data name="Board" xml:space="preserve">
-    <value>Дошка</value>
+    <value>Дошка вчителів</value>
   </data>
   <data name="VotePage" xml:space="preserve">
     <value>Сторінка голосування</value>

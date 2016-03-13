@@ -5,7 +5,8 @@
     ViewBag.Title = @Resources.Resource.TeacherBoard;
 }
 
-<h1>@Resources.Resource.TeacherBoard</h1>
+<h1 class="col-sm-offset-1 col-md-5">@Resources.Resource.TeacherBoard</h1>
+<h3 class="col-md-6">За результатами голосування @Model.UniqueUsers студентів</h3>
 
 <section id="legend" class="row">
     @foreach(var pair in Model.Badges) {

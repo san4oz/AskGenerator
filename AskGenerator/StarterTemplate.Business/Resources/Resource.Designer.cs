@@ -169,7 +169,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Дошка.
+        ///   Ищет локализованную строку, похожую на Дошка вчителів.
         /// </summary>
         public static string Board {
             get {
@@ -187,7 +187,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Зкинути.
+        ///   Ищет локализованную строку, похожую на Скинути.
         /// </summary>
         public static string Clean {
             get {

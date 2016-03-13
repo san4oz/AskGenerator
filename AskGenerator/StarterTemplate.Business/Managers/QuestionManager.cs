@@ -22,7 +22,8 @@ namespace AskGenerator.Business.Managers
         /// <returns>List of retrived questions.</returns>
         public List<Question> List(bool isAboutTeacher = false)
         {
-            return Provider.List(isAboutTeacher);
+            var key = GetListKey(isAboutTeacher);
+            return FromCache(key, () => Provider.List(isAboutTeacher));
         }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace AskGenerator.Business.Managers
         /// <returns>List of retrived questions.</returns>
         public Task<List<Question>> ListAsync(bool isAboutTeacher = false)
         {
-            return Task.Factory.StartNew(() => Provider.List(isAboutTeacher));
+            return Task.Factory.StartNew(() => List(isAboutTeacher));
         }
     }
 }

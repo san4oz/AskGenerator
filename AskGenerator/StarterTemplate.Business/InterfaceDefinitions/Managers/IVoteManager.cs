@@ -12,5 +12,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         Task<List<Vote>> ListAsync(string userId);
 
         Task<bool> Save(Vote vote, string questionId);
+
+        int UniqueUserCount();
     }
 }

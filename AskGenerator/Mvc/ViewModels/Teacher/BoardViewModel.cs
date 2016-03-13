@@ -17,6 +17,9 @@ namespace AskGenerator.Mvc.ViewModels
         }
 
         public Dictionary<string, LimitViewModel> Badges { get; set; }
+
         public Dictionary<string, string> Questions { get; set; }
+
+        public int UniqueUsers { get; set; }
     }
 }
