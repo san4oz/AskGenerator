@@ -22,6 +22,14 @@
             selector.on('hidden.bs.popover', hidden);
     };
 
+    self.HtmlPopover = function (selector, content) {
+        selector = $(selector);
+        selector.popover({ animation: false, delay: 100, container: 'body', trigger: 'click', html: true, content: content });
+        selector.on('click', function (e) {
+            e.preventDefault();
+        });
+    };
+
     self.initDelete = function () {
         $('.delete').click(function (e) {
             e.preventDefault();

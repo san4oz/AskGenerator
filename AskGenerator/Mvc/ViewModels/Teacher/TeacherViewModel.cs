@@ -65,5 +65,12 @@ namespace AskGenerator.ViewModels
         public string Id { get; set; }
 
         public float Mark { get; set; }
+
+        public bool Display { get; set; }
+
+        public TeacherBadge()
+        {
+            Display = true;
+        }
     }
 }

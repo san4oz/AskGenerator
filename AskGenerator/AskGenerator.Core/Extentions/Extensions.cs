@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using Newtonsoft.Json;
 
 namespace System.Web
 {
-    public static class MenuExtensions
+    public static class WebExtentions
     {
         const string DefaultGlyphicon = "glyphicon-chevron-right";
 
@@ -63,6 +64,18 @@ namespace System.Web
             li.InnerHtml = "<a href=\"{0}\"><i class=\"glyphicon {1}\"></i>{2}</a>"
                 .FormatWith(url, glyphicon, text);
             return MvcHtmlString.Create(li.ToString());
+        }
+
+        public static MvcHtmlString AsHtml(this string str)
+        {
+            return new MvcHtmlString(str);
+        }
+
+        public static string ToJson(this object obj)
+        {
+            var settings = new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore, Formatting = Formatting.None };
+            var str = JsonConvert.SerializeObject(obj, settings);
+            return str;
         }
     }
 }

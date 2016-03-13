@@ -367,6 +367,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Ця адреса вже використовується.
+        /// </summary>
+        public static string EmailIsUsed {
+            get {
+                return ResourceManager.GetString("EmailIsUsed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Поле повинне &apos;{0}&apos; бути довжиною {1}.
         /// </summary>
         public static string ExactLenghtError {

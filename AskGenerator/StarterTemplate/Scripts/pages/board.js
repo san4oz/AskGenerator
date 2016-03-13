@@ -12,6 +12,17 @@ Pages.Board = (function () {
                 if (data) {
                     root.html(data);
                     Controls.TTips('[data-toggle="tooltip"]');
+                    var popover = $('#details-popover');
+                    $('.teacher-tile').each(function () {
+                        Controls.HtmlPopover(this, function () {
+                            var data = $(this).data('popover');
+                            for (var i = 0; i < data.length; i++) {
+                                var badge = data[i];
+                                $('#' + badge.Id + 'm').html(badge.Mark);
+                            }
+                            return popover.html();
+                        });
+                    });
                 }
             });
         }

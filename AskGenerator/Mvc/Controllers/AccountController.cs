@@ -142,13 +142,17 @@ namespace AskGenerator.Mvc.Controllers
                     ModelState.AddModelError("", Resource.ConfirmNoRobot);
                     return View(model);
                 }
-
+                var emailUser = await Manager.FindByEmailAsync(model.Email);
                 User user = null;
                 IdentityResult result;
                 if(!student.AccountId.IsEmpty())
                     user = await Manager.FindByIdAsync(student.AccountId);
 
-
+                if (emailUser != null && (user == null || user.Id != emailUser.Id))
+                {
+                    ModelState.AddModelError("Email", Resource.EmailIsUsed);
+                    return View(model);
+                }
 
                 if (user != null)
                 {
@@ -205,8 +209,10 @@ namespace AskGenerator.Mvc.Controllers
                 return HttpNotFound();
 
             user.EmailConfirmed = true;
-            var task = Manager.AddToRoleAsync(user.Id, Role.Admin);
-            task = Manager.UpdateAsync(user);
+            await Manager.UpdateAsync(user);
+
+            await Manager.AddToRoleAsync(user.Id, Role.User);
+            
 
             return View();
         }

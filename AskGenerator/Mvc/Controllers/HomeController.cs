@@ -85,7 +85,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             if (!User.Identity.IsAuthenticated)
             {
-                return Json(new { url = Url.Action("Login", "Account", new {returnUrl = Url.Action("Index") }) }, 403);
+                return Json(new { url = Url.Action("Login", "Account", new { returnUrl = Url.Action("Index") }) }, 403);
             }
             var userId = User.Identity.GetGroupId();
             var group = await Site.GroupManager.GetAsync(userId);
@@ -193,13 +193,16 @@ namespace AskGenerator.Mvc.Controllers
                 {
                     var id = mark.QuestionId + 'l';
                     var badge = badges.GetOrDefault(id);
+                    var teacherBadge = new TeacherBadge() { Id = mark.QuestionId, Mark = mark.Answer };
                     if (badge != null && badge.AvgLimit > mark.Answer)
-                        tmodel.Badges.Add(new TeacherBadge() { Id = id, Mark = mark.Answer });
-
-                    id = mark.QuestionId + 'r';
-                    badge = badges.GetOrDefault(id);
-                    if (badge != null && badge.AvgLimit < mark.Answer)
-                        tmodel.Badges.Add(new TeacherBadge() { Id = id, Mark = mark.Answer });
+                        tmodel.Badges.Add(teacherBadge);
+                    else
+                    {
+                        id = mark.QuestionId + 'r';
+                        badge = badges.GetOrDefault(id);
+                        teacherBadge.Display = badge != null && badge.AvgLimit < mark.Answer;
+                        tmodel.Badges.Add(teacherBadge);
+                    }
                 }
                 models.Add(tmodel);
             }

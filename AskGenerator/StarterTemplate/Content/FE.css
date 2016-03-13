@@ -8,9 +8,9 @@ h1 {
     margin-bottom: 5px;
 }
 
-h1 ~ h3 {
-    top: 10px;
-}
+    h1 ~ h3 {
+        top: 10px;
+    }
 
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -447,4 +447,13 @@ a.help {
         margin-top: -2.2em;
         opacity: 0.8;
     }
+}
+
+#details-popover {
+    display: none;
+}
+
+.popover-content td {
+    font-size: 14px;
+    padding: 3px 0;
 }
