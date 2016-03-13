@@ -510,4 +510,7 @@
   <data name="NotRegistred" xml:space="preserve">
     <value>Ще не зареєстровані?</value>
   </data>
+  <data name="EditAccount" xml:space="preserve">
+    <value>Редагувати аккаунт</value>
+  </data>
 </root>

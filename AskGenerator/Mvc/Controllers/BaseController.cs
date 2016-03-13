@@ -151,6 +151,12 @@ namespace AskGenerator.Mvc.Controllers
                 System.IO.File.Delete(serverPath);
         }
 
+        protected string TransformEmail(string email)
+        {
+            var t = email.ToLower().Split('@');
+            return t[0].Replace(".", string.Empty) + '@' + t[1];
+        }
+
         public class CaptchaResponse
         {
             public bool success { get; set; }

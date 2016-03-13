@@ -32,6 +32,14 @@ namespace AskGenerator.ViewModels
         [Display(Name = "Photo", ResourceType = typeof(R))]
         public HttpPostedFileBase ImageFile { get; set; }
 
+        /// <summary>
+        /// Indicates whether student has registred account.
+        /// </summary>
+        public bool HasUserAccount { get; set; }
+
+        [MaxLength(128)]
+        public string AccountId { get; set; }
+
         [Display(Name = "Student", ResourceType = typeof(R))]
         public string Name 
         {

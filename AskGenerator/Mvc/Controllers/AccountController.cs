@@ -87,7 +87,7 @@ namespace AskGenerator.Mvc.Controllers
             {
                 model.Email = TransformEmail(model.Email);
                 user = await Manager.FindByEmailAsync(model.Email);
-                if (user == null || !Manager.CheckPassword(user, model.Password))
+                if (user == null || !user.EmailConfirmed || !(await Manager.CheckPasswordAsync(user, model.Password)))
                     ModelState.AddModelError("Password", Resource.WrongEmailOrPassword);
                 else
                     return await Login(user, returnUrl, model.IsPersistent);
@@ -238,12 +238,6 @@ namespace AskGenerator.Mvc.Controllers
             }
 
             return null;
-        }
-
-        protected string TransformEmail(string email)
-        {
-            var t = email.ToLower().Split('@');
-            return t[0].Replace(".", string.Empty) + '@' + t[1];
         }
 
         protected Dictionary<string, string> CreateConfirmTags(string id)

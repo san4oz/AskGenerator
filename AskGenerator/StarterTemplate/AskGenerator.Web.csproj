@@ -2772,6 +2772,7 @@
     <Content Include="Css\Theme\vendors\AdminLTE\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Css\Theme\vendors\AdminLTE\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="Css\Theme\vendors\AdminLTE\README.md" />
+    <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

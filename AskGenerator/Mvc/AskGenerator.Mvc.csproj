@@ -169,6 +169,7 @@
     <Compile Include="Components\Resolver.cs" />
     <Compile Include="Components\WebViewPage.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Admin\AccountController.cs" />
     <Compile Include="Controllers\Admin\TeamController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Admin\GroupController.cs" />
@@ -194,6 +195,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\LimitViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\RegistrationModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherComposeViewModel.cs" />
