@@ -24,7 +24,7 @@
 
     self.HtmlPopover = function (selector, content) {
         selector = $(selector);
-        selector.popover({ animation: false, delay: 100, container: 'body', trigger: 'focus', html: true, content: content });
+        selector.popover({ animation: false, delay: 100, placement: 'auto right', container: 'body', trigger: 'focus', html: true, content: content });
         selector.on('click', function (e) {
             e.preventDefault();
         });

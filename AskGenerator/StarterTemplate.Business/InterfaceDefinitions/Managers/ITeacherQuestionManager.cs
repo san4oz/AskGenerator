@@ -21,7 +21,15 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// </summary>
         /// <param name="entity">The teacher-question row.</param>
         /// <returns>Value indicating whether new row was created.</returns>
-        Task<bool> Save(TeacherQuestion entity);
+        Task<bool> AddAnswer(TeacherQuestion entity);
+
+        /// <summary>
+        /// Adds answer from specified <paramref name="entity"/> to existing one, or creates new.
+        /// </summary>
+        /// <param name="entity">The teacher-question row.</param>
+        /// <param name="prevAnswer">The previous answer.</param>
+        /// <returns>Value indicating whether new row was created.</returns>
+        Task<bool> AddExistingAnswer(TeacherQuestion entity, short prevAnswer);
 
         bool Delete(TeacherQuestion entity);
 

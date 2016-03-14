@@ -25,21 +25,18 @@ namespace AskGenerator.Business.Entities
             Count = 1;
         }
 
-        public static TeacherQuestion operator +(TeacherQuestion entity1, TeacherQuestion entity2)
+        public void Add(TeacherQuestion entity2)
         {
-            var result = new TeacherQuestion()
-            {
-                TeacherId = entity1.TeacherId,
-                QuestionId = entity1.QuestionId,
-                Count = entity1.Count,
-                Answer = entity1.Answer,
-                Teacher = entity1.Teacher,
-                Question = entity2.Question
-            };
-            result.Count += entity2.Count;
-            result.Answer += entity2.Answer;
-            result.Answer /= (float)result.Count;
-            return result;
+            this.Answer = this.Answer * this.Count + entity2.Answer * entity2.Count;
+            this.Count += entity2.Count;
+            this.Answer /= (float)this.Count;
+        }
+
+        public void Merge(TeacherQuestion entity2, TeacherQuestion prevEntity)
+        {
+            this.Answer = this.Answer * this.Count + entity2.Answer * entity2.Count - prevEntity.Answer * prevEntity.Count;
+            this.Count += entity2.Count - prevEntity.Count;
+            this.Answer /= (float)this.Count;
         }
 
         [Key]

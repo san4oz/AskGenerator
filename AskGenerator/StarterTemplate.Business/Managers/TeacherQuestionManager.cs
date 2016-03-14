@@ -12,7 +12,7 @@ namespace AskGenerator.Business.Managers
 {
     public class TeacherQuestionManager : ITeacherQuestionManager
     {
-        public ITeacherQuestionProvider Provider {get; private set;}
+        public ITeacherQuestionProvider Provider { get; private set; }
 
         public TeacherQuestionManager(ITeacherQuestionProvider provider)
         {
@@ -62,7 +62,7 @@ namespace AskGenerator.Business.Managers
         }
 
 
-        public Task<bool> Save(TeacherQuestion entity)
+        public Task<bool> AddAnswer(TeacherQuestion entity)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -73,8 +73,26 @@ namespace AskGenerator.Business.Managers
                     return true;
                 }
 
-                entity += row;
-                Update(entity);
+                row.Add(entity);
+                Update(row);
+                return false;
+            });
+        }
+
+
+        public Task<bool> AddExistingAnswer(TeacherQuestion entity, short prevAnswer)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                var row = Get(entity.TeacherId, entity.QuestionId);
+                if (row == null)
+                {
+                    Create(entity);
+                    return true;
+                }
+
+                row.Merge(entity, new TeacherQuestion() { Answer = prevAnswer });
+                Update(row);
                 return false;
             });
         }

@@ -39,7 +39,7 @@ namespace AskGenerator.DataProvider.Providers
             });
         }
 
-        protected bool Update(AppContext context, T entity)
+        protected virtual bool Update(AppContext context, T entity)
         {
             var original = context.Set<T>().First(x => x.Id == entity.Id);
             if (original != null)

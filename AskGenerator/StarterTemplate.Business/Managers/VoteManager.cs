@@ -43,12 +43,14 @@ namespace AskGenerator.Business.Managers
                 }
                 if (success)
                 {
-                    TQ.Save(new TeacherQuestion()
+                    var newAnser = new TeacherQuestion()
                     {
                         QuestionId = questionId,
                         TeacherId = vote.TeacherId,
                         Answer = vote.Answer
-                    }).Wait();
+                    };
+                    if (prev == null) TQ.AddAnswer(newAnser).Wait();
+                    else TQ.AddExistingAnswer(newAnser, prev.Answer).Wait();
                 }
                 return success;
             });

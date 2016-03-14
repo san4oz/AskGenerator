@@ -60,5 +60,13 @@ namespace AskGenerator.DataProvider.Providers
                 return base.Update(context, vote);
             });
         }
+
+        public override List<Vote> All()
+        {
+            return Execute(c =>
+            {
+                return c.Votes.Include(x => x.QuestionId).ToList();
+            });
+        }
     }
 }
