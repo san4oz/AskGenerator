@@ -223,12 +223,7 @@ namespace AskGenerator.Mvc.Controllers
             var manager = Site.StudentManager;
             if (!lastName.IsEmpty())
             {
-                return Task.Factory.StartNew(() =>
-                {
-                    lastName = lastName.ToUpperInvariant();
-                    var students = manager.GroupList(groupId);
-                    return students.FirstOrDefault(s => s.LastName.ToUpperInvariant() == lastName);
-                });
+                return Task.Factory.StartNew(() => checkLastName(lastName, groupId));
             }
 
             return null;
@@ -238,9 +233,9 @@ namespace AskGenerator.Mvc.Controllers
         {
             if (!lastName.IsEmpty())
             {
-                lastName = lastName.ToUpperInvariant();
+                lastName = lastName.Trim().ToUpperInvariant();
                 var students = Site.StudentManager.GroupList(groupId);
-                return students.FirstOrDefault(s => s.LastName.ToUpperInvariant() == lastName);
+                return students.FirstOrDefault(s => s.LastName.Trim().ToUpperInvariant() == lastName);
             }
 
             return null;

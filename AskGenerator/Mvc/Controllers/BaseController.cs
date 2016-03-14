@@ -153,7 +153,7 @@ namespace AskGenerator.Mvc.Controllers
 
         protected string TransformEmail(string email)
         {
-            var t = email.ToLower().Split('@');
+            var t = email.Trim().ToLower().Split('@');
             return t[0].Replace(".", string.Empty) + '@' + t[1];
         }
 

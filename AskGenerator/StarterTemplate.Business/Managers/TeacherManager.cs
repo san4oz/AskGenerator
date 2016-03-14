@@ -55,9 +55,15 @@ namespace AskGenerator.Business.Managers
                 {
                     var list = answers[t.Id];
                     t.Marks = list.Select(x => new Mark() { Answer = x.Answer, QuestionId = x.QuestionId }).ToList();
-                    float avg = t.Marks.Aggregate(0f, (a, m) => a+m.Answer);
+                    float avg = 0;
+                    int count = 0;
+                    foreach (var mark in t.Marks.Where(m => m.Answer != 0))
+                    {
+                        avg += mark.Answer;
+                        count++;
+                    }
                     if (avg != 0)
-                        avg /= (float)t.Marks.Count;
+                        avg /= (float)count;
                     else
                         avg = -0.001f;
                     t.Marks.Insert(0, new Mark() { Answer = avg, QuestionId = Question.AvarageId });

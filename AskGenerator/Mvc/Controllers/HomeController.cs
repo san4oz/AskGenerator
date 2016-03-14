@@ -87,8 +87,9 @@ namespace AskGenerator.Mvc.Controllers
             {
                 return Json(new { url = Url.Action("Login", "Account", new { returnUrl = Url.Action("Index") }) }, 403);
             }
-            var userId = User.Identity.GetGroupId();
-            var group = await Site.GroupManager.GetAsync(userId);
+            var userId = User.Identity.GetId();
+            var groupId = User.Identity.GetGroupId();
+            var group = await Site.GroupManager.GetAsync(groupId);
             var quesstions = await Site.QuestionManager.ListAsync(true);
             var votes = await Site.VoteManager.ListAsync(userId);
             var teachers = MapTeachers(group, votes.GroupBy(v => v.TeacherId));
@@ -120,7 +121,7 @@ namespace AskGenerator.Mvc.Controllers
             {
                 TeacherId = id,
                 Answer = answer,
-                AccountId = User.Identity.GetGroupId()
+                AccountId = User.Identity.GetId()
             };
             var result = await Site.VoteManager.Save(vote, questionId);
             if (result)

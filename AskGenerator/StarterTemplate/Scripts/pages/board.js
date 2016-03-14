@@ -12,6 +12,7 @@ Pages.Board = (function () {
                 if (data) {
                     root.html(data);
                     Controls.TTips('[data-toggle="tooltip"]');
+
                     var popover = $('#details-popover');
                     $('.teacher-tile').each(function () {
                         Controls.HtmlPopover(this, function () {
