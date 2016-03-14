@@ -457,3 +457,11 @@ a.help {
     font-size: 14px;
     padding: 3px 0;
 }
+
+#data-from-wrapper{
+    margin-left: 4px;
+}
+time{
+    font-family: monospace;
+    font-size: 0.9em;
+}

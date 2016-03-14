@@ -259,6 +259,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Дані станом на.
+        /// </summary>
+        public static string DataFrom {
+            get {
+                return ResourceManager.GetString("DataFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Кафедра.
         /// </summary>
         public static string Department {

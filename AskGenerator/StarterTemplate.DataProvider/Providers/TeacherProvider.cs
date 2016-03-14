@@ -33,6 +33,8 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
                 {
+                    if (teacher.Id.IsEmpty())
+                        teacher.Id = Guid.NewGuid().ToString();
                     var groups = context.Groups.Include(x => x.Students).Include(x => x.Teachers).Where(x => ids.Contains(x.Id)).ToList();
                     teacher.Groups = groups;
                     context.Teachers.Add(teacher);

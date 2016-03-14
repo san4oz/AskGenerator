@@ -11,6 +11,11 @@ Pages.Board = (function () {
             $.post(url, undefined, function (data) {
                 if (data) {
                     root.html(data);
+                    var dataFromContainer = $('#data-from');
+                    var dataFrom = dataFromContainer.html();
+                    dataFromContainer.remove();
+                    if (dataFrom)
+                        $('#data-from-wrapper').html(dataFrom);
                     Controls.TTips('[data-toggle="tooltip"]');
 
                     var popover = $('#details-popover');

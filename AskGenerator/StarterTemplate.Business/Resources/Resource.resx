@@ -516,4 +516,7 @@
   <data name="EmailIsUsed" xml:space="preserve">
     <value>Ця адреса вже використовується</value>
   </data>
+  <data name="DataFrom" xml:space="preserve">
+    <value>Дані станом на</value>
+  </data>
 </root>
