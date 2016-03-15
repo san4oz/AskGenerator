@@ -7,8 +7,7 @@
     <title data-title="@ViewBag.Title">@ViewBag.Title - @Resources.Resource.Generator</title>
     @Styles.Render("~/Content/Theme")
     @Styles.Render("~/Content/Vendors")
-    @Styles.Render("~/Css/select2.css")
-    @Styles.Render("~/Css/Site.css")
+    @Styles.Render("~/bundles/css")
     @RenderSection("Styles", required: false)
     <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:700" rel="stylesheet" />
 </head>
@@ -28,7 +27,7 @@
     @RenderSection("Footer", required: false)
 
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Scripts/select2.js")
+    @Scripts.Render("~/bundles/select2.js")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
 

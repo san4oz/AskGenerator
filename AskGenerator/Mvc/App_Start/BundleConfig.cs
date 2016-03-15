@@ -40,14 +40,21 @@ namespace AskGenerator.Mvc
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                    "~/Scripts/bootstrap.js"
-                   , "~/Scripts/twitter-bootstrap-hover-dropdown.js"
+                    "~/Scripts/bootstrap.js",
+                    "~/Scripts/twitter-bootstrap-hover-dropdown.js"
                     ));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Css/Site.css"));
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
+                "~/Css/select2.css",
+                "~/Css/Site.css"                
+                ));
 
-            bundles.Add(new StyleBundle("~/Content/select2").Include("~/Css/select2.css"));
-            bundles.Add(new ScriptBundle("~/Script/select2").Include("~/Scripts/select2.js"));
+            bundles.Add(new ScriptBundle("~/bundles/select2.js").Include("~/Scripts/select2.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/controls").Include(
+                "~/Scripts/gtm.js",
+                "~/Scripts/controls.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/Theme/base/css").Include(
                         "~/Css/Theme/base/jquery.ui.core.css",
