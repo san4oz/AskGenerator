@@ -86,11 +86,19 @@ namespace AskGenerator.DataProvider.Providers
             {
                 if (original.Equals(teacher))
                     return false;
-                var deletedGroups = original.Groups.Where(g => !teacher.Groups.Contains(g));
-                foreach (var g in deletedGroups)
+                var deletedGroups = original.Groups.Where(g => teacher.Groups.FirstOrDefault(g2 => g2.Id == g.Id) == null );
+                foreach (var g in deletedGroups.ToList())
                 {
                     g.Teachers.Remove(original);
                     context.Entry(g).State = EntityState.Modified;
+                }
+                foreach (var g in teacher.Groups.ToList())
+                {
+                    if (!g.Teachers.Contains(teacher))
+                    {
+                        g.Teachers.Add(original);
+                        context.Entry(g).State = EntityState.Modified;
+                    }
                 }
                 context.Entry(original).CurrentValues.SetValues(teacher);
                 context.SaveChanges();

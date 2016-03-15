@@ -1,7 +1,7 @@
 ﻿################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
-
+/AskGenerator/AskGenerator.v12.suo
 /AskGenerator/AskGenerator.Generator/bin
 /AskGenerator/Mvc/bin
 /AskGenerator/Mvc/obj

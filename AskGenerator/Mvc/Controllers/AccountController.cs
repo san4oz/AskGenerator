@@ -223,7 +223,12 @@ namespace AskGenerator.Mvc.Controllers
             var manager = Site.StudentManager;
             if (!lastName.IsEmpty())
             {
-                return Task.Factory.StartNew(() => checkLastName(lastName, groupId));
+                return Task.Factory.StartNew(() =>
+                {
+                    lastName = lastName.Trim().ToUpperInvariant();
+                    var students = manager.GroupList(groupId);
+                    return students.FirstOrDefault(s => s.LastName.Trim().ToUpperInvariant() == lastName);
+                });
             }
 
             return null;
