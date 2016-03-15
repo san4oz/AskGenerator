@@ -86,7 +86,7 @@ namespace AskGenerator.DataProvider.Providers
             {
                 if (original.Equals(teacher))
                     return false;
-                var deletedGroups = original.Groups.Intersect(teacher.Groups);
+                var deletedGroups = original.Groups.Where(g => !teacher.Groups.Contains(g));
                 foreach (var g in deletedGroups)
                 {
                     g.Teachers.Remove(original);
