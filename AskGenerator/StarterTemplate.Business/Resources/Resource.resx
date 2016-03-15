@@ -349,7 +349,7 @@
     <value>Вибріть групи</value>
   </data>
   <data name="SomethingElseHere" xml:space="preserve">
-    <value>Нахера это?))</value>
+    <value>Оставим это на память))</value>
   </data>
   <data name="Student" xml:space="preserve">
     <value>Студент</value>
@@ -515,5 +515,11 @@
   </data>
   <data name="EmailIsUsed" xml:space="preserve">
     <value>Ця адреса вже використовується</value>
+  </data>
+  <data name="DataFrom" xml:space="preserve">
+    <value>Дані станом на</value>
+  </data>
+  <data name="Registered" xml:space="preserve">
+    <value>Зареєструватися</value>
   </data>
 </root>
