@@ -475,7 +475,7 @@
     <value>Перестворити ключі</value>
   </data>
   <data name="ExactLenghtError" xml:space="preserve">
-    <value>Поле повинне '{0}' бути довжиною {1}</value>
+    <value>Поле '{0}' повинне бути довжиною {1}</value>
   </data>
   <data name="Key" xml:space="preserve">
     <value>Ключ</value>

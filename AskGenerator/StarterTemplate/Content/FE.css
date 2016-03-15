@@ -319,13 +319,15 @@ hr {
 }
 
 #legend {
+    display: flexbox;
+    display: flex;
     padding: 0 5%;
     text-align: center;
+    width: 100%;
 }
 
     #legend .thumbnail {
         display: inline-block;
-        float: none;
         margin: 0 15px 5px;
         padding: 0;
     }

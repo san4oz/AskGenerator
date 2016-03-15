@@ -23,11 +23,9 @@
             <span title="@teacher.FullName()">@teacher.GetShortName()</span>
             <div class="badges">
                 <span class="badge avg" data-togglee="tooltip" title="@avg">@Math.Round(avg, 1)</span>
-                @foreach (var tbadge in teacher.Badges)
+                @foreach (var tbadge in teacher.Badges.Where(tb => tb.Type != char.MinValue))
                 {
-                    if (tbadge.Display) { 
-                        @Badge(tbadge)
-                    }
+                    @Badge(tbadge)
                 }
             </div>
         </a>
@@ -36,7 +34,7 @@
 
 @helper Badge(TeacherBadge tbadge)
 {
-    var badge = Model.Badges.GetOrDefault(tbadge.Id);
+    var badge = Model.Badges.GetOrDefault(tbadge.Id + tbadge.Type);
     if (badge != null)
     {
         var ttip = badge.ToolTip;

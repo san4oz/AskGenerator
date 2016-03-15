@@ -385,7 +385,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Поле повинне &apos;{0}&apos; бути довжиною {1}.
+        ///   Ищет локализованную строку, похожую на Поле &apos;{0}&apos; повинне бути довжиною {1}.
         /// </summary>
         public static string ExactLenghtError {
             get {

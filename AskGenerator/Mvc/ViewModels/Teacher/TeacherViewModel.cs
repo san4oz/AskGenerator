@@ -66,11 +66,14 @@ namespace AskGenerator.ViewModels
 
         public float Mark { get; set; }
 
-        public bool Display { get; set; }
+        /// <summary>
+        /// 'r' - right, 'l' - left, <see cref="char.MinValue"/> - not for display
+        /// </summary>
+        public char Type { get; set; }
 
         public TeacherBadge()
         {
-            Display = true;
+            Type = char.MinValue;
         }
     }
 }
