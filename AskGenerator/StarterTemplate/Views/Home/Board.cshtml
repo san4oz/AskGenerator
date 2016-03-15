@@ -13,8 +13,8 @@
     <span class="h4" style="top: 5px;">Будь ласка, перевірте свої @Html.RouteLink("голоси", "Vote").</span>
 </div>
 
-<h1 class="col-sm-offset-1 col-md-5">@Resources.Resource.TeacherBoard</h1>
-<h3 class="col-md-6">За результатами голосування @Model.UniqueUsers студентів</h3>
+<h1 class="col-md-offset-1 col-md-5 col-lg-4">@Resources.Resource.TeacherBoard</h1>
+<h3 class="col-md-6 col-lg-7">За результатами голосування @Model.UniqueUsers студентів. <span id="data-from-wrapper" class="h4"></span></h3>
 
 <section id="legend" class="row">
     @foreach (var pair in Model.Badges)

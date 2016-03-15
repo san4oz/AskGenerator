@@ -23,7 +23,7 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                context.Teachers.Add(entity);                               
+                context.Teachers.Add(entity);
                 context.SaveChanges();
                 return true;
             });
@@ -33,6 +33,8 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
                 {
+                    if (teacher.Id.IsEmpty())
+                        teacher.Id = Guid.NewGuid().ToString();
                     var groups = context.Groups.Include(x => x.Students).Include(x => x.Teachers).Where(x => ids.Contains(x.Id)).ToList();
                     teacher.Groups = groups;
                     context.Teachers.Add(teacher);
@@ -70,19 +72,32 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                var entry = context.Entry<Teacher>(teacher);
-                if (entry.State == EntityState.Detached)
-                    context.Teachers.Attach(teacher);
-
                 var groups = context.Groups.Include(x => x.Students).Include(x => x.Teachers).Where(x => ids.Contains(x.Id)).ToList();
                 teacher.Groups = groups;
 
-                entry.State = EntityState.Modified;
-                context.SaveChanges();
-                return true;
+                return Update(context, teacher);
             });
         }
 
+        protected override bool Update(AppContext context, Teacher teacher)
+        {
+            var original = context.Teachers.First(x => x.Id == teacher.Id);
+            if (original != null)
+            {
+                if (original.Equals(teacher))
+                    return false;
+                var deletedGroups = original.Groups.Where(g => !teacher.Groups.Contains(g));
+                foreach (var g in deletedGroups)
+                {
+                    g.Teachers.Remove(original);
+                    context.Entry(g).State = EntityState.Modified;
+                }
+                context.Entry(original).CurrentValues.SetValues(teacher);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+        }
 
         public List<Teacher> List()
         {
