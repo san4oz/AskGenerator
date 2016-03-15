@@ -226,8 +226,13 @@ namespace AskGenerator.Mvc.Controllers
                     var id = mark.QuestionId + 'l';
                     var badge = badges.GetOrDefault(id);
                     var teacherBadge = new TeacherBadge() { Id = mark.QuestionId, Mark = mark.Answer, Type = 'l' };
+                    if (mark.Answer <= 0)
+                        continue;
+
                     if (badge != null && badge.AvgLimit > mark.Answer)
+                    {
                         tmodel.Badges.Add(teacherBadge);
+                    }
                     else
                     {
                         id = mark.QuestionId + 'r';
