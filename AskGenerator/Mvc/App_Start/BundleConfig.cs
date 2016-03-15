@@ -49,10 +49,9 @@ namespace AskGenerator.Mvc
                 "~/Css/Site.css"                
                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/select2.js").Include("~/Scripts/select2.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/controls").Include(
                 "~/Scripts/gtm.js",
+                "~/Scripts/select2.js",
                 "~/Scripts/controls.js"
                 ));
 

@@ -1051,7 +1051,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Нахера это?)).
+        ///   Ищет локализованную строку, похожую на Оставим это на память)).
         /// </summary>
         public static string SomethingElseHere {
             get {
