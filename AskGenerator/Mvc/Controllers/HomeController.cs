@@ -26,6 +26,7 @@ namespace AskGenerator.Mvc.Controllers
 
         protected IQuestionManager QuestionManager { get; set; }
 
+
         public HomeController()
         {
             QuestionManager = Site.QuestionManager;
