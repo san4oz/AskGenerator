@@ -1,3 +1,3 @@
 # AskGenerator
-This tool is for generating ask about students in .pdf format
+This tool is for evaluation teachers by students
 
