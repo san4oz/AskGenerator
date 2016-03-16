@@ -519,4 +519,7 @@
   <data name="DataFrom" xml:space="preserve">
     <value>Дані станом на</value>
   </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Вихід</value>
+  </data>
 </root>

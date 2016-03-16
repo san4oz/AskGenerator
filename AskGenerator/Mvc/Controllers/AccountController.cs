@@ -62,7 +62,7 @@ namespace AskGenerator.Mvc.Controllers
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             User user;
-            
+
             if (!model.Key.IsEmpty())
             {
                 var keyError = ModelState.GetOrDefault("Key");
@@ -118,6 +118,7 @@ namespace AskGenerator.Mvc.Controllers
         #endregion
 
         #region Register
+        [Authorize(Roles = Role.Admin)]
         [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Register()
         {
@@ -125,6 +126,7 @@ namespace AskGenerator.Mvc.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Role.Admin)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegistrationModel model)
         {
@@ -145,7 +147,7 @@ namespace AskGenerator.Mvc.Controllers
                 var emailUser = await Manager.FindByEmailAsync(model.Email);
                 User user = null;
                 IdentityResult result;
-                if(!student.AccountId.IsEmpty())
+                if (!student.AccountId.IsEmpty())
                     user = await Manager.FindByIdAsync(student.AccountId);
 
                 if (emailUser != null && (user == null || user.Id != emailUser.Id))
@@ -173,7 +175,7 @@ namespace AskGenerator.Mvc.Controllers
                     user.StudentId = student.Id;
                     result = await Manager.CreateAsync(user, model.Password);
                 }
-                
+
                 if (result.Succeeded)
                 {
                     student.HasUserAccount = true;
@@ -212,7 +214,7 @@ namespace AskGenerator.Mvc.Controllers
             await Manager.UpdateAsync(user);
 
             await Manager.AddToRoleAsync(user.Id, Role.User);
-            
+
 
             return View();
         }

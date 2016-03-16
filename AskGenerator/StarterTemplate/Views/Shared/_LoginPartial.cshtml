@@ -8,7 +8,7 @@
             <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-            <li>@Html.ActionLink("Вихід", "Logout", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "logoutLink" })</li>
+            <li>@Html.ActionLink(Resources.Resource.LogOut, "Logout", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "logoutLink" })</li>
             <li><a href="#">@Resources.Resource.SomethingElseHere</a></li>
             <li role="presentation" class="divider"></li>
         </ul>
@@ -16,6 +16,5 @@
 }
 else
 {
-    @Html.MenuRouteItem(Resources.Resource.Register, "Registration", glyphicon: null)
     @Html.MenuRouteItem(Resources.Resource.LogIn, "Login", glyphicon: null)
 }

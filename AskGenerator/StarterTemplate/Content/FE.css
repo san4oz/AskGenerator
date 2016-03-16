@@ -18,6 +18,11 @@ h1, h2, h3, h4, h5, h6,
     font-weight: bold;
 }
 
+.navbar-header {
+    position: relative;
+    z-index: 1000;
+}
+
 legend {
     margin-top: 2px;
 }
@@ -341,15 +346,20 @@ hr {
         padding: 4px;
         width: 80%;
     }
-    #legend .caption{
+
+    #legend .caption {
         padding: 5px;
+    }
+
+    #legend a.help {
+        font-size: 1.2em;
+        line-height: 1em;
     }
 
 a.help {
     color: #4e97d6;
-    font-size: 1.2em;
-    line-height: 1em;
     padding: 2px;
+    white-space: nowrap;
     text-decoration: underline dotted;
 }
 

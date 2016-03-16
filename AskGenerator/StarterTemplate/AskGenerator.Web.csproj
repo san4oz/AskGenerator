@@ -1263,6 +1263,7 @@
     <Content Include="Scripts\models\option.js" />
     <Content Include="Scripts\models\teacherRait.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pages\login.js" />
     <Content Include="Scripts\pages\board.js" />
     <Content Include="Scripts\admin\students.js" />
     <Content Include="Scripts\select2.js" />

@@ -22,6 +22,19 @@
             selector.on('hidden.bs.popover', hidden);
     };
 
+    self.TTipAndPopover = function (selector) {
+        var helps = $(selector);
+        helps.each(function () {
+            var h = $(this);
+            Controls.TTips(h, h.data('content'));
+            Controls.Popover(h, function (e) {
+                h.tooltip('destroy');
+            }, function (e) {
+                Controls.TTips(h, h.data('content'));
+            });
+        });
+    }
+
     self.HtmlPopover = function (selector, content) {
         selector = $(selector);
         selector.popover({ animation: false, delay: 100, placement: 'auto right', container: 'body', trigger: 'focus', html: true, content: content });

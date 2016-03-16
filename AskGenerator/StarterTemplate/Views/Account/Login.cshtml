@@ -18,7 +18,7 @@
                     <div class="col-md-offset-5 col-md-7">
                         <button type="submit" class="btn btn-primary">@Resource.LogIn </button>
                         <button type="reset" class="btn btn-default">@Resource.Clean</button>
-                        @Html.ActionLink(Resource.NotRegistred, "Register", "Account", null, new { style = "white-space: nowrap;" })
+                        <a href="#" class="help" data-content="Якщо ви не зареєстровані і не маєте ключа, будь ласка, зверніться до адміністрації сайту.">@Resource.NotRegistred</a>
                     </div>
                 </fieldset>
             </form>
@@ -46,4 +46,7 @@
 </div>
 @section scripts{
     @Scripts.Render("~/Scripts/captcha.js")
+    <script>
+        Pages.Login.init();
+    </script>
 }

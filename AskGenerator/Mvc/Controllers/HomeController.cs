@@ -133,7 +133,7 @@ namespace AskGenerator.Mvc.Controllers
 
         #region Board
         [HttpGet]
-        [OutputCache(CacheProfile = "Cache1Hour")]
+        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
         public async Task<ViewResult> Board()
         {
             var badges = await Task.Factory.StartNew<Dictionary<string, LimitViewModel>>(CreateBadges);
@@ -153,7 +153,7 @@ namespace AskGenerator.Mvc.Controllers
             return View("_Board", model);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult> Recalculate()
         {
             var tqManager = Site.TQManager;
