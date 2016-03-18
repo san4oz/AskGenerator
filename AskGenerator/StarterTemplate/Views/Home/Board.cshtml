@@ -5,14 +5,7 @@
     ViewBag.Title = @Resources.Resource.TeacherBoard;
 }
 
-<div class="col-md-offset-1 col-md-11" style="border-radius: 20px; background-color: rgb(211, 207, 207); padding-bottom: 7px;">
-    <div>
-        <span class="h1" style="color:red;">Увага!</span>
-        <span class="h3">З технічних причин результати голосування до <time>14.03 18:23</time> могли бути втрачені.</span>
-    </div>
-    <span class="h4" style="top: 5px;">Будь ласка, перевірте свої @Html.RouteLink("голоси", "Vote").</span>
-</div>
-
+@Banner()
 <h1 class="col-md-offset-1 col-md-5 col-lg-4">@Resources.Resource.TeacherBoard</h1>
 <h3 class="col-md-6 col-lg-7">За результатами голосування @Model.UniqueUsers студентів. <span id="data-from-wrapper" class="h4"></span></h3>
 
@@ -42,8 +35,37 @@
 
 @section Scripts{
     <script>
-        Pages.Board.init();
+        //Pages.Board.init();
+
+        Pages.Board.loadBoard();
+        Pages.Board.initRemainingClock('#clockdiv', 'March 23 2016 20:0:0 GMT+02:00');
     </script>
+}
+
+@helper Banner()
+{
+    <div class="col-md-offset-1 col-md-11 banner">
+        <span class="h3 col-xs-12 col-sm-5 col-lg-4">Встигніть @Html.RouteLink("проголосувати", "Vote")!</span>
+        <span class="h3 col-xs-12 col-sm-7" style="color:red;">До оголошення результаатів залишилось:</span>
+        <div class="col-xs-12 col-sm-offset-5 col-sm-6 col-lg-offset-4" id="clockdiv">
+            <div>
+                <span class="days"></span>
+                <div class="smalltext">Днів</div>
+            </div>
+            <div>
+                <span class="hours"></span>
+                <div class="smalltext">Годин</div>
+            </div>
+            <div>
+                <span class="minutes"></span>
+                <div class="smalltext">Хвилин</div>
+            </div>
+            <div>
+                <span class="seconds"></span>
+                <div class="smalltext">Секунд</div>
+            </div>
+        </div>
+    </div>
 }
 
 @helper Badge(LimitViewModel badge)

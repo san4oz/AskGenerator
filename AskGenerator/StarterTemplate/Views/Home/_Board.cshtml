@@ -14,7 +14,6 @@
 
 @helper Teacher(TeacherViewModel teacher)
 {
-    var avg = Math.Round(teacher.AverageMark, 4);
     <article class="col-lg-2 col-md-3 col-sm-4 col-xs-6 teacher-tile-wrapper" id="@teacher.Id">
         <a href="#" class="teacher-tile" data-popover="@teacher.Badges.ToJson()">
             <div class="img-thumbnail">
@@ -22,7 +21,11 @@
             </div>
             <span title="@teacher.FullName()">@teacher.GetShortName()</span>
             <div class="badges">
-                <span class="badge avg" data-togglee="tooltip" title="@avg">@Math.Round(avg, 1)</span>
+                @if (teacher.AverageMark.Type != char.MinValue)
+                {
+                    var avg = Math.Round(teacher.AverageMark.Mark, 4);
+                    <span class="badge avg" data-togglee="tooltip" title="@avg">@Math.Round(avg, 1)</span>
+                }
                 @foreach (var tbadge in teacher.Badges.Where(tb => tb.Type != char.MinValue))
                 {
                     @Badge(tbadge)

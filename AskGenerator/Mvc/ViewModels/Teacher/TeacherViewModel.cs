@@ -47,7 +47,7 @@ namespace AskGenerator.ViewModels
 
         public string TeamId { get; set; }
 
-        public float AverageMark { get; set; }
+        public TeacherBadge AverageMark { get; set; }
 
         public IList<TeacherBadge> Badges { get; set; }
 

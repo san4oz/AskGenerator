@@ -133,7 +133,7 @@ namespace AskGenerator.Mvc.Controllers
 
         #region Board
         [HttpGet]
-        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
+        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Client)]
         public async Task<ViewResult> Board()
         {
             var badges = await Task.Factory.StartNew<Dictionary<string, LimitViewModel>>(CreateBadges);
@@ -210,7 +210,6 @@ namespace AskGenerator.Mvc.Controllers
 
         protected TeacherListViewModel CreateTeacherListViewModel(List<Teacher> teachers)
         {
-            var badges = CreateBadges();
             var models = new List<TeacherViewModel>(teachers.Count);
             foreach (var teacher in teachers)
             {
@@ -218,32 +217,32 @@ namespace AskGenerator.Mvc.Controllers
                 var avg = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == Question.AvarageId);
                 if (avg != null)
                 {
-                    tmodel.AverageMark = avg.Answer;
+                    tmodel.AverageMark = new TeacherBadge() { Id = avg.QuestionId, Mark = avg.Answer, Type = char.MinValue };
                     teacher.Marks.Remove(avg);
                 }
-                foreach (var mark in teacher.Marks)
-                {
-                    var id = mark.QuestionId + 'l';
-                    var badge = badges.GetOrDefault(id);
-                    var teacherBadge = new TeacherBadge() { Id = mark.QuestionId, Mark = mark.Answer, Type = 'l' };
-                    if (mark.Answer <= 0)
-                        continue;
+                //foreach (var mark in teacher.Marks)
+                //{
+                //    var id = mark.QuestionId + 'l';
+                //    var badge = badges.GetOrDefault(id);
+                //    var teacherBadge = new TeacherBadge() { Id = mark.QuestionId, Mark = mark.Answer, Type = 'l' };
+                //    if (mark.Answer <= 0)
+                //        continue;
 
-                    if (badge != null && badge.AvgLimit > mark.Answer)
-                    {
-                        tmodel.Badges.Add(teacherBadge);
-                    }
-                    else
-                    {
-                        id = mark.QuestionId + 'r';
-                        badge = badges.GetOrDefault(id);
-                        teacherBadge.Type = (badge != null && badge.AvgLimit < mark.Answer) ? 'r' : char.MinValue;
-                        tmodel.Badges.Add(teacherBadge);
-                    }
-                }
+                //    if (badge != null && badge.AvgLimit > mark.Answer)
+                //    {
+                //        tmodel.Badges.Add(teacherBadge);
+                //    }
+                //    else
+                //    {
+                //        id = mark.QuestionId + 'r';
+                //        badge = badges.GetOrDefault(id);
+                //        teacherBadge.Type = (badge != null && badge.AvgLimit < mark.Answer) ? 'r' : char.MinValue;
+                //        tmodel.Badges.Add(teacherBadge);
+                //    }
+                //}
                 models.Add(tmodel);
             }
-            var model = new TeacherListViewModel(models.OrderByDescending(m => m.AverageMark).ToList(), badges);
+            var model = new TeacherListViewModel(models.OrderByDescending(m => m.AverageMark.Mark).ToList(), /*CreateBadges()*/ null);
             return model;
         }
 

@@ -43,6 +43,47 @@ legend {
     position: relative;
 }
 
+.banner {
+    background-color: rgb(211, 207, 207);
+    border-radius: 20px;
+    padding-bottom: 7px;
+}
+
+.banner span.h3{
+    display: inline-block;
+}
+
+.banner .h3 + .h3{
+    font-size: 22px;
+}
+
+#clockdiv {
+    display: inline-block;
+    float: none;
+    padding: 5px 20px 2px;
+}
+
+    #clockdiv > div {
+        background-color: #54b9dd;
+        border-radius: 3px;
+        display: inline-block;
+        padding: 10px;
+    }
+
+    #clockdiv div > span {
+        background-color: #99ebff;
+        border-radius: 3px;
+        display: inline-block;
+        padding: 15px;
+        text-align: center;
+        width: 100%;
+    }
+
+.smalltext {
+    padding-top: 5px;
+    font-size: 16px;
+}
+
 #teacherBoard, #TeachersVote {
     min-width: 296px;
     text-align: center;
