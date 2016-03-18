@@ -11,6 +11,10 @@ Pages.Board = (function () {
             $.post(url, undefined, function (data) {
                 if (data) {
                     root.html(data);
+                    if (dataFrom)
+                        $('#data-from-wrapper').html(dataFrom);
+                    Controls.TTips('[data-toggle="tooltip"]');
+
                     if (callback)
                         callback();
                 }
@@ -23,9 +27,6 @@ Pages.Board = (function () {
             var dataFromContainer = $('#data-from');
             var dataFrom = dataFromContainer.html();
             dataFromContainer.remove();
-            if (dataFrom)
-                $('#data-from-wrapper').html(dataFrom);
-            Controls.TTips('[data-toggle="tooltip"]');
 
             var popover = $('#details-popover');
             $('.teacher-tile').each(function () {
