@@ -1213,6 +1213,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Проголосувало {0} студентів.
+        /// </summary>
+        public static string VotedStudentsFormat {
+            get {
+                return ResourceManager.GetString("VotedStudentsFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Сторінка голосування.
         /// </summary>
         public static string VotePage {

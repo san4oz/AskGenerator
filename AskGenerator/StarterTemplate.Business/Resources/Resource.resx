@@ -522,4 +522,7 @@
   <data name="LogOut" xml:space="preserve">
     <value>Вихід</value>
   </data>
+  <data name="VotedStudentsFormat" xml:space="preserve">
+    <value>Проголосувало {0} студентів</value>
+  </data>
 </root>
