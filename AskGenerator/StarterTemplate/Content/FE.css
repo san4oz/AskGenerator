@@ -67,6 +67,7 @@ legend {
         background-color: #54b9dd;
         border-radius: 3px;
         display: inline-block;
+        margin-bottom: 8px;
         margin-top: 2px;
         padding: 10px;
     }
