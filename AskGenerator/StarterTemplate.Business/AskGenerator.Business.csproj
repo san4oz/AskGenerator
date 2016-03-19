@@ -126,6 +126,7 @@
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\Student.cs" />
+    <Compile Include="Entities\Subscriber.cs" />
     <Compile Include="Entities\Teacher.cs" />
     <Compile Include="Entities\Marks.cs" />
     <Compile Include="Entities\Team.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Managers\GroupManager.cs" />
     <Compile Include="Managers\QuestionManager.cs" />
     <Compile Include="Managers\StudentManager.cs" />
+    <Compile Include="Managers\SubscribersManager.cs" />
     <Compile Include="Managers\TeacherManager.cs" />
     <Compile Include="Managers\VoteManager.cs" />
     <Compile Include="Managers\TeamManager.cs" />

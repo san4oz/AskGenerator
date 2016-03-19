@@ -13,6 +13,8 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using AskGenerator.Business.InterfaceDefinitions.Providers;
+using AskGenerator.Business.Entities;
 
 namespace AskGenerator
 {
@@ -31,6 +33,8 @@ namespace AskGenerator
         public static ITeamManager TeamManager { get { return Get<ITeamManager>(); } }
 
         public static ITeacherQuestionManager TQManager { get { return Get<ITeacherQuestionManager>(); } }
+
+        public static IBaseEntityManager<Subscriber> Subscribers { get { return Get<IBaseEntityManager<Subscriber>>(); } }
 
         public static UserManager UserManager { get { return HttpContext.Current.GetOwinContext().GetUserManager<UserManager>(); } }
 

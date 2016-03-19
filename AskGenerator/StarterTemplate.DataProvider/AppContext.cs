@@ -35,5 +35,7 @@ namespace AskGenerator.DataProvider
         public DbSet<Vote> Votes { get; set; }
 
         public DbSet<TeacherQuestion> TeacherQuestion { get; set; }
+
+        public DbSet<Subscriber> Subscribers { get; set; }
     }
 }

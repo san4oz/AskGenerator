@@ -46,31 +46,26 @@ legend {
 .banner {
     background-color: rgb(211, 207, 207);
     border-radius: 20px;
+    display: inline-block;
     padding-bottom: 7px;
 }
 
-.banner span.h3{
+    .banner span.h3 {
+        display: inline-block;
+    }
+
+.clockdiv {
     display: inline-block;
 }
 
-.banner .h3 + .h3{
-    font-size: 22px;
-}
-
-#clockdiv {
-    display: inline-block;
-    float: none;
-    padding: 5px 20px 2px;
-}
-
-    #clockdiv > div {
+    .clockdiv > div {
         background-color: #54b9dd;
         border-radius: 3px;
         display: inline-block;
         padding: 10px;
     }
 
-    #clockdiv div > span {
+    .clockdiv div > span {
         background-color: #99ebff;
         border-radius: 3px;
         display: inline-block;
@@ -78,6 +73,16 @@ legend {
         text-align: center;
         width: 100%;
     }
+
+.subscribe label {
+    text-align: left !important;
+}
+
+.subscribe input {
+    display: inline-block;
+    height: 36px;
+    width: 80%;
+}
 
 .smalltext {
     padding-top: 5px;
@@ -178,7 +183,8 @@ legend {
     background-repeat: no-repeat;
     display: block;
     height: 100px;
-    margin-bottom: 5px min-height: 70px;
+    margin-bottom: 5px;
+    min-height: 70px;
     min-width: 70px;
     position: static;
     width: 100px;

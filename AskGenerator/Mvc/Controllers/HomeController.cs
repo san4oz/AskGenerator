@@ -185,6 +185,19 @@ namespace AskGenerator.Mvc.Controllers
         }
         #endregion
 
+        #region Subscribe
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult Subscribe(Subscriber subscriber)
+        {
+            if (ModelState.IsValid)
+            {
+                return Json(Site.Subscribers.Create(subscriber));
+            }
+            return Json(false);
+        }
+        #endregion
+
         #region protected
         protected Dictionary<string, LimitViewModel> CreateBadges()
         {

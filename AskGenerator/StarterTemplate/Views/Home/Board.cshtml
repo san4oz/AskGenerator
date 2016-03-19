@@ -38,16 +38,16 @@
         //Pages.Board.init();
 
         Pages.Board.loadBoard();
-        Pages.Board.initRemainingClock('#clockdiv', 'March 23 2016 20:0:0 GMT+02:00');
+        Pages.Board.initRemainingClock('.clockdiv', 'March 23 2016 20:0:0 GMT+02:00');
     </script>
 }
 
 @helper Banner()
 {
     <div class="col-md-offset-1 col-md-11 banner">
-        <span class="h3 col-xs-12 col-sm-5 col-lg-4">Встигніть @Html.RouteLink("проголосувати", "Vote")!</span>
-        <span class="h3 col-xs-12 col-sm-7" style="color:red;">До оголошення результатів залишилось:</span>
-        <div class="col-xs-12 col-sm-offset-5 col-sm-6 col-lg-offset-4" id="clockdiv">
+        <div class="col-xs-12 col-sm-6 clockdiv">
+            <span class="h3" style="color:red;">До оголошення результатів залишилось:</span>
+            <br />
             <div>
                 <span class="days"></span>
                 <div class="smalltext">Дні</div>
@@ -65,6 +65,21 @@
                 <div class="smalltext">Секунд</div>
             </div>
         </div>
+        @using (Html.BeginForm("Subscribe", "Home", FormMethod.Post, new { @class = "form-horizontal col-xs-12 col-sm-5 col-lg-4 subscribe" }))
+        {
+            <span class="h3">Встигніть @Html.RouteLink("проголосувати", "Vote")!</span>
+            var subscriber = new Subscriber();
+            <div class="form-group">
+                @Html.AntiForgeryToken()
+                @Html.LabelFor(x => subscriber.Email, "Підпишіться на отримання результатів", htmlAttributes: new { @class = "col-xs-12 control-label" })
+                <div class="col-md-9">
+                    @Html.TextBoxFor(x => subscriber.Email, new { @class = "form-control", type = "email", placeholder = "example@gmail.com" })
+                    <button type="submit" class="btn btn-primary" title="@Resources.Resource.Save">
+                        <i class="glyphicon glyphicon-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        }
     </div>
 }
 

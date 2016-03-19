@@ -179,12 +179,17 @@
     <Compile Include="Migrations\201603102006481_Key LoginKey.Designer.cs">
       <DependentUpon>201603102006481_Key LoginKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603191837089_Subscribers.cs" />
+    <Compile Include="Migrations\201603191837089_Subscribers.Designer.cs">
+      <DependentUpon>201603191837089_Subscribers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseEntityProvider.cs" />
     <Compile Include="Providers\GroupProvider.cs" />
     <Compile Include="Providers\QuestionProvider.cs" />
     <Compile Include="Providers\StudentProvider.cs" />
+    <Compile Include="Providers\SubscribersProvider.cs" />
     <Compile Include="Providers\TeacherProvider.cs" />
     <Compile Include="Providers\VoteProvider.cs" />
     <Compile Include="Providers\TeamProvider.cs" />
@@ -252,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603102006481_Key LoginKey.resx">
       <DependentUpon>201603102006481_Key LoginKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603191837089_Subscribers.resx">
+      <DependentUpon>201603191837089_Subscribers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -55,7 +55,6 @@ Pages.Board = (function () {
         };
     };
 
-
     self.initRemainingClock = function (selector, endtimeString) {
         var clock = $(selector);
         var endtime = Date.parse(endtimeString);
@@ -74,5 +73,24 @@ Pages.Board = (function () {
         update();
         timeinterval = setInterval(update, 1000);
     };
+
+    self.initSubscibe = function () {
+        var form = $('.subscribe');
+        form.on('submin', function (e) {
+            e.preventDefault();
+            var url = form.attr('action');
+            if (!url)
+                url = 'home/subscribe';
+            
+            data = form.serialize();
+            form.attr('disabled', 'disabled');
+            $.post(url, data, function (resp) {
+            }).error(function () {
+                form.removeAttr('disabled');
+                form.find('input').removeClass('valid').addClass('input-validation-error');
+            });
+        });
+    };
+
     return self;
 })();
