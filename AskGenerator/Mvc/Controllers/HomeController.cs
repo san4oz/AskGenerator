@@ -192,9 +192,10 @@ namespace AskGenerator.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Json(Site.Subscribers.Create(subscriber));
+                Site.Subscribers.Create(subscriber);
+                return Json(subscriber.Email);
             }
-            return Json(false);
+            return Json(false, 500);
         }
         #endregion
 

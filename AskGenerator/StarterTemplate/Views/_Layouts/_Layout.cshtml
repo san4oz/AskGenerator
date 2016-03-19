@@ -3,6 +3,7 @@
     Layout = "_Base.cshtml";
 }
 @section Styles{
+    <link href='https://fonts.googleapis.com/css?family=Roboto:500&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     @Styles.Render("~/Content/FE.css")
 }
 
@@ -52,7 +53,8 @@
     </script>
 }
 
-@helper Footer() {
+@helper Footer()
+{
     <ul class="col-xs-12">
         <li class="col-xs-12 col-sm-4 col-sm-offset-2">
             <p class="reachus">@Resource.AboutUs</p>

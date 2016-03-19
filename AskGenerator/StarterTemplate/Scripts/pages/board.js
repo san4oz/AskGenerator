@@ -76,18 +76,22 @@ Pages.Board = (function () {
 
     self.initSubscibe = function () {
         var form = $('.subscribe');
-        form.on('submin', function (e) {
+        form.on('submit', function (e) {
             e.preventDefault();
             var url = form.attr('action');
             if (!url)
                 url = 'home/subscribe';
             
-            data = form.serialize();
+            var data = form.serialize();
             form.attr('disabled', 'disabled');
             $.post(url, data, function (resp) {
+                if (resp) {
+                    form.find('.form-group div').html('<span style="color:green;"><i style="color:black;">' + resp + '</i> додано </span>');
+                }
             }).error(function () {
-                form.removeAttr('disabled');
                 form.find('input').removeClass('valid').addClass('input-validation-error');
+            }).complete(function () {
+                form.removeAttr('disabled');
             });
         });
     };

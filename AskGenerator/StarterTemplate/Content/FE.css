@@ -50,18 +50,24 @@ legend {
     padding-bottom: 7px;
 }
 
+    .banner a:hover {
+        border-bottom: 1px solid;
+    }
+
     .banner span.h3 {
         display: inline-block;
     }
 
 .clockdiv {
     display: inline-block;
+    text-align: center;
 }
 
     .clockdiv > div {
         background-color: #54b9dd;
         border-radius: 3px;
         display: inline-block;
+        margin-top: 2px;
         padding: 10px;
     }
 
@@ -69,10 +75,16 @@ legend {
         background-color: #99ebff;
         border-radius: 3px;
         display: inline-block;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
         padding: 15px;
         text-align: center;
         width: 100%;
     }
+
+.subscribe .form-group {
+    padding-top: 10px;
+}
 
 .subscribe label {
     text-align: left !important;
