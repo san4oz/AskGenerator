@@ -76,6 +76,8 @@ Pages.Board = (function () {
 
     self.initSubscibe = function () {
         var form = $('.subscribe');
+        form.validate();
+        form.removeAttr('novalidate').removeProp('novalidate');
         form.on('submit', function (e) {
             e.preventDefault();
             var url = form.attr('action');
@@ -83,7 +85,7 @@ Pages.Board = (function () {
                 url = 'home/subscribe';
             
             var data = form.serialize();
-            form.attr('disabled', 'disabled');
+            form.prop('disabled', true).attr('disabled', 'disabled');
             $.post(url, data, function (resp) {
                 if (resp) {
                     form.find('.form-group div').html('<span style="color:green;"><i style="color:black;">' + resp + '</i> додано </span>');
@@ -91,7 +93,7 @@ Pages.Board = (function () {
             }).error(function () {
                 form.find('input').removeClass('valid').addClass('input-validation-error');
             }).complete(function () {
-                form.removeAttr('disabled');
+                form.removeProp('disabled').removeAttr('disabled');
             });
         });
     };

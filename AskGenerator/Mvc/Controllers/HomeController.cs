@@ -192,6 +192,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                subscriber.Email = TransformEmail(subscriber.Email);
                 Site.Subscribers.Create(subscriber);
                 return Json(subscriber.Email);
             }

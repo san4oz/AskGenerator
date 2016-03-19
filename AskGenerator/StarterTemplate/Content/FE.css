@@ -97,6 +97,15 @@ legend {
     width: 80%;
 }
 
+    .subscribe input + .error {
+        display: none !important;
+    }
+
+    .subscribe input.input-validation-error, .subscribe input.error {
+        border-color: rgb(233, 155, 116);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(233, 155, 116, 0.6);
+    }
+
 .smalltext {
     padding-top: 5px;
     font-size: 16px;
