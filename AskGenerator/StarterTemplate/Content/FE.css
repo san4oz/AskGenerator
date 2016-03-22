@@ -553,3 +553,14 @@ time {
     font-family: monospace;
     font-size: 0.9em;
 }
+
+.infoPageWrapper{
+    background-color: #fffefe;
+    padding-top: 4px;
+}
+
+.infoPageWrapper .caption {
+    color: #3a3a3a;
+    padding: 8px;
+    text-align: center;
+}

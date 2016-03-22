@@ -525,4 +525,7 @@
   <data name="VotedStudentsFormat" xml:space="preserve">
     <value>Проголосувало {0} студентів</value>
   </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
 </root>

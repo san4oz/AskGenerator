@@ -1,0 +1,24 @@
+﻿@using System.Web.Optimization
+@{
+    Layout = "_Layout.cshtml";
+}
+
+<div class="col-sm-offset-1 col-sm-10 infoPageWrapper">
+    <ul class="nav nav-tabs">
+        @Tab("Политика конфиденциальности", "Index")
+        @Tab("Как мы считаем рейтинг", "Calculation")
+    </ul>
+    <div id="infoPage">
+        @RenderBody()
+    </div>
+</div>
+@section Scripts{
+    <script>
+        Pages.Info.init();
+    </script>
+    @RenderSection("Scripts", required: false)
+}
+
+@helper Tab(string text, string action) {
+    @Html.MenuItem(text, action, "Info", glyphicon: null, liCssClass: "h2")
+}

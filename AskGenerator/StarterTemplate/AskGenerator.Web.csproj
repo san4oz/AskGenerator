@@ -233,6 +233,7 @@
     <Content Include="Content\Images\c01c0999-a73f-464c-bf86-ebfd176c5108.jpg" />
     <Content Include="Content\Images\c3804989-8152-4fb6-b029-0172a1a4a95a.jpg" />
     <Content Include="Content\Images\c7800761-61af-49d2-bd76-9377def0910b.jpg" />
+    <Content Include="Content\Images\calculation.png" />
     <Content Include="Content\Images\cb40cbb0-7bba-4052-9084-34001277b849.jpg" />
     <Content Include="Content\Images\d1567b28-507c-4f82-a020-960ab385329e.jpg" />
     <Content Include="Content\Images\d1612aaf-0c46-482a-8451-153143f5d3ac.jpg" />
@@ -1263,6 +1264,7 @@
     <Content Include="Scripts\models\option.js" />
     <Content Include="Scripts\models\teacherRait.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pages\info.js" />
     <Content Include="Scripts\pages\login.js" />
     <Content Include="Scripts\pages\board.js" />
     <Content Include="Scripts\admin\students.js" />
@@ -1309,6 +1311,9 @@
     <Content Include="Views\Account\EditorTemplates\RegistrationModel.cshtml" />
     <Content Include="Views\Account\EditorTemplates\LoginViewModel.cshtml" />
     <Content Include="Views\Shared\_gtm.cshtml" />
+    <Content Include="Views\_Layouts\_Info.cshtml" />
+    <Content Include="Views\Info\Index.cshtml" />
+    <Content Include="Views\Info\Calculation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

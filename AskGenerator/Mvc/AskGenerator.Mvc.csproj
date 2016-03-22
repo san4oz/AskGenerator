@@ -178,6 +178,7 @@
     <Compile Include="Controllers\Admin\StudentController.cs" />
     <Compile Include="Controllers\Admin\TeacherController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Filters\CultureAttribute.cs" />
     <Compile Include="Helpers\IdentityExtensions.cs" />
     <Compile Include="Helpers\Mailer.cs" />
