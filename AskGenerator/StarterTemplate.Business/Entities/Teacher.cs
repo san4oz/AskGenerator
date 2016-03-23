@@ -14,11 +14,11 @@ namespace AskGenerator.Business.Entities
         public string TeamId { get; set; }
 
         [NotMapped]
-        public IList<Mark> Marks { get; set; }
+        public IList<TeacherQuestion> Marks { get; set; }
 
         public Teacher()
         {
-            Marks = new List<Mark>();
+            Marks = new List<TeacherQuestion>();
         }
     }
 }

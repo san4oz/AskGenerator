@@ -36,6 +36,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Order, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                            <div class="col-lg-10">
+                                @Html.TextBoxFor(x => x.Order, htmlAttributes: new { @clas = "form-control" })
+                            </div>
+                        </div>
+
                         @Advanced()
                         @Html.HiddenFor(x => x.IsAboutTeacher)
                         <button type="submit" class="btn btn-primary">@Resources.Resource.Save</button>

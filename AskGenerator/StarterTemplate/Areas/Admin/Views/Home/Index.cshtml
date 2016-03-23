@@ -1,11 +1,21 @@
-﻿@{
+﻿@using System.Web.Optimization
+@{
     ViewBag.Title = @Resources.Resource.IndexHeader;
 }
 
-
 <div>Yahoo!</div>
-<small>iviviv1901@gmail.com</small> - admin
-<small>1234554321</small>
-<br />
-<small>example@gmail.com</small> - user
-<small>123321</small>
+<div class="panel-heading">
+    <div class="text-muted bootstrap-admin-box-title">
+        Home, Sweet Home :)
+    </div>
+</div>
+<div class="bootstrap-admin-panel-content">
+    <a class="btn btn-primary" href="@Url.Action("Recalculate")" id="recalculate">Recalculate</a>
+    <span class="msg"></span>
+</div>
+
+@section Scripts{
+    <script>
+        Index.init();
+    </script>
+}

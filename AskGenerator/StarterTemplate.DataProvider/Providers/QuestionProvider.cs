@@ -10,6 +10,14 @@ namespace AskGenerator.DataProvider.Providers
 {
     public class QuestionProvider : BaseEntityProvider<Question>, IQuestionProvider
     {
+        public override List<Question> All()
+        {
+            return GetSet(set =>
+            {
+                return set.OrderBy(q => q.Order)
+                    .ToList();
+            });
+        }
         /// <summary>
         /// Gets questions for certain category.
         /// </summary>
@@ -19,7 +27,9 @@ namespace AskGenerator.DataProvider.Providers
         {
             return GetSet(set =>
             {
-                return set.Where(q => q.IsAboutTeacher == isAboutTeacher).ToList();
+                return set.Where(q => q.IsAboutTeacher == isAboutTeacher)
+                    .OrderBy(q => q.Order)
+                    .ToList();
             });
         }
     }

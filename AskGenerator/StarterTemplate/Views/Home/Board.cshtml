@@ -5,7 +5,7 @@
     ViewBag.Title = @Resources.Resource.Board;
 }
 
-@Banner()
+@*Banner()*@
 <h1 class="col-md-offset-1 col-md-5 col-lg-4">@Resources.Resource.Board</h1>
 <h3 class="col-md-6 col-lg-7">@Resources.Resource.VotedStudentsFormat.FormatWith(Model.UniqueUsers) <span id="data-from-wrapper" class="h4"></span></h3>
 
@@ -35,9 +35,9 @@
 
 @section Scripts{
     <script>
-        //Pages.Board.init();
+        Pages.Board.init();
 
-        Pages.Board.loadBoard();
+        //Pages.Board.loadBoard();
         Pages.Board.initRemainingClock('.clockdiv', 'March 23 2016 20:0:0 GMT+02:00');
         Pages.Board.initSubscibe();
     </script>

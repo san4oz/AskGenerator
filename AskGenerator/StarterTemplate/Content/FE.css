@@ -149,6 +149,12 @@ legend {
         width: 24px;
     }
 
+        .teacher-tile .badges .badge.avg {
+            height: 35px;
+            padding: 5px 2px;
+            width: 35px;
+        }
+
         .teacher-tile .badges .badge[style] {
             background-color: #ffffff;
             background-position: center center;
@@ -396,8 +402,6 @@ hr {
 }
 
 #legend {
-    display: flexbox;
-    display: flex;
     padding: 0;
     text-align: center;
     width: 100%;
@@ -405,8 +409,10 @@ hr {
 
     #legend .thumbnail {
         display: inline-block;
+        min-height: 160px;
         margin: 0 15px 5px;
         padding: 0;
+        float: right;
     }
 
     #legend img {
@@ -483,11 +489,11 @@ a.help {
 }
 
     .teacher-tile .img-thumbnail > .photo {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
         bottom: 0;
+        left: 1px;
+        right: 1px;
+        position: absolute;
+        top: 0;
     }
 
 .container > .row {
@@ -554,13 +560,13 @@ time {
     font-size: 0.9em;
 }
 
-.infoPageWrapper{
+.infoPageWrapper {
     background-color: #fffefe;
     padding-top: 4px;
 }
 
-.infoPageWrapper .caption {
-    color: #3a3a3a;
-    padding: 8px;
-    text-align: center;
-}
+    .infoPageWrapper .caption {
+        color: #3a3a3a;
+        padding: 8px;
+        text-align: center;
+    }

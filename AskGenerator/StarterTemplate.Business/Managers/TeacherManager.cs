@@ -46,7 +46,8 @@ namespace AskGenerator.Business.Managers
 
         public Task<List<Teacher>> AllAsync(bool loadMarks)
         {
-            return Task.Factory.StartNew(() => {
+            return Task.Factory.StartNew(() =>
+            {
                 var teachers = this.List();
                 if (!loadMarks)
                     return teachers;
@@ -54,10 +55,11 @@ namespace AskGenerator.Business.Managers
                 foreach (var t in teachers)
                 {
                     var list = answers[t.Id];
-                    t.Marks = list.Select(x => new Mark() { Answer = x.Answer, QuestionId = x.QuestionId }).ToList();
+                    t.Marks = list.ToList();
                     float avg = 0;
                     int count = 0;
-                    foreach (var mark in t.Marks.Where(m => m.Answer != 0))
+                    t.Marks = t.Marks.Where(m => m.Answer != 0).ToList();
+                    foreach (var mark in t.Marks)
                     {
                         avg += mark.Answer;
                         count++;
@@ -66,7 +68,7 @@ namespace AskGenerator.Business.Managers
                         avg /= (float)count;
                     else
                         avg = -0.001f;
-                    t.Marks.Insert(0, new Mark() { Answer = avg, QuestionId = Question.AvarageId });
+                    t.Marks.Insert(0, new TeacherQuestion() { Answer = avg, QuestionId = Question.AvarageId });
 
                 }
                 return teachers;

@@ -21,6 +21,8 @@ namespace AskGenerator.ViewModels
         [Display(Name = "Верхняя отметка")]
         public string HigherRateDescription { get; set; }
 
+        public int Order { get; set; }
+
         [HiddenInput]
         public bool IsAboutTeacher { get; set; }
 
