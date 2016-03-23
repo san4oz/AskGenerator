@@ -59,6 +59,7 @@ namespace AskGenerator.Mvc.Controllers
         #endregion
 
         #region Voting
+        /*
         [HttpGet]
         [Authorize]
         [ActionName("Index")]
@@ -129,6 +130,7 @@ namespace AskGenerator.Mvc.Controllers
 
             return Json(false, 505);
         }
+        */
         #endregion
 
         #region Board

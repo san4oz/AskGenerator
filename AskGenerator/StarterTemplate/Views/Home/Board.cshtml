@@ -3,6 +3,8 @@
 @using AskGenerator.Business.Entities
 @{
     ViewBag.Title = @Resources.Resource.Board;
+    var goodBadges = Model.Badges.Where(x => x.Key.Last() == 'r');
+    var badBadges = Model.Badges.Where(x => x.Key.Last() == 'l');
 }
 
 @*Banner()*@
@@ -10,10 +12,18 @@
 <h3 class="col-md-6 col-lg-7">@Resources.Resource.VotedStudentsFormat.FormatWith(Model.UniqueUsers) <span id="data-from-wrapper" class="h4"></span></h3>
 
 <section id="legend" class="row">
-    @foreach (var pair in Model.Badges)
-    {
-        @Badge(pair.Value)
-    }
+    <div class="col-xs-12">
+        @foreach (var pair in goodBadges)
+        {
+            @Badge(pair.Value)
+        }
+    </div>
+    <div class="col-xs-12">
+        @foreach (var pair in badBadges)
+        {
+            @Badge(pair.Value)
+        }
+    </div>
 </section>
 <section id="teacherBoard" class="row" data-src="@Url.Action("Board")">
     <div id="loader" class="popover"></div>

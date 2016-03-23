@@ -407,12 +407,15 @@ hr {
     width: 100%;
 }
 
+    #legend .col-xs-12 {
+        display: inline-block;
+    }
+
     #legend .thumbnail {
         display: inline-block;
         min-height: 160px;
         margin: 0 15px 5px;
         padding: 0;
-        float: right;
     }
 
     #legend img {
