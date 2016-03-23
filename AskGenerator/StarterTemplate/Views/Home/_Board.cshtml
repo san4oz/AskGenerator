@@ -15,7 +15,7 @@
 @helper Teacher(TeacherViewModel teacher)
 {
     <article class="col-lg-2 col-md-3 col-sm-4 col-xs-6 teacher-tile-wrapper" id="@teacher.Id">
-        <a href="#" class="teacher-tile" data-popover="@teacher.Badges.ToJson()">
+        <a href="#" class="teacher-tile" data-popover="@teacher.Badges.ToJson()" data-votes-count="@teacher.VotesCount">
             <div class="img-thumbnail">
                 <div class="photo" style="background: url('@this.R.Image(teacher.Image, teacher.IsMale)') no-repeat center top / cover"></div>
             </div>

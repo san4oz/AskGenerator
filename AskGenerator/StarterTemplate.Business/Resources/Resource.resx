@@ -528,4 +528,7 @@
   <data name="Info" xml:space="preserve">
     <value>Info</value>
   </data>
+  <data name="VotesCount" xml:space="preserve">
+    <value>Кількість голосів</value>
+  </data>
 </root>

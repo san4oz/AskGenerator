@@ -196,6 +196,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\LimitViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\Teacher\TeacherDetailsViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\RegistrationModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />

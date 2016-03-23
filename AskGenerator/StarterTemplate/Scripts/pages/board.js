@@ -33,10 +33,15 @@ Pages.Board = (function () {
                 Controls.HtmlPopover(this, function () {
                     var data = $(this).data('popover');
                     popover.find('td[id]').html(' <span class="h4"> - </span>');
+
                     for (var i = 0; i < data.length; i++) {
                         var badge = data[i];
                         $('#' + badge.Id + 'm').html(badge.Mark);
                     }
+
+                    var votesCount = $(this).data('votes-count');
+                    if (votesCount !== undefined) $('#votesCount').html(votesCount);
+
                     return popover.html();
                 });
             });
