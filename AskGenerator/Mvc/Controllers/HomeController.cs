@@ -218,11 +218,13 @@ namespace AskGenerator.Mvc.Controllers
 
                 var avg = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == Question.AvarageId);
                 var difficult = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == diffId);
-                var maxCount = teacher.Marks.Max(m => m.Count);
+                int maxCount = 0;
 
                 if (avg != null)
                 {
                     teacher.Marks.Remove(avg);
+                    if (teacher.Marks.Count > 0)
+                        maxCount = teacher.Marks.Max(m => m.Count);
                     tmodel.AverageMark = new TeacherBadge() { Id = avg.QuestionId, Type = char.MaxValue };
                     if (difficult != null)
                     {
