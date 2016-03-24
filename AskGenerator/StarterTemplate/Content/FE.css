@@ -573,3 +573,14 @@ time {
         padding: 8px;
         text-align: center;
     }
+
+.detailsPage{
+    background-color: #fffefe;
+}
+.detailsPage .totals{
+    margin: 10px auto;
+    width: 50%;
+}
+#team-table {
+    display: inline-block;
+}

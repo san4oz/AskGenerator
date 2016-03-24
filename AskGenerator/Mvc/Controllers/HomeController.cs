@@ -153,7 +153,8 @@ namespace AskGenerator.Mvc.Controllers
         public async Task<ViewResult> BoardPost()
         {
             var teachers = await Site.TeacherManager.AllAsync(true);
-            var model = CreateTeacherListViewModel(teachers);
+            var model = new TeacherListViewModel();
+            InitTeacherListViewModel(teachers, model);
             return View("_Board", model);
         }
         #endregion
@@ -181,75 +182,6 @@ namespace AskGenerator.Mvc.Controllers
         #endregion
 
         #region protected
-        protected Dictionary<string, LimitViewModel> CreateBadges(IList<Question> questions = null)
-        {
-            if (questions == null)
-                questions = QuestionManager.List(isAboutTeacher: true);
-
-            var result = new Dictionary<string, LimitViewModel>(questions.Count * 2);
-            foreach (var question in questions)
-            {
-                if (question.LeftLimit.AvgLimit > 0)
-                {
-                    var badge = Map<Question.Limit, LimitViewModel>(question.LeftLimit);
-                    badge.Id = question.Id;
-                    result.Add(badge.Id + "l", badge);
-                }
-                if (question.RightLimit.AvgLimit > 0)
-                {
-                    var badge = Map<Question.Limit, LimitViewModel>(question.RightLimit);
-                    badge.Id = question.Id;
-                    result.Add(badge.Id + "r", badge);
-                }
-            }
-            return result;
-        }
-
-        protected TeacherListViewModel CreateTeacherListViewModel(List<Teacher> teachers)
-        {
-            var models = new List<TeacherViewModel>(teachers.Count);
-            var questions = QuestionManager.List(isAboutTeacher: true);
-            var badges = CreateBadges(questions);
-            var diffId = questions.First().Id;
-
-            foreach (var teacher in teachers)
-            {
-                var tmodel = Map<Teacher, TeacherViewModel>(teacher);
-
-                var avg = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == Question.AvarageId);
-                var difficult = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == diffId);
-                int maxCount = 0;
-
-                if (avg != null)
-                {
-                    teacher.Marks.Remove(avg);
-                    if (teacher.Marks.Count > 0)
-                        maxCount = teacher.Marks.Max(m => m.Count);
-                    tmodel.AverageMark = new TeacherBadge() { Id = avg.QuestionId, Type = char.MaxValue };
-                    if (difficult != null)
-                    {
-                        avg.Answer = (avg.Answer * (teacher.Marks.Count) - difficult.Answer) / (teacher.Marks.Count - 1);
-                        tmodel.AverageMark.Mark = (float)(Math.Pow(difficult.Answer, 0.5) * avg.Answer * Math.Pow(maxCount, 0.2));
-                    }
-                    else
-                    {
-                        tmodel.AverageMark.Mark = -0.001f;
-                    }
-                }
-
-                foreach (var mark in teacher.Marks)
-                {
-                    var teacherBadge = CreateTeacherBadge(badges, mark);
-                    if (teacherBadge != null)
-                        tmodel.Badges.Add(teacherBadge);
-                }
-
-                tmodel.VotesCount = maxCount;
-                models.Add(tmodel);
-            }
-            return new TeacherListViewModel(models.OrderByDescending(m => m.AverageMark != null ? m.AverageMark.Mark : -0.001f).ToList(), badges);
-        }
-
         protected List<TeacherDataModel> MapTeachers(Business.Entities.Group group, IEnumerable<IGrouping<string, Business.Entities.Vote>> votes)
         {
             var teachers = new List<TeacherDataModel>();
@@ -271,27 +203,6 @@ namespace AskGenerator.Mvc.Controllers
                 teachers.Add(data);
             }
             return teachers;
-        }
-        #endregion
-
-        #region private
-        private TeacherBadge CreateTeacherBadge(Dictionary<string, LimitViewModel> badges, TeacherQuestion mark)
-        {
-            var id = mark.QuestionId + 'l';
-            var badge = badges.GetOrDefault(id);
-            var teacherBadge = new TeacherBadge() { Id = mark.QuestionId, Mark = (float)Math.Round(mark.Answer, 2) , Type = 'l' };
-
-            if (mark.Answer <= 0)
-                return null;
-
-            if (badge == null || badge.AvgLimit < mark.Answer)
-            {
-                id = mark.QuestionId + 'r';
-                badge = badges.GetOrDefault(id);
-                teacherBadge.Type = (badge != null && badge.AvgLimit < mark.Answer) ? 'r' : char.MinValue;
-            }
-
-            return teacherBadge;
         }
         #endregion
 

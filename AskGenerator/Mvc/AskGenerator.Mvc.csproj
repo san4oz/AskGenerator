@@ -177,6 +177,7 @@
     <Compile Include="Controllers\Admin\QuestionController.cs" />
     <Compile Include="Controllers\Admin\StudentController.cs" />
     <Compile Include="Controllers\Admin\TeacherController.cs" />
+    <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
     <Compile Include="Filters\CultureAttribute.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="ViewModels\LimitViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherDetailsViewModel.cs" />
+    <Compile Include="ViewModels\TeamResultsViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\RegistrationModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />

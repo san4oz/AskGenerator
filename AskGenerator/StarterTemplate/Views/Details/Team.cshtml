@@ -1,0 +1,152 @@
+﻿@model AskGenerator.Mvc.ViewModels.TeamResultsViewModel
+@using AskGenerator.ViewModels
+@using AskGenerator.Business.Entities
+
+@{
+    ViewBag.Title = "Кафедри";
+}
+<div class="detailsPage">
+    <select id="team" name="team">
+        @foreach (var t in Model.Teams)
+        {
+            if (t.Id == Model.Id)
+            {
+                <option value="@t.Id" selected="selected">@t.Name</option>
+            }
+            else
+            {
+                <option value="@t.Id">@t.Name</option>
+            }
+        }
+    </select>
+
+    @Totals()
+
+    <section id="team-table" class="col-xs-12">
+        @foreach (var pair in Model.Questions)
+        {
+            @QuestionDetails(pair)
+        }
+    </section>
+
+    <section id="teacherBoard" class="row">
+        @foreach (var t in Model.List)
+        {
+            @Teacher(t)
+        }
+    </section>
+</div>
+
+@section Scripts{
+    <script>
+        Pages.Team.init();
+    </script>
+}
+
+@helper Totals()
+{
+    var rate = Model.Avgs["rate"];
+    <table class="totals">
+        <caption class="h3">Totals</caption>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Vote</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pair in Model.Questions)
+            {
+                var avg = Model.Avgs[pair.Key];
+                <tr>
+                    <td>@pair.Value</td>
+                    <td>@avg.Answer</td>
+                    <td>@avg.Count</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Rate</th>
+                <th>@rate.Answer</th>
+                <th>@rate.Count</th>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@helper QuestionDetails(KeyValuePair<string, string> pair)
+{
+    <table class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <caption>@pair.Value</caption>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Vote</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mark in Model.Marks[pair.Key].OrderBy(p => p.Key))
+            {
+                <tr>
+                    <td></td>
+                    <td>@mark.Key</td>
+                    <td>@mark.Value</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Avg</th>
+                <th>@Model.Avgs[pair.Key].Answer</th>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+
+@helper Teacher(TeacherViewModel teacher)
+{
+    <article class="col-lg-2 col-md-3 col-sm-4 col-xs-6 teacher-tile-wrapper" id="@teacher.Id">
+        <a href="#" class="teacher-tile" data-popover="@teacher.Badges.ToJson()" data-votes-count="@teacher.VotesCount">
+            <div class="img-thumbnail">
+                <div class="photo" style="background: url('@this.R.Image(teacher.Image, teacher.IsMale)') no-repeat center top / cover"></div>
+            </div>
+            <span title="@teacher.FullName()">@teacher.GetShortName()</span>
+            <div class="badges">
+                @if (teacher.AverageMark.Type != char.MinValue)
+                {
+                    var avg = Math.Round(teacher.AverageMark.Mark, 4);
+                    <span class="badge avg" data-togglee="tooltip" title="@avg">@Math.Round(avg, 1)</span>
+                }
+                @foreach (var tbadge in teacher.Badges.Where(tb => tb.Type != char.MinValue))
+                {
+                    @Badge(tbadge)
+                }
+            </div>
+        </a>
+    </article>
+}
+
+@helper Badge(TeacherBadge tbadge)
+{
+    var badge = Model.Badges.GetOrDefault(tbadge.Id + tbadge.Type);
+    if (badge != null)
+    {
+        var ttip = badge.ToolTip;
+        if (ttip.EndsWith("?"))
+        {
+            ttip = ttip.TrimEnd('?') + '(' + tbadge.Mark.ToString("0.00") + ')';
+        }
+        if (string.IsNullOrEmpty(badge.Image))
+        {
+            <span class="badge" data-toggle="tooltip" title="@ttip"></span>
+        }
+        else
+        {
+            <span class="badge" data-toggle="tooltip" style="background-image: url(@badge.Image)" title="@ttip"></span>
+        }
+    }
+}
