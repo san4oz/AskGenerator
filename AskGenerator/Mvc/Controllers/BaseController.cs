@@ -1,4 +1,8 @@
-﻿using AskGenerator.Mvc.Components;
+﻿using AskGenerator.Business.Entities;
+using AskGenerator.Business.InterfaceDefinitions.Managers;
+using AskGenerator.Mvc.Components;
+using AskGenerator.Mvc.ViewModels;
+using AskGenerator.ViewModels;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -15,6 +19,14 @@ namespace AskGenerator.Mvc.Controllers
 {
     public class BaseController : Controller
     {
+        private IQuestionManager QuestionManager { get; set; }
+
+        public BaseController()
+        {
+            QuestionManager = Site.QuestionManager;
+        }
+
+
         /// <summary>
         /// Gets or sets value indicating whether edit action is executing.
         /// It saves value in <see cref="ViewBag.IsEditing"/>.
@@ -156,6 +168,111 @@ namespace AskGenerator.Mvc.Controllers
             var t = email.Trim().ToLower().Split('@');
             return t[0].Replace(".", string.Empty) + '@' + t[1];
         }
+
+        #region Badges
+        protected Dictionary<string, LimitViewModel> CreateBadges(IList<Question> questions = null)
+        {
+            if (questions == null)
+                questions = QuestionManager.List(isAboutTeacher: true);
+
+            var result = new Dictionary<string, LimitViewModel>(questions.Count * 2);
+            foreach (var question in questions)
+            {
+                if (question.LeftLimit.AvgLimit > 0)
+                {
+                    var badge = Map<Question.Limit, LimitViewModel>(question.LeftLimit);
+                    badge.Id = question.Id;
+                    result.Add(badge.Id + "l", badge);
+                }
+                if (question.RightLimit.AvgLimit > 0)
+                {
+                    var badge = Map<Question.Limit, LimitViewModel>(question.RightLimit);
+                    badge.Id = question.Id;
+                    result.Add(badge.Id + "r", badge);
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Initializes <see cref="T:TeacherListViewModel"/> model. Returns questions used for creation.
+        /// </summary>
+        /// <param name="teachers"></param>
+        /// <param name="model"></param>
+        /// <returns>Returns questions used for creation.</returns>
+        protected IList<Question> InitTeacherListViewModel(List<Teacher> teachers, TeacherListViewModel model)
+        {
+            var models = new List<TeacherViewModel>(teachers.Count);
+            var questions = QuestionManager.List(isAboutTeacher: true);
+            var badges = CreateBadges(questions);
+            var diffId = questions.First().Id;
+
+            foreach (var teacher in teachers)
+            {
+                var tmodel = Map<Teacher, TeacherViewModel>(teacher);
+
+                var avg = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == Question.AvarageId);
+                var difficult = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == diffId);
+                int maxCount = 0;
+
+                if (avg != null)
+                {
+                    teacher.Marks.Remove(avg);
+                    if (teacher.Marks.Count > 0)
+                        maxCount = teacher.Marks.Max(m => m.Count);
+                    tmodel.AverageMark = new TeacherBadge() { Id = avg.QuestionId, Type = char.MaxValue };
+                    if (difficult != null)
+                    {
+                        avg.Answer = (avg.Answer * (teacher.Marks.Count) - difficult.Answer) / (teacher.Marks.Count - 1);
+                        tmodel.AverageMark.Mark = CalculateRate(difficult.Answer, avg.Answer, maxCount);
+                    }
+                    else
+                    {
+                        tmodel.AverageMark.Mark = -0.001f;
+                    }
+                }
+
+                foreach (var mark in teacher.Marks)
+                {
+                    var teacherBadge = CreateTeacherBadge(badges, mark);
+                    if (teacherBadge != null)
+                        tmodel.Badges.Add(teacherBadge);
+                }
+
+                tmodel.VotesCount = maxCount;
+                models.Add(tmodel);
+            }
+
+            model.List = models.OrderByDescending(m => m.AverageMark != null ? m.AverageMark.Mark : -0.001f).ToList();
+            model.Badges = badges;
+
+            return questions;
+        }
+
+        protected float CalculateRate(float difficultAvg, float otherAvg, int votesCount)
+        {
+            return (float)(Math.Pow(difficultAvg, 0.5) * otherAvg * Math.Pow(votesCount, 0.2));
+        }
+
+        private TeacherBadge CreateTeacherBadge(Dictionary<string, LimitViewModel> badges, TeacherQuestion mark)
+        {
+            var id = mark.QuestionId + 'l';
+            var badge = badges.GetOrDefault(id);
+            var teacherBadge = new TeacherBadge() { Id = mark.QuestionId, Mark = (float)Math.Round(mark.Answer, 2), Type = 'l' };
+
+            if (mark.Answer <= 0)
+                return null;
+
+            if (badge == null || badge.AvgLimit < mark.Answer)
+            {
+                id = mark.QuestionId + 'r';
+                badge = badges.GetOrDefault(id);
+                teacherBadge.Type = (badge != null && badge.AvgLimit < mark.Answer) ? 'r' : char.MinValue;
+            }
+
+            return teacherBadge;
+        }
+        #endregion
 
         public class CaptchaResponse
         {

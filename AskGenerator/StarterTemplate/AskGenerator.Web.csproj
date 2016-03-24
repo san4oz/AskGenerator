@@ -1269,6 +1269,7 @@
     <Content Include="Scripts\pages\login.js" />
     <Content Include="Scripts\pages\board.js" />
     <Content Include="Scripts\admin\students.js" />
+    <Content Include="Scripts\pages\team.js" />
     <Content Include="Scripts\select2.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\students.js" />
@@ -1316,6 +1317,7 @@
     <Content Include="Views\Info\Index.cshtml" />
     <Content Include="Views\Info\Calculation.cshtml" />
     <Content Include="Views\Home\TeacherResults.cshtml" />
+    <Content Include="Views\Details\Team.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

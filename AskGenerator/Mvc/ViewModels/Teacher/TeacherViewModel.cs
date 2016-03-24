@@ -59,7 +59,6 @@ namespace AskGenerator.ViewModels
         public void CreateMappings(AutoMapper.IConfiguration configuration)
         {
             var conf = (AutoMapper.IMapperConfiguration)configuration;
-            var defaultMark = new Mark() { Answer = -0.001f };
             conf.CreateMap<Teacher, TeacherViewModel>()
             .ReverseMap();
         }

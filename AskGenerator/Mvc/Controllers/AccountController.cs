@@ -113,7 +113,7 @@ namespace AskGenerator.Mvc.Controllers
             }, identity);
 
             if (string.IsNullOrEmpty(returnUrl))
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Board", "Home");
             return Redirect(returnUrl);
         }
 

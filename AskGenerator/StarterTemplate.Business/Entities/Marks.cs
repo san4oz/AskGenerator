@@ -16,6 +16,11 @@ namespace AskGenerator.Business.Entities
         /// Gets or sets avarage answer.
         /// </summary>
         public virtual float Answer { get; set; }
+
+        /// <summary>
+        /// Gets or sets the number of answers.
+        /// </summary>
+        public int Count { get; set; }
     }
 
     public class TeacherQuestion : Mark
@@ -48,11 +53,6 @@ namespace AskGenerator.Business.Entities
         [Column(Order = 2)]
         [ForeignKey("Question")]
         public override string QuestionId { get; set; }
-
-        /// <summary>
-        /// Gets or sets count of answers.
-        /// </summary>
-        public int Count { get; set; }
 
         public Teacher Teacher { get; set; }
         public Question Question { get; set; }
