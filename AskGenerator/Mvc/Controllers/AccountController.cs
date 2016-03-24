@@ -20,6 +20,8 @@ namespace AskGenerator.Mvc.Controllers
     public class AccountController : BaseController
     {
         const string ConirmRegistrationMail = "ConirmRegistration";
+        const string ConirmVoiteMail = "ConirmVoite";
+        
 
         #region Managers
         protected UserManager Manager
@@ -49,11 +51,16 @@ namespace AskGenerator.Mvc.Controllers
 
         #region Login
         [OutputCache(CacheProfile = "Cache1Hour")]
-        public ActionResult Login(string returnUrl)
+        public async Task<ActionResult> Login(string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
+                await VoitResult(User.Identity.GetEmail());
+            if (User.Identity.IsAuthenticated) 
                 return RedirectToAction("Index", "Home");
             ViewBag.returnUrl = returnUrl;
+               
+
+
             return View();
         }
 
@@ -117,6 +124,20 @@ namespace AskGenerator.Mvc.Controllers
         }
         #endregion
 
+
+
+        public async Task<ActionResult> VoitResult(string id, string param = null)
+        {
+       
+            Mailer.Send(ConirmVoiteMail, id, CreateConfirmTags(null));
+  //            var user = await Manager.FindByEmailAsync(not);
+  
+
+
+            return null;
+        }
+        
+       
         #region Register
         [Authorize(Roles = Role.Admin)]
         [OutputCache(CacheProfile = "Cache1Hour")]

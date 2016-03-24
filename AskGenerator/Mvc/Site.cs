@@ -21,7 +21,6 @@ namespace AskGenerator
     public static class Site
     {
         public static IStudentManager StudentManager { get { return Get<IStudentManager>(); } }
-
         public static ITeacherManager TeacherManager { get { return Get<ITeacherManager>(); } }
 
         public static IGroupManager GroupManager { get { return Get<IGroupManager>(); } }
