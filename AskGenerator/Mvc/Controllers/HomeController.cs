@@ -59,6 +59,7 @@ namespace AskGenerator.Mvc.Controllers
         #endregion
 
         #region Voting
+        /*
         [HttpGet]
         [Authorize]
         [ActionName("Index")]
@@ -129,6 +130,7 @@ namespace AskGenerator.Mvc.Controllers
 
             return Json(false, 505);
         }
+        */
         #endregion
 
         #region Board
@@ -153,6 +155,13 @@ namespace AskGenerator.Mvc.Controllers
             var teachers = await Site.TeacherManager.AllAsync(true);
             var model = CreateTeacherListViewModel(teachers);
             return View("_Board", model);
+        }
+        #endregion
+
+        #region Details
+        public ActionResult TeacherResults(string id)
+        {
+            return View();
         }
         #endregion
 
@@ -209,14 +218,16 @@ namespace AskGenerator.Mvc.Controllers
 
                 var avg = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == Question.AvarageId);
                 var difficult = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == diffId);
+                int maxCount = 0;
 
                 if (avg != null)
                 {
                     teacher.Marks.Remove(avg);
+                    if (teacher.Marks.Count > 0)
+                        maxCount = teacher.Marks.Max(m => m.Count);
                     tmodel.AverageMark = new TeacherBadge() { Id = avg.QuestionId, Type = char.MaxValue };
                     if (difficult != null)
                     {
-                        var maxCount = teacher.Marks.Max(m => m.Count);
                         avg.Answer = (avg.Answer * (teacher.Marks.Count) - difficult.Answer) / (teacher.Marks.Count - 1);
                         tmodel.AverageMark.Mark = (float)(Math.Pow(difficult.Answer, 0.5) * avg.Answer * Math.Pow(maxCount, 0.2));
                     }
@@ -225,13 +236,15 @@ namespace AskGenerator.Mvc.Controllers
                         tmodel.AverageMark.Mark = -0.001f;
                     }
                 }
-                
+
                 foreach (var mark in teacher.Marks)
                 {
                     var teacherBadge = CreateTeacherBadge(badges, mark);
                     if (teacherBadge != null)
                         tmodel.Badges.Add(teacherBadge);
                 }
+
+                tmodel.VotesCount = maxCount;
                 models.Add(tmodel);
             }
             return new TeacherListViewModel(models.OrderByDescending(m => m.AverageMark != null ? m.AverageMark.Mark : -0.001f).ToList(), badges);
@@ -266,7 +279,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             var id = mark.QuestionId + 'l';
             var badge = badges.GetOrDefault(id);
-            var teacherBadge = new TeacherBadge() { Id = mark.QuestionId, Mark = mark.Answer, Type = 'l' };
+            var teacherBadge = new TeacherBadge() { Id = mark.QuestionId, Mark = (float)Math.Round(mark.Answer, 2) , Type = 'l' };
 
             if (mark.Answer <= 0)
                 return null;

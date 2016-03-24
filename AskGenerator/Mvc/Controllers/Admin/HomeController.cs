@@ -9,13 +9,18 @@ namespace AskGenerator.Controllers.Admin
 {
     [Authorize(Roles = "admin")]
     public class HomeController : Controller
-    {    
-        [OutputCache(CacheProfile="Cache1Hour")]
+    {
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult ClearCache(string url)
+        {
+            Response.RemoveOutputCacheItem(url);
+            return RedirectToAction("Index");
+        }
 
         public async Task<ActionResult> Recalculate()
         {

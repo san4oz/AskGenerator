@@ -47,8 +47,13 @@ namespace AskGenerator.ViewModels
 
         public string TeamId { get; set; }
 
+        [ScaffoldColumn(false)]
         public TeacherBadge AverageMark { get; set; }
 
+        [ScaffoldColumn(false)]
+        public int VotesCount { get; set; }
+
+        [ScaffoldColumn(false)]
         public IList<TeacherBadge> Badges { get; set; }
 
         public void CreateMappings(AutoMapper.IConfiguration configuration)

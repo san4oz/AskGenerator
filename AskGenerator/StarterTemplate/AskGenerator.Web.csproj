@@ -1315,6 +1315,7 @@
     <Content Include="Views\_Layouts\_Info.cshtml" />
     <Content Include="Views\Info\Index.cshtml" />
     <Content Include="Views\Info\Calculation.cshtml" />
+    <Content Include="Views\Home\TeacherResults.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
