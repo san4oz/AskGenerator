@@ -568,6 +568,10 @@ time {
     padding-top: 4px;
 }
 
+    .infoPageWrapper h3{
+        margin-left: 20px;
+    }
+
     .infoPageWrapper .caption {
         color: #3a3a3a;
         padding: 8px;
