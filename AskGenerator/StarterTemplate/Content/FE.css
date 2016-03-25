@@ -574,13 +574,38 @@ time {
         text-align: center;
     }
 
-.detailsPage{
+.detailsPage {
     background-color: #fffefe;
 }
-.detailsPage .totals{
-    margin: 10px auto;
-    width: 50%;
-}
+
+    .detailsPage table {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+        .detailsPage table caption {
+            height: 40px;
+        }
+
+        .detailsPage table th {
+            white-space: pre-wrap;
+        }
+
+        .detailsPage table meter {
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+        }
+
+        .detailsPage table tfoot {
+            border-top: 1px dashed gray;
+        }
+
+    .detailsPage .totals {
+        margin: 10px auto;
+        width: 50%;
+    }
+
 #team-table {
     display: inline-block;
 }
