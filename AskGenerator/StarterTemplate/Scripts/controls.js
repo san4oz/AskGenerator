@@ -3,10 +3,16 @@
     var token = $('input[name="__RequestVerificationToken"]').val();
 
     self.TTips = function (selector, title) {
-        if (title)
-            $(selector).tooltip({ title: title });
-        else
-            $(selector).tooltip();
+        var el = $(selector);
+        if (!title)
+            title = el.data('content');
+
+        if (title) {
+            el.tooltip({ title: title });
+        }
+        else {
+            el.tooltip();
+        }
     };
 
     self.Popover = function (selector, shown, hidden) {

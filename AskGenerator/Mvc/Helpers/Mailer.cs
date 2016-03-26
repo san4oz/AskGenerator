@@ -22,6 +22,7 @@ namespace AskGenerator.Helpers
             From = new MailAddress("networkofmentorsofficial@gmail.com", "Evaluate from NoM");
             Mails = MailsData.ResourceManager;
 
+            DefaultTags = new Dictionary<string,string>(10);
             DefaultTags.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
             DefaultTags.Add("siteName", "Evaluate");
             DefaultTags.Add("vkURL", Resource.vkURL);

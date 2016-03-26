@@ -16,9 +16,10 @@ var Index = (function () {
                     msg.css('color', 'green');
                 }
             }).error(function (err) {
-                msg.html(err.status);
+                msg.html(err.status.toString() + ' ' + err.responseText);
                 msg.css('color', 'red');
             }).complete(function () {
+                link.removeAttr('disabled').prop('disabled', false);
                 msg.fadeIn(250);
             });
         });
@@ -27,6 +28,7 @@ var Index = (function () {
     self.init = function () {
         initRecalculate('#recalculate');
         initRecalculate('#sendresult');
+        Controls.TTips('#sendresult');
     };
 
     return self;

@@ -10,11 +10,14 @@
     </div>
 </div>
 <div class="bootstrap-admin-panel-content">
-    <a class="btn btn-primary" href="@Url.Action("Recalculate")" id="recalculate">Recalculate</a>
-    <span class="msg"></span>
-    
-    <a class="btn btn-primary" href="@Url.Action("SendResult")" id="sendresult">SendResult</a>
-    <span class="msg"></span>
+    <div class="col-sm-3">
+        <a class="btn btn-primary" href="@Url.Action("Recalculate")" id="recalculate">Recalculate</a>
+        <span class="msg"></span>
+    </div>
+    <div class="col-sm-3">
+        <a class="btn btn-danger" href="@Url.Action("SendResult")" id="sendresult" data-togglee="tooltip" data-content="Don't spam">SendResult</a>
+        <span class="msg"></span>
+    </div>
 
     <form action="@Url.Action("ClearCache")" class="col-sm-6 form-inline">
         <input name="url" class="form-control" placeholder="path to clear output cache" value="/" />

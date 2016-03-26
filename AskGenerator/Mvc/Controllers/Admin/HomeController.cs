@@ -26,22 +26,35 @@ namespace AskGenerator.Controllers.Admin
 
         public async Task<ActionResult> SendResult()
         {
-            return await Task.Factory.StartNew((state) =>
+            try
             {
-                System.Web.HttpContext.Current = (System.Web.HttpContext)state;
-                var subscribers = Site.Subscribers.All();
-                var emails = subscribers.Select(x => x.Email).ToList();
+                return await Task.Factory.StartNew<ActionResult>((state) =>
+                {
+                    System.Web.HttpContext.Current = (System.Web.HttpContext)state;
+                    var subscribers = Site.Subscribers.All();
+                    var emails = subscribers.Where(x => !x.Email.IsEmpty())
+                        .Select(x => x.Email)
+                        .ToList();
 
-                var accountEmails = Site.UserManager.Users.Where(u => !u.Email.IsEmpty())
-                    .Select(u => u.Email)
-                    .ToList();
+                    var accountEmails = Site.UserManager.Users.Where(u => u.Email != null)
+                        .Select(u => u.Email)
+                        .ToList();
 
-                var allEmails = emails.Union(accountEmails);
+                    var allEmails = emails.Union(accountEmails);
 
-                Mailer.Send("ConirmVoite", "semka148@rambler.ru", CreateResultsTags(), allEmails);
+                    Mailer.Send("ConirmVoite", "semka148@rambler.ru", CreateResultsTags(), allEmails);
 
-                return RedirectToAction("Index");
-            }, HttpContext);
+                    if (Request.IsAjaxRequest())
+                        return Json(true, JsonRequestBehavior.AllowGet);
+
+                    return RedirectToAction("Index");
+                }, System.Web.HttpContext.Current);
+            }
+            catch (Exception e)
+            {
+                Response.StatusCode = 500;
+                return Json(e.Message, JsonRequestBehavior.AllowGet);
+            }
         }
         public async Task<ActionResult> Recalculate()
         {
