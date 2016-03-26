@@ -291,6 +291,14 @@ section, footer, header, aside {
     display: block;
 }
 
+ol {
+    margin-left: 30px;
+}
+
+    ol li {
+        margin-bottom: 2px;
+    }
+
 
 /*-------------------------
 	The main container

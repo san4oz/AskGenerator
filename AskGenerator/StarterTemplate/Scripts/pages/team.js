@@ -3,7 +3,7 @@ var Pages = Pages || {};
 Pages.Team = (function () {
     var self = {};
 
-    self.init = function () {
+    var initSelection = function () {
         var teamBox = $("#team");
         teamBox.select2({
             placeholder: "Виберіть кафедру",
@@ -16,6 +16,11 @@ Pages.Team = (function () {
                 location.href = location.href.substring(teamBox, index + 1) + value;
             }
         });
+    };
+
+    self.init = function () {
+        initSelection();
+        Controls.TTipAndPopover('a[data-toggle]');
     };
     return self;
 })();

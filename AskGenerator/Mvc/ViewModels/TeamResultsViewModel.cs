@@ -11,20 +11,51 @@ namespace AskGenerator.Mvc.ViewModels
     {
         public TeamResultsViewModel()
         {
-            Avgs = new Dictionary<string, Mark>();
+            Marks = new Dictionary<string, AnswerCountDictionary>();
         }
-
         public string Id { get; set; }
 
         /// <summary>
         /// Answer - count pairs per question ID.
         /// </summary>
-        public IDictionary<string, IDictionary<short, int>> Marks { get; set; }
+        public IDictionary<string, AnswerCountDictionary> Marks { get; set; }
 
-        public IDictionary<string, Mark> Avgs { get; set; }
+        public Mark Rate { get; set; }
 
         public Dictionary<string, string> Questions { get; set; }
 
         public IList<Team> Teams { get; set; }
+
+        /// <summary>
+        /// Keys - answers, values - counts.
+        /// </summary>
+        public class AnswerCountDictionary : Dictionary<short, int>
+        {
+            public AnswerCountDictionary()
+                : base()
+            {
+                Avg = new Mark();
+            }
+
+            public AnswerCountDictionary(int capacity)
+                : base(capacity)
+            { }
+
+            public Mark Avg { get; set; }
+
+            public double D()
+            {
+                double result = 0;
+                int totalCount = 0;
+                foreach (var key in Keys)
+                {
+                    var count = this[key];
+                    result = result + Math.Pow(key, 2) * count;
+                    totalCount += count;
+                }
+                result /= (double)totalCount;
+                return result - Math.Pow(Avg.Answer, 2);
+            }
+        }
     }
 }

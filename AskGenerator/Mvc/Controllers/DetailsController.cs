@@ -23,16 +23,13 @@ namespace AskGenerator.Mvc.Controllers
             var questions = InitTeacherListViewModel(teachers, model);
 
             var allVotes = await Site.VoteManager.AllAsync();
-            var marks = new Dictionary<string, IDictionary<short, int>>(questions.Count);
 
             int maxCount = int.MinValue;
             float avgSum = 0;
             foreach(var group in allVotes.Where(m => teachersIds.ContainsKey(m.TeacherId)).GroupBy(m => m.QuestionId))
             {
                 int count = 0;
-                var qDictionary = marks.GetOrDefault(group.Key.Id);
-                if (qDictionary == null)
-                    marks[group.Key.Id] = qDictionary = new Dictionary<short, int>();
+                var qDictionary = model.Marks.GetOrCreate(group.Key.Id);
 
                 foreach(var vote in group){
                     qDictionary[vote.Answer] = qDictionary.GetOrDefault(vote.Answer) + 1;
@@ -40,7 +37,8 @@ namespace AskGenerator.Mvc.Controllers
                 }
 
                 float avg = qDictionary.Aggregate(0f, (a, p) => a = a + p.Key * p.Value)/count;
-                model.Avgs[group.Key.Id] = new Mark() { Answer = avg, Count = count };
+                qDictionary.Avg.Answer = avg;
+                qDictionary.Avg.Count = count;
 
                 avgSum += avg;
                 if (count > maxCount)
@@ -48,12 +46,11 @@ namespace AskGenerator.Mvc.Controllers
             }
 
             model.Teams = await Site.TeamManager.AllAsync();
-            model.Marks = marks;
             model.Questions = questions.ToDictionary(q => q.Id, q => q.QuestionBody);
-            var difficult = model.Avgs[questions.First().Id];
-            model.Avgs["rate"] = new Mark()
+            var difficult = model.Marks[questions.First().Id].Avg;
+            model.Rate = new Mark()
             {
-                Answer = CalculateRate(difficult.Answer, (avgSum - difficult.Answer) / (model.Avgs.Count - 1), maxCount),
+                Answer = CalculateRate(difficult.Answer, (avgSum - difficult.Answer) / (model.Marks.Count - 1), maxCount),
                 Count = maxCount
             };
 
