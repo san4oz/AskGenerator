@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AskGenerator.Helpers;
+using Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,25 @@ namespace AskGenerator.Controllers.Admin
             return RedirectToAction("Index");
         }
 
+        public async Task<ActionResult> SendResult()
+        {
+            return await Task.Factory.StartNew((state) =>
+            {
+                System.Web.HttpContext.Current = (System.Web.HttpContext)state;
+                var subscribers = Site.Subscribers.All();
+                var emails = subscribers.Select(x => x.Email).ToList();
+
+                var accountEmails = Site.UserManager.Users.Where(u => !u.Email.IsEmpty())
+                    .Select(u => u.Email)
+                    .ToList();
+
+                var allEmails = emails.Union(accountEmails);
+
+                Mailer.Send("ConirmVoite", "semka148@rambler.ru", CreateResultsTags(), allEmails);
+
+                return RedirectToAction("Index");
+            }, HttpContext);
+        }
         public async Task<ActionResult> Recalculate()
         {
             var tqManager = Site.TQManager;
@@ -54,5 +75,16 @@ namespace AskGenerator.Controllers.Admin
                 return RedirectToAction("Index");
             });
         }
+
+        #region protected
+        protected Dictionary<string, string> CreateResultsTags()
+        {
+            var result = new Dictionary<string, string>();
+            result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
+            result.Add("siteName", "Evaluate");
+
+            return result;
+        }
+        #endregion
     }
 }

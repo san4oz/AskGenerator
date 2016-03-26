@@ -51,18 +51,17 @@ namespace AskGenerator.Mvc.Controllers
 
         #region Login
         [OutputCache(CacheProfile = "Cache1Hour")]
-        public async Task<ActionResult> Login(string returnUrl)
+        public ActionResult Login(string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
-                await VoitResult(User.Identity.GetEmail());
             if (User.Identity.IsAuthenticated) 
                 return RedirectToAction("Index", "Home");
             ViewBag.returnUrl = returnUrl;
-               
-
-
+            
             return View();
         }
+       
+
+        
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -126,18 +125,17 @@ namespace AskGenerator.Mvc.Controllers
 
 
 
-        public async Task<ActionResult> VoitResult(string id, string param = null)
+        public ActionResult VoitResult(string id, string param = null)
         {
        
             Mailer.Send(ConirmVoiteMail, id, CreateConfirmTags(null));
   //            var user = await Manager.FindByEmailAsync(not);
   
-
-
             return null;
         }
-        
-       
+
+
+
         #region Register
         [Authorize(Roles = Role.Admin)]
         [OutputCache(CacheProfile = "Cache1Hour")]
@@ -275,11 +273,6 @@ namespace AskGenerator.Mvc.Controllers
             result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
             result.Add("siteName", "Evaluate");
             result.Add("confirmURL", HttpContext.Request.Url.GetLeftPart(UriPartial.Authority).TrimEnd('/') + Url.Action("Confirm", new { id = id }));
-            result.Add("vkURL", @Resource.vkURL);
-            result.Add("fbURL", @Resource.fbURL);
-            result.Add("vkdekURL", @Resource.vkdekURL);
-            result.Add("nomURL", @Resource.nomURL);
-            result.Add("bestURL", @Resource.bestURL);
 
             return result;
         }

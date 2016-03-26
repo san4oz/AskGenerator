@@ -2,8 +2,8 @@
 var Index = (function () {
     var self = {};
 
-    var initRecalculate = function () {
-        var link = $('#recalculate');
+    var initRecalculate = function (selector) {
+        var link = $(selector);
         var msg = link.next('.msg');
         link.click(function (e) {
             e.preventDefault();
@@ -25,7 +25,8 @@ var Index = (function () {
     };
 
     self.init = function () {
-        initRecalculate();
+        initRecalculate('#recalculate');
+        initRecalculate('#sendresult');
     };
 
     return self;
