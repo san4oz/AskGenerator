@@ -15,10 +15,17 @@ namespace AskGenerator.Mvc.Controllers
         {
             var model = new TeamResultsViewModel();
             model.Id = id;
-
             var teachers = await Site.TeacherManager.AllAsync(true);
 
-            teachers = teachers.Where(t => t.TeamId.Equals(id, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            if (model.Id.IsEmpty() || Site.TeamManager.Get(model.Id) == null)
+            {
+                model.Id = "all";
+            }
+            else
+            {
+                teachers = teachers.Where(t => t.TeamId.Equals(id, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            }
+
             var teachersIds = teachers.ToDictionary(t => t.Id);
             var questions = InitTeacherListViewModel(teachers, model);
 

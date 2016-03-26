@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Усі викладачі.
+        /// </summary>
+        public static string AllTeachers {
+            get {
+                return ResourceManager.GetString("AllTeachers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Відповіть.
         /// </summary>
         public static string Answer {

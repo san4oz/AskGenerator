@@ -531,4 +531,7 @@
   <data name="VotesCount" xml:space="preserve">
     <value>Кількість голосів</value>
   </data>
+  <data name="AllTeachers" xml:space="preserve">
+    <value>Усі викладачі</value>
+  </data>
 </root>

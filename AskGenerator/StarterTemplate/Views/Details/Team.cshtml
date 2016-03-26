@@ -7,16 +7,10 @@
 }
 <div class="detailsPage">
     <select id="team" name="team">
+        @SelectOption("all", Resources.Resource.AllTeachers)
         @foreach (var t in Model.Teams)
         {
-            if (t.Id == Model.Id)
-            {
-                <option value="@t.Id" selected="selected">@t.Name</option>
-            }
-            else
-            {
-                <option value="@t.Id">@t.Name</option>
-            }
+            @SelectOption(t.Id, t.Name)
         }
     </select>
 
@@ -37,10 +31,43 @@
     </section>
 </div>
 
+<article id="details-popover" hidden="hidden">
+    <table>
+        <thead>
+            <tr>
+                <td>@Resource.VotesCount</td>
+                <td id="votesCount"></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var q in Model.Questions)
+            {
+                var id = q.Key + 'm';
+                <tr>
+                    <td>@q.Value</td>
+                    <td id="@id"></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</article>
+
 @section Scripts{
     <script>
         Pages.Team.init();
     </script>
+}
+
+@helper SelectOption(string id, string text)
+{
+    if (id == Model.Id)
+    {
+        <option value="@id" selected="selected">@text</option>
+    }
+    else
+    {
+        <option value="@id">@text</option>
+    }
 }
 
 @helper Totals()
@@ -116,11 +143,6 @@
                 <th></th>
                 <th>Avg</th>
                 <th>@RoundAnswer(qDictionary.Avg.Answer)</th>
-            </tr>
-            <tr>
-                <th></th>
-                <th>D</th>
-                <th>@RoundAnswer(d)</th>
             </tr>
             <tr>
                 <th></th>
