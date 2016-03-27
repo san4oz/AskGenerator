@@ -29,7 +29,7 @@ Pages.Team = (function () {
                 width: '20px',
                 height: '100px',
                 displayTotal: false,
-                bgColor: '#565557'
+                bgColor: 'none'
             });
         });
     };

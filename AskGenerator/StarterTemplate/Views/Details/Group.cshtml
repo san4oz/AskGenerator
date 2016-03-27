@@ -3,7 +3,7 @@
 @using AskGenerator.Business.Entities
 
 @{
-    ViewBag.Title = "Кафедри";
+    ViewBag.Title = "Groups";
 }
 <div class="detailsPage">
     <table class="col-xs-4 col-sm-3">
@@ -40,7 +40,12 @@
     </div>
 </div>
 
-
+@section Scripts{
+    @Scripts.Render("~/bundles/jqmeter")
+    <script>
+        Pages.Team.init();
+    </script>
+}
 
 
 @helper Totals()
@@ -77,54 +82,45 @@
 
 @helper QuestionDetails(KeyValuePair<string, string> pair)
 {
-var qDictionary = Model.Marks[pair.Key];
-var totalCount = qDictionary.Values.Aggregate(0, (a, c) => a += c);
-var d = qDictionary.D();
-    <table class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <caption class="h5">@pair.Value</caption>
-        <thead>
-            <tr>
-                <th>    </th>
-                <th>Vote</th>
-                <th>Count</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var mark in qDictionary.OrderBy(p => p.Key))
-            {
-                var percent = Math.Round(100f * (float)mark.Value / (float)totalCount, 1);
-                <tr>
-                    <td></td>
-                    <td>
-                        @mark.Key
-                    </td>
-                    <td>
-                        <div class="col-xs-10 col-md-6">
-                            <a href="#" data-toggle="tooltip" data-placement="auto top" data-content="@percent%">
-                                <meter max="100" min="0" value="@percent" high="100" low="0" optimum="50"></meter>
-                            </a>
-                        </div>
-                        <span class="col-xs-1">
+    var qDictionary = Model.Marks[pair.Key];
+    var totalCount = qDictionary.Avg.Count;
+    var maxCount = qDictionary.Values.Max();
+
+    var d = qDictionary.D();
+    <div class="col-xs-12 col-sm-6">
+        <div class="question-details">
+            <h5>@pair.Value</h5>
+            <div class="col-xs-12">
+                @foreach (var mark in qDictionary.OrderBy(p => p.Key))
+                {
+                    var percent = Math.Round(100f * (float)mark.Value / (float)totalCount, 1);
+
+                    <div class="col-xs-1 meterWrapper">
+                        <div>
                             @mark.Value
+                            <a href="#" class="meter" data-raised="@mark.Value" data-goal="@maxCount" data-toggle="tooltip" data-placement="auto top" data-content="@percent%"></a>
+                        </div>
+                        <span>
+                            @mark.Key
                         </span>
-                    </td>
-                </tr>
-            }
-        </tbody>
-        <tfoot>
-            <tr>
-                <th></th>
-                <th>Avg</th>
-                <th>@RoundAnswer(qDictionary.Avg.Answer)</th>
-            </tr>
-            <tr>
-                <th></th>
-                <th>СКВ</th>
-                <th>@RoundAnswer(Math.Sqrt(d))</th>
-            </tr>
-        </tfoot>
-    </table>
+                    </div>
+
+                }
+            </div>
+            <footer class="col-xs-12">
+                <div>
+                    <span class="col-xs-2" style="text-align:right">Avg</span>
+                    <span class="col-xs-10">@RoundAnswer(qDictionary.Avg.Answer)</span>
+                </div>
+                <div>
+                    <span class="col-xs-2" style="text-align:right">СКВ</span>
+                    <span class="col-xs-10">@RoundAnswer(Math.Sqrt(d))</span>
+                </div>
+            </footer>
+        </div>
+    </div>
 }
+
 
 @functions{
     double RoundAnswer(double x)

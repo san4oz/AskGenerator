@@ -602,16 +602,37 @@ time {
             width: 100%;
         }
 
-        .detailsPage table tfoot {
-            border-top: 1px dashed gray;
-        }
-
     .detailsPage .totals {
         margin: 10px auto;
         width: 50%;
     }
 
-}
+    .detailsPage .question-details {
+        background-color: white;
+        display: inline-block;
+        -webkit-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.75);
+        margin-bottom: 10px;
+    }
+
+        .detailsPage .question-details > div {
+            display: inline-block;
+            min-height: 2em;
+            text-align: center;
+        }
+
+        .detailsPage .question-details h5 {
+            text-align: center;
+        }
+
+        .detailsPage .question-details footer {
+            border-top: 1px dashed gray;
+        }
+
+    .detailsPage .vertical.inner-therm {
+        border-radius: 0 !important;
+    }
 
 #team-table {
     display: inline-block;

@@ -114,12 +114,17 @@ namespace AskGenerator.Controllers.Admin
             {
                 var avgAnswers = new Dictionary<string, Mark>(7);
                 var students = Site.StudentManager.GroupList(group.Id);
+                var uniqueAccounts = 0;
                 foreach (var student in students)
                 {
                     if (student.AccountId.IsEmpty())
                         continue;
 
-                    foreach(var vote in studentVotes[student.AccountId])
+                    var accountVotes = studentVotes[student.AccountId];
+                    if (accountVotes.Any())
+                        uniqueAccounts++;
+
+                    foreach (var vote in accountVotes)
                     {
                         var mark = avgAnswers.GetOrCreate(vote.QuestionId.Id);
                         mark.Count++;
@@ -128,12 +133,9 @@ namespace AskGenerator.Controllers.Admin
                     }
                 }
                 float avg = 0;
-                int maxCount = int.MinValue;
                 foreach (var vote in avgAnswers.Values)
-                {
-                    if (vote.Count > maxCount) maxCount = vote.Count;
                     avg += (vote.Answer / (float)vote.Count);
-                }
+
                 if (avgAnswers.Count == 0)
                 {
                     group.VotesCount = 0;
@@ -141,7 +143,7 @@ namespace AskGenerator.Controllers.Admin
                 }
                 else
                 {
-                    group.VotesCount = maxCount;
+                    group.VotesCount = uniqueAccounts;
                     group.Avg = avg / avgAnswers.Count;
                 }
                 Site.GroupManager.Update(group);
