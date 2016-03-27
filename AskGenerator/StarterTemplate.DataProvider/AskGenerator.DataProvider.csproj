@@ -185,6 +185,10 @@
     </Compile>
     <Compile Include="Migrations\201603231615597_QuestionsOrder.cs" />
     <Compile Include="Migrations\201603231615597_QuestionsOrder.Designer.cs" />
+    <Compile Include="Migrations\201603271328586_groupStatistic.cs" />
+    <Compile Include="Migrations\201603271328586_groupStatistic.Designer.cs">
+      <DependentUpon>201603271328586_groupStatistic.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseEntityProvider.cs" />
@@ -264,6 +268,9 @@
       <DependentUpon>201603191837089_Subscribers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603231615597_QuestionsOrder.resx" />
+    <EmbeddedResource Include="Migrations\201603271328586_groupStatistic.resx">
+      <DependentUpon>201603271328586_groupStatistic.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

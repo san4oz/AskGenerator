@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Mvc.ViewModels
 {
-    public class TeamResultsViewModel : TeacherListViewModel
+    public class TeamResultsViewModel : TeacherListViewModel, IRateble
     {
         public TeamResultsViewModel()
         {
@@ -57,5 +57,15 @@ namespace AskGenerator.Mvc.ViewModels
                 return result - Math.Pow(Avg.Answer, 2);
             }
         }
+    }
+
+    public interface IRateble
+    {
+        /// <summary>
+        /// Answer - count pairs per question ID.
+        /// </summary>
+        IDictionary<string, TeamResultsViewModel.AnswerCountDictionary> Marks { get; set; }
+
+        Mark Rate { get; set; }
     }
 }

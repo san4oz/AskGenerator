@@ -1,4 +1,5 @@
-﻿using AskGenerator.Helpers;
+﻿using AskGenerator.Business.Entities;
+using AskGenerator.Helpers;
 using Resources;
 using System;
 using System.Collections.Generic;
@@ -60,12 +61,15 @@ namespace AskGenerator.Controllers.Admin
         {
             var tqManager = Site.TQManager;
             var voteManager = Site.VoteManager;
-            return await Task.Factory.StartNew<ActionResult>(() =>
+
+            return await Task.Factory.StartNew<ActionResult>((context) =>
             {
+                System.Web.HttpContext.Current = (System.Web.HttpContext)context;
                 try
                 {
                     var tqs = tqManager.All();
-                    var votes = voteManager.All().ToLookup(v => v.TeacherId);
+                    var voteList = voteManager.All();
+                    var votes = voteList.ToLookup(v => v.TeacherId);
                     foreach (var tq in tqs)
                     {
                         tq.Answer = tq.Count = 0;
@@ -77,6 +81,7 @@ namespace AskGenerator.Controllers.Admin
                         tq.Answer = tq.Count != 0 ? tq.Answer / tq.Count : 0;
                         tqManager.Update(tq);
                     }
+                    UpdateGroupStaytistic(voteList);
                 }
                 catch (Exception e)
                 {
@@ -86,8 +91,10 @@ namespace AskGenerator.Controllers.Admin
                     return Json(true, JsonRequestBehavior.AllowGet);
 
                 return RedirectToAction("Index");
-            });
+            }, System.Web.HttpContext.Current);
         }
+
+
 
         #region protected
         protected Dictionary<string, string> CreateResultsTags()
@@ -97,6 +104,48 @@ namespace AskGenerator.Controllers.Admin
             result.Add("siteName", "Evaluate");
 
             return result;
+        }
+
+        protected void UpdateGroupStaytistic(IList<Vote> votes)
+        {
+            var studentVotes = votes.ToLookup(x => x.AccountId);
+            var groups = Site.GroupManager.All();
+            foreach (var group in groups)
+            {
+                var avgAnswers = new Dictionary<string, Mark>(7);
+                var students = Site.StudentManager.GroupList(group.Id);
+                foreach (var student in students)
+                {
+                    if (student.AccountId.IsEmpty())
+                        continue;
+
+                    foreach(var vote in studentVotes[student.AccountId])
+                    {
+                        var mark = avgAnswers.GetOrCreate(vote.QuestionId.Id);
+                        mark.Count++;
+                        mark.Answer += vote.Answer;
+                        avgAnswers[vote.QuestionId.Id] = mark;
+                    }
+                }
+                float avg = 0;
+                int maxCount = int.MinValue;
+                foreach (var vote in avgAnswers.Values)
+                {
+                    if (vote.Count > maxCount) maxCount = vote.Count;
+                    avg += (vote.Answer / (float)vote.Count);
+                }
+                if (avgAnswers.Count == 0)
+                {
+                    group.VotesCount = 0;
+                    group.Avg = 0;
+                }
+                else
+                {
+                    group.VotesCount = maxCount;
+                    group.Avg = avg / avgAnswers.Count;
+                }
+                Site.GroupManager.Update(group);
+            }
         }
         #endregion
     }

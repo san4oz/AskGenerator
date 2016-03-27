@@ -1,0 +1,134 @@
+﻿@model AskGenerator.Mvc.ViewModels.GroupStatisticViewModel
+@using AskGenerator.ViewModels
+@using AskGenerator.Business.Entities
+
+@{
+    ViewBag.Title = "Кафедри";
+}
+<div class="detailsPage">
+    <table class="col-xs-4 col-sm-3">
+        <caption>Groups</caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>AVG</th>
+                <th>Max Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var group in Model.Groups)
+            {
+                var cl = group.Id == Model.Id ? "h3" : string.Empty;
+                <tr class="@cl">
+                    <td>@Html.ActionLink(group.Name, "Group", new { id = group.Id })</td>
+                    <td>@group.Avg</td>
+                    <td>@group.VotesCount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div id="groupDetails" class="col-xs-8 col-sm-8">
+        @Totals()
+
+        <section id="team-table" class="col-xs-12">
+            @foreach (var pair in Model.Questions)
+            {
+                @QuestionDetails(pair)
+            }
+        </section>
+    </div>
+</div>
+
+
+
+
+@helper Totals()
+{
+    <table class="totals">
+        <caption class="h3">Totals</caption>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Vote</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pair in Model.Questions)
+            {
+                var avg = Model.Marks[pair.Key].Avg;
+                <tr>
+                    <td>@pair.Value</td>
+                    <td>@RoundAnswer(avg.Answer)</td>
+                    <td>@avg.Count</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Rate</th>
+                <th>@RoundAnswer(Model.Rate.Answer)</th>
+                <th>@Model.Rate.Count</th>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@helper QuestionDetails(KeyValuePair<string, string> pair)
+{
+var qDictionary = Model.Marks[pair.Key];
+var totalCount = qDictionary.Values.Aggregate(0, (a, c) => a += c);
+var d = qDictionary.D();
+    <table class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <caption class="h5">@pair.Value</caption>
+        <thead>
+            <tr>
+                <th>    </th>
+                <th>Vote</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mark in qDictionary.OrderBy(p => p.Key))
+            {
+                var percent = Math.Round(100f * (float)mark.Value / (float)totalCount, 1);
+                <tr>
+                    <td></td>
+                    <td>
+                        @mark.Key
+                    </td>
+                    <td>
+                        <div class="col-xs-10 col-md-6">
+                            <a href="#" data-toggle="tooltip" data-placement="auto top" data-content="@percent%">
+                                <meter max="100" min="0" value="@percent" high="100" low="0" optimum="50"></meter>
+                            </a>
+                        </div>
+                        <span class="col-xs-1">
+                            @mark.Value
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>Avg</th>
+                <th>@RoundAnswer(qDictionary.Avg.Answer)</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>СКВ</th>
+                <th>@RoundAnswer(Math.Sqrt(d))</th>
+            </tr>
+        </tfoot>
+    </table>
+}
+
+@functions{
+    double RoundAnswer(double x)
+    {
+        return Math.Round(x, 2);
+    }
+}

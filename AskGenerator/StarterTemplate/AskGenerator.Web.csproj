@@ -1320,6 +1320,7 @@
     <Content Include="Views\Info\Calculation.cshtml" />
     <Content Include="Views\Home\TeacherResults.cshtml" />
     <Content Include="Views\Details\Team.cshtml" />
+    <Content Include="Views\Details\Group.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
