@@ -19,8 +19,24 @@ Pages.Team = (function () {
         });
     };
 
+    var initMeters = function () {
+        $('.meter').each(function () {
+            var $this = $(this);
+            $this.jQMeter({
+                goal: $this.data('goal').toString(),
+                raised: $this.data('raised').toString(),
+                meterOrientation: 'vertical',
+                width: '20px',
+                height: '100px',
+                displayTotal: false,
+                bgColor: '#565557'
+            });
+        });
+    };
+
     self.init = function () {
         initSelection();
+        initMeters();
         Controls.TTipAndPopover('a[data-toggle]');
         Controls.TTips('.badges [data-toggle="tooltip"]');
         var popover = $('#details-popover');

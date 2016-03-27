@@ -20,6 +20,9 @@ namespace AskGenerator.Mvc
             bundles.Add(new ScriptBundle("~/bundles/pages").Include(
                         "~/Scripts/pages/*.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqmeter").Include(
+                        "~/Scripts/jqmeter/jqmeter.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular/angular.min.js",
                         "~/Scripts/angular/angular-route.min.js"));

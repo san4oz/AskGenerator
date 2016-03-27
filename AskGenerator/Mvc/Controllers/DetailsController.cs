@@ -11,6 +11,7 @@ namespace AskGenerator.Mvc.Controllers
 {
     public class DetailsController : BaseController
     {
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public async Task<ActionResult> Team(string id)
         {
             var model = new TeamResultsViewModel();

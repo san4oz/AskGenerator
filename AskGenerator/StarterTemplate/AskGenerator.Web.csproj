@@ -1249,6 +1249,8 @@
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\GroupSelector.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jqmeter\jqmeter.js" />
+    <Content Include="Scripts\jqmeter\jqmeter.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />

@@ -15,6 +15,10 @@ namespace AskGenerator.Business.Entities
 
         public virtual ICollection<Teacher> Teachers { get; set; }
 
+        public virtual float Avg { get; set; }
+
+        public virtual int VotesCount { get; set; }
+
         public override string ToString()
         {
             return Name;
