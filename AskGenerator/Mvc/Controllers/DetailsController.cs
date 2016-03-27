@@ -1,5 +1,6 @@
 ﻿using AskGenerator.Business.Entities;
 using AskGenerator.Mvc.ViewModels;
+using AskGenerator.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,19 +32,63 @@ namespace AskGenerator.Mvc.Controllers
 
             var allVotes = await Site.VoteManager.AllAsync();
 
+            InitModel(allVotes.Where(m => teachersIds.ContainsKey(m.TeacherId)).GroupBy(m => m.QuestionId),
+                model,
+                questions.First().Id);
+            model.Teams = await Site.TeamManager.AllAsync();
+            model.Questions = questions.ToDictionary(q => q.Id, q => q.QuestionBody);
+
+            return View(model);
+        }
+
+        public async Task<ActionResult> Group(string id)
+        {
+            var model = new GroupStatisticViewModel();
+            model.Id = id;
+            IList<Student> students;
+            var groups = await Site.GroupManager.AllAsync();
+
+            if (model.Id.IsEmpty() || !groups.Any(g => g.Id == id))
+            {
+                model.Id = "all";
+                students = await Site.StudentManager.AllAsync();
+            }
+            else
+            {
+                students = Site.StudentManager.GroupList(id);
+            }
+            var studentsIds = students.Where(s => !s.AccountId.IsEmpty())
+                .ToDictionary(t => t.AccountId);
+
+            var questions = await Site.QuestionManager.ListAsync(isAboutTeacher: true);
+            model.Questions = questions.ToDictionary(q => q.Id, q => q.QuestionBody);
+
+            var allVotes = await Site.VoteManager.AllAsync();
+
+            InitModel(allVotes.Where(m => !m.AccountId.IsEmpty() && studentsIds.ContainsKey(m.AccountId)).GroupBy(m => m.QuestionId),
+                model,
+                questions.First().Id);
+
+            model.Groups = groups;
+            return View(model);
+        }
+
+        protected void InitModel(IEnumerable<IGrouping<Question, Vote>> votes, IRateble model, string difficultId)
+        {
             int maxCount = int.MinValue;
             float avgSum = 0;
-            foreach(var group in allVotes.Where(m => teachersIds.ContainsKey(m.TeacherId)).GroupBy(m => m.QuestionId))
+            foreach (var group in votes)
             {
                 int count = 0;
                 var qDictionary = model.Marks.GetOrCreate(group.Key.Id);
 
-                foreach(var vote in group){
+                foreach (var vote in group)
+                {
                     qDictionary[vote.Answer] = qDictionary.GetOrDefault(vote.Answer) + 1;
                     count++;
                 }
 
-                float avg = qDictionary.Aggregate(0f, (a, p) => a = a + p.Key * p.Value)/count;
+                float avg = qDictionary.Aggregate(0f, (a, p) => a = a + p.Key * p.Value) / count;
                 qDictionary.Avg.Answer = avg;
                 qDictionary.Avg.Count = count;
 
@@ -51,17 +96,12 @@ namespace AskGenerator.Mvc.Controllers
                 if (count > maxCount)
                     maxCount = count;
             }
-
-            model.Teams = await Site.TeamManager.AllAsync();
-            model.Questions = questions.ToDictionary(q => q.Id, q => q.QuestionBody);
-            var difficult = model.Marks[questions.First().Id].Avg;
+            var difficult = model.Marks[difficultId].Avg;
             model.Rate = new Mark()
             {
                 Answer = CalculateRate(difficult.Answer, (avgSum - difficult.Answer) / (model.Marks.Count - 1), maxCount),
                 Count = maxCount
             };
-
-            return View(model);
         }
     }
 }

@@ -17,3 +17,4 @@
 /AskGenerator/StarterTemplate/bin
 /AskGenerator/AskGenerator.Core/bin
 /AskGenerator/AskGenerator.Core/obj
+*.suo
