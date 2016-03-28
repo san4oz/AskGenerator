@@ -272,6 +272,7 @@
     <Content Include="Css\img\img1.jpeg" />
     <Content Include="Css\img\logo_nom1.jpg" />
     <Content Include="Css\img\sprite.png" />
+    <Content Include="Css\plugins\bootstrap-toggle.css" />
     <Content Include="Css\Site.css" />
     <Content Include="Css\select2.css" />
     <Content Include="Css\select2.min.css" />
@@ -1276,6 +1277,7 @@
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\students.js" />
     <Content Include="Scripts\admin\Teacher.js" />
+    <Content Include="Scripts\inputs\bootstrap-toggle.js" />
     <Content Include="Scripts\twitter-bootstrap-hover-dropdown.js" />
     <Content Include="Scripts\twitter-bootstrap-hover-dropdown.min.js" />
     <None Include="Scripts\_references.js" />

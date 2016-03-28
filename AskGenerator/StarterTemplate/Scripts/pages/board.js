@@ -79,6 +79,23 @@ Pages.Board = (function () {
         timeinterval = setInterval(update, 1000);
     };
 
+    var showWithoutBadges = true;
+
+    self.toogleByBadgesSelector = function (show) {
+        var speed = 350;
+
+        if (typeof (show) == 'boolean') showWithoutBadges = show;
+        else showWithoutBadges = !showWithoutBadges;
+
+        $('.teacher-tile-wrapper').each(function () {
+            var $this = $(this);
+            if (!$this.find('.badge[style]').length) {
+                if (showWithoutBadges) $this.fadeIn(speed);
+                else $this.fadeOut(speed);
+            }
+        });
+    }
+
     self.initSubscibe = function () {
         var form = $('.subscribe');
         form.validate();
@@ -103,5 +120,8 @@ Pages.Board = (function () {
         });
     };
 
+    $('#toggleBadges').bootstrapToggle().on('change', function () {
+        self.toogleByBadgesSelector(this.val);
+    });
     return self;
 })();

@@ -23,6 +23,9 @@ namespace AskGenerator.Mvc
             bundles.Add(new ScriptBundle("~/bundles/jqmeter").Include(
                         "~/Scripts/jqmeter/jqmeter.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/inputs").Include(
+                        "~/Scripts/inputs/*.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular/angular.min.js",
                         "~/Scripts/angular/angular-route.min.js"));
@@ -37,6 +40,12 @@ namespace AskGenerator.Mvc
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/controls").Include(
+                "~/Scripts/gtm.js",
+                "~/Scripts/select2.js",
+                "~/Scripts/controls.js"
+                ));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -47,16 +56,14 @@ namespace AskGenerator.Mvc
                     "~/Scripts/twitter-bootstrap-hover-dropdown.js"
                     ));
 
+            bundles.Add(new StyleBundle("~/Content/plugins").Include(
+                      "~/Css/plugins/*.css"));
+
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                 "~/Css/select2.css",
                 "~/Css/Site.css"                
                 ));
 
-            bundles.Add(new ScriptBundle("~/bundles/controls").Include(
-                "~/Scripts/gtm.js",
-                "~/Scripts/select2.js",
-                "~/Scripts/controls.js"
-                ));
 
             bundles.Add(new StyleBundle("~/Content/Theme/base/css").Include(
                         "~/Css/Theme/base/jquery.ui.core.css",

@@ -5,24 +5,28 @@
     ViewBag.Title = @Resources.Resource.Board;
     var goodBadges = Model.Badges.Where(x => x.Key.Last() == 'r');
     var badBadges = Model.Badges.Where(x => x.Key.Last() == 'l');
+    var legendTileColClass = "col-xs-4 col-sm-3 col-md-2 col-lg-1";
 }
 
 @*Banner()*@
 <h1 class="col-md-offset-1 col-md-5 col-lg-4">@Resources.Resource.Board</h1>
 <h3 class="col-md-6 col-lg-7">@Resources.Resource.VotedStudentsFormat.FormatWith(Model.UniqueUsers) <span id="data-from-wrapper" class="h4"></span></h3>
 
-<section id="legend" class="row">
+<section id="legend" class="col-xs-12">
     <div class="col-xs-12">
         @foreach (var pair in goodBadges)
         {
-            @Badge(pair.Value)
+            @Badge(pair.Value, legendTileColClass)
         }
     </div>
     <div class="col-xs-12">
         @foreach (var pair in badBadges)
         {
-            @Badge(pair.Value)
+            @Badge(pair.Value, legendTileColClass)
         }
+        <div class="@legendTileColClass checkbox">
+            <input id="toggleBadges" checked data-toggle="toggle" data-on="Усі" data-off="З медалями" data-onstyle="success" data-offstyle="primary" type="checkbox">
+        </div>
     </div>
 </section>
 <section id="teacherBoard" class="row" data-src="@Url.Action("Board")">
@@ -100,9 +104,9 @@
     </div>
 }
 
-@helper Badge(LimitViewModel badge)
+@helper Badge(LimitViewModel badge, string colClass)
 {
-    <div class="col-xs-3 col-md-2 col-lg-1 thumbnail">
+    <div class="@colClass thumbnail">
         <img src="@badge.Image" data-toggle="tooltip" title="@badge.ToolTip.TrimEnd('?')" />
         <div class="caption">
             @if (badge.Description.EndsWith("?"))

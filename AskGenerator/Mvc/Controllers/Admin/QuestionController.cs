@@ -96,7 +96,10 @@ namespace AskGenerator.Controllers.Admin
             var model = DecomposeQuestionViewModel(viewModel);
             Site.QuestionManager.Update(model);
             if (viewModel.IsAboutTeacher)
+            {
+                Response.RemoveOutputCacheItem("/");
                 return RedirectToAction("TeacherList");
+            }
             return RedirectToAction("List");
         }
 
