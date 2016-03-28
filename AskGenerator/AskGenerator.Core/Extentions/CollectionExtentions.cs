@@ -19,12 +19,17 @@ namespace System
 
         public static TValue GetOrCreate<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key) where TValue : class, new()
         {
+            return dictionary.GetOrCreate(key, () => new TValue());
+        }
+
+        public static TValue GetOrCreate<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, Func<TValue> createValue)
+        {
             if (key == null)
                 return default(TValue);
             var t = default(TValue);
             dictionary.TryGetValue(key, out t);
             if (t == null)
-                dictionary[key] = t = new TValue();
+                dictionary[key] = t = createValue();
             return t;
         }
 

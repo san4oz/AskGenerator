@@ -189,6 +189,10 @@
     <Compile Include="Migrations\201603271328586_groupStatistic.Designer.cs">
       <DependentUpon>201603271328586_groupStatistic.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603282006100_EntityFields.cs" />
+    <Compile Include="Migrations\201603282006100_EntityFields.Designer.cs">
+      <DependentUpon>201603282006100_EntityFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseEntityProvider.cs" />
@@ -270,6 +274,9 @@
     <EmbeddedResource Include="Migrations\201603231615597_QuestionsOrder.resx" />
     <EmbeddedResource Include="Migrations\201603271328586_groupStatistic.resx">
       <DependentUpon>201603271328586_groupStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603282006100_EntityFields.resx">
+      <DependentUpon>201603282006100_EntityFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

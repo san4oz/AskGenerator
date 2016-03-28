@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace AskGenerator.ViewModels
 {
-    public class TeacherViewModel : BaseViewModel, IPerson, IHaveCustomMappings
+    public class TeacherViewModel : BaseViewModel, IPerson, IMapFrom<Teacher>
     {
         public TeacherViewModel()
             : base()
@@ -55,29 +55,5 @@ namespace AskGenerator.ViewModels
 
         [ScaffoldColumn(false)]
         public IList<TeacherBadge> Badges { get; set; }
-
-        public void CreateMappings(AutoMapper.IConfiguration configuration)
-        {
-            var conf = (AutoMapper.IMapperConfiguration)configuration;
-            conf.CreateMap<Teacher, TeacherViewModel>()
-            .ReverseMap();
-        }
-    }
-
-    public class TeacherBadge
-    {
-        public string Id { get; set; }
-
-        public float Mark { get; set; }
-
-        /// <summary>
-        /// 'r' - right, 'l' - left, <see cref="char.MinValue"/> - not for display
-        /// </summary>
-        public char Type { get; set; }
-
-        public TeacherBadge()
-        {
-            Type = char.MinValue;
-        }
     }
 }
