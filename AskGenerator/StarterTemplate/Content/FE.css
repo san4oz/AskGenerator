@@ -133,9 +133,9 @@ legend {
 }
 
 .teacher-tile .badges {
+    left: 6px;
     position: absolute;
-    left: 10px;
-    top: 10px;
+    top: 5px;
 }
 
     .teacher-tile .badges .badge {
@@ -596,11 +596,9 @@ time {
             white-space: pre-wrap;
         }
 
-        .detailsPage table meter {
-            display: inline-block;
-            height: 100%;
-            width: 100%;
-        }
+    .detailsPage .meterWrapper {
+        padding-right: 1%;
+    }
 
     .detailsPage .totals {
         margin: 10px auto;
