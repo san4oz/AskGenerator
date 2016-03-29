@@ -6,15 +6,34 @@
     ViewBag.Title = "Кафедри";
 }
 <div class="detailsPage">
-    <select id="team" name="team">
-        @SelectOption("all", Resources.Resource.AllTeachers)
-        @foreach (var t in Model.Teams)
-        {
-            @SelectOption(t.Id, t.Name)
-        }
-    </select>
+    <header class="col-xs-12">
+        <div id="teams" class="col-xs-12 col-md-4">
+            @*@SelectOption("all", Resources.Resource.AllTeachers)*@
+            <table>
+                <thead>
+                    <tr>
+                        <th>Кафедра</th>
+                        <th>Складність</th>
+                        <th>Сердедня оцінка</th>
+                        <th>Загальне враження</th>
+                        <th>Кількість голосів</th>
+                        <th>Рейтинг</th>
+                    </tr>
+                    @SelectOption(Model.Teams.First(t => t.Id == Team.AllTeachersTeamId))
+                </thead>
+                <tbody>
+                    @foreach (var t in Model.Teams.Where(t => t.Id != Team.AllTeachersTeamId).OrderBy(t => t.Rate.Answer))
+                    {
+                        @SelectOption(t)
+                    }
+                </tbody>
+            </table>
+        </div>
 
-    @Totals()
+        <div class="col-xs-12 col-md-8">
+            @Totals()
+        </div>
+    </header>
 
     <section id="team-table" class="col-xs-12">
         @foreach (var pair in Model.Questions)
@@ -59,16 +78,22 @@
     </script>
 }
 
-@helper SelectOption(string id, string text)
+@helper SelectOption(Team team)
 {
-    if (id == Model.Id)
+    var id = team.Id;
+    var rowClass = id == Model.Id ? "selected" : string.Empty;
+    if (id == Team.AllTeachersTeamId)
     {
-        <option value="@id" selected="selected">@text</option>
+        id = null;
     }
-    else
-    {
-        <option value="@id">@text</option>
-    }
+    <tr class="@rowClass">
+        <td>@Html.ActionLink(team.Name, "Team", new { id = id })</td>
+        <td>@RoundAnswer(team.AvgDifficult)</td>
+        <td>@RoundAnswer(team.ClearRate)</td>
+        <td>@RoundAnswer(team.AdditionalMark != null ? team.AdditionalMark.Answer : 0)</td>
+        <td>@team.Rate.Count</td>
+        <td>@RoundAnswer(team.Rate.Answer, 1)</td>
+    </tr>
 }
 
 @helper Totals()
@@ -88,7 +113,7 @@
                 var avg = Model.Marks[pair.Key].Avg;
                 <tr>
                     <td>@pair.Value</td>
-                    <td>@avg.Answer</td>
+                    <td>@RoundAnswer(avg.Answer)</td>
                     <td>@avg.Count</td>
                 </tr>
             }
@@ -96,7 +121,7 @@
         <tfoot>
             <tr>
                 <th>Rate</th>
-                <th>@Model.Rate.Answer</th>
+                <th>@RoundAnswer(Model.Rate.Answer)</th>
                 <th>@Model.Rate.Count</th>
             </tr>
         </tfoot>
@@ -141,7 +166,7 @@
                 </div>
             </footer>
         </div>
-</div>
+    </div>
 }
 
 
@@ -190,8 +215,8 @@
 }
 
 @functions{
-    double RoundAnswer(double x)
+    string RoundAnswer(double x, int decimals = 2)
     {
-        return Math.Round(x, 2);
+        return x <= 0 ? "-" : Math.Round(x, decimals).ToString();
     }
 }

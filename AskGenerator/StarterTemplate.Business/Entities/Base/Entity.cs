@@ -27,6 +27,20 @@ namespace AskGenerator.Business.Entities
             Fields = new EntityFields();
         }
 
+        /// <summary>
+        /// Initializes fields from XML fields.
+        /// </summary>
+        public virtual void Initialize()
+        {
+        }
+
+        /// <summary>
+        /// Save fields to XML fields.
+        /// </summary>
+        public virtual void Apply()
+        {
+        }
+
         #region EF mapping
         [Column("Fields")]
         [EditorBrowsable(EditorBrowsableState.Never)]

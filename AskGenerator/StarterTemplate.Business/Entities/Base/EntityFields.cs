@@ -31,6 +31,20 @@ namespace AskGenerator.Business.Entities.Base
             }
             return (TValue)t;
         }
+
+        public TValue GetOrDefault<TValue>(string key)
+        {
+            var value = default(TValue);
+            if (key == null)
+                return value;
+
+            object t;
+            this.TryGetValue(key, out t);
+            if (t != null)
+                value = (TValue)t;
+
+            return value;
+        }
     }
 
     [XmlRoot("Fields")]

@@ -42,7 +42,7 @@ namespace AskGenerator.Business.Managers
         {
             var key = GetListKey();
             var list = FromCache(key, Provider.List);
-            foreach (var t in list) t.Initilize();
+            foreach (var t in list) t.Initialize();
             return list;
         }
 
@@ -82,13 +82,6 @@ namespace AskGenerator.Business.Managers
         public Task<List<Teacher>> ListAsync()
         {
             return Task.Factory.StartNew(() => this.List());
-        }
-
-        public override Teacher Get(string id)
-        {
-            var t = base.Get(id);
-            t.Initilize();
-            return t;
         }
     }
 }

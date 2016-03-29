@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace AskGenerator.Mvc.Controllers
 {
     public class DetailsController : BaseController
     {
-        [OutputCache(CacheProfile = "Cache1Hour")]
+        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client, VaryByParam = "id")]
         public async Task<ActionResult> Team(string id)
         {
             var model = new TeamResultsViewModel();

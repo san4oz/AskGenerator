@@ -596,16 +596,23 @@ time {
         }
 
         .detailsPage table th {
-            white-space: pre-wrap;
+            padding: 1px;
+            white-space: pre-line;
         }
 
     .detailsPage .meterWrapper {
-        padding-right: 1%;
+        padding-left: 16px;
+        padding-right: 2.5%;
     }
 
     .detailsPage .totals {
         margin: 10px auto;
         width: 50%;
+    }
+
+    .detailsPage .totals th{
+        left: -1px;
+        position: relative;
     }
 
     .detailsPage .question-details {
@@ -624,6 +631,7 @@ time {
         }
 
         .detailsPage .question-details h5 {
+            min-height: 2em;
             text-align: center;
         }
 
@@ -634,6 +642,25 @@ time {
     .detailsPage .vertical.inner-therm {
         border-radius: 0 !important;
     }
+
+#teams td {
+    padding-left: 4%;
+}
+
+    #teams td:first-child {
+        padding-left: 0;
+    }
+
+#teams .selected td:first-child::before {
+    background-color: green;
+    border-radius: 50%;
+    content: " ";
+    height: 10px;
+    left: 0;
+    margin-top: 5px;
+    position: absolute;
+    width: 10px;
+}
 
 #team-table {
     display: inline-block;

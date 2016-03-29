@@ -29,6 +29,7 @@ namespace AskGenerator.Business.Managers
         {
             if (entity.Id == null)
                 entity.Id = Guid.NewGuid().ToString();
+            entity.Apply();
             var r = Provider.Create(entity);
             OnCreated(entity);
             return r;
@@ -44,6 +45,7 @@ namespace AskGenerator.Business.Managers
 
         public virtual bool Update(T entity)
         {
+            entity.Apply();
             return Provider.Update(entity);
         }
 
@@ -69,17 +71,21 @@ namespace AskGenerator.Business.Managers
 
         public virtual T Get(string id)
         {
-            return Provider.Get(id);
+            var t = Provider.Get(id);
+            if(t != null) t.Initialize();
+            return t;
         }
 
         public virtual Task<T> GetAsync(string id)
         {
-            return Task.Factory.StartNew(() => Provider.Get(id));
+            return Task.Factory.StartNew(() => Get(id));
         }
 
         public virtual List<T> All()
         {
-            return Provider.All();
+            var list = Provider.All();
+            list.Each(t => t.Initialize());
+            return list;
         }
 
         public virtual Task<List<T>> AllAsync()
@@ -94,7 +100,10 @@ namespace AskGenerator.Business.Managers
                 return null;
             var t = Provider.Extract(id);
             if (t != null)
+            {
+                t.Initialize();
                 OnDeleted(t);
+            }
             return t;
         }
         public Task<T> ExtractAsync(string id)

@@ -31,7 +31,6 @@ namespace AskGenerator.Mvc
             AutoMapperConfig.Configure();
             SetModelBinders();
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
-            new AskGenerator.Controllers.Admin.HomeController().UpdateBadges();
         }
 
         protected void OnBefore(object sender, EventArgs e)

@@ -58,6 +58,7 @@ namespace AskGenerator.Controllers.Admin
             }
         }
 
+        #region Recalculate
         public async Task<ActionResult> Recalculate()
         {
             var tqManager = Site.TQManager;
@@ -83,7 +84,8 @@ namespace AskGenerator.Controllers.Admin
                         tqManager.Update(tq);
                     }
                     UpdateGroupStaytistic(voteList);
-                    UpdateBadges();
+                    var teachers = UpdateBadges();
+                    UpdateTeams(teachers);
                 }
                 catch (Exception e)
                 {
@@ -96,7 +98,7 @@ namespace AskGenerator.Controllers.Admin
             }, System.Web.HttpContext.Current);
         }
 
-        public void UpdateBadges()
+        protected List<Teacher> UpdateBadges()
         {
             var teachers = Site.TeacherManager.All(true);
             var questions = Site.QuestionManager.List(isAboutTeacher: true);
@@ -113,7 +115,13 @@ namespace AskGenerator.Controllers.Admin
                     ordered = ordered.OrderBy(t =>
                     {
                         var mark = t.Marks.FirstOrDefault(m => m.QuestionId == question.Id);
-                        return mark != null ? mark.Answer - ((float)mark.Count) / 128 : 10f;
+                        if (mark != null)
+                        {
+                            float criteria = mark.Count > 10 ? 3 : mark.Count > 5 ? 2 : 1;
+                            criteria /= (float)mark.Count;
+                            return mark.Answer + criteria;
+                        }
+                        return 0f;
                     });
 
                     int count = GiveBadges(question, ordered, 'l');
@@ -124,7 +132,13 @@ namespace AskGenerator.Controllers.Admin
                     ordered = ordered.OrderByDescending(t =>
                     {
                         var mark = t.Marks.FirstOrDefault(m => m.QuestionId == question.Id);
-                        return mark != null ? mark.Answer + ((float)mark.Count) / 128 : 10f;
+                        if (mark != null)
+                        {
+                            float criteria = mark.Count > 10 ? 3 : mark.Count > 5 ? 2 : 1;
+                            criteria /= (float)mark.Count;
+                            return mark.Answer - criteria;
+                        }
+                        return 0f;
                     });
 
                     int count = GiveBadges(question, ordered, 'r');
@@ -158,38 +172,33 @@ namespace AskGenerator.Controllers.Admin
                 }
                 Site.TeacherManager.Update(teacher);
             }
+
+            return teachers;
         }
 
-        private int GiveBadges(Question question, IEnumerable<Teacher> teachers, char badgeType = char.MinValue, int badgesCount = 5)
+        protected void UpdateTeams(IList<Teacher> teachers = null)
         {
-            int count = 0;
-            float prevMark = 0;
-            foreach (var teacher in teachers)
+            if (teachers == null)
+                teachers = Site.TeacherManager.All();
+
+            var questions = Site.QuestionManager.List(isAboutTeacher: true);
+            var allVotes = Site.VoteManager.All();
+            var teams = Site.TeamManager.All();
+
+            foreach (var team in teams)
             {
-                var mark = teacher.Marks.FirstOrDefault(m => m.QuestionId == question.Id);
-                if (mark == null)
-                {
-                    prevMark = 0;
-                    continue;
-                }
-                if (count >= badgesCount && prevMark != mark.Answer)
-                    break;
+                var filteredTeachers = teachers.AsEnumerable();
+                if (team.Id != Team.AllTeachersTeamId)
+                    filteredTeachers = filteredTeachers.Where(t => t.TeamId == team.Id);
 
-                teacher.Badges.Add(new TeacherBadge() { Id = question.Id, Mark = mark.Answer, Type = badgeType });
-                count++;
-                prevMark = mark.Answer;
+                var teachersIds = filteredTeachers.ToDictionary(t => t.Id);
+                UpdateTeam(allVotes.Where(m => teachersIds.ContainsKey(m.TeacherId)).GroupBy(m => m.QuestionId),
+                    team,
+                    questions.First().Id,
+                    questions.Last().Id);
+
+                Site.TeamManager.Update(team);
             }
-            return count;
-        }
-
-        #region protected
-        protected Dictionary<string, string> CreateResultsTags()
-        {
-            var result = new Dictionary<string, string>();
-            result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
-            result.Add("siteName", "Evaluate");
-
-            return result;
         }
 
         protected void UpdateGroupStaytistic(IList<Vote> votes)
@@ -234,6 +243,71 @@ namespace AskGenerator.Controllers.Admin
                 }
                 Site.GroupManager.Update(group);
             }
+        }
+        #endregion
+
+        #region private
+        private Dictionary<string, string> CreateResultsTags()
+        {
+            var result = new Dictionary<string, string>();
+            result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
+            result.Add("siteName", "Evaluate");
+
+            return result;
+        }
+
+        private void UpdateTeam(IEnumerable<IGrouping<Question, Vote>> votes, Team model, string difficultId, string additionalMarkId = null)
+        {
+            int maxCount = int.MinValue;
+            float avgSum = 0;
+            var dictionary = new Dictionary<string, Mark>();
+            foreach (var group in votes)
+            {
+                var mark = dictionary.GetOrCreate(group.Key.Id);
+
+                foreach (var vote in group)
+                {
+                    mark.Answer += vote.Answer;
+                    mark.Count++;
+                }
+                mark.Answer /= mark.Count;
+
+                avgSum += mark.Answer;
+                if (mark.Count > maxCount)
+                    maxCount = mark.Count;
+            }
+
+            model.AdditionalMark = dictionary.GetOrDefault(additionalMarkId);
+            model.AvgDifficult = dictionary[difficultId].Answer;
+
+            model.ClearRate = (avgSum - model.AvgDifficult) / (dictionary.Count - 1);
+            model.Rate = new Mark()
+            {
+                Answer = CalculateRate(model.AvgDifficult, model.ClearRate, maxCount),
+                Count = maxCount
+            };
+        }
+
+        private int GiveBadges(Question question, IEnumerable<Teacher> teachers, char badgeType = char.MinValue, int badgesCount = 5)
+        {
+            int count = 0;
+            float prevMark = 0;
+            foreach (var teacher in teachers)
+            {
+                var mark = teacher.Marks.FirstOrDefault(m => m.QuestionId == question.Id);
+                if (mark == null)
+                {
+                    prevMark = 0;
+                    continue;
+                }
+                if (count >= badgesCount && prevMark != mark.Answer)
+                    break;
+
+                teacher.Badges.Add(new TeacherBadge() { Id = question.Id, Mark = mark.Answer, Type = badgeType });
+                count++;
+                prevMark = mark.Answer;
+            }
+            return count;
         }
         #endregion
     }

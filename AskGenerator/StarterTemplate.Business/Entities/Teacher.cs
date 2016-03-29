@@ -26,11 +26,19 @@ namespace AskGenerator.Business.Entities
         }
 
         /// <summary>
-        /// Initializes field from XML
+        /// Initializes fields from XML fields.
         /// </summary>
-        public void Initilize()
+        public override void Initialize()
         {
             Badges = Fields.GetOrCreate<List<TeacherBadge>>("Badges");
+        }
+
+        /// <summary>
+        /// Save fields to XML fields.
+        /// </summary>
+        public override void Apply()
+        {
+            Fields["Badges"] = Badges;
         }
     }
 
