@@ -52,5 +52,11 @@ namespace System
             var rnd = new Random();
             return source.OrderBy(x => rnd.Next());
         }
+
+        public static IEnumerable<T> Each<T>(this IEnumerable<T> source, Action<T> action)
+        {
+            foreach (var t in source) action(t);
+            return source;
+        }
     }
 }

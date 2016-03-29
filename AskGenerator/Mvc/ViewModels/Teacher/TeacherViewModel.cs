@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace AskGenerator.ViewModels
 {
-    public class TeacherViewModel : BaseViewModel, IPerson, IMapFrom<Teacher>
+    public class TeacherViewModel : BaseViewModel, IPerson, IHaveCustomMappings
     {
         public TeacherViewModel()
             : base()
@@ -55,5 +55,17 @@ namespace AskGenerator.ViewModels
 
         [ScaffoldColumn(false)]
         public IList<TeacherBadge> Badges { get; set; }
+
+        public void CreateMappings(AutoMapper.IConfiguration configuration)
+        {
+            var conf = (AutoMapper.IMapperConfiguration)configuration;
+            conf.CreateMap<Teacher, TeacherViewModel>().AfterMap((s, d) =>
+            {
+                var avg = s.Badges.FirstOrDefault(b => b.Id == Question.AvarageId);
+                d.AverageMark = avg ?? new TeacherBadge() { Id = Question.AvarageId, Mark = -0.0001f };
+                if (avg != null)
+                    d.Badges.Remove(avg);
+            }).ReverseMap();
+        }
     }
 }

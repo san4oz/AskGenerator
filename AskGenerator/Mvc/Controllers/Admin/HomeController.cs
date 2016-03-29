@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace AskGenerator.Controllers.Admin
 {
     [Authorize(Roles = "admin")]
-    public class HomeController : Controller
+    public class HomeController : AskGenerator.Mvc.Controllers.BaseController
     {
         [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Index()
@@ -57,6 +57,7 @@ namespace AskGenerator.Controllers.Admin
                 return Json(e.Message, JsonRequestBehavior.AllowGet);
             }
         }
+
         public async Task<ActionResult> Recalculate()
         {
             var tqManager = Site.TQManager;
@@ -82,6 +83,7 @@ namespace AskGenerator.Controllers.Admin
                         tqManager.Update(tq);
                     }
                     UpdateGroupStaytistic(voteList);
+                    UpdateBadges();
                 }
                 catch (Exception e)
                 {
@@ -94,7 +96,91 @@ namespace AskGenerator.Controllers.Admin
             }, System.Web.HttpContext.Current);
         }
 
+        public void UpdateBadges()
+        {
+            var teachers = Site.TeacherManager.All(true);
+            var questions = Site.QuestionManager.List(isAboutTeacher: true);
+            var badges = CreateBadges(questions);
+            var diffId = questions.First().Id;
 
+            teachers.ForEach(t => t.Badges.Clear());
+
+            foreach (var question in questions)
+            {
+                IEnumerable<Teacher> ordered = teachers;
+                if (question.LeftLimit.IsAvaliable)
+                {
+                    ordered = ordered.OrderBy(t =>
+                    {
+                        var mark = t.Marks.FirstOrDefault(m => m.QuestionId == question.Id);
+                        return mark != null ? mark.Answer - ((float)mark.Count) / 128 : 10f;
+                    });
+
+                    int count = GiveBadges(question, ordered, 'l');
+                    ordered = ordered.Skip(count);
+                }
+                if (question.RightLimit.IsAvaliable)
+                {
+                    ordered = ordered.OrderByDescending(t =>
+                    {
+                        var mark = t.Marks.FirstOrDefault(m => m.QuestionId == question.Id);
+                        return mark != null ? mark.Answer + ((float)mark.Count) / 128 : 10f;
+                    });
+
+                    int count = GiveBadges(question, ordered, 'r');
+                    ordered = ordered.Skip(count);
+                }
+                GiveBadges(question, ordered, badgesCount: int.MaxValue);
+            }
+
+            foreach (var teacher in teachers)
+            {
+                var avg = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == Question.AvarageId);
+                var difficult = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == diffId);
+                int maxCount = 0;
+
+                if (avg != null)
+                {
+                    teacher.Marks.Remove(avg);
+                    if (teacher.Marks.Count > 0)
+                        maxCount = teacher.Marks.Max(m => m.Count);
+                    var rate = new TeacherBadge() { Id = avg.QuestionId, Type = char.MaxValue };
+                    if (difficult != null)
+                    {
+                        avg.Answer = (avg.Answer * (teacher.Marks.Count) - difficult.Answer) / (teacher.Marks.Count - 1);
+                        rate.Mark = CalculateRate(difficult.Answer, avg.Answer, maxCount);
+                    }
+                    else
+                    {
+                        rate.Mark = -0.001f;
+                    }
+                    teacher.Badges.Insert(0, rate);
+                }
+                Site.TeacherManager.Update(teacher);
+            }
+        }
+
+        private int GiveBadges(Question question, IEnumerable<Teacher> teachers, char badgeType = char.MinValue, int badgesCount = 5)
+        {
+            int count = 0;
+            float prevMark = 0;
+            foreach (var teacher in teachers)
+            {
+                var mark = teacher.Marks.FirstOrDefault(m => m.QuestionId == question.Id);
+                if (mark == null)
+                {
+                    prevMark = 0;
+                    continue;
+                }
+                if (count >= badgesCount && prevMark != mark.Answer)
+                    break;
+
+                teacher.Badges.Add(new TeacherBadge() { Id = question.Id, Mark = mark.Answer, Type = badgeType });
+                count++;
+                prevMark = mark.Answer;
+            }
+            return count;
+        }
 
         #region protected
         protected Dictionary<string, string> CreateResultsTags()

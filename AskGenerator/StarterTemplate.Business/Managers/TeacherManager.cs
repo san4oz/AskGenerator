@@ -41,43 +41,54 @@ namespace AskGenerator.Business.Managers
         public List<Teacher> List()
         {
             var key = GetListKey();
-            return FromCache(key, Provider.List);
+            var list = FromCache(key, Provider.List);
+            foreach (var t in list) t.Initilize();
+            return list;
+        }
+
+        public List<Teacher> All(bool loadMarks)
+        {
+            var teachers = this.List();
+            if (!loadMarks)
+                return teachers;
+            var answers = TQ.All().ToLookup(tq => tq.TeacherId);
+            foreach (var t in teachers)
+            {
+                var list = answers[t.Id];
+                t.Marks = list.ToList();
+                float avg = 0;
+                int count = 0;
+                t.Marks = t.Marks.Where(m => m.Answer != 0).ToList();
+                foreach (var mark in t.Marks)
+                {
+                    avg += mark.Answer;
+                    count++;
+                }
+                if (avg != 0)
+                    avg /= (float)count;
+                else
+                    avg = -0.001f;
+                t.Marks.Insert(0, new TeacherQuestion() { Answer = avg, QuestionId = Question.AvarageId });
+
+            }
+            return teachers;
         }
 
         public Task<List<Teacher>> AllAsync(bool loadMarks)
         {
-            return Task.Factory.StartNew(() =>
-            {
-                var teachers = this.List();
-                if (!loadMarks)
-                    return teachers;
-                var answers = TQ.All().ToLookup(tq => tq.TeacherId);
-                foreach (var t in teachers)
-                {
-                    var list = answers[t.Id];
-                    t.Marks = list.ToList();
-                    float avg = 0;
-                    int count = 0;
-                    t.Marks = t.Marks.Where(m => m.Answer != 0).ToList();
-                    foreach (var mark in t.Marks)
-                    {
-                        avg += mark.Answer;
-                        count++;
-                    }
-                    if (avg != 0)
-                        avg /= (float)count;
-                    else
-                        avg = -0.001f;
-                    t.Marks.Insert(0, new TeacherQuestion() { Answer = avg, QuestionId = Question.AvarageId });
-
-                }
-                return teachers;
-            });
+            return Task.Factory.StartNew(() => All(loadMarks));
         }
 
         public Task<List<Teacher>> ListAsync()
         {
             return Task.Factory.StartNew(() => this.List());
+        }
+
+        public override Teacher Get(string id)
+        {
+            var t = base.Get(id);
+            t.Initilize();
+            return t;
         }
     }
 }

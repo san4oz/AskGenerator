@@ -23,6 +23,13 @@ namespace AskGenerator.Business.Entities
         public Teacher()
         {
             Marks = new List<TeacherQuestion>();
+        }
+
+        /// <summary>
+        /// Initializes field from XML
+        /// </summary>
+        public void Initilize()
+        {
             Badges = Fields.GetOrCreate<List<TeacherBadge>>("Badges");
         }
     }

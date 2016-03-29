@@ -92,7 +92,7 @@ namespace AskGenerator.Core
         #endregion
 
         #region Nested
-        public class ParseInfo : IDisposable
+        public sealed class ParseInfo : IDisposable
         {
             protected DateTime Begin { get; set; }
 
@@ -119,6 +119,7 @@ namespace AskGenerator.Core
                 Begin = DateTime.Now;
             }
 
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1063:ImplementIDisposableCorrectly")]
             public void Dispose()
             {
                 End = DateTime.Now;

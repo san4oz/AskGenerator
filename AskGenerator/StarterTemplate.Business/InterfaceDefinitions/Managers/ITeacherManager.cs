@@ -16,10 +16,12 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         bool Update(Teacher teacher, ICollection<string> ids);
 
         /// <summary>
-        /// Loads list of teachers.
+        /// Loads list of teachers without includings.
         /// </summary>
         /// <returns>Task with loading.</returns>
         Task<List<Teacher>> ListAsync();
+
+        List<Teacher> All(bool loadMarks);
 
         Task<List<Teacher>> AllAsync(bool loadMarks);
     }

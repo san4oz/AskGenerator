@@ -205,40 +205,16 @@ namespace AskGenerator.Mvc.Controllers
             var models = new List<TeacherViewModel>(teachers.Count);
             var questions = QuestionManager.List(isAboutTeacher: true);
             var badges = CreateBadges(questions);
-            var diffId = questions.First().Id;
 
             foreach (var teacher in teachers)
             {
                 var tmodel = Map<Teacher, TeacherViewModel>(teacher);
 
-                var avg = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == Question.AvarageId);
-                var difficult = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == diffId);
                 int maxCount = 0;
+                if (teacher.Marks.Count > 0)
+                    maxCount = teacher.Marks.Max(m => m.Count);
 
-                if (avg != null)
-                {
-                    teacher.Marks.Remove(avg);
-                    if (teacher.Marks.Count > 0)
-                        maxCount = teacher.Marks.Max(m => m.Count);
-                    tmodel.AverageMark = new TeacherBadge() { Id = avg.QuestionId, Type = char.MaxValue };
-                    if (difficult != null)
-                    {
-                        avg.Answer = (avg.Answer * (teacher.Marks.Count) - difficult.Answer) / (teacher.Marks.Count - 1);
-                        tmodel.AverageMark.Mark = CalculateRate(difficult.Answer, avg.Answer, maxCount);
-                    }
-                    else
-                    {
-                        tmodel.AverageMark.Mark = -0.001f;
-                    }
-                }
-
-                foreach (var mark in teacher.Marks)
-                {
-                    var teacherBadge = CreateTeacherBadge(badges, mark);
-                    if (teacherBadge != null)
-                        tmodel.Badges.Add(teacherBadge);
-                }
-
+                tmodel.Badges.Each(b => b.Mark = (float)Math.Round(b.Mark, 2));
                 tmodel.VotesCount = maxCount;
                 models.Add(tmodel);
             }

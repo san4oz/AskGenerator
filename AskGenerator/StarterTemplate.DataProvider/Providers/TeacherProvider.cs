@@ -107,6 +107,10 @@ namespace AskGenerator.DataProvider.Providers
             return false;
         }
 
+        /// <summary>
+        /// Gets all entities without includings.
+        /// </summary>
+        /// <returns>The list of teachers.</returns>
         public List<Teacher> List()
         {
             return new AppContext().Teachers.AsQueryable().ToList();

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AskGenerator.Business.Entities
 {
@@ -45,6 +46,15 @@ namespace AskGenerator.Business.Entities
 
             [MaxLength(250)]
             public string Description { get; set; }
+
+            [NotMapped]
+            public bool IsAvaliable
+            {
+                get
+                {
+                    return AvgLimit > 0;
+                }
+            }
         }
     }
 }

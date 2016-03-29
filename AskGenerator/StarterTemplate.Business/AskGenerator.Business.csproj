@@ -120,7 +120,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Base\Entity.cs" />
+    <Compile Include="Entities\Base\EntityFields.cs" />
     <Compile Include="Entities\IPerson.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Group.cs" />
@@ -167,6 +168,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="XmlSerializerManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

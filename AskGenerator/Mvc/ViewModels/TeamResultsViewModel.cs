@@ -29,6 +29,7 @@ namespace AskGenerator.Mvc.ViewModels
         /// <summary>
         /// Keys - answers, values - counts.
         /// </summary>
+        [Serializable]
         public class AnswerCountDictionary : Dictionary<short, int>
         {
             public AnswerCountDictionary()
