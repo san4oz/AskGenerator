@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Info";
+    Layout = IsAjax ? null : "../../Views/_Layouts/_Info.cshtml";
+    var voteCount = new HtmlString("<strong>кількість голосів </strong>");
+}
+
+<p class="h4"> 1. Медалі назначались 5-ьом кращим і 5-ьом гіршим викладачам по кожному критерію за оцінками студентів.</p>
+<p class="h4"> 2. Ми вважаємо, що чим більше студентів проголосувало за викладача, тим точніша його оцінка і тим більше підстав "видати" йому медаль.</p>
+
+<p class="h4" style="font-weight:500;">
+    Тому викладачі сортувались за кожним окремим критерієм з врахуванням можливої похибки - функії від кількості голосів:
+</p>
+<div class="h4" style="font-weight:500;">
+    <span class="col-xs-2">
+        Похибка = <span style="font-size: 45px">{</span>
+    </span>
+    <div class="col-xs-10" style="margin-left: -45px">
+        <span>@voteCount <span style="white-space:pre">>  </span> 10, 3/@voteCount</span>
+        <br />
+        <span>@voteCount <span style="white-space:pre">>  </span> 5, 2/@voteCount</span>
+        <br />
+        <span>@voteCount <= 5, 3/@voteCount</span>
+    </div>
+    <span class="col-xs-12">
+        <strong>Критерій для сортування</strong> (для позитивних медалей) = <strong>Оцінка</strong> - <strong>Похибка</strong>
+    </span>
+</div>
+<div class="thumbnail" style="margin-bottom: 5px;">
+    <img src="~/Content/Images/badging.png" />
+    <p class="caption smalltext">Приклад врахування похибки для сортування</p>
+</div>

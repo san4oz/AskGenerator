@@ -10,8 +10,9 @@ namespace AskGenerator.Mvc.Controllers
 {
     public class InfoController : BaseController
     {
+        #region politics
         /// <summary>
-        /// Index action to return site politics.
+        /// An index action to return site politics.
         /// </summary>
         /// <returns>ViewResult or PartialViewResult.</returns>
         [OutputCache(CacheProfile = "Cache1Hour")]
@@ -24,21 +25,21 @@ namespace AskGenerator.Mvc.Controllers
         }
 
         /// <summary>
-        /// Index action to return site politics.
+        /// An index action to return site politics.
         /// </summary>
-        /// <returns>ViewResult or PartialViewResult.</returns>
-        [OutputCache(CacheProfile = "Cache1Hour", Location = OutputCacheLocation.Any)]
+        /// <returns>Partial view.</returns>
+        [OutputCache(CacheProfile = "Cache1HourAll")]
         [HttpPost]
         [ActionName("Index")]
         public ActionResult IndexPost()
         {
-            if (Request.IsAjaxRequest())
-                return PartialView();
-            return View();
+            return PartialView();
         }
+        #endregion
 
+        #region calculation
         /// <summary>
-        /// Action to return calculation rules.
+        /// An action to return calculation rules.
         /// </summary>
         /// <returns>ViewResult or PartialViewResult.</returns>
         [OutputCache(CacheProfile = "Cache1Hour")]
@@ -51,17 +52,43 @@ namespace AskGenerator.Mvc.Controllers
         }
 
         /// <summary>
-        /// Action to return calculation rules.
+        /// An action to return calculation rules.
         /// </summary>
-        /// <returns>ViewResult or PartialViewResult.</returns>
-        [OutputCache(CacheProfile = "Cache1Hour", Location = OutputCacheLocation.Any)]
+        /// <returns>Partial view.</returns>
+        [OutputCache(CacheProfile = "Cache1HourAll")]
         [HttpPost]
         [ActionName("Calculation")]
         public ActionResult CalculationPost()
+        {
+            return PartialView();
+        }
+        #endregion
+
+        #region badging
+        /// <summary>
+        /// An action to return badging rules.
+        /// </summary>
+        /// <returns>ViewResult or PartialViewResult.</returns>
+        [OutputCache(CacheProfile = "Cache1Hour")]
+        [HttpGet]
+        public ActionResult Badging()
         {
             if (Request.IsAjaxRequest())
                 return PartialView();
             return View();
         }
+
+        /// <summary>
+        /// An action to return badging rules.
+        /// </summary>
+        /// <returns>Partial view.</returns>
+        [OutputCache(CacheProfile = "Cache1HourAll")]
+        [HttpPost]
+        [ActionName("Badging")]
+        public ActionResult BadgingPost()
+        {
+            return PartialView();
+        }
+        #endregion
     }
 }

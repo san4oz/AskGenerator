@@ -234,6 +234,7 @@
     <Content Include="Content\Images\c3804989-8152-4fb6-b029-0172a1a4a95a.jpg" />
     <Content Include="Content\Images\c7800761-61af-49d2-bd76-9377def0910b.jpg" />
     <Content Include="Content\Images\calculation.png" />
+    <Content Include="Content\Images\badging.png" />
     <Content Include="Content\Images\cb40cbb0-7bba-4052-9084-34001277b849.jpg" />
     <Content Include="Content\Images\d1567b28-507c-4f82-a020-960ab385329e.jpg" />
     <Content Include="Content\Images\d1612aaf-0c46-482a-8451-153143f5d3ac.jpg" />
@@ -1323,6 +1324,7 @@
     <Content Include="Views\Home\TeacherResults.cshtml" />
     <Content Include="Views\Details\Team.cshtml" />
     <Content Include="Views\Details\Group.cshtml" />
+    <Content Include="Views\Info\Badging.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
