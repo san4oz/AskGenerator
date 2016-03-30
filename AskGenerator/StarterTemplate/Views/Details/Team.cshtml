@@ -120,7 +120,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Rate</th>
+                <th>@Resource.Rate</th>
                 <th>@RoundAnswer(Model.Rate.Answer)</th>
                 <th>@Model.Rate.Count</th>
             </tr>
@@ -157,12 +157,12 @@
             </div>
             <footer class="col-xs-12">
                 <div>
-                    <span class="col-xs-2" style="text-align:right">Avg</span>
-                    <span class="col-xs-10">@RoundAnswer(qDictionary.Avg.Answer)</span>
+                    <span class="col-xs-9" style="text-align:right">@Resource.AvgMark</span>
+                    <span class="col-xs-3">@RoundAnswer(qDictionary.Avg.Answer)</span>
                 </div>
                 <div>
-                    <span class="col-xs-2" style="text-align:right">СКВ</span>
-                    <span class="col-xs-10">@RoundAnswer(Math.Sqrt(d))</span>
+                    <span class="col-xs-9" style="text-align:right">@Resource.ASD</span>
+                    <span class="col-xs-3">@RoundAnswer(Math.Sqrt(d))</span>
                 </div>
             </footer>
         </div>

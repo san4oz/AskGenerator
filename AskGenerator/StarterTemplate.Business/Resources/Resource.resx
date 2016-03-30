@@ -534,4 +534,13 @@
   <data name="AllTeachers" xml:space="preserve">
     <value>Усі викладачі</value>
   </data>
+  <data name="ASD" xml:space="preserve">
+    <value>Середнє квадратичне відхилення</value>
+  </data>
+  <data name="AvgMark" xml:space="preserve">
+    <value>Середня оцінка</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
 </root>

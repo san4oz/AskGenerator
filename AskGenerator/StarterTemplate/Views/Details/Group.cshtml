@@ -3,31 +3,32 @@
 @using AskGenerator.Business.Entities
 
 @{
-    ViewBag.Title = "Groups";
+    ViewBag.Title = "Групи";
 }
 <div class="detailsPage">
-    <table class="col-xs-5 col-sm-3">
-        <caption>Groups</caption>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>AVG</th>
-                <th>Max Count</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var group in Model.Groups)
-            {
-                var cl = group.Id == Model.Id ? "h3" : string.Empty;
-                <tr class="@cl">
-                    <td>@Html.ActionLink(group.Name, "Group", new { id = group.Id })</td>
-                    <td>@group.Avg</td>
-                    <td>@group.VotesCount</td>
+    <div class="col-xs-5 col-sm-3">
+        <table>
+            <caption class="h4">Groups</caption>
+            <thead>
+                <tr>
+                    <th> Назва </th>
+                    <th> AVG </th>
+                    <th> Max count </th>
                 </tr>
-            }
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+                @foreach (var group in Model.Groups)
+                {
+                    var cl = group.Id == Model.Id ? "selected" : string.Empty;
+                    <tr class="@cl">
+                        <td>@Html.ActionLink(group.Name, "Group", new { id = group.Id })</td>
+                        <td> @RoundAnswer(group.Avg, 1)</td>
+                        <td>@group.VotesCount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
     <div id="groupDetails" class="col-xs-12 col-sm-8">
         @Totals()
 
@@ -72,7 +73,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Rate</th>
+                <th>@Resource.Rate</th>
                 <th>@RoundAnswer(Model.Rate.Answer)</th>
                 <th>@Model.Rate.Count</th>
             </tr>
@@ -109,12 +110,12 @@
             </div>
             <footer class="col-xs-12">
                 <div>
-                    <span class="col-xs-2" style="text-align:right">Avg</span>
-                    <span class="col-xs-10">@RoundAnswer(qDictionary.Avg.Answer)</span>
+                    <span class="col-xs-10" style="text-align:right">@Resource.AvgMark</span>
+                    <span class="col-xs-2">@RoundAnswer(qDictionary.Avg.Answer)</span>
                 </div>
                 <div>
-                    <span class="col-xs-2" style="text-align:right">СКВ</span>
-                    <span class="col-xs-10">@RoundAnswer(Math.Sqrt(d))</span>
+                    <span class="col-xs-10" style="text-align:right">@Resource.ASD</span>
+                    <span class="col-xs-2">@RoundAnswer(Math.Sqrt(d))</span>
                 </div>
             </footer>
         </div>
@@ -123,8 +124,8 @@
 
 
 @functions{
-    double RoundAnswer(double x)
+    string RoundAnswer(double x, int decimals = 2)
     {
-        return Math.Round(x, 2);
+        return x <= 0 ? "-" : Math.Round(x, decimals).ToString();
     }
 }

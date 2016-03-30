@@ -583,6 +583,7 @@ time {
 
 .detailsPage {
     background-color: #fffefe;
+    display: inline-block;
 }
 
     .detailsPage table {
@@ -651,7 +652,7 @@ time {
         padding-left: 0;
     }
 
-#teams .selected td:first-child::before {
+table .selected td:first-child::before {
     background-color: green;
     border-radius: 50%;
     content: " ";
