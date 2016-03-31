@@ -165,8 +165,8 @@ namespace AskGenerator.Mvc.Controllers
 
         protected string TransformEmail(string email)
         {
-            var t = email.Trim().ToLower().Split('@');
-            return t[0].Replace(".", string.Empty) + '@' + t[1];
+            var t = email.Trim().Split('@');
+            return t[0].Replace(".", string.Empty) + '@' + t[1].ToLower();
         }
 
         #region Badges
@@ -231,26 +231,6 @@ namespace AskGenerator.Mvc.Controllers
         protected float CalculateRate(float difficultAvg, float otherAvg, int votesCount)
         {
             return (float)(Math.Pow(difficultAvg, 0.5) * otherAvg * Math.Pow(votesCount, 0.2));
-        }
-
-        private TeacherBadge CreateTeacherBadge(Dictionary<string, LimitViewModel> badges, TeacherQuestion mark)
-        {
-            if (mark.Answer <= 0)
-                return null;
-
-            var criteria = ((float)mark.Count) / 256f;
-            var id = mark.QuestionId + 'l';
-            var badge = badges.GetOrDefault(id);
-            var teacherBadge = new TeacherBadge() { Id = mark.QuestionId, Mark = (float)Math.Round(mark.Answer, 2), Type = 'l' };
-
-            if (badge == null || badge.AvgLimit + criteria< mark.Answer)
-            {
-                id = mark.QuestionId + 'r';
-                badge = badges.GetOrDefault(id);
-                teacherBadge.Type = (badge != null && badge.AvgLimit - criteria < mark.Answer) ? 'r' : char.MinValue;
-            }
-
-            return teacherBadge;
         }
         #endregion
 
