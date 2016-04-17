@@ -12,10 +12,18 @@ namespace AskGenerator.Mvc.Components
         bool IsEditing { get; set; }
 
         Resolver R { get; set; }
+
+        RobotsInfo Robots { get;set; }
     }
     public class BaseWebViewPage<TModel> : WebViewPage<TModel>, IBaseWebViewPage
     {
+        public BaseWebViewPage():base()
+        {
+            Robots = new RobotsInfo();
+        }
         public bool IsEditing { get; set; }
+
+        public RobotsInfo Robots { get; set; }
 
         public Resolver R { get; set; }
 
@@ -31,7 +39,14 @@ namespace AskGenerator.Mvc.Components
 
     public class BaseWebViewPage : WebViewPage, IBaseWebViewPage
     {
+        public BaseWebViewPage()
+            : base()
+        {
+            Robots = new RobotsInfo();
+        }
         public bool IsEditing { get; set; }
+
+        public RobotsInfo Robots { get; set; }
 
         public Resolver R { get; set; }
 
