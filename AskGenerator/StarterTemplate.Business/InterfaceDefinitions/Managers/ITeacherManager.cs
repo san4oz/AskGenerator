@@ -9,8 +9,6 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 {
     public interface ITeacherManager : IBaseEntityManager<Teacher>
     {
-        List<Student> GetRelatedStudents(string teacherId);
-
         bool Create(Teacher teacher, ICollection<string> ids);
 
         bool Update(Teacher teacher, ICollection<string> ids);

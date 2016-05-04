@@ -9,8 +9,6 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
 {
     public interface ITeacherProvider : IBaseEntityProvider<Teacher>
     {
-        List<Student> GetRelatedStudents(string teacherId);
-
         /// <summary>
         /// Loads data from one table.
         /// </summary>

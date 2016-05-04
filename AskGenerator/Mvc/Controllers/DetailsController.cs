@@ -62,7 +62,7 @@ namespace AskGenerator.Mvc.Controllers
             var studentsIds = students.Where(s => !s.AccountId.IsEmpty())
                 .ToDictionary(t => t.AccountId);
 
-            var questions = await Site.QuestionManager.ListAsync(isAboutTeacher: true);
+            var questions = await Site.QuestionManager.AllAsync();
             model.Questions = questions.ToDictionary(q => q.Id, q => q.QuestionBody);
 
             var allVotes = await Site.VoteManager.AllAsync();

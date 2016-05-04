@@ -207,7 +207,6 @@
     <Compile Include="ViewModels\Teacher\TeacherComposeViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherListViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherViewModel.cs" />
-    <Compile Include="ViewModels\Teacher\TeacherVotingViewModel.cs" />
     <Compile Include="ViewModels\Teacher\BoardViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\VotingViewModel.cs" />
@@ -220,10 +219,6 @@
     <ProjectReference Include="..\AskGenerator.Core\AskGenerator.Core.csproj">
       <Project>{77896584-1ca2-468e-bbe8-ba4a3827c4a6}</Project>
       <Name>AskGenerator.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AskGenerator.Generator\AskGenerator.Generator.csproj">
-      <Project>{468a5bf6-637c-400f-a8dc-186623535ac0}</Project>
-      <Name>AskGenerator.Generator</Name>
     </ProjectReference>
     <ProjectReference Include="..\StarterTemplate.Business\AskGenerator.Business.csproj">
       <Project>{c8d76b99-b3be-4a3f-abf5-d2bf4b99377f}</Project>

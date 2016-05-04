@@ -23,17 +23,11 @@ namespace AskGenerator.Controllers.Admin
         }
 
         [HttpGet]
-        public ActionResult List(bool isAboutTeacher = false)
-        {
-            var models = Site.QuestionManager.List(isAboutTeacher);
-            var viewModels = MapList<Question, QuestionViewModel>(models);
-            return View(viewModels);
-        }
-
-        [HttpGet]
         public ActionResult TeacherList()
         {
-            return List(true);
+            var models = Site.QuestionManager.All();
+            var viewModels = MapList<Question, QuestionViewModel>(models);
+            return View(viewModels);
         }
 
         [HttpGet]
@@ -48,10 +42,7 @@ namespace AskGenerator.Controllers.Admin
         [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult CreateTeacher()
         {
-            var model = new QuestionViewModel()
-            {
-                IsAboutTeacher = true
-            };
+            var model = new QuestionViewModel();
             return View("Create", model);
         }
 
@@ -71,9 +62,8 @@ namespace AskGenerator.Controllers.Admin
                 return View(viewModel);
             var model = DecomposeQuestionViewModel(viewModel);
             Site.QuestionManager.Create(model);
-            if (viewModel.IsAboutTeacher)
-                return RedirectToAction("TeacherList");
-            return RedirectToAction("List");
+            
+            return RedirectToAction("TeacherList");
         }
 
         [HttpPost]
@@ -95,12 +85,9 @@ namespace AskGenerator.Controllers.Admin
                 return View("Create", viewModel);
             var model = DecomposeQuestionViewModel(viewModel);
             Site.QuestionManager.Update(model);
-            if (viewModel.IsAboutTeacher)
-            {
-                Response.RemoveOutputCacheItem("/");
-                return RedirectToAction("TeacherList");
-            }
-            return RedirectToAction("List");
+            
+            Response.RemoveOutputCacheItem("/");
+            return RedirectToAction("TeacherList");
         }
 
         private Question DecomposeQuestionViewModel(QuestionViewModel model)

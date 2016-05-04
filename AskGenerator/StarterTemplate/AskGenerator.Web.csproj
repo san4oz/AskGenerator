@@ -1227,7 +1227,6 @@
     <Content Include="Areas\Admin\Views\Group\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Question\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Question\List.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Landing.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LeftMenu.cshtml" />
@@ -1237,7 +1236,6 @@
     <Content Include="Areas\Admin\Views\Student\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Teacher\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Teacher\List.cshtml" />
-    <Content Include="Areas\Admin\Views\Teacher\Students.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Question\TeacherList.cshtml" />
     <Content Include="Areas\Admin\Views\Question\_List.cshtml" />
