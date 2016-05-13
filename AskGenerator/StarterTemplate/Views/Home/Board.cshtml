@@ -3,6 +3,8 @@
 @using AskGenerator.Business.Entities
 @{
     Robots.KeyWords.AddRange(new string[]{"Board", "Кращі", "TOP", "Медалі"});
+    Robots.Description = "Рейтинг виклачів Житомирського державного технологічного університету складений за результатами голосів студентів." + Environment.NewLine
+        + " Кращі та гірші викладачі за різними критеріями.";
     ViewBag.Title = @Resources.Resource.Board;
     var goodBadges = Model.Badges.Where(x => x.Key.Last() == 'r');
     var badBadges = Model.Badges.Where(x => x.Key.Last() == 'l');

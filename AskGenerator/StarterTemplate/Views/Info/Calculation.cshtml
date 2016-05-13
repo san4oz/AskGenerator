@@ -1,6 +1,8 @@
 ﻿@{
     ViewBag.Title = "Info";
     Layout = IsAjax ? null : "../../Views/_Layouts/_Info.cshtml";
+    Robots.KeyWords.AddRange(new string[] { "Підрахунок", "Calculation", "Формула" });
+    Robots.Description = "Як вираховується рейтинг? Формула підрахунку та принципи вибору критеріїв.";
 }
 
 <p class="h4"> 1. Ми вважаємо, що чим складніші предмети читає викладач, тим більш значимі його гарні оцінки.</p>

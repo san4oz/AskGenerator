@@ -14,7 +14,7 @@ namespace AskGenerator.Mvc.Components
         public RobotsInfo()
         {
             KeyWords = new List<string>();
-
+            Index = Follow = true;
         }
 
         /// <summary>
@@ -54,7 +54,10 @@ namespace AskGenerator.Mvc.Components
         /// <returns>String contains key words.</returns>
         public virtual string GetKeyWords()
         {
-            return baseKeyWords + KeyWords.Join(", ");
+            var str = KeyWords.Join(", ");
+            if (KeyWords.Count > 0)
+                str += ", ";
+            return str + baseKeyWords;
         }
     }
 }

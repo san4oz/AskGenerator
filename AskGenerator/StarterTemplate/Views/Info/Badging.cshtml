@@ -2,6 +2,8 @@
     ViewBag.Title = "Info";
     Layout = IsAjax ? null : "../../Views/_Layouts/_Info.cshtml";
     var voteCount = new HtmlString("<strong>кількість голосів </strong>");
+    Robots.KeyWords.AddRange(new string[] { "Badging", "Видача медалей", "Принцип" });
+    Robots.Description = "Як ми роздавали медалі? Медалі назначались 5-ьом кращим і 5-ьом гіршим викладачам по кожному критерію за оцінками студентів.";
 }
 
 <p class="h4"> 1. Медалі назначались 5-ьом кращим і 5-ьом гіршим викладачам по кожному критерію за оцінками студентів.</p>

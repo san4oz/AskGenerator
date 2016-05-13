@@ -2,6 +2,8 @@
 @{
     Layout = "~/Views/_Layouts/_Base.cshtml";
     ViewBag.BodyClass = "bootstrap-admin-with-small-navbar";
+    Robots.Index = Robots.Follow = false;
+    Robots.Description = "You shouldn't be here!!!";
 }
 @section Styles{
     @Scripts.Render("~/bundles/modernizr")

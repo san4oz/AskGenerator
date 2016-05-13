@@ -43,15 +43,38 @@ namespace AskGenerator.Mvc.Controllers
             }
         }
 
+        /// <summary>
+        /// Returns response with specified data and statuc code.
+        /// </summary>
+        /// <param name="data">The data to return.</param>
+        /// <param name="code">Response status code.</param>
+        /// <returns><see cref="T:JsonResult"/></returns>
         protected JsonResult Json(object data, int code)
         {
             Response.StatusCode = code;
             return Json(data);
         }
 
+        /// <summary>
+        /// Returns response with specified data and 404 statuc code.
+        /// </summary>
+        /// <param name="data">The data to return.</param>
+        /// <returns><see cref="T:JsonResult"/></returns>
         protected JsonResult Json404(object data)
         {
             return Json(data, 404);
+        }
+
+        private RobotsInfo robots;
+        /// <summary>
+        /// Gets instance of <see cref="T:RobotsInfo"/> to configure page indexing.
+        /// </summary>
+        protected RobotsInfo Robots
+        {
+            get
+            {
+                return robots != null ? robots : robots = (RobotsInfo)ViewData.GetOrCreate("Robots", () => new RobotsInfo());
+            }
         }
 
         private Resolver resolver;
