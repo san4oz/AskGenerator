@@ -173,7 +173,7 @@ namespace AskGenerator.Mvc.Controllers
         protected Dictionary<string, LimitViewModel> CreateBadges(IList<Question> questions = null)
         {
             if (questions == null)
-                questions = QuestionManager.List(isAboutTeacher: true);
+                questions = QuestionManager.All();
 
             var result = new Dictionary<string, LimitViewModel>(questions.Count * 2);
             foreach (var question in questions)
@@ -203,7 +203,7 @@ namespace AskGenerator.Mvc.Controllers
         protected IList<Question> InitTeacherListViewModel(List<Teacher> teachers, TeacherListViewModel model)
         {
             var models = new List<TeacherViewModel>(teachers.Count);
-            var questions = QuestionManager.List(isAboutTeacher: true);
+            var questions = QuestionManager.All();
             var badges = CreateBadges(questions);
 
             foreach (var teacher in teachers)

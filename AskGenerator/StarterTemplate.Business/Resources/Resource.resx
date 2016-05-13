@@ -234,12 +234,6 @@
   <data name="IndexHeader" xml:space="preserve">
     <value>Index</value>
   </data>
-  <data name="IsAboutTeacher" xml:space="preserve">
-    <value>Це запитання стосується викладача?</value>
-  </data>
-  <data name="IsAboutTeacherRequired" xml:space="preserve">
-    <value>Поле "Це запитання стосується викладача?" повино бути заповнене</value>
-  </data>
   <data name="LastName" xml:space="preserve">
     <value>Прізвище</value>
   </data>
@@ -310,7 +304,7 @@
     <value>Старий викладач</value>
   </data>
   <data name="QuestionAbTeacher" xml:space="preserve">
-    <value>Питання про викладачів</value>
+    <value>Питання</value>
   </data>
   <data name="QuestionBody" xml:space="preserve">
     <value>Запитання</value>

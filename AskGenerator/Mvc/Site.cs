@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AskGenerator.Business.InterfaceDefinitions.Managers;
-using AskGenerator.Business.InterfaceDefinitions.Core;
 using AskGenerator.DataProvider;
 using System.Web;
 
@@ -38,8 +37,6 @@ namespace AskGenerator
         public static UserManager UserManager { get { return HttpContext.Current.GetOwinContext().GetUserManager<UserManager>(); } }
 
         public static RoleManager RoleManager { get { return HttpContext.Current.GetOwinContext().GetUserManager<RoleManager>(); } }
-
-        public static IPDFGenerator PDFGenerator { get { return Get<IPDFGenerator>(); } }
 
         #region private
         private static T Get<T>()

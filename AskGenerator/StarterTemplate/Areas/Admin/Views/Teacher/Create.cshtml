@@ -1,6 +1,5 @@
 ﻿@model  AskGenerator.ViewModels.TeacherComposeViewModel
 @{
-    bool IsEditing = ViewBag.IsEditing ?? false;
     string legend;
     if(IsEditing){
         ViewBag.Title = @Resources.Resource.OldTeacher;

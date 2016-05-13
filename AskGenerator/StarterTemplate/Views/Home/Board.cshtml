@@ -2,6 +2,7 @@
 @using AskGenerator.ViewModels
 @using AskGenerator.Business.Entities
 @{
+    Robots.KeyWords.AddRange(new string[]{"Board", "Кращі", "TOP", "Медалі"});
     ViewBag.Title = @Resources.Resource.Board;
     var goodBadges = Model.Badges.Where(x => x.Key.Last() == 'r');
     var badBadges = Model.Badges.Where(x => x.Key.Last() == 'l');

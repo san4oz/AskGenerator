@@ -101,7 +101,7 @@ namespace AskGenerator.Controllers.Admin
         protected List<Teacher> UpdateBadges()
         {
             var teachers = Site.TeacherManager.All(true);
-            var questions = Site.QuestionManager.List(isAboutTeacher: true);
+            var questions = Site.QuestionManager.All();
             var badges = CreateBadges(questions);
             var diffId = questions.First().Id;
 
@@ -181,7 +181,7 @@ namespace AskGenerator.Controllers.Admin
             if (teachers == null)
                 teachers = Site.TeacherManager.All();
 
-            var questions = Site.QuestionManager.List(isAboutTeacher: true);
+            var questions = Site.QuestionManager.All();
             var allVotes = Site.VoteManager.All();
             var teams = Site.TeamManager.All();
 

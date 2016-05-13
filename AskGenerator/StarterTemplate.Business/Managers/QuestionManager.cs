@@ -14,26 +14,5 @@ namespace AskGenerator.Business.Managers
         public QuestionManager(IQuestionProvider provider)
             : base(provider)
         { }
-
-        /// <summary>
-        /// Gets questions for certain category.
-        /// </summary>
-        /// <param name="isAboutTeacher">Indicates whether question about teachers should be retrived.</param>
-        /// <returns>List of retrived questions.</returns>
-        public List<Question> List(bool isAboutTeacher = false)
-        {
-            var key = GetListKey(isAboutTeacher);
-            return FromCache(key, () => Provider.List(isAboutTeacher));
-        }
-
-        /// <summary>
-        /// Gets questions for certain category.
-        /// </summary>
-        /// <param name="isAboutTeacher">Indicates whether question about teachers should be retrived.</param>
-        /// <returns>List of retrived questions.</returns>
-        public Task<List<Question>> ListAsync(bool isAboutTeacher = false)
-        {
-            return Task.Factory.StartNew(() => List(isAboutTeacher));
-        }
     }
 }
