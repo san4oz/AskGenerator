@@ -1248,6 +1248,8 @@
     <Content Include="Areas\Admin\Views\Student\AccountKeys.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\GroupSelector.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Faculty\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Faculty\List.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jqmeter\jqmeter.js" />
     <Content Include="Scripts\jqmeter\jqmeter.min.js" />

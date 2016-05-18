@@ -66,6 +66,16 @@ namespace System.Web
             return MvcHtmlString.Create(li.ToString());
         }
 
+        public static MvcHtmlString SubmitBtn(this HtmlHelper helper, string text)
+        {
+            return "<button type=\"submit\" class=\"btn btn-primary\">{0}</button>".FormatWith(text).AsHtml();
+        }
+
+        public static MvcHtmlString ClearBtn(this HtmlHelper helper, string text)
+        {
+            return "<button type=\"reset\" class=\"btn btn-default\">{0}</button>".FormatWith(text).AsHtml();
+        }
+
         public static MvcHtmlString AsHtml(this string str)
         {
             return new MvcHtmlString(str);

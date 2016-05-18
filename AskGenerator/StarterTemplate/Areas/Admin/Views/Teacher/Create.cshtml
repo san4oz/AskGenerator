@@ -74,8 +74,12 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">@Resources.Resource.Save</button>
-                        <button type="reset" class="btn btn-default">@Resources.Resource.Clean</button>
+                        <div class="form-group">
+                            <div class="btn-group col-lg-offset-2 col-lg-10">
+                                @Html.SubmitBtn(Resources.Resource.Save)
+                                @Html.ClearBtn(Resources.Resource.Clean)
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
             </div>

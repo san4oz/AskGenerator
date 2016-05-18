@@ -537,4 +537,28 @@
   <data name="Rate" xml:space="preserve">
     <value>Рейтинг</value>
   </data>
+  <data name="FacultyName" xml:space="preserve">
+    <value>Назва факультету</value>
+  </data>
+  <data name="ShortName" xml:space="preserve">
+    <value>Коротка назва</value>
+  </data>
+  <data name="CreateFaculty" xml:space="preserve">
+    <value>Створення факультету</value>
+  </data>
+  <data name="EditFaculty" xml:space="preserve">
+    <value>Редагування факультету</value>
+  </data>
+  <data name="Faculty" xml:space="preserve">
+    <value>Факультет</value>
+  </data>
+  <data name="NewFaculty" xml:space="preserve">
+    <value>Новий факультет</value>
+  </data>
+  <data name="OldFaculty" xml:space="preserve">
+    <value>Старий факультет</value>
+  </data>
+  <data name="AddFaculty" xml:space="preserve">
+    <value>Додати факультет</value>
+  </data>
 </root>

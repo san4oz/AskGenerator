@@ -1,18 +1,9 @@
-﻿using AskGenerator.Business.InterfaceDefinitions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using AskGenerator.Business.InterfaceDefinitions.Managers;
 using AskGenerator.DataProvider;
 using System.Web;
 
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using AskGenerator.Business.InterfaceDefinitions.Providers;
 using AskGenerator.Business.Entities;
 
 namespace AskGenerator
@@ -29,6 +20,8 @@ namespace AskGenerator
         public static IVoteManager VoteManager { get { return Get<IVoteManager>(); } }
 
         public static ITeamManager TeamManager { get { return Get<ITeamManager>(); } }
+
+        public static IFacultyManager FacultyManager { get { return Get<IFacultyManager>(); } }
 
         public static ITeacherQuestionManager TQManager { get { return Get<ITeacherQuestionManager>(); } }
 

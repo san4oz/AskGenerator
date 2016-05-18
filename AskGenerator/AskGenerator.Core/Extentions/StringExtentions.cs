@@ -21,6 +21,18 @@ namespace System
             return string.IsNullOrEmpty(str);
         }
 
+        /// <summary>
+        /// Cuts string to <see cref="maxLength"/> characters.
+        /// </summary>
+        /// <param name="str">String to cut.</param>
+        /// <param name="maxLength">Max count of characters.</param>
+        /// <returns>Cuted string.</returns>
+        public static string Cut(this string str, int maxLength = 50)
+        {
+            var length = maxLength - 3;
+            return str.Length > length ? str.Substring(0, length) + "..." : str;
+        }
+
         public static bool IsNullOrWhiteSpace(this string str)
         {
             return string.IsNullOrWhiteSpace(str);

@@ -35,8 +35,9 @@ namespace AskGenerator.Business.Entities
         {
             AvgDifficult = Fields.GetOrDefault<float>("AvgDifficult");
             ClearRate = Fields.GetOrDefault<float>("ClearRate");
-            AdditionalMark = Fields.GetOrDefault<Mark>("AdditionalMark");
-            Rate = Fields.GetOrDefault<Mark>("Rate");
+            Func<Mark> createMark = () => new Mark();
+            AdditionalMark = Fields.GetOrDefault<Mark>("AdditionalMark", createMark);
+            Rate = Fields.GetOrDefault<Mark>("Rate", createMark);
         }
 
         public override void Apply()

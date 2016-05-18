@@ -122,6 +122,7 @@
   <ItemGroup>
     <Compile Include="Entities\Base\Entity.cs" />
     <Compile Include="Entities\Base\EntityFields.cs" />
+    <Compile Include="Entities\Faculty.cs" />
     <Compile Include="Entities\IPerson.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Group.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="InterfaceDefinitions\Managers\IGroupManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\IStudentManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\ITeacherQuestionManager.cs" />
+    <Compile Include="InterfaceDefinitions\Managers\IFacultyManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\IVoteManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\ITeamManager.cs" />
     <Compile Include="InterfaceDefinitions\Providers\IBaseEntityProvider.cs" />
@@ -147,6 +149,7 @@
     <Compile Include="InterfaceDefinitions\Providers\IQuestionProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\ITeacherProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\IStudentProvider.cs" />
+    <Compile Include="InterfaceDefinitions\Providers\IFacultyProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\IVoteProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\ITeamProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\ITeacherQuestionProvider.cs" />
@@ -157,6 +160,7 @@
     <Compile Include="Managers\StudentManager.cs" />
     <Compile Include="Managers\SubscribersManager.cs" />
     <Compile Include="Managers\TeacherManager.cs" />
+    <Compile Include="Managers\FacultyManager.cs" />
     <Compile Include="Managers\VoteManager.cs" />
     <Compile Include="Managers\TeamManager.cs" />
     <Compile Include="Managers\TeacherQuestionManager.cs" />
