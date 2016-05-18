@@ -1,6 +1,9 @@
 ﻿@model AskGenerator.ViewModels.LoginViewModel
 @{
-    ViewBag.Title = @Resource.LogIn;
+    ViewBag.Title = Resource.LogIn;
+    Robots.KeyWords.AddRange(new string[] { "Signin", "Login", "Вхід", "Логін" });
+    Robots.Description = "Вхід на сайт. Увійдіть щоб отримати можливість голосувати та доступ до кабінету." + Environment.NewLine 
+        + "Якщо ви не зареєстровані і не маєте ключа, будь ласка, зверніться до адміністрації сайту.";
 }
 
 <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 min-form">

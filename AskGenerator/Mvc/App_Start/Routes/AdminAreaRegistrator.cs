@@ -50,25 +50,7 @@ namespace AskGenerator.App_Start.Routes
                 url: "teacher/list",
                 defaults: new { controller = "Teacher", action = "list" }
             );
-
-            MapRoute(
-               name: "teacher/students",
-               url: "teacher/{teacherId}/students",
-               defaults: new { controller = "Teacher", action = "Students" }
-           );
-
-            MapRoute(
-                name: "teacher/pdf",
-                url: "teacher/pdf",
-                defaults: new { controller = "Teacher", action = "GeneratePDF" }
-            );
-
-            MapRoute(
-                name: "teacher/getallpdfs",
-                url: "teacher/getallpdfs",
-                defaults: new { controller = "Teacher", action = "GetZippedPdf" }
-                );
-
+            
             MapRoute(
                 name: "teacher/create",
                 url: "teacher/create",

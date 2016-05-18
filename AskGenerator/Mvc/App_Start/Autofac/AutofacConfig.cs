@@ -14,8 +14,6 @@ using AskGenerator.DataProvider.Providers;
 using AskGenerator.Business.InterfaceDefinitions.Providers;
 using AskGenerator.Business.Managers;
 using AskGenerator.Business.InterfaceDefinitions.Managers;
-using AskGenerator.Business.InterfaceDefinitions.Core;
-using AskGenerator.Generator;
 using AskGenerator.Business.Entities;
 
 namespace AskGenerator.App_Start.Autofac
@@ -54,9 +52,6 @@ namespace AskGenerator.App_Start.Autofac
             builder.RegisterType<TeamManager>().As<ITeamManager>();
             builder.RegisterType<TeacherQuestionManager>().As<ITeacherQuestionManager>();
             builder.RegisterType<SubscribersManager>().As<IBaseEntityManager<Subscriber>>();
-
-            //Core
-            builder.RegisterType<PDFRocket>().As<IPDFGenerator>();
         }
     }
 }

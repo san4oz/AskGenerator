@@ -17,10 +17,6 @@ namespace AskGenerator.Mvc.Components
     }
     public class BaseWebViewPage<TModel> : WebViewPage<TModel>, IBaseWebViewPage
     {
-        public BaseWebViewPage():base()
-        {
-            Robots = new RobotsInfo();
-        }
         public bool IsEditing { get; set; }
 
         public RobotsInfo Robots { get; set; }
@@ -39,11 +35,6 @@ namespace AskGenerator.Mvc.Components
 
     public class BaseWebViewPage : WebViewPage, IBaseWebViewPage
     {
-        public BaseWebViewPage()
-            : base()
-        {
-            Robots = new RobotsInfo();
-        }
         public bool IsEditing { get; set; }
 
         public RobotsInfo Robots { get; set; }
@@ -66,6 +57,8 @@ namespace AskGenerator.Mvc.Components
         public static void Init<T>(T page) where T : WebViewPage, IBaseWebViewPage
         {
             page.IsEditing = page.ViewBag.IsEditing ?? false;
+            var obj = page.ViewData.GetOrCreate("Robots", () => new RobotsInfo());
+            page.Robots = (RobotsInfo)obj;
             page.R = new Resolver();
         }
     }

@@ -10,25 +10,15 @@ namespace AskGenerator.DataProvider.Providers
 {
     public class QuestionProvider : BaseEntityProvider<Question>, IQuestionProvider
     {
+        /// <summary>
+        /// Gets all questions ordered by <see cref="Question.Order"/>.
+        /// </summary>
+        /// <returns>List of retrived questions.</returns>
         public override List<Question> All()
         {
             return GetSet(set =>
             {
                 return set.OrderBy(q => q.Order)
-                    .ToList();
-            });
-        }
-        /// <summary>
-        /// Gets questions for certain category.
-        /// </summary>
-        /// <param name="isAboutTeacher">Indicates whether question about teachers should be retrived.</param>
-        /// <returns>List of retrived questions.</returns>
-        public List<Question> List(bool isAboutTeacher)
-        {
-            return GetSet(set =>
-            {
-                return set.Where(q => q.IsAboutTeacher == isAboutTeacher)
-                    .OrderBy(q => q.Order)
                     .ToList();
             });
         }

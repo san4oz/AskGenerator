@@ -20,11 +20,6 @@ namespace AskGenerator.Business.Managers
             TQ = tqManager;
         }
 
-        public List<Student> GetRelatedStudents(string teacherId)
-        {
-            return Provider.GetRelatedStudents(teacherId);
-        }
-
         public bool Create(Teacher teacher, ICollection<string> ids)
         {
             var r = Provider.Create(teacher, ids);
