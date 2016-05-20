@@ -122,9 +122,7 @@ namespace AskGenerator.Business.Entities.Base
 
         private void SerializeField(XmlWriter writer, KeyValuePair<string, TValue> pair)
         {
-
             writer.WriteAttributeString("name", pair.Key);
-
             writer.WriteAttributeString("type", GetAssemblyName(pair.Value));
 
             if (pair.Value != null)

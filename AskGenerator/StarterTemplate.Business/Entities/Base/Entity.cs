@@ -49,28 +49,13 @@ namespace AskGenerator.Business.Entities
         {
             get
             {
-                var serializer = new XmlSerializer(typeof(EntityFields));
-                using (var stringWriter = new StringWriter())
-                {
-                    serializer.Serialize(stringWriter, Fields);
-                    stringWriter.Flush();
-                    return stringWriter.ToString();
-                }
+                var manager = new XmlSerializerManager();
+                return manager.Serialize(Fields);
             }
             set
             {
-                if (value.IsEmpty())
-                {
-                    Fields = new EntityFields();
-                }
-                else
-                {
-                    var serializer = new XmlSerializer(typeof(EntityFields));
-                    using (var stringReader = new StringReader(value))
-                    {
-                        Fields = (EntityFields)serializer.Deserialize(stringReader);
-                    }
-                }
+                var manager = new XmlSerializerManager();
+                Fields = (EntityFields)manager.Deserialize(value, typeof(EntityFields)) ?? new EntityFields();
             }
         }
         #endregion

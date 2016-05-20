@@ -25,9 +25,20 @@ namespace AskGenerator.Business
 
         public string Serialize<T>(T obj)
         {
-            var stringWriter = new System.IO.StringWriter();
-            GetSerializer(obj.GetType()).Serialize(stringWriter, obj);
-            return stringWriter.ToString();
+            var xws = new XmlWriterSettings();
+            xws.OmitXmlDeclaration = true;
+            xws.Encoding = Encoding.UTF8;
+            xws.NamespaceHandling = NamespaceHandling.OmitDuplicates;
+            var ns = new XmlSerializerNamespaces();
+            ns.Add(string.Empty, string.Empty);
+            using (var stringWriter = new StringWriter())
+            using (var xmlWriter = XmlTextWriter.Create(stringWriter, xws))
+            {
+                GetSerializer(obj.GetType()).Serialize(xmlWriter, obj, ns);
+                xmlWriter.Flush();
+                stringWriter.Flush();
+                return stringWriter.ToString();
+            }
         }
 
         #region Deserialize
