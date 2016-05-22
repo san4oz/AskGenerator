@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201605181959260_Faculties.Designer.cs">
       <DependentUpon>201605181959260_Faculties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201605220844433_Settings.cs" />
+    <Compile Include="Migrations\201605220844433_Settings.Designer.cs">
+      <DependentUpon>201605220844433_Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseEntityProvider.cs" />
@@ -210,6 +214,7 @@
     <Compile Include="Providers\SubscribersProvider.cs" />
     <Compile Include="Providers\TeacherProvider.cs" />
     <Compile Include="Providers\FacultyProvider.cs" />
+    <Compile Include="Providers\SettingProvider.cs" />
     <Compile Include="Providers\VoteProvider.cs" />
     <Compile Include="Providers\TeamProvider.cs" />
     <Compile Include="Providers\TeacherQuestionProvider.cs" />
@@ -292,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201605181959260_Faculties.resx">
       <DependentUpon>201605181959260_Faculties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201605220844433_Settings.resx">
+      <DependentUpon>201605220844433_Settings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

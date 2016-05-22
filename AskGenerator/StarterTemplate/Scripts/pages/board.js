@@ -60,8 +60,9 @@ Pages.Board = (function () {
         };
     };
 
-    self.initRemainingClock = function (selector, endtimeString) {
+    self.initRemainingClock = function (selector) {
         var clock = $(selector);
+        var endtimeString = clock.data('time')
         var endtime = Date.parse(endtimeString);
         var timeinterval
         var alingn = function (u) { return ('0' + u).slice(-2); };

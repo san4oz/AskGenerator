@@ -16,7 +16,7 @@ namespace AskGenerator.Controllers.Admin
         [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Index()
         {
-            return View();
+          return View();
         }
 
         public ActionResult ClearCache(string url)

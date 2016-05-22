@@ -53,8 +53,12 @@ namespace AskGenerator.Mvc.Controllers
         [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Login(string returnUrl)
         {
-            if (User.Identity.IsAuthenticated) 
+            if (User.Identity.IsAuthenticated)
+            {
+                if (!Site.Settings.Website().IsVotingEnabled)
+                    return RedirectToAction("Board", "Home");
                 return RedirectToAction("Index", "Home");
+            }
             ViewBag.returnUrl = returnUrl;
             
             return View();
@@ -112,7 +116,11 @@ namespace AskGenerator.Mvc.Controllers
             }, identity);
 
             if (string.IsNullOrEmpty(returnUrl))
-                return RedirectToAction("Board", "Home");
+            {
+                if (!Site.Settings.Website().IsVotingEnabled)
+                    return RedirectToAction("Board", "Home");
+                return RedirectToAction("Index", "Home");
+            }
             return Redirect(returnUrl);
         }
 

@@ -1325,6 +1325,8 @@
     <Content Include="Views\Details\Team.cshtml" />
     <Content Include="Views\Details\Group.cshtml" />
     <Content Include="Views\Info\Badging.cshtml" />
+    <Content Include="Views\Shared\VotingDisabledNow.cshtml" />
+    <Content Include="Views\Home\_TimeBanner.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
