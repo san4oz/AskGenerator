@@ -41,9 +41,21 @@ namespace AskGenerator.Business.Entities
         {
         }
 
+        /// <summary>
+        /// Adds current <see cref="Fields"/> to <paramref name="entity"/>'s <see cref="Fields"/>.
+        /// </summary>
+        /// <param name="entity">Entity copy fields to.</param>
         public virtual void CopyFieldsTo(Entity entity)
         {
-            entity.Fields = new EntityFields(this.Fields);
+            if (entity.Fields.Count == 0)
+            {
+                entity.Fields = new EntityFields(this.Fields);
+            }
+            else
+            {
+                foreach (var pair in this.Fields)
+                    entity.Fields[pair.Key] = pair.Value;
+            }
         }
 
         #region EF mapping
