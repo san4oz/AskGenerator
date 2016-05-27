@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AskGenerator.Business.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.Entities
 {
-    public class Team : Entity
+    public class Team : Entity, IVersionedStatistics<Team.Statistics>
     {
         public string Name { get; set; }
 
@@ -34,11 +35,7 @@ namespace AskGenerator.Business.Entities
         public override void Initialize()
         {
             var stat = Fields.GetOrDefault<Statistics>("Statistics", () => new Statistics());
-
-            AvgDifficult = stat.AvgDifficult;
-            ClearRate = stat.ClearRate;
-            AdditionalMark = stat.AdditionalMark ?? new Mark();
-            Rate = stat.Rate ?? new Mark();
+            InitStatiscics(stat);
         }
 
         public override void Apply()
@@ -52,6 +49,35 @@ namespace AskGenerator.Business.Entities
 
             Fields["Statistics"] = stat;
         }
+
+        #region IVersionedStatistics members
+        public string HistoryPrefix
+        {
+            get { return "team"; }
+        }
+
+        public Dictionary<int, Team.Statistics> Versions { get; set; }
+
+
+        public bool LoadStatistics(int iterationID)
+        {
+            var stat = Versions.GetOrDefault(iterationID);
+            if (stat == null)
+                return false;
+
+            InitStatiscics(stat);
+
+            return true;
+        }
+
+        protected void InitStatiscics(Statistics stat)
+        {
+            AvgDifficult = stat.AvgDifficult;
+            ClearRate = stat.ClearRate;
+            AdditionalMark = stat.AdditionalMark ?? new Mark();
+            Rate = stat.Rate ?? new Mark();
+        }
+        #endregion
 
         public class Statistics
         {
