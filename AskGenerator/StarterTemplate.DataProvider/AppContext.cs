@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AskGenerator.Business.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
+using AskGenerator.Business.Entities.Settings;
 
 namespace AskGenerator.DataProvider
 {
@@ -39,5 +40,7 @@ namespace AskGenerator.DataProvider
         public DbSet<TeacherQuestion> TeacherQuestion { get; set; }
 
         public DbSet<Subscriber> Subscribers { get; set; }
+
+        public DbSet<Settings> Settings { get; set; }
     }
 }

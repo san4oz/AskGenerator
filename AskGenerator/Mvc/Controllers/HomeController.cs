@@ -1,6 +1,8 @@
 ﻿using AskGenerator.Business.Entities;
+using AskGenerator.Business.Entities.Settings;
 using AskGenerator.Business.Filters;
 using AskGenerator.Business.InterfaceDefinitions.Managers;
+using AskGenerator.Mvc.Components.Attributes;
 using AskGenerator.Mvc.ViewModels;
 using AskGenerator.ViewModels;
 using Newtonsoft.Json;
@@ -59,16 +61,20 @@ namespace AskGenerator.Mvc.Controllers
         #endregion
 
         #region Voting
-        /*
+        
         [HttpGet]
-        [Authorize]
+        [WebsiteAuthorize(WebsiteSettings.Keys.IsVotingEnabled)]
         [ActionName("Index")]
         [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Vote()
         {
+            if (!Site.Settings.Website().IsVotingEnabled)
+                return View("VotingDisabledNow");
+
             return View();
         }
 
+        /*
         [ActionName("view")]
         [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
         public PartialViewResult NgView()

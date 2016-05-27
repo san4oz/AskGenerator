@@ -41,6 +41,11 @@ namespace AskGenerator.Business.Entities
         {
         }
 
+        public virtual void CopyFieldsTo(Entity entity)
+        {
+            entity.Fields = new EntityFields(this.Fields);
+        }
+
         #region EF mapping
         [Column("Fields")]
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -12,6 +12,12 @@ namespace AskGenerator.Business.Entities.Base
     [XmlRoot("Fields")]
     public class EntityFields : XmlSerializableDictionary<object>
     {
+        public EntityFields() : base()
+        { }
+
+        public EntityFields(IDictionary<string, object> dict) : base(dict)
+        { }
+
         public TValue GetOrCreate<TValue>(string key) where TValue : new()
         {
             return GetOrCreate(key, () => new TValue());
@@ -65,6 +71,14 @@ namespace AskGenerator.Business.Entities.Base
     public class XmlSerializableDictionary<TValue>
         : Dictionary<string, TValue>, IXmlSerializable
     {
+        public XmlSerializableDictionary() :base()
+        {
+        }
+
+        public XmlSerializableDictionary(IDictionary<string, TValue> dict) : base(dict)
+        {
+        }
+
         private XmlSerializerManager sm = new XmlSerializerManager();
 
         #region IXmlSerializable members

@@ -1,0 +1,44 @@
+﻿@using AskGenerator.ViewModels
+@using AskGenerator.Business.Entities
+
+<div class="col-md-offset-1 col-md-11 banner">
+    <div class="col-xs-12 col-sm-6 clockdiv" data-time="@WebsiteSettings.TimeBanner.ToString()">
+        <span class="h3" style="color:red;">@WebsiteSettings.TimeBanner.Header.Or("До оголошення результатів залишилось:").AsHtml()</span>
+        <br />
+        <div>
+            <span class="days"></span>
+            <div class="smalltext">дні</div>
+        </div>
+        <div>
+            <span class="hours"></span>
+            <div class="smalltext">годин</div>
+        </div>
+        <div>
+            <span class="minutes"></span>
+            <div class="smalltext">хвилин</div>
+        </div>
+        <div>
+            <span class="seconds"></span>
+            <div class="smalltext">секунд</div>
+        </div>
+    </div>
+    @using (Html.BeginForm("Subscribe", "Home", FormMethod.Post, new { @class = "form-horizontal col-xs-12 col-sm-6 subscribe" }))
+    {
+        if (WebsiteSettings.IsVotingEnabled)
+        {
+            <span class="h3">Встигніть @Html.RouteLink("проголосувати", "Vote")!</span>
+        }
+
+        var subscriber = new Subscriber();
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.LabelFor(x => subscriber.Email, "Підпишіться на отримання результатів", htmlAttributes: new { @class = "col-xs-12 control-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(x => subscriber.Email, new { @class = "form-control", type = "email", placeholder = "example@gmail.com" })
+                <button type="submit" class="btn btn-primary" title="Підписатись">
+                    <i class="glyphicon glyphicon-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    }
+</div>
