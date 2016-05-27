@@ -29,12 +29,13 @@ namespace AskGenerator.Business.Managers
                 res.Id = id;
 
             var settings = FromCache(res.Id, () => Get(res.Id));
-            
+
             if (settings == null)
                 Create(res);
             else
                 settings.CopyFieldsTo(res);
-            
+
+            res.Initialize();
             return (TSetting)res;
         }
 

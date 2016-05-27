@@ -33,19 +33,41 @@ namespace AskGenerator.Business.Entities
 
         public override void Initialize()
         {
-            AvgDifficult = Fields.GetOrDefault<float>("AvgDifficult");
-            ClearRate = Fields.GetOrDefault<float>("ClearRate");
-            Func<Mark> createMark = () => new Mark();
-            AdditionalMark = Fields.GetOrDefault<Mark>("AdditionalMark", createMark);
-            Rate = Fields.GetOrDefault<Mark>("Rate", createMark);
+            var stat = Fields.GetOrDefault<Statistics>("Statistics", () => new Statistics());
+
+            AvgDifficult = stat.AvgDifficult;
+            ClearRate = stat.ClearRate;
+            AdditionalMark = stat.AdditionalMark ?? new Mark();
+            Rate = stat.Rate ?? new Mark();
         }
 
         public override void Apply()
         {
-            Fields["AvgDifficult"] = AvgDifficult;
-            Fields["ClearRate"] = ClearRate;
-            Fields["AdditionalMark"] = AdditionalMark;
-            Fields["Rate"] = Rate;
+            var stat = Fields.GetOrDefault<Statistics>("Statistics", () => new Statistics());
+
+            stat.AvgDifficult = AvgDifficult;
+            stat.ClearRate = ClearRate;
+            stat.AdditionalMark = AdditionalMark;
+            stat.Rate = Rate;
+
+            Fields["Statistics"] = stat;
+        }
+
+        public class Statistics
+        {
+            public float AvgDifficult { get; set; }
+
+            /// <summary>
+            /// Represents average mark without difficult and votes count.
+            /// </summary>
+            public float ClearRate { get; set; }
+
+            /// <summary>
+            /// Represents additional mark. It may be overall impressions.
+            /// </summary>
+            public Mark AdditionalMark { get; set; }
+
+            public Mark Rate { get; set; }
         }
     }
 }

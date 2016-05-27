@@ -10,6 +10,16 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 {
     public interface ISettingManager : IBaseEntityManager<Settings>
     {
+        /// <summary>
+        /// Gets website settings.
+        /// </summary>
+        /// <returns>Website settings.</returns>
         WebsiteSettings Website();
+
+        /// <summary>
+        /// Gets general system settings.
+        /// </summary>
+        /// <returns>General system settings.</returns>
+        GeneralSettings General();
     }
 }

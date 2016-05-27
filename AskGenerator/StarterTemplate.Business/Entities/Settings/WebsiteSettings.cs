@@ -31,7 +31,7 @@ namespace AskGenerator.Business.Entities.Settings
         {
             IsVotingEnabled = Get<bool>(Keys.IsVotingEnabled);
             VotingDisabledText = Get<string>(Keys.VotingDisableText);
-            TimeBanner = Get<TimeBannerSettings>(Keys.TimeBanner);
+            TimeBanner = Get<TimeBannerSettings>(Keys.TimeBanner) ?? new TimeBannerSettings();
         }
 
         /// <summary>
