@@ -10,43 +10,41 @@ namespace AskGenerator.Business.Entities.Settings
     [NotMapped]
     public class WebsiteSettings : Settings
     {
-        public bool IsVotingEnabled
+        public override string Id
         {
             get
             {
-                return Get<bool>(Keys.IsVotingEnabled);
-            }
-            set
-            {
-                Set(Keys.IsVotingEnabled, value);
+                return "WebsiteSettings";
             }
         }
 
-        public string VotingDisableText
+        public bool IsVotingEnabled { get; set; }
+
+        public string VotingDisabledText { get; set; }
+
+        public TimeBannerSettings TimeBanner { get; set; }
+
+        /// <summary>
+        /// Initializes fields from XML fields.
+        /// </summary>
+        public override void Initialize()
         {
-            get
-            {
-                return Get<string>(Keys.VotingDisableText);
-            }
-            set
-            {
-                Set(Keys.VotingDisableText, value);
-            }
+            IsVotingEnabled = Get<bool>(Keys.IsVotingEnabled);
+            VotingDisabledText = Get<string>(Keys.VotingDisableText);
+            TimeBanner = Get<TimeBannerSettings>(Keys.TimeBanner);
         }
 
-        public TimeBannerSettings TimeBanner
+        /// <summary>
+        /// Save fields to XML fields.
+        /// </summary>
+        public override void Apply()
         {
-            get
-            {
-                return Get<TimeBannerSettings>(Keys.TimeBanner) ?? new TimeBannerSettings();
-            }
-            set
-            {
-                Set(Keys.TimeBanner, value);
-            }
+            Set(Keys.IsVotingEnabled, IsVotingEnabled);
+            Set(Keys.VotingDisableText, VotingDisabledText);
+            Set(Keys.TimeBanner, TimeBanner);
         }
 
-        public class Keys
+        public static class Keys
         {
             public const string IsVotingEnabled = "IsVoting";
             public const string VotingDisableText = "VotingDisTxt";

@@ -16,12 +16,20 @@ namespace AskGenerator.Business.Managers
             : base(provider)
         { }
 
-
-        protected virtual TSetting GetOrCreate<TSetting>(string id) where TSetting : Settings, new()
+        /// <summary>
+        /// Gets (and creates if not found) settings group.
+        /// </summary>
+        /// <typeparam name="TSetting">Type of setting group.</typeparam>
+        /// <param name="id">The ID of settings group. If <c>null</c> default group ID will be used.</param>
+        /// <returns>Settings group.</returns>
+        protected virtual TSetting GetOrCreate<TSetting>(string id = null) where TSetting : Settings, new()
         {
+            TSetting res = new TSetting();
+            if (!id.IsEmpty())
+                res.Id = id;
 
-            var settings = FromCache(id, () => Get(id));
-            TSetting res = new TSetting() { Id = id };
+            var settings = FromCache(res.Id, () => Get(res.Id));
+            
             if (settings == null)
                 Create(res);
             else
@@ -48,8 +56,16 @@ namespace AskGenerator.Business.Managers
 
         public WebsiteSettings Website()
         {
+            return GetOrCreate<WebsiteSettings>();
+        }
 
-            return GetOrCreate<WebsiteSettings>("WebsiteSettings");
+        /// <summary>
+        /// Gets general system settings.
+        /// </summary>
+        /// <returns>General system settings.</returns>
+        public GeneralSettings General()
+        {
+            return GetOrCreate<GeneralSettings>();
         }
     }
 }

@@ -128,6 +128,7 @@
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\Settings\Settings.cs" />
+    <Compile Include="Entities\Settings\GeneralSettings.cs" />
     <Compile Include="Entities\Settings\WebsiteSettings.cs" />
     <Compile Include="Entities\Student.cs" />
     <Compile Include="Entities\Subscriber.cs" />

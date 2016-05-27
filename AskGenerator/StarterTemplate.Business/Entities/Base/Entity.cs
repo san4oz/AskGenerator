@@ -17,7 +17,7 @@ namespace AskGenerator.Business.Entities
 {
     public abstract class Entity
     {
-        public string Id { get; set; }
+        public virtual string Id { get; set; }
 
         protected EntityFields Fields { get; set; }
 
