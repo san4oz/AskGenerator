@@ -62,7 +62,6 @@ namespace AskGenerator.Business.Entities
                 return false;
 
             InitStatiscics(stat);
-
             return true;
         }
 

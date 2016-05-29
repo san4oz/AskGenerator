@@ -44,6 +44,7 @@ namespace AskGenerator.App_Start.Autofac
             builder.RegisterType<TeacherQuestionProvider>().As<ITeacherQuestionProvider>();
             builder.RegisterType<SubscribersProvider>().As<IBaseEntityProvider<Subscriber>>();
             builder.RegisterType<SettingProvider>().As<ISettingProvider>();
+            builder.RegisterType<HistoryProvider>().As<IHistoryProvider>();
             
             //Entity managers section
             builder.RegisterType<StudentManager>().As<IStudentManager>();
@@ -56,6 +57,7 @@ namespace AskGenerator.App_Start.Autofac
             builder.RegisterType<TeacherQuestionManager>().As<ITeacherQuestionManager>();
             builder.RegisterType<SubscribersManager>().As<IBaseEntityManager<Subscriber>>();
             builder.RegisterType<SettingManager>().As<ISettingManager>();
+            builder.RegisterType<HistoryManager>().As<IHistoryManager>();
         }
     }
 }

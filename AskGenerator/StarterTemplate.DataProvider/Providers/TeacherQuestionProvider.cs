@@ -22,6 +22,31 @@ namespace AskGenerator.DataProvider.Providers
             });
         }
 
+        #region Update
+        public bool Update(IEnumerable<TeacherQuestion> entities)
+        {
+            return Execute(context =>
+            {
+                bool changed = false;
+                foreach (var entity in entities)
+                {
+                    var original = context.TeacherQuestion.First(x => x.QuestionId == entity.QuestionId && x.TeacherId == entity.TeacherId);
+                    if (original != null)
+                    {
+                        if (original.Equals(entity))
+                            continue;
+
+                        context.Entry(original).CurrentValues.SetValues(entity);
+                        context.SaveChanges();
+                        changed = true;
+                    }
+                }
+                if(changed)
+                    context.SaveChanges();
+                return changed ;
+            });
+        }
+
         public bool Update(TeacherQuestion entity)
         {
             return Execute(context =>
@@ -39,6 +64,7 @@ namespace AskGenerator.DataProvider.Providers
                 return false;
             });
         }
+        #endregion
 
         public TeacherQuestion Get(string teacherId, string questionId)
         {

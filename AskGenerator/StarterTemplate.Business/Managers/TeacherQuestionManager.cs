@@ -24,6 +24,11 @@ namespace AskGenerator.Business.Managers
             return Provider.Create(entity);
         }
 
+        public Task<bool> Update(IEnumerable<TeacherQuestion> entities)
+        {
+            return Task.Factory.StartNew<bool>(() => Provider.Update(entities));
+        }
+
         public bool Update(TeacherQuestion entity)
         {
             return Provider.Update(entity);

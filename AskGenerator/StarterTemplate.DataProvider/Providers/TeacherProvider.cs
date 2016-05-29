@@ -55,18 +55,6 @@ namespace AskGenerator.DataProvider.Providers
             });
         }
 
-        public List<Student> GetRelatedStudents(string id)
-        {
-            return Execute(context =>
-            {
-                var teacher = context.Teachers.Include(x => x.Groups).Single(x => x.Id == id);
-
-                var ids = teacher.Groups.Select(x => x.Id).ToList();
-
-                return context.Students.Include(g => g.Group).Include(x => x.Group.Students).Include(x => x.Group.Teachers).Where(s => ids.Contains(s.Group.Id)).ToList();
-            });
-        }
-
 
         public bool Update(Teacher teacher, ICollection<string> ids)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AskGenerator.Business.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.Entities
 {
-    public class Teacher : Person
+    public class Teacher : Person, IVersionedStatistics<Teacher.Statistics>
     {
         public virtual ICollection<Group> Groups { get; set; }
 
@@ -30,7 +31,8 @@ namespace AskGenerator.Business.Entities
         /// </summary>
         public override void Initialize()
         {
-            Badges = Fields.GetOrCreate<List<TeacherBadge>>("Badges");
+            var stat = Fields.GetOrDefault<Statistics>("Statistics", () => new Statistics());
+            InitStatiscics(stat);
         }
 
         /// <summary>
@@ -38,7 +40,38 @@ namespace AskGenerator.Business.Entities
         /// </summary>
         public override void Apply()
         {
-            Fields["Badges"] = Badges;
+            var stat = Fields.GetOrDefault<Statistics>("Statistics", () => new Statistics());
+
+            stat.Badges = Badges;
+        }
+
+        #region IVersionedStatistics members
+        public string HistoryPrefix
+        {
+            get { return "teach"; }
+        }
+
+        public Dictionary<int, Statistics> Versions { get; set; }
+
+        public bool InitStatistics(int iterationID)
+        {
+            var stat = Versions.GetOrDefault(iterationID);
+            if (stat == null)
+                return false;
+
+            InitStatiscics(stat);
+            return true;
+        }
+
+        protected void InitStatiscics(Statistics stat)
+        {
+            Badges = stat.Badges ?? new List<TeacherBadge>();
+        }
+        #endregion
+
+        public class Statistics
+        {
+            public List<TeacherBadge> Badges { get; set; }
         }
     }
 

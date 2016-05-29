@@ -14,6 +14,13 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 
         bool Create(TeacherQuestion entity);
 
+        /// <summary>
+        /// Updates all entities from specified sequence.
+        /// </summary>
+        /// <param name="entities">The sequence of entities.</param>
+        /// <returns>Value indicating whether any changes was done.</returns>
+        Task<bool> Update(IEnumerable<TeacherQuestion> entities);
+
         bool Update(TeacherQuestion entity);
 
         /// <summary>

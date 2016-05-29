@@ -91,9 +91,7 @@ namespace AskGenerator.Business.Managers
             var obj = cache.Get(key);
             if (obj != null)
             {
-                var item = (TValue)obj;
-                if (item != null)
-                    return item;
+                return (TValue)obj;
             }
 
             var itemToSave = function();

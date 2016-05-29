@@ -11,6 +11,8 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
     {
         bool Create(TeacherQuestion entity);
 
+        bool Update(IEnumerable<TeacherQuestion> entities);
+
         bool Update(TeacherQuestion entity);
 
         bool Delete(TeacherQuestion entity);
