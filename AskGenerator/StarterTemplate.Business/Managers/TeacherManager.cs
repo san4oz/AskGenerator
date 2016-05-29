@@ -49,8 +49,7 @@ namespace AskGenerator.Business.Managers
             var answers = TQ.All().ToLookup(tq => tq.TeacherId);
             foreach (var t in teachers)
             {
-                var list = answers[t.Id];
-                t.Marks = list.ToList();
+                t.Marks = answers[t.Id].ToList();
                 float avg = 0;
                 int count = 0;
                 t.Marks = t.Marks.Where(m => m.Answer != 0).ToList();
@@ -64,7 +63,6 @@ namespace AskGenerator.Business.Managers
                 else
                     avg = -0.001f;
                 t.Marks.Insert(0, new TeacherQuestion() { Answer = avg, QuestionId = Question.AvarageId });
-
             }
             return teachers;
         }

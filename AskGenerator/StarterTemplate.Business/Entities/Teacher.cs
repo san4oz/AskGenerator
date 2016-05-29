@@ -19,6 +19,9 @@ namespace AskGenerator.Business.Entities
         public List<TeacherBadge> Badges { get; set; }
 
         [NotMapped]
+        public int VotesCount { get; set; }
+
+        [NotMapped]
         public IList<TeacherQuestion> Marks { get; set; }
 
         public Teacher()
@@ -40,9 +43,10 @@ namespace AskGenerator.Business.Entities
         /// </summary>
         public override void Apply()
         {
-            var stat = Fields.GetOrDefault<Statistics>("Statistics", () => new Statistics());
+            var stat = Fields.GetOrCreate<Statistics>("Statistics", () => new Statistics());
 
             stat.Badges = Badges;
+            stat.VotesCount = VotesCount;
         }
 
         #region IVersionedStatistics members
@@ -66,12 +70,15 @@ namespace AskGenerator.Business.Entities
         protected void InitStatiscics(Statistics stat)
         {
             Badges = stat.Badges ?? new List<TeacherBadge>();
+            VotesCount = stat.VotesCount;
         }
         #endregion
 
         public class Statistics
         {
             public List<TeacherBadge> Badges { get; set; }
+
+            public int VotesCount { get; set; }
         }
     }
 

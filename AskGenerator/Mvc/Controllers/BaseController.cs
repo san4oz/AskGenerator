@@ -233,15 +233,7 @@ namespace AskGenerator.Mvc.Controllers
             {
                 var tmodel = Map<Teacher, TeacherViewModel>(teacher);
 
-                int maxCount = 0;
-                var avg = teacher.Marks.FirstOrDefault(mark => mark.QuestionId == Question.AvarageId);
-                if (avg != null)
-                    teacher.Marks.Remove(avg);
-                if (teacher.Marks.Count > 0)
-                    maxCount = teacher.Marks.Max(m => m.Count);
-
                 tmodel.Badges.Each(b => b.Mark = (float)Math.Round(b.Mark, 2));
-                tmodel.VotesCount = maxCount;
                 models.Add(tmodel);
             }
 

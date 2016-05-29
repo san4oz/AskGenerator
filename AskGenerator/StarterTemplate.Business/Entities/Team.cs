@@ -37,7 +37,7 @@ namespace AskGenerator.Business.Entities
 
         public override void Apply()
         {
-            var stat = Fields.GetOrDefault<Statistics>("Statistics", () => new Statistics());
+            var stat = Fields.GetOrCreate<Statistics>("Statistics", () => new Statistics());
 
             stat.AvgDifficult = AvgDifficult;
             stat.ClearRate = ClearRate;

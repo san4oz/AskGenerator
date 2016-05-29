@@ -81,8 +81,8 @@ namespace AskGenerator.Controllers.Admin
                             tq.Count++;
                         }
                         tq.Answer = tq.Count != 0 ? tq.Answer / tq.Count : 0;
-                        tqManager.Update(tq);
                     }
+                    tqManager.Update(tqs);
                     UpdateGroupStaytistic(voteList);
                     var teachers = UpdateBadges();
                     UpdateTeams(teachers);
@@ -170,6 +170,8 @@ namespace AskGenerator.Controllers.Admin
                     }
                     teacher.Badges.Insert(0, rate);
                 }
+                if(teacher.Marks.Count != 0)
+                    teacher.VotesCount = teacher.Marks.Max(t => t.QuestionId == Question.AvarageId ? 0 : t.Count);
                 Site.TeacherManager.Update(teacher);
             }
 

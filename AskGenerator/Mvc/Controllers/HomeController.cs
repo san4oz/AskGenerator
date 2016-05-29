@@ -158,7 +158,7 @@ namespace AskGenerator.Mvc.Controllers
         [ActionName("Board")]
         public async Task<ViewResult> BoardPost()
         {
-            var teachers = await Site.TeacherManager.AllAsync(true);
+            var teachers = await Site.TeacherManager.AllAsync(false);
             var model = new TeacherListViewModel();
             InitTeacherListViewModel(teachers, model);
             return View("_Board", model);
