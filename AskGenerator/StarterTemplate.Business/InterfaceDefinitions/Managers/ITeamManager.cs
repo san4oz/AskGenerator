@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Managers
 {
-    public interface ITeamManager : IBaseEntityManager<Team>
+    public interface ITeamManager : IBaseEntityManager<Team>, IHistoryLoader<Team>
     {
     }
 }

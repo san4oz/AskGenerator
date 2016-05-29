@@ -141,6 +141,7 @@
     <Compile Include="Entities\Vote.cs" />
     <Compile Include="Filters\CultureAttribute.cs" />
     <Compile Include="InterfaceDefinitions\Managers\IBaseManager.cs" />
+    <Compile Include="InterfaceDefinitions\Managers\IHistoryLoader.cs" />
     <Compile Include="InterfaceDefinitions\Managers\IQuestionManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\IHistoryManager.cs" />
     <Compile Include="InterfaceDefinitions\Managers\ITeacherManager.cs" />
@@ -165,6 +166,7 @@
     <Compile Include="Managers\BaseEntityManager.cs" />
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\GroupManager.cs" />
+    <Compile Include="Managers\HistoryManager.cs" />
     <Compile Include="Managers\QuestionManager.cs" />
     <Compile Include="Managers\StudentManager.cs" />
     <Compile Include="Managers\SubscribersManager.cs" />

@@ -15,10 +15,7 @@ namespace AskGenerator.Business.Entities.Settings
     {
         public override string Id
         {
-            get
-            {
-                return "GeneralSettings";
-            }
+            get { return "GeneralSettings"; }
         }
 
         public Iteration[] Iterations { get; set; }

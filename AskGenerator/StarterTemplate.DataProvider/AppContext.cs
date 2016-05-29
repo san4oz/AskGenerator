@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AskGenerator.Business.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using AskGenerator.Business.Entities.Settings;
+using AskGenerator.Business.Entities.Base;
 
 namespace AskGenerator.DataProvider
 {
@@ -15,8 +16,7 @@ namespace AskGenerator.DataProvider
         public const string Connection = "ConnectionString";
         public AppContext()
             : base(Connection)
-        {
-        }
+        { }
 
         public static AppContext Create()
         {
@@ -36,6 +36,8 @@ namespace AskGenerator.DataProvider
         public DbSet<Question> Questions { get; set; }
 
         public DbSet<Vote> Votes { get; set; }
+
+        public DbSet<History> History { get; set; }
 
         public DbSet<TeacherQuestion> TeacherQuestion { get; set; }
 

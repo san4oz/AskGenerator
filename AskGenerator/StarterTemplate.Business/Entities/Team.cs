@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AskGenerator.Business.Entities
 {
@@ -58,8 +55,7 @@ namespace AskGenerator.Business.Entities
 
         public Dictionary<int, Team.Statistics> Versions { get; set; }
 
-
-        public bool LoadStatistics(int iterationID)
+        public bool InitStatistics(int iterationID)
         {
             var stat = Versions.GetOrDefault(iterationID);
             if (stat == null)

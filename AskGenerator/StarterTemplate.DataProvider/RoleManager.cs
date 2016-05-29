@@ -1,5 +1,4 @@
-﻿
-using AskGenerator.Business.Entities;
+﻿using AskGenerator.Business.Entities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;

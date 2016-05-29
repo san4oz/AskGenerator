@@ -11,10 +11,17 @@ namespace AskGenerator.Business.Managers
 {
     public class TeamManager : BaseEntityManager<Team, ITeamProvider>, ITeamManager
     {
-        public TeamManager(ITeamProvider provider)
+        protected readonly IHistoryManager HistoryManager;
+
+        public TeamManager(ITeamProvider provider, IHistoryManager historyManager)
             : base(provider)
         {
+            HistoryManager = historyManager;
+        }
 
+        public void LoadHistory(Team entity)
+        {
+            HistoryManager.Get(entity.Id).Apply(entity);
         }
     }
 }

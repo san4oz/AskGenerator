@@ -17,6 +17,6 @@ namespace AskGenerator.Business.Entities.Base
 
         Dictionary<int, TStat> Versions { get; set; }
 
-        bool LoadStatistics(int iterationID);
+        bool InitStatistics(int iterationID);
     }
 }

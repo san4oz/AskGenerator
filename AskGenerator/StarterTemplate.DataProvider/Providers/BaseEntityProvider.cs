@@ -53,6 +53,24 @@ namespace AskGenerator.DataProvider.Providers
             return false;
         }
 
+        protected virtual void Update(AppContext context, IEnumerable<T> entities)
+        {
+            bool changed = false;
+            foreach (var entity in entities)
+            {
+                var original = context.Set<T>().First(x => x.Id == entity.Id);
+                if (original != null)
+                {
+                    if (original.Equals(entity))
+                        continue;
+                    context.Entry(original).CurrentValues.SetValues(entity);
+                    changed = true;
+                }
+            }
+            if(changed)
+                context.SaveChanges();
+        }
+
         public new bool Delete(T entity)
         {
             return base.Delete(entity);
