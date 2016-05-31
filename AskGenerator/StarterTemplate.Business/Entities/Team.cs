@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 
 namespace AskGenerator.Business.Entities
 {
@@ -18,7 +19,7 @@ namespace AskGenerator.Business.Entities
         /// Represents average mark without difficult and votes count.
         /// </summary>
         [NotMapped]
-        public float ClearRate { get; set; }
+        public float ClearRating { get; set; }
 
         /// <summary>
         /// Represents additional mark. It may be overall impressions.
@@ -27,7 +28,7 @@ namespace AskGenerator.Business.Entities
         public Mark AdditionalMark { get; set; }
 
         [NotMapped]
-        public Mark Rate { get; set; }
+        public Mark Rating { get; set; }
 
         public override void Initialize()
         {
@@ -40,9 +41,9 @@ namespace AskGenerator.Business.Entities
             var stat = Fields.GetOrCreate<Statistics>("Statistics", () => new Statistics());
 
             stat.AvgDifficult = AvgDifficult;
-            stat.ClearRate = ClearRate;
+            stat.ClearRating = ClearRating;
             stat.AdditionalMark = AdditionalMark;
-            stat.Rate = Rate;
+            stat.Rating = Rating;
 
             Fields["Statistics"] = stat;
         }
@@ -68,27 +69,32 @@ namespace AskGenerator.Business.Entities
         protected void InitStatiscics(Statistics stat)
         {
             AvgDifficult = stat.AvgDifficult;
-            ClearRate = stat.ClearRate;
+            ClearRating = stat.ClearRating;
             AdditionalMark = stat.AdditionalMark ?? new Mark();
-            Rate = stat.Rate ?? new Mark();
+            Rating = stat.Rating ?? new Mark();
         }
         #endregion
 
+        [XmlType("Stat")]
         public class Statistics
         {
+            [XmlElement("Avg")]
             public float AvgDifficult { get; set; }
 
             /// <summary>
             /// Represents average mark without difficult and votes count.
             /// </summary>
-            public float ClearRate { get; set; }
+            [XmlElement("Cr")]
+            public float ClearRating { get; set; }
 
             /// <summary>
             /// Represents additional mark. It may be overall impressions.
             /// </summary>
+            [XmlElement("AddMark")]
             public Mark AdditionalMark { get; set; }
 
-            public Mark Rate { get; set; }
+            [XmlElement("Rat")]
+            public Mark Rating { get; set; }
         }
     }
 }

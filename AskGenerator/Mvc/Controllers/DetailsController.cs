@@ -30,7 +30,7 @@ namespace AskGenerator.Mvc.Controllers
 
             var allVotes = await Site.VoteManager.AllAsync();
 
-            InitModel(allVotes.Where(m => teachersIds.ContainsKey(m.TeacherId)).GroupBy(m => m.QuestionId),
+            InitModel(allVotes.Where(m => teachersIds.ContainsKey(m.TeacherId)).GroupBy(m => m.QuestionId.Id),
                 model,
                 questions.First().Id);
             model.Teams = await Site.TeamManager.AllAsync();
@@ -45,40 +45,45 @@ namespace AskGenerator.Mvc.Controllers
             model.Id = id;
             IList<Student> students;
             var groups = await Site.GroupManager.AllAsync();
-
-            if (model.Id.IsEmpty() || !groups.Any(g => g.Id == id))
-            {
-                model.Id = "all";
-                students = await Site.StudentManager.AllAsync();
-            }
-            else
-            {
-                students = Site.StudentManager.GroupList(id);
-            }
-            var studentsIds = students.Where(s => !s.AccountId.IsEmpty())
-                .ToDictionary(t => t.AccountId);
+            var group = groups.FirstOrDefault(g => g.Id == id);
 
             var questions = await Site.QuestionManager.AllAsync();
             model.Questions = questions.ToDictionary(q => q.Id, q => q.QuestionBody);
 
-            var allVotes = await Site.VoteManager.AllAsync();
+            if (!model.Id.IsEmpty() && group != null)
+            {
+                students = Site.StudentManager.GroupList(id);
+                model.Marks = group.Marks;
+                model.Rating = group.Rating;
+            }
+            else
+            {
+                model.Id = "all";
+                students = await Site.StudentManager.AllAsync();
 
-            InitModel(allVotes.Where(m => !m.AccountId.IsEmpty() && studentsIds.ContainsKey(m.AccountId)).GroupBy(m => m.QuestionId),
-                model,
-                questions.First().Id);
+                var accountsIds = students.Where(s => !s.AccountId.IsEmpty())
+                    .ToDictionary(t => t.AccountId);
+
+                var allVotes = await Site.VoteManager.AllAsync();
+
+                InitModel(allVotes.Where(m => !m.AccountId.IsEmpty() && accountsIds.ContainsKey(m.AccountId)).GroupBy(m => m.QuestionId.Id),
+                    model,
+                    questions.First().Id);
+            }
+            
 
             model.Groups = groups;
             return View(model);
         }
 
-        protected void InitModel(IEnumerable<IGrouping<Question, Vote>> votes, IRateble model, string difficultId)
+        protected void InitModel(IEnumerable<IGrouping<string, Vote>> votes, IRateble model, string difficultId)
         {
             int maxCount = int.MinValue;
             float avgSum = 0;
             foreach (var group in votes)
             {
                 int count = 0;
-                var qDictionary = model.Marks.GetOrCreate(group.Key.Id);
+                var qDictionary = model.Marks.GetOrCreate(group.Key);
 
                 foreach (var vote in group)
                 {
@@ -95,7 +100,7 @@ namespace AskGenerator.Mvc.Controllers
                     maxCount = count;
             }
             var difficult = model.Marks[difficultId].Avg;
-            model.Rate = new Mark()
+            model.Rating = new Mark()
             {
                 Answer = CalculateRate(difficult.Answer, (avgSum - difficult.Answer) / (model.Marks.Count - 1), maxCount),
                 Count = maxCount

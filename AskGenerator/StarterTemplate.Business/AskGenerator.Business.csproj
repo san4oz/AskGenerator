@@ -120,10 +120,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Base\AnswerCountDictionary.cs" />
     <Compile Include="Entities\Base\Entity.cs" />
     <Compile Include="Entities\Base\EntityFields.cs" />
     <Compile Include="Entities\Base\History.cs" />
     <Compile Include="Entities\Base\IVersionedStatistics.cs" />
+    <Compile Include="Entities\Base\RatableGroupsStatistic.cs" />
+    <Compile Include="Entities\Base\SerializableDictionary.cs" />
     <Compile Include="Entities\Faculty.cs" />
     <Compile Include="Entities\IPerson.cs" />
     <Compile Include="Entities\Person.cs" />

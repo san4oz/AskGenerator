@@ -16,7 +16,9 @@ namespace AskGenerator.Business.Managers
 
         public List<Group> GetByIds(IEnumerable<String> ids)
         {
-            return ((IGroupProvider)Provider).GetById(ids);
+            var list = ((IGroupProvider)Provider).GetById(ids);
+            list.Each(g => g.Initialize());
+            return list;
         }
 
         public new IGroupProvider Provider

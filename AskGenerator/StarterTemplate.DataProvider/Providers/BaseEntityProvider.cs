@@ -39,6 +39,14 @@ namespace AskGenerator.DataProvider.Providers
             });
         }
 
+        public virtual void Update(IEnumerable<T> sequance)
+        {
+            Execute(context =>
+            {
+                Update(context, sequance);
+            });
+        }
+
         protected virtual bool Update(AppContext context, T entity)
         {
             var original = context.Set<T>().First(x => x.Id == entity.Id);

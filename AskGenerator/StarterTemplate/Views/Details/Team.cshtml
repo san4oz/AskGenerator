@@ -24,7 +24,7 @@
                     @SelectOption(Model.Teams.First(t => t.Id == Team.AllTeachersTeamId))
                 </thead>
                 <tbody>
-                    @foreach (var t in Model.Teams.Where(t => t.Id != Team.AllTeachersTeamId).OrderBy(t => t.Rate.Answer))
+                    @foreach (var t in Model.Teams.Where(t => t.Id != Team.AllTeachersTeamId).OrderBy(t => t.Rating.Answer))
                     {
                         @SelectOption(t)
                     }
@@ -91,10 +91,10 @@
     <tr class="@rowClass">
         <td>@Html.ActionLink(team.Name, "Team", new { id = id })</td>
         <td>@RoundAnswer(team.AvgDifficult)</td>
-        <td>@RoundAnswer(team.ClearRate)</td>
+        <td>@RoundAnswer(team.ClearRating)</td>
         <td>@RoundAnswer(team.AdditionalMark != null ? team.AdditionalMark.Answer : 0)</td>
-        <td>@team.Rate.Count</td>
-        <td>@RoundAnswer(team.Rate.Answer, 1)</td>
+        <td>@team.Rating.Count</td>
+        <td>@RoundAnswer(team.Rating.Answer, 1)</td>
     </tr>
 }
 
@@ -122,9 +122,9 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>@Resource.Rate</th>
-                <th>@RoundAnswer(Model.Rate.Answer)</th>
-                <th>@Model.Rate.Count</th>
+                <th>@Resource.Rating</th>
+                <th>@RoundAnswer(Model.Rating.Answer)</th>
+                <th>@Model.Rating.Count</th>
             </tr>
         </tfoot>
     </table>

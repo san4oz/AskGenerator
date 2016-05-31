@@ -1,5 +1,6 @@
 ﻿using AskGenerator.App_Start.AutoMapper;
 using AskGenerator.Business.Entities;
+using AskGenerator.Business.Entities.Base;
 using AskGenerator.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,15 +20,15 @@ namespace AskGenerator.Mvc.ViewModels
         /// <summary>
         /// Answer - count pairs per question ID.
         /// </summary>
-        public IDictionary<string, TeamResultsViewModel.AnswerCountDictionary> Marks { get; set; }
+        public IDictionary<string, AnswerCountDictionary> Marks { get; set; }
 
-        public Mark Rate { get; set; }
+        public Mark Rating { get; set; }
 
         public Dictionary<string, string> Questions { get; set; }
 
         public GroupStatisticViewModel()
         {
-            Marks = new Dictionary<string, TeamResultsViewModel.AnswerCountDictionary>();
+            Marks = new Dictionary<string, AnswerCountDictionary>();
         }
     }
 }

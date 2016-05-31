@@ -49,6 +49,12 @@ namespace AskGenerator.Business.Managers
             return Provider.Update(entity);
         }
 
+        public virtual void Update(IEnumerable<T> sequence)
+        {
+            sequence.Each(t => t.Apply());
+            Provider.Update(sequence);
+        }
+
         public virtual bool Delete(string id)
         {
             var t = Provider.Delete(id);

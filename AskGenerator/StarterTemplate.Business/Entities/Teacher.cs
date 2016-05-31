@@ -6,6 +6,7 @@ using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace AskGenerator.Business.Entities
 {
@@ -74,23 +75,29 @@ namespace AskGenerator.Business.Entities
         }
         #endregion
 
+        [XmlType("Stat")]
         public class Statistics
         {
+            [XmlElement("Bads")]
             public List<TeacherBadge> Badges { get; set; }
 
+            [XmlElement("Votes")]
             public int VotesCount { get; set; }
         }
     }
 
+    [XmlType("Badge")]
     public class TeacherBadge
     {
         public string Id { get; set; }
 
+        [XmlElement("M")]
         public float Mark { get; set; }
 
         /// <summary>
         /// 'r' - right, 'l' - left, <see cref="char.MinValue"/> - not for display
         /// </summary>
+        [XmlElement("T")]
         public char Type { get; set; }
 
         public TeacherBadge()

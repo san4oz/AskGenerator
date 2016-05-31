@@ -12,6 +12,12 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
 
         bool Update(T entity);
 
+        /// <summary>
+        /// Update each entity in sequence in one context.
+        /// </summary>
+        /// <param name="sequence">Entities to update.</param>
+        void Update(IEnumerable<T> sequence);
+
         bool Delete(string id);
 
         T Extract(string id);

@@ -5,9 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace AskGenerator.Business.Entities
 {
+    [XmlType("M")]
     public class Mark
     {
         public virtual string QuestionId { get; set; }
@@ -15,11 +17,13 @@ namespace AskGenerator.Business.Entities
         /// <summary>
         /// Gets or sets avarage answer.
         /// </summary>
+        [XmlElement("A")]
         public virtual float Answer { get; set; }
 
         /// <summary>
         /// Gets or sets the number of answers.
         /// </summary>
+        [XmlElement("C")]
         public int Count { get; set; }
     }
 
