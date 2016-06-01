@@ -56,6 +56,7 @@ namespace AskGenerator.Business.Entities
             get { return "teach"; }
         }
 
+        [NotMapped]
         public Dictionary<int, Statistics> Versions { get; set; }
 
         public bool InitStatistics(int iterationID)
