@@ -39,8 +39,10 @@
                 {
                     @Html.MenuItem("Детальний звіт", "Team", "Details")
                 }
-
-                @Html.Partial("_LoginPartial")
+                @if (WebsiteSettings.IsVotingEnabled)
+                {
+                    @Html.Partial("_LoginPartial")
+                }
             </ul>
         </nav>
     </header>

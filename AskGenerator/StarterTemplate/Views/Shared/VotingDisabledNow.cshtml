@@ -3,4 +3,4 @@
     Robots.Index = Robots.Follow = false;
 }
 
-<h1>@WebsiteSettings.VotingDisableText.AsHtml()</h1>
+<h1>@WebsiteSettings.VotingDisabledText.Or("Нажаль голосування вже завершене, ви можете переглянути 'Рейтинг викладачів' та 'Детальний звіт'.").AsHtml()</h1>
