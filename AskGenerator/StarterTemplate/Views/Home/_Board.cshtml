@@ -6,8 +6,6 @@
     Layout = null;
 }
 
-    @*<span id="data-from" style="display: none">@Resource.DataFrom <time>@DateTime.UtcNow.AddHours(3).ToString("HH:mm")</time></span>*@
-
 @if (!WebsiteSettings.IsVotingEnabled)
 {
     foreach (var t in Model.List)
