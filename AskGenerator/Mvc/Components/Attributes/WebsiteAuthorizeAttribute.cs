@@ -8,6 +8,9 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Mvc.Components.Attributes
 {
+    /// <summary>
+    /// Represents an attribute that is used to restrict access by callers to an action method and could be skipped according to the settings.
+    /// </summary>
     public class WebsiteAuthorizeAttribute : AuthorizeAttribute
     {
         string settingName;
@@ -17,6 +20,10 @@ namespace AskGenerator.Mvc.Components.Attributes
             Order = 0; 
         }
 
+        /// <summary>
+        /// Initilizes new instance with skipping setting name.
+        /// </summary>
+        /// <param name="settingName">Setting name from website settings.</param>
         public WebsiteAuthorizeAttribute(string settingName) :this()
         {
             this.settingName = settingName;

@@ -74,9 +74,9 @@ namespace AskGenerator.Mvc.Controllers
             return View();
         }
 
-        /*
+        
         [ActionName("view")]
-        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
+        [OutputCache(CacheProfile = "Cache1Hour")]
         public PartialViewResult NgView()
         {
             return PartialView();
@@ -97,7 +97,7 @@ namespace AskGenerator.Mvc.Controllers
             var userId = User.Identity.GetId();
             var groupId = User.Identity.GetGroupId();
             var group = await Site.GroupManager.GetAsync(groupId);
-            var quesstions = await Site.QuestionManager.ListAsync(true);
+            var quesstions = await Site.QuestionManager.AllAsync();
             var votes = await Site.VoteManager.ListAsync(userId);
             var teachers = MapTeachers(group, votes.GroupBy(v => v.TeacherId));
 
@@ -121,9 +121,12 @@ namespace AskGenerator.Mvc.Controllers
         /// <param name="questionId">Question ID.</param>
         /// <param name="answer">Answer.</param>
         [HttpPost]
-        [Authorize]
+        [WebsiteAuthorize(WebsiteSettings.Keys.IsVotingEnabled)]
+        [ValidateAntiForgeryToken]
         public async Task<JsonResult> AddAnswer(string id, string questionId, short answer)
         {
+            if (!Site.Settings.Website().IsVotingEnabled)
+                return Json(false, 403);
             var vote = new Vote()
             {
                 TeacherId = id,
@@ -136,7 +139,7 @@ namespace AskGenerator.Mvc.Controllers
 
             return Json(false, 505);
         }
-        */
+
         #endregion
 
         #region Board
