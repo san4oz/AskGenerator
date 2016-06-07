@@ -15,8 +15,10 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                return context.Groups.Include(x => x.Students).Include(x => x.Teachers)
-                    .OrderBy(g => g.Name).ToList();
+                return context.Groups.Where(g => g.Id != "all")
+                    .Include(x => x.Students).Include(x => x.Teachers)
+                    .OrderBy(g => g.Name)
+                    .ToList();
             });
         }
 
@@ -28,11 +30,13 @@ namespace AskGenerator.DataProvider.Providers
             });
         }
 
-        public List<Group> GetById(IEnumerable<string> ids)
+        public List<Group> GetByIds(IEnumerable<string> ids)
         {
             return Execute(context =>
             {
-                return context.Groups.Include(x => x.Students).Include(x => x.Teachers).Where(x => ids.Contains(x.Id)).ToList();
+                return context.Groups.Where(x => ids.Contains(x.Id))
+                    .Include(x => x.Students).Include(x => x.Teachers)
+                    .ToList();
             });
         }
 
@@ -40,7 +44,7 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                return context.Groups.ToList();
+                return context.Groups.Where(g => g.Id != "all").ToList();
             });
         }
     }

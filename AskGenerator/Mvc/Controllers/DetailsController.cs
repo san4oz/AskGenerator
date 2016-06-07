@@ -39,38 +39,25 @@ namespace AskGenerator.Mvc.Controllers
             return View(model);
         }
 
+        [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client, VaryByParam = "id")]
         public async Task<ActionResult> Group(string id)
         {
             var model = new GroupStatisticViewModel();
             model.Id = id;
             IList<Student> students;
             var groups = await Site.GroupManager.AllAsync();
-            var group = groups.FirstOrDefault(g => g.Id == id);
+            var group = groups.SingleOrDefault(g => g.Id == id);
+            if (group == null)
+            {
+                model.Id = "all";
+                group = Site.GroupManager.Get(model.Id);
+            }
 
             var questions = await Site.QuestionManager.AllAsync();
             model.Questions = questions.ToDictionary(q => q.Id, q => q.QuestionBody);
 
-            if (!model.Id.IsEmpty() && group != null)
-            {
-                students = Site.StudentManager.GroupList(id);
-                model.Marks = group.Marks;
-                model.Rating = group.Rating;
-            }
-            else
-            {
-                model.Id = "all";
-                students = await Site.StudentManager.AllAsync();
-
-                var accountsIds = students.Where(s => !s.AccountId.IsEmpty())
-                    .ToDictionary(t => t.AccountId);
-
-                var allVotes = await Site.VoteManager.AllAsync();
-
-                InitModel(allVotes.Where(m => !m.AccountId.IsEmpty() && accountsIds.ContainsKey(m.AccountId)).GroupBy(m => m.QuestionId.Id),
-                    model,
-                    questions.First().Id);
-            }
-            
+            model.Marks = group.Marks;
+            model.Rating = group.Rating;        
 
             model.Groups = groups;
             return View(model);

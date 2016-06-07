@@ -18,12 +18,19 @@
 {
     foreach (var t in Model.List)
     {
-        isVTeacher(t);
+        @TeacherNoData(t)
+    }
+}
+else
+{
+    foreach (var t in Model.List)
+    {
+        @Teacher(t)
     }
 }
 
 
-@helper isVTeacher(TeacherViewModel teacher)
+@helper TeacherNoData(TeacherViewModel teacher)
 {
 
 
@@ -64,24 +71,23 @@
     </article>
 }
 
-
-            @helper Badge(TeacherBadge tbadge)
-            {
-                var badge = Model.Badges.GetOrDefault(tbadge.Id + tbadge.Type);
-                if (badge != null)
-                {
-                    var ttip = badge.ToolTip;
-                    if (ttip.EndsWith("?"))
-                    {
-                        ttip = ttip.TrimEnd('?') + '(' + tbadge.Mark.ToString("0.00") + ')';
-                    }
-                    if (string.IsNullOrEmpty(badge.Image))
-                    {
-                        <span class="badge" data-toggle="tooltip" title="@ttip"></span>
-                    }
-                    else
-                    {
-                        <span class="badge" data-toggle="tooltip" style="background-image: url(@badge.Image)" title="@ttip"></span>
-                    }
-                }
-            }
+@helper Badge(TeacherBadge tbadge)
+{
+    var badge = Model.Badges.GetOrDefault(tbadge.Id + tbadge.Type);
+    if (badge != null)
+    {
+        var ttip = badge.ToolTip;
+        if (ttip.EndsWith("?"))
+        {
+            ttip = ttip.TrimEnd('?') + '(' + tbadge.Mark.ToString("0.00") + ')';
+        }
+        if (string.IsNullOrEmpty(badge.Image))
+        {
+            <span class="badge" data-toggle="tooltip" title="@ttip"></span>
+        }
+        else
+        {
+            <span class="badge" data-toggle="tooltip" style="background-image: url(@badge.Image)" title="@ttip"></span>
+        }
+    }
+}

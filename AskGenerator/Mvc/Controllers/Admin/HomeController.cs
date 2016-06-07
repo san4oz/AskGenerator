@@ -209,78 +209,88 @@ namespace AskGenerator.Controllers.Admin
             var studentVotes = votes.ToLookup(x => x.AccountId);
             var groups = Site.GroupManager.All();
             var difficultQuestion = Site.QuestionManager.All().First();
+            var allStudents = Site.StudentManager.All();
 
             foreach (var group in groups)
             {
                 group.Marks.Clear();
 
-                var students = Site.StudentManager.GroupList(group.Id);
-                var uniqueAccounts = 0;
-
-                foreach (var student in students)
-                {
-                    if (student.AccountId.IsEmpty())
-                        continue;
-
-                    var accountVotes = studentVotes[student.AccountId];
-                    if (accountVotes.Any())
-                        uniqueAccounts++;
-
-                    foreach (var grouped in accountVotes.GroupBy(v => v.QuestionId.Id))
-                    {
-                        var qDictionary = group.Marks.GetOrCreate(grouped.Key);
-
-                        foreach (var vote in grouped)
-                        {
-                            qDictionary[vote.Answer] = qDictionary.GetOrDefault(vote.Answer) + 1;
-                            qDictionary.Avg.Count++;
-                        }
-                    }
-                }
-
-                int maxCount = int.MinValue;
-                float avgSum = 0;
-                if (group.Marks.Count == 0)
-                {
-                    group.VotesCount = 0;
-                    group.Avg = 0;
-                }
-                else
-                {
-                    foreach (var qDictionary in group.Marks.Values)
-                    {
-                        float qAvg = 0;
-                        var count = 0;
-                        foreach (var mark in qDictionary)
-                        {
-                            qAvg += mark.Key * mark.Value;
-                            count += mark.Value;
-                        }
-                        qAvg = (qAvg / (float)count);
-
-                        qDictionary.Avg.Answer = qAvg;
-                        qDictionary.Avg.Count = count;
-
-                        if (count > maxCount)
-                            maxCount = count;
-                        avgSum += qAvg;
-                    }
-
-                    group.VotesCount = uniqueAccounts;
-                    group.Avg = avgSum / group.Marks.Count;
-                }
-
-
-                group.Rating = new Mark();
-
-                var difficult = group.Marks.GetOrDefault(difficultQuestion.Id);
-                if(difficult != null){
-                    group.Rating.Answer = CalculateRate(difficult.Avg.Answer, (avgSum - difficult.Avg.Answer) / (group.Marks.Count - 1), maxCount);
-                    group.Rating.Count = maxCount;
-                }
-
-                Site.GroupManager.Update(group);
+                var students = allStudents.Where(s => s.Id.Equals(group.Id));
+                RecalculateGroupStatistic(studentVotes, group, students, difficultQuestion.Id);
             }
+            
+            var allGroup = Site.GroupManager.Get("all");
+            RecalculateGroupStatistic(studentVotes, allGroup, allStudents, difficultQuestion.Id);
+        }
+
+        private void RecalculateGroupStatistic(ILookup<string, Vote> studentVotes, Group group, IEnumerable<Student> students, string difficultQuestionId)
+        {
+            var uniqueAccounts = 0;
+
+            foreach (var student in students)
+            {
+                if (student.AccountId.IsEmpty())
+                    continue;
+
+                var accountVotes = studentVotes[student.AccountId];
+                if (accountVotes.Any())
+                    uniqueAccounts++;
+
+                foreach (var grouped in accountVotes.GroupBy(v => v.QuestionId.Id))
+                {
+                    var qDictionary = group.Marks.GetOrCreate(grouped.Key);
+
+                    foreach (var vote in grouped)
+                    {
+                        qDictionary[vote.Answer] = qDictionary.GetOrDefault(vote.Answer) + 1;
+                        qDictionary.Avg.Count++;
+                    }
+                }
+            }
+
+            int maxCount = int.MinValue;
+            float avgSum = 0;
+            if (group.Marks.Count == 0)
+            {
+                group.VotesCount = 0;
+                group.Avg = 0;
+            }
+            else
+            {
+                foreach (var qDictionary in group.Marks.Values)
+                {
+                    float qAvg = 0;
+                    var count = 0;
+                    foreach (var mark in qDictionary)
+                    {
+                        qAvg += mark.Key * mark.Value;
+                        count += mark.Value;
+                    }
+                    qAvg = (qAvg / (float)count);
+
+                    qDictionary.Avg.Answer = qAvg;
+                    qDictionary.Avg.Count = count;
+
+                    if (count > maxCount)
+                        maxCount = count;
+                    avgSum += qAvg;
+                }
+
+                group.VotesCount = uniqueAccounts;
+                group.Avg = avgSum / group.Marks.Count;
+            }
+
+
+            group.Rating = new Mark();
+
+            var difficult = group.Marks.GetOrDefault(difficultQuestionId);
+            if (difficult != null)
+            {
+                group.Rating.Answer = CalculateRate(difficult.Avg.Answer, (avgSum - difficult.Avg.Answer) / (group.Marks.Count - 1), maxCount);
+                group.Rating.Count = maxCount;
+            }
+
+            Site.GroupManager.Update(group);
         }
         #endregion
 

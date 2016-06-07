@@ -9,7 +9,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
 {
     public interface IGroupProvider : IBaseEntityProvider<Group>
     {
-        List<Group> GetById(IEnumerable<string> ids);
+        List<Group> GetByIds(IEnumerable<string> ids);
 
         List<Group> AllWithoutIncl();
     }

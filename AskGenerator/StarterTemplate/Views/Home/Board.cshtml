@@ -62,9 +62,11 @@
     <script>
         Pages.Board.init();
 
-        if (@(WebsiteSettings.TimeBanner.Enabled?1:0)) {
-            Pages.Board.initRemainingClock('.clockdiv');
-            Pages.Board.initSubscibe();
+        @if(WebsiteSettings.TimeBanner.Enabled) {
+            <text>
+                Pages.Board.initRemainingClock('.clockdiv');
+                Pages.Board.initSubscibe();
+            </text>
         }
     </script>
 }
