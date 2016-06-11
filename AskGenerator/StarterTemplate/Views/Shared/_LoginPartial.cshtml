@@ -14,7 +14,7 @@
         </ul>
     </li>
 }
-else
-{
-    @*Html.MenuRouteItem(Resources.Resource.LogIn, "Login", glyphicon: null)*@
+else if(WebsiteSettings.IsVotingEnabled)
+{ 
+    @Html.MenuRouteItem(Resources.Resource.LogIn, "Login", glyphicon: null)
 }

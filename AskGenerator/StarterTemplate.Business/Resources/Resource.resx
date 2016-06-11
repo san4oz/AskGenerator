@@ -561,4 +561,19 @@
   <data name="AddFaculty" xml:space="preserve">
     <value>Додати факультет</value>
   </data>
+  <data name="EmailIsBaned" xml:space="preserve">
+    <value>Реєстарія з данною поштовою скринькою заборонена</value>
+  </data>
+  <data name="BannedDomains" xml:space="preserve">
+    <value>Заборонені домени </value>
+  </data>
+  <data name="IsVotingEnabled" xml:space="preserve">
+    <value>Увімкнути голосування</value>
+  </data>
+  <data name="TimeBanner" xml:space="preserve">
+    <value>Час до кінця голосування</value>
+  </data>
+  <data name="VotingDisabledText" xml:space="preserve">
+    <value>Повідомлення про вимкнуте голосування</value>
+  </data>
 </root>

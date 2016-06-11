@@ -159,6 +159,17 @@ namespace AskGenerator.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                var transformedEmail = TransformEmail(model.Email);
+                foreach (var ban in Site.Settings.General().BannedDomains)
+                {
+                    if(transformedEmail.Contains(ban))
+                    {
+                        ModelState.AddModelError("Email", Resource.EmailIsBaned);
+                        return View(model);
+                    }
+                }
+
+
                 var task = checkLastNameAsync(model.LastName, model.GroupId);
                 var student = task != null ? await task : null;
                 if (student == null || student.HasUserAccount)
@@ -186,17 +197,15 @@ namespace AskGenerator.Mvc.Controllers
                 if (user != null)
                 {
                     user.GroupId = model.GroupId;
-                    user.Email = TransformEmail(model.Email);
+                    user.Email = transformedEmail;
                     user.StudentId = student.Id;
                     var hashedNewPassword = Manager.PasswordHasher.HashPassword(model.Password);
                     user.PasswordHash = hashedNewPassword;
                     result = await Manager.UpdateAsync(user);
-                    /*var store = new UserStore<User>();
-                    await store.SetPasswordHashAsync(user, hashedNewPassword);*/
                 }
                 else
                 {
-                    model.Email = TransformEmail(model.Email);
+                    model.Email = transformedEmail;
                     user = Map<RegistrationModel, User>(model);
                     user.LoginKey = Guid.NewGuid().ToString("N").Substring(0, 8);
                     user.StudentId = student.Id;

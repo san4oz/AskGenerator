@@ -1,0 +1,28 @@
+﻿@model WebsiteSettings.TimeBannerSettings
+
+@using System.Linq.Expressions;
+@using AskGenerator.Business.Entities.Settings;
+
+@T(m => Model.Enabled)
+@T(m => Model.IsSammerTime)
+@T(m => Model.Year)
+@T(m => Model.Month)
+@T(m => Model.Day)
+@T(m => Model.Hour)
+@T(m => Model.Header)
+
+
+@helper T(Expression<Func<WebsiteSettings.TimeBannerSettings, bool>> expression) {
+    @Html.LabelFor(expression)
+    @Html.EditorFor(expression)
+}
+@helper T(Expression<Func<WebsiteSettings.TimeBannerSettings, string>> expression)
+{
+    @Html.LabelFor(expression)
+    @Html.EditorFor(expression)
+}
+@helper T(Expression<Func<WebsiteSettings.TimeBannerSettings, short>> expression)
+{
+    @Html.LabelFor(expression)
+    @Html.EditorFor(expression)
+}

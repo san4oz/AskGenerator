@@ -20,12 +20,16 @@ namespace AskGenerator.Business.Entities.Settings
 
         public Iteration[] Iterations { get; set; }
 
+        public string[] BannedDomains { get; set; }
+
         /// <summary>
         /// Initializes fields from XML fields.
         /// </summary>
         public override void Initialize()
         {
             Iterations = Get<Iteration[]>(Keys.Iterations);
+            BannedDomains = Get<string[]>(Keys.BannedDomains);
+            
         }
 
         /// <summary>
@@ -34,11 +38,13 @@ namespace AskGenerator.Business.Entities.Settings
         public override void Apply()
         {
             Set(Keys.Iterations, Iterations);
+            Set(Keys.BannedDomains, BannedDomains);
         }
 
         public static class Keys
         {
             public const string Iterations = "Terms";
+            public const string BannedDomains = "Ban";
         }
 
         /// <summary>
