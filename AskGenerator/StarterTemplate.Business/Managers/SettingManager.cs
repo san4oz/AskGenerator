@@ -49,7 +49,7 @@ namespace AskGenerator.Business.Managers
         public override bool Update(Settings entity)
         {
             RemoveFromCache(entity.Id);
-
+            entity.Apply();
             var settings = new Settings() { Id = entity.Id };
             entity.CopyFieldsTo(settings);
             return base.Update(settings);

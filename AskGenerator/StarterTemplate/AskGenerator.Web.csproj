@@ -1250,6 +1250,9 @@
     <Content Include="Areas\Admin\Views\Account\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Faculty\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Faculty\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\Website.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\EditorTemplates\TimeBannerSettings.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\General.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jqmeter\jqmeter.js" />
     <Content Include="Scripts\jqmeter\jqmeter.min.js" />
@@ -1343,6 +1346,10 @@
     <ProjectReference Include="..\Mvc\AskGenerator.Mvc.csproj">
       <Project>{1a682a54-1547-4548-9ce6-028c2f859a06}</Project>
       <Name>AskGenerator.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StarterTemplate.Business\AskGenerator.Business.csproj">
+      <Project>{c8d76b99-b3be-4a3f-abf5-d2bf4b99377f}</Project>
+      <Name>AskGenerator.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

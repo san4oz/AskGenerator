@@ -73,7 +73,7 @@ namespace AskGenerator.Business.Entities.Settings
             /// <returns>String cotains timer date.</returns>
             public override string ToString()
             {
-                return "{0} {1} {2}:0:0 GMT+0{3}:00".FormatWith(Month, Day, Year, IsSammerTime ? "2" : "3");
+                return "{0} {1} {2} {3}:0:0 GMT+0{4}:00".FormatWith(Day, Month, Year, Hour, IsSammerTime ? "2" : "3");
             }
         }
     }

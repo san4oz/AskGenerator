@@ -35,7 +35,7 @@ namespace System
 
         public static string Join(this IList<string> source, string delimiter)
         {
-            if (source.Count == 0)
+            if (source == null || source.Count == 0)
                 return string.Empty;
 
             var sb = new StringBuilder(source.First());

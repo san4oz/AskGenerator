@@ -64,6 +64,10 @@ Pages.Board = (function () {
         var clock = $(selector);
         var endtimeString = clock.data('time')
         var endtime = Date.parse(endtimeString);
+        var nowtime = new Date();
+        if (nowtime >= endtime) {
+            clock.hide();
+        }
         var timeinterval
         var alingn = function (u) { return ('0' + u).slice(-2); };
         var update = function () {

@@ -173,6 +173,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Admin\AccountController.cs" />
     <Compile Include="Controllers\Admin\FacultyController.cs" />
+    <Compile Include="Controllers\Admin\SettingController.cs" />
     <Compile Include="Controllers\Admin\TeamController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\Admin\GroupController.cs" />
@@ -196,6 +197,8 @@
     <Compile Include="Site.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GroupStatisticViewModel.cs" />
+    <Compile Include="ViewModels\Settings\GeneralSettingsModel.cs" />
+    <Compile Include="ViewModels\Settings\WebsiteSettingsModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\GroupLoginKeys.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
