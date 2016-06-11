@@ -87,15 +87,14 @@ namespace AskGenerator.Business.Managers
         #region FromCache
         protected TValue FromCache<TValue>(string key, Func<TValue> function, DateTime? expiration = null)
         {
-            key = Name + '_' + key;
-            var obj = cache.Get(key);
+            var obj = cache.Get(Name + '_' + key);
             if (obj != null)
             {
                 return (TValue)obj;
             }
 
             var itemToSave = function();
-            ToCache<TValue>(key, () => itemToSave, expiration);
+            ToCache<TValue>(key, itemToSave, expiration);
 
             return itemToSave;
         }

@@ -570,10 +570,16 @@
   <data name="IsVotingEnabled" xml:space="preserve">
     <value>Увімкнути голосування</value>
   </data>
+  <data name="RegisterOpened" xml:space="preserve">
+    <value>Відкрити реєстрацію</value>
+  </data>
   <data name="TimeBanner" xml:space="preserve">
     <value>Час до кінця голосування</value>
   </data>
   <data name="VotingDisabledText" xml:space="preserve">
     <value>Повідомлення про вимкнуте голосування</value>
+  </data>
+  <data name="RegistrationClosed" xml:space="preserve">
+    <value>Вибачте, реєстрація тимчасово неможлива.</value>
   </data>
 </root>
