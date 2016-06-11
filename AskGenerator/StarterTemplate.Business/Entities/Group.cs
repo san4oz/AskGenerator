@@ -18,14 +18,14 @@ namespace AskGenerator.Business.Entities
 
         public virtual ICollection<Teacher> Teachers { get; set; }
 
-#warning Add [NotMapped]
+        [NotMapped]
         public float Avg { get; set; }
 
-#warning Add [NotMapped], Rename
+        [NotMapped]
         /// <summary>
         /// The number of voted students.
         /// </summary>
-        public int VotesCount { get; set; }
+        public int StudentsCount { get; set; }
 
         /// <summary>
         /// Answer-count pairs per question ID.
@@ -61,7 +61,7 @@ namespace AskGenerator.Business.Entities
             var stat = Fields.GetOrCreate<Statistics>("Statistics", () => new Statistics());
 
             stat.AverageVote = Avg;
-            stat.StudentsCount = VotesCount;
+            stat.StudentsCount = StudentsCount;
             stat.Marks = new SerializableDictionary<string, AnswerCountDictionary>(Marks);
             stat.Rating = Rating;
         }
@@ -88,7 +88,7 @@ namespace AskGenerator.Business.Entities
         protected void InitStatiscics(Statistics stat)
         {
             Avg = stat.AverageVote;
-            VotesCount = stat.StudentsCount;
+            StudentsCount = stat.StudentsCount;
             Marks = stat.Marks ?? new Dictionary<string, AnswerCountDictionary>();
             Rating = stat.Rating ?? new Mark();
         }

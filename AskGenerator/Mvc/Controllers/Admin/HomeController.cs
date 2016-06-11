@@ -252,7 +252,7 @@ namespace AskGenerator.Controllers.Admin
             float avgSum = 0;
             if (group.Marks.Count == 0)
             {
-                group.VotesCount = 0;
+                group.StudentsCount = 0;
                 group.Avg = 0;
             }
             else
@@ -276,7 +276,7 @@ namespace AskGenerator.Controllers.Admin
                     avgSum += qAvg;
                 }
 
-                group.VotesCount = uniqueAccounts;
+                group.StudentsCount = uniqueAccounts;
                 group.Avg = avgSum / group.Marks.Count;
             }
 
