@@ -30,6 +30,12 @@ namespace AskGenerator.Business.Entities
         [NotMapped]
         public Mark Rating { get; set; }
 
+        /// <summary>
+        /// Answer-count pairs per question ID.
+        /// </summary>
+        [NotMapped]
+        public Dictionary<string, AnswerCountDictionary> Marks { get; set; }
+
         public override void Initialize()
         {
             var stat = Fields.GetOrDefault<Statistics>("Statistics", () => new Statistics());
@@ -44,6 +50,7 @@ namespace AskGenerator.Business.Entities
             stat.ClearRating = ClearRating;
             stat.AdditionalMark = AdditionalMark;
             stat.Rating = Rating;
+            stat.Marks = new SerializableDictionary<string, AnswerCountDictionary>(Marks);
 
             Fields["Statistics"] = stat;
         }
@@ -73,11 +80,12 @@ namespace AskGenerator.Business.Entities
             ClearRating = stat.ClearRating;
             AdditionalMark = stat.AdditionalMark ?? new Mark();
             Rating = stat.Rating ?? new Mark();
+            Marks = stat.Marks ?? new Dictionary<string, AnswerCountDictionary>();
         }
         #endregion
 
         [XmlType("Stat")]
-        public class Statistics
+        public class Statistics : RatableGroupsStatistic
         {
             [XmlElement("Avg")]
             public float AvgDifficult { get; set; }
@@ -94,8 +102,7 @@ namespace AskGenerator.Business.Entities
             [XmlElement("AddMark")]
             public Mark AdditionalMark { get; set; }
 
-            [XmlElement("Rat")]
-            public Mark Rating { get; set; }
+            public override Mark Rating { get; set; }
         }
     }
 }

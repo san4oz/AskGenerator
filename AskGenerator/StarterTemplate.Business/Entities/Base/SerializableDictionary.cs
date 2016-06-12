@@ -117,6 +117,17 @@ namespace AskGenerator.Business.Entities.Base
         }
 
         /// <summary>
+        /// Exexuted before serializing.
+        /// </summary>
+        protected virtual void OnSerializing() { }
+
+
+        /// <summary>
+        /// Exexuted after deserialized.
+        /// </summary>
+        protected virtual void OnDeserialized() { }
+
+        /// <summary>
         /// Gets the XML schema for the XML serialization.
         /// </summary>
         /// <returns>An XML schema for the serialized object.</returns>
@@ -171,6 +182,7 @@ namespace AskGenerator.Business.Entities.Base
         /// <param name="reader">The XML representation of the object.</param>
         private void ReadItem(XmlReader reader)
         {
+            var name = reader.Name;
             reader.ReadStartElement(this.ItemTagName);
             try
             {
@@ -181,6 +193,7 @@ namespace AskGenerator.Business.Entities.Base
                 reader.ReadEndElement();
             }
         }
+#warning Write here
 
         /// <summary>
         /// Deserializes the dictionary item's key.

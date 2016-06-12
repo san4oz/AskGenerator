@@ -82,10 +82,10 @@ namespace AskGenerator.Controllers.Admin
                         }
                         tq.Answer = tq.Count != 0 ? tq.Answer / tq.Count : 0;
                     }
-                    tqManager.Update(tqs);
-                    UpdateGroupStatistic(voteList);
-                    var teachers = UpdateBadges();
-                    UpdateTeams(teachers);
+                    //tqManager.Update(tqs);
+                    //UpdateGroupStatistic(voteList);
+                    //var teachers = UpdateBadges();
+                    UpdateTeams();
                 }
                 catch (Exception e)
                 {
@@ -200,8 +200,8 @@ namespace AskGenerator.Controllers.Admin
                     questions.First().Id,
                     questions.Last().Id);
 
-                Site.TeamManager.Update(team);
             }
+            Site.TeamManager.Update(teams);
         }
 
         protected void UpdateGroupStatistic(IList<Vote> votes)
@@ -223,6 +223,73 @@ namespace AskGenerator.Controllers.Admin
             RecalculateGroupStatistic(studentVotes, allGroup, allStudents, difficultQuestion.Id);
         }
 
+       
+        #endregion
+
+        #region private
+        private Dictionary<string, string> CreateResultsTags()
+        {
+            var result = new Dictionary<string, string>();
+            result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
+            result.Add("siteName", "Evaluate");
+
+            return result;
+        }
+
+        private void UpdateTeam(IEnumerable<IGrouping<Question, Vote>> votes, Team model, string difficultId, string additionalMarkId = null)
+        {
+            int maxCount = int.MinValue;
+            float avgSum = 0;
+         //   var dictionary = new Dictionary<string, Mark>();
+            foreach (var grouped in votes)
+            {
+                var qDictionary = model.Marks.GetOrCreate(grouped.Key.Id);
+                var count = 0;
+                var sum = 0;
+                foreach (var vote in grouped)
+                {
+                    qDictionary[vote.Answer] = qDictionary.GetOrDefault(vote.Answer) + 1;
+                    sum += vote.Answer;
+                    count++;
+                }
+
+                qDictionary.Avg.Count = count;
+                qDictionary.Avg.Answer = (float)sum / (float)count;
+
+                avgSum += qDictionary.Avg.Answer;
+                if (count > maxCount)
+                    maxCount = count;
+            }
+
+            model.AdditionalMark = AgregateMark(model, additionalMarkId);
+            model.AvgDifficult = AgregateMark(model, difficultId).Answer;
+
+            model.ClearRating = (avgSum - model.AvgDifficult) / (model.Marks.Count - 1);
+            model.Rating = new Mark()
+            {
+                Answer = CalculateRate(model.AvgDifficult, model.ClearRating, maxCount),
+                Count = maxCount
+            };
+        }
+
+        private static Mark AgregateMark(Team model, string questionId)
+        {
+            var qDict = model.Marks.GetOrDefault(questionId);
+            var mark = new Mark();
+            mark.QuestionId = questionId;
+            if (qDict != null)
+            {
+                foreach (var pair in qDict)
+                {
+                    mark.Answer += pair.Key * pair.Value;
+                    mark.Count += pair.Value;
+                }
+                mark.Answer /= (float)mark.Count;
+            }
+            return mark;
+        }
+
+        #region Group
         private void RecalculateGroupStatistic(ILookup<string, Vote> studentVotes, Group group, IEnumerable<Student> students, string difficultQuestionId)
         {
             var uniqueAccounts = 0;
@@ -293,48 +360,6 @@ namespace AskGenerator.Controllers.Admin
             Site.GroupManager.Update(group);
         }
         #endregion
-
-        #region private
-        private Dictionary<string, string> CreateResultsTags()
-        {
-            var result = new Dictionary<string, string>();
-            result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
-            result.Add("siteName", "Evaluate");
-
-            return result;
-        }
-
-        private void UpdateTeam(IEnumerable<IGrouping<Question, Vote>> votes, Team model, string difficultId, string additionalMarkId = null)
-        {
-            int maxCount = int.MinValue;
-            float avgSum = 0;
-            var dictionary = new Dictionary<string, Mark>();
-            foreach (var group in votes)
-            {
-                var mark = dictionary.GetOrCreate(group.Key.Id);
-
-                foreach (var vote in group)
-                {
-                    mark.Answer += vote.Answer;
-                    mark.Count++;
-                }
-                mark.Answer /= mark.Count;
-
-                avgSum += mark.Answer;
-                if (mark.Count > maxCount)
-                    maxCount = mark.Count;
-            }
-
-            model.AdditionalMark = dictionary.GetOrDefault(additionalMarkId);
-            model.AvgDifficult = dictionary[difficultId].Answer;
-
-            model.ClearRating = (avgSum - model.AvgDifficult) / (dictionary.Count - 1);
-            model.Rating = new Mark()
-            {
-                Answer = CalculateRate(model.AvgDifficult, model.ClearRating, maxCount),
-                Count = maxCount
-            };
-        }
 
         private int GiveBadges(Question question, IEnumerable<Teacher> teachers, char badgeType = char.MinValue, int badgesCount = 5)
         {
