@@ -34,7 +34,7 @@ namespace AskGenerator.Controllers.Admin
         [HttpPost]
         public ActionResult Website(WebsiteSettingsModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return View(model);
 
             var setting = Map<WebsiteSettingsModel, WebsiteSettings>(model);

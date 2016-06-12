@@ -15,8 +15,10 @@ namespace AskGenerator.Mvc.ViewModels.Settings
     public class WebsiteSettingsModel : AskGenerator.ViewModels.BaseViewModel, IMapFrom<WebsiteSettings>
     {
         [Display(Name = "IsVotingEnabled", ResourceType = typeof(R))]
-       
         public bool IsVotingEnabled { get; set; }
+
+        [Display(Name = "RegisterOpened", ResourceType = typeof(R))]
+        public bool RegisterOpened { get; set; }
 
         [Display(Name = "VotingDisabledText", ResourceType = typeof(R))]
         [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(R))]

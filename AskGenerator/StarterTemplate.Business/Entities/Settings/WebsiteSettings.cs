@@ -20,6 +20,8 @@ namespace AskGenerator.Business.Entities.Settings
 
         public bool IsVotingEnabled { get; set; }
 
+        public bool RegisterOpened { get; set; }
+
         public string VotingDisabledText { get; set; }
 
         public TimeBannerSettings TimeBanner { get; set; }
@@ -30,6 +32,7 @@ namespace AskGenerator.Business.Entities.Settings
         public override void Initialize()
         {
             IsVotingEnabled = Get<bool>(Keys.IsVotingEnabled);
+            RegisterOpened = Get<bool>(Keys.RegisterOpened);
             VotingDisabledText = Get<string>(Keys.VotingDisableText);
             TimeBanner = Get<TimeBannerSettings>(Keys.TimeBanner) ?? new TimeBannerSettings();
         }
@@ -42,6 +45,7 @@ namespace AskGenerator.Business.Entities.Settings
             Set(Keys.IsVotingEnabled, IsVotingEnabled);
             Set(Keys.VotingDisableText, VotingDisabledText);
             Set(Keys.TimeBanner, TimeBanner);
+            Set(Keys.RegisterOpened, RegisterOpened);
         }
 
         public static class Keys
@@ -49,6 +53,8 @@ namespace AskGenerator.Business.Entities.Settings
             public const string IsVotingEnabled = "IsVoting";
             public const string VotingDisableText = "VotingDisTxt";
             public const string TimeBanner = "TimeBanner";
+            public const string RegisterOpened = "Register";
+
         }
 
         public class TimeBannerSettings

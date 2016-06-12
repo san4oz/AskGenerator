@@ -16,6 +16,8 @@ namespace AskGenerator.Business.Managers
             : base(provider)
         { }
 
+        protected override string Name { get { return "Settings"; } }
+
         /// <summary>
         /// Gets (and creates if not found) settings group.
         /// </summary>

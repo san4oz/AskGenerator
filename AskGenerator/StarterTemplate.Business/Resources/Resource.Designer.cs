@@ -1078,11 +1078,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Відкрити реєстрацію.
+        /// </summary>
+        public static string RegisterOpened {
+            get {
+                return ResourceManager.GetString("RegisterOpened", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Реєстрація користувача.
         /// </summary>
         public static string RegisterUser {
             get {
                 return ResourceManager.GetString("RegisterUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Вибачте, реєстрація тимчасово неможлива..
+        /// </summary>
+        public static string RegistrationClosed {
+            get {
+                return ResourceManager.GetString("RegistrationClosed", resourceCulture);
             }
         }
         

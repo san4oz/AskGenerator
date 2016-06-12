@@ -145,15 +145,15 @@ namespace AskGenerator.Mvc.Controllers
 
 
         #region Register
-        [Authorize(Roles = Role.Admin)]
         [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Register()
         {
+            if (!Site.Settings.Website().RegisterOpened)
+                return HttpNotFound(Resource.RegistrationClosed);
             return View();
         }
 
         [HttpPost]
-        [Authorize(Roles = Role.Admin)]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegistrationModel model)
         {
