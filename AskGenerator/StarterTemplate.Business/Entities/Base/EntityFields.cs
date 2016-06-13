@@ -132,8 +132,6 @@ namespace AskGenerator.Business.Entities.Base
             }
         }
 
-        static Regex xmlReplacer = new Regex(@"\<\?xml.+\?\>(\r\n)?", RegexOptions.Compiled);
-
         private void SerializeField(XmlWriter writer, KeyValuePair<string, TValue> pair)
         {
             writer.WriteAttributeString("name", pair.Key);
@@ -142,7 +140,6 @@ namespace AskGenerator.Business.Entities.Base
             if (pair.Value != null)
             {
                 string xml = sm.Serialize(pair.Value);
-                xml = xmlReplacer.Replace(xml, string.Empty);
                 writer.WriteRaw(xml);
             }
 

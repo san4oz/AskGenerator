@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
@@ -23,6 +24,8 @@ namespace AskGenerator.Business
             return serializer;
         }
 
+        static Regex xmlReplacer = new Regex(@"\<\?xml.+\?\>(\r\n)?", RegexOptions.Compiled);
+
         public string Serialize<T>(T obj)
         {
             var xws = new XmlWriterSettings();
@@ -37,7 +40,8 @@ namespace AskGenerator.Business
                 GetSerializer(obj.GetType()).Serialize(xmlWriter, obj, ns);
                 xmlWriter.Flush();
                 stringWriter.Flush();
-                return stringWriter.ToString();
+
+                return xmlReplacer.Replace(stringWriter.ToString(), string.Empty);
             }
         }
 

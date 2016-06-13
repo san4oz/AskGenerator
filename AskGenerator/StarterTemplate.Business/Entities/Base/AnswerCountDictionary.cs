@@ -26,6 +26,41 @@ namespace AskGenerator.Business.Entities.Base
             Avg = new Mark();
         }
 
+        public Mark Avg { get; set; }
+
+        public double D()
+        {
+            double result = 0;
+            int totalCount = 0;
+            foreach (var key in Keys)
+            {
+                var count = this[key];
+                result = result + Math.Pow(key, 2) * count;
+                totalCount += count;
+            }
+            result /= (double)totalCount;
+            return result - Math.Pow(Avg.Answer, 2);
+        }
+
+        protected override void OnSerialized(System.Xml.XmlWriter writer)
+        {
+            writer.WriteStartElement("avg");
+            writer.WriteRaw(new XmlSerializerManager().Serialize(Avg));
+            writer.WriteEndElement();
+        }
+
+        protected override void ReadItem(System.Xml.XmlReader reader, string nodeName)
+        {
+            if (nodeName.Equals("avg", StringComparison.InvariantCultureIgnoreCase))
+            {
+                Avg = (Mark)new XmlSerializerManager().Deserialize(reader, typeof(Mark));
+            }
+            else
+            {
+                base.ReadItem(reader, nodeName);
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SerializableDictionary&lt;TKey, TValue&gt;"/> class.
@@ -44,22 +79,6 @@ namespace AskGenerator.Business.Entities.Base
         protected AnswerCountDictionary(System.Runtime.Serialization.SerializationInfo info, System.Runtime.Serialization.StreamingContext context)
             : base(info, context)
         {
-        }
-
-        public Mark Avg { get; set; }
-
-        public double D()
-        {
-            double result = 0;
-            int totalCount = 0;
-            foreach (var key in Keys)
-            {
-                var count = this[key];
-                result = result + Math.Pow(key, 2) * count;
-                totalCount += count;
-            }
-            result /= (double)totalCount;
-            return result - Math.Pow(Avg.Answer, 2);
         }
     }
 }

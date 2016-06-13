@@ -117,17 +117,6 @@ namespace AskGenerator.Business.Entities.Base
         }
 
         /// <summary>
-        /// Exexuted before serializing.
-        /// </summary>
-        protected virtual void OnSerializing() { }
-
-
-        /// <summary>
-        /// Exexuted after deserialized.
-        /// </summary>
-        protected virtual void OnDeserialized() { }
-
-        /// <summary>
         /// Gets the XML schema for the XML serialization.
         /// </summary>
         /// <returns>An XML schema for the serialized object.</returns>
@@ -174,7 +163,10 @@ namespace AskGenerator.Business.Entities.Base
             {
                 this.WriteItem(writer, keyValuePair);
             }
+            OnSerialized(writer);
         }
+
+        protected virtual void OnSerialized(XmlWriter writer) { }
 
         /// <summary>
         /// Deserializes the dictionary item.
@@ -183,17 +175,24 @@ namespace AskGenerator.Business.Entities.Base
         private void ReadItem(XmlReader reader)
         {
             var name = reader.Name;
-            reader.ReadStartElement(this.ItemTagName);
+            reader.ReadStartElement();
             try
             {
-                this.Add(this.ReadKey(reader), this.ReadValue(reader));
+                ReadItem(reader, name);
             }
             finally
             {
                 reader.ReadEndElement();
             }
         }
-#warning Write here
+
+        protected virtual void ReadItem(XmlReader reader, string nodeName)
+        {
+            if (nodeName.Equals(this.ItemTagName))
+            {
+                this.Add(this.ReadKey(reader), this.ReadValue(reader));
+            }
+        }
 
         /// <summary>
         /// Deserializes the dictionary item's key.

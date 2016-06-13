@@ -82,10 +82,10 @@ namespace AskGenerator.Controllers.Admin
                         }
                         tq.Answer = tq.Count != 0 ? tq.Answer / tq.Count : 0;
                     }
-                    //tqManager.Update(tqs);
-                    //UpdateGroupStatistic(voteList);
-                    //var teachers = UpdateBadges();
-                    UpdateTeams();
+                    tqManager.Update(tqs);
+                    UpdateGroupStatistic(voteList);
+                    var teachers = UpdateBadges();
+                    UpdateTeams(teachers);
                 }
                 catch (Exception e)
                 {
