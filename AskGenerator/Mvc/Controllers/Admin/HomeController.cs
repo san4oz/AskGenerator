@@ -185,6 +185,9 @@ namespace AskGenerator.Controllers.Admin
                 teachers = Site.TeacherManager.All();
 
             var questions = Site.QuestionManager.All();
+            var diffId = questions.First().Id;
+            var additionalId = questions.Last().Id;
+
             var allVotes = Site.VoteManager.All();
             var teams = Site.TeamManager.All();
 
@@ -195,10 +198,10 @@ namespace AskGenerator.Controllers.Admin
                     filteredTeachers = filteredTeachers.Where(t => t.TeamId == team.Id);
 
                 var teachersIds = filteredTeachers.ToDictionary(t => t.Id);
-                UpdateTeam(allVotes.Where(m => teachersIds.ContainsKey(m.TeacherId)).GroupBy(m => m.QuestionId),
+                UpdateTeam(allVotes.Where(m => teachersIds.ContainsKey(m.TeacherId)).GroupBy(m => m.QuestionId.Id),
                     team,
-                    questions.First().Id,
-                    questions.Last().Id);
+                    diffId,
+                    additionalId);
 
             }
             Site.TeamManager.Update(teams);
@@ -222,8 +225,6 @@ namespace AskGenerator.Controllers.Admin
             var allGroup = Site.GroupManager.Get("all");
             RecalculateGroupStatistic(studentVotes, allGroup, allStudents, difficultQuestion.Id);
         }
-
-       
         #endregion
 
         #region private
@@ -236,14 +237,14 @@ namespace AskGenerator.Controllers.Admin
             return result;
         }
 
-        private void UpdateTeam(IEnumerable<IGrouping<Question, Vote>> votes, Team model, string difficultId, string additionalMarkId = null)
+        private void UpdateTeam(IEnumerable<IGrouping<string, Vote>> votes, Team model, string difficultId, string additionalMarkId = null)
         {
             int maxCount = int.MinValue;
             float avgSum = 0;
-         //   var dictionary = new Dictionary<string, Mark>();
+
             foreach (var grouped in votes)
             {
-                var qDictionary = model.Marks.GetOrCreate(grouped.Key.Id);
+                var qDictionary = model.Marks.GetOrCreate(grouped.Key);
                 var count = 0;
                 var sum = 0;
                 foreach (var vote in grouped)

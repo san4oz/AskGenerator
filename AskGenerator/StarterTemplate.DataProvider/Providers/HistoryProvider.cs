@@ -16,11 +16,5 @@ namespace AskGenerator.DataProvider.Providers
         {
             return GetSet(s => s.Where(h => h.HistoryPrefix == prefix).ToDictionary(h => h.Id));
         }
-
-
-        public void UpdateAll(IList<History> list)
-        {
-            Execute(context => Update(context, list));
-        }
     }
 }

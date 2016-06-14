@@ -21,7 +21,7 @@ namespace AskGenerator.Business.Managers
             var list = await AllAsync();
             foreach (var note in list)
                 note.Versions.Remove(id);
-            await Task.Factory.StartNew(() => Provider.UpdateAll(list));
+            await Task.Factory.StartNew(() => Provider.Update(list));
         }
 
         public Dictionary<string, History> GetByPrefix(string prefix)

@@ -20,7 +20,7 @@ namespace AskGenerator.Business.Entities.Base
         /// <summary>
         /// The unique ID of versioned entity.
         /// </summary>
-        public string Id { get; set; }
+        public override string Id { get; set; }
 
         public History()
         { }
