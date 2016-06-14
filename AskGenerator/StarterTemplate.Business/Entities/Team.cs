@@ -50,7 +50,8 @@ namespace AskGenerator.Business.Entities
             stat.ClearRating = ClearRating;
             stat.AdditionalMark = AdditionalMark;
             stat.Rating = Rating;
-            stat.Marks = new SerializableDictionary<string, AnswerCountDictionary>(Marks);
+            if (Marks != null && Marks.Count > 0)
+                stat.Marks = new SerializableDictionary<string, AnswerCountDictionary>(Marks);
 
             Fields["Statistics"] = stat;
         }

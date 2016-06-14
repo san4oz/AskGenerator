@@ -32,6 +32,8 @@ namespace AskGenerator.Controllers.Admin
             if (team == null)
                 return HttpNotFound("Team ({0}) was not found.".FormatWith(id));
             var model = Map<Team, TeamViewModel>(team);
+
+            IsEditing = true;
             return View("Create", model);
         }
 

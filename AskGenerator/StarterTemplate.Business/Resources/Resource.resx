@@ -582,4 +582,7 @@
   <data name="RegistrationClosed" xml:space="preserve">
     <value>Вибачте, реєстрація тимчасово неможлива.</value>
   </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Зареєструватися</value>
+  </data>
 </root>
