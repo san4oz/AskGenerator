@@ -35,7 +35,9 @@ namespace AskGenerator.DataProvider.Providers
                 {
                     if (teacher.Id.IsEmpty())
                         teacher.Id = Guid.NewGuid().ToString();
-                    var groups = context.Groups.Include(x => x.Students).Include(x => x.Teachers).Where(x => ids.Contains(x.Id)).ToList();
+                    var groups = context.Groups.Where(x => ids.Contains(x.Id))
+                        .Include(x => x.Students).Include(x => x.Teachers)
+                        .ToList();
                     teacher.Groups = groups;
                     context.Teachers.Add(teacher);
                     context.SaveChanges();
@@ -60,11 +62,13 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                if (teacher.Groups.Count > 0) 
-                 {
-                   var groups = context.Groups.Include(x => x.Students).Include(x => x.Teachers).Where(x => ids.Contains(x.Id)).ToList();
-                   teacher.Groups = groups;
-                 }
+                if (teacher.Groups.Count > 0)
+                {
+                    var groups = context.Groups.Where(x => ids.Contains(x.Id))
+                        .Include(x => x.Students).Include(x => x.Teachers)
+                        .ToList();
+                    teacher.Groups = groups;
+                }
 
                 return Update(context, teacher);
             });
@@ -77,11 +81,9 @@ namespace AskGenerator.DataProvider.Providers
             {
                 if (original.Equals(teacher))
                     return false;
-                //if (!teacher.Groups.Count == 0)
                 
-                    var deletedGroups = original.Groups.Where(g => teacher.Groups.FirstOrDefault(g2 => g2.Id == g.Id) == null);
-                
-                    foreach (var g in deletedGroups.ToList())
+                var deletedGroups = original.Groups.Where(g => teacher.Groups.FirstOrDefault(g2 => g2.Id == g.Id) == null);
+                foreach (var g in deletedGroups.ToList())
                 {
                     g.Teachers.Remove(original);
                     context.Entry(g).State = EntityState.Modified;
