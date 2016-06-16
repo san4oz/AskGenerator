@@ -23,6 +23,10 @@ h1, h2, h3, h4, h5, h6,
     z-index: 1000;
 }
 
+.navbar-brand{
+    font-size: 26px;
+}
+
 legend {
     margin-top: 2px;
 }
@@ -45,6 +49,8 @@ legend {
 
 .banner {
     background-color: rgb(211, 207, 207);
+    background-image: linear-gradient(to bottom, #f5f5f5 0px, #e8e8e8 100%);
+    background-repeat: repeat-x;
     border-radius: 20px;
     display: inline-block;
     padding-bottom: 7px;
@@ -402,7 +408,9 @@ hr {
 }
 
 #legend {
-    background-color: #d0d0d0;
+    background-color: rgb(211, 207, 207);
+    background-image: linear-gradient(to bottom, #f5f5f5 0px, #e8e8e8 100%);
+    background-repeat: repeat-x;
     border-radius: 2px;
     display: inline-block;
     padding: 0;
@@ -417,7 +425,7 @@ hr {
     #legend .thumbnail {
         display: inline-block;
         min-height: 172px;
-        margin: 5px 5px 2px;
+        margin: 5px 10px 2px;
         padding: 0;
     }
 

@@ -112,6 +112,12 @@ namespace AskGenerator.App_Start.Routes
           );
 
             MapRoute(
+                name: "_Config",
+                url: "config/{action}",
+                defaults: new { controller = "Setting", action = "Website" }
+            );
+
+            MapRoute(
                 name: "_Default",
                 url: "{controller}/{action}",
                 defaults: new { controller = "Home", action = "Index" }

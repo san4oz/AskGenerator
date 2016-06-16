@@ -21,3 +21,8 @@ form.inline {
     margin: 0 auto;
     width: 90%;
 }
+
+.editor-field input[type="radio"], .editor-field input[type="checkbox"] {
+    position: relative;
+    top: -25px;
+}

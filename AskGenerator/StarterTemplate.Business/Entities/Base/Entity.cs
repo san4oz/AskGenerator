@@ -19,6 +19,11 @@ namespace AskGenerator.Business.Entities
     {
         public virtual string Id { get; set; }
 
+        /// <summary>
+        /// Indicates whether entity has empty fields.
+        /// </summary>
+        public bool HasEmptyFields { get { return Fields != null && Fields.Count > 0; } }
+
         protected EntityFields Fields { get; set; }
 
         public Entity()

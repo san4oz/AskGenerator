@@ -52,6 +52,9 @@ namespace AskGenerator.DataProvider.Providers
             var original = context.Set<T>().First(x => x.Id == entity.Id);
             if (original != null)
             {
+                if (entity.HasEmptyFields)
+                    original.CopyFieldsTo(entity);
+
                 if (original.Equals(entity))
                     return false;
                 context.Entry(original).CurrentValues.SetValues(entity);
