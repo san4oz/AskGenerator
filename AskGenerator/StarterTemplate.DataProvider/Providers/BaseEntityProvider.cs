@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.DataProvider.Providers
 {
+    /// <summary>
+    /// Base entity provider class with base operations/
+    /// </summary>
+    /// <typeparam name="T">The type of entity.</typeparam>
     public class BaseEntityProvider<T> : BaseProvider, IBaseEntityProvider<T>
         where T : Entity
     {
@@ -74,6 +78,9 @@ namespace AskGenerator.DataProvider.Providers
                 {
                     if (original.Equals(entity))
                         continue;
+                    if (entity.HasEmptyFields)
+                        original.CopyFieldsTo(entity);
+
                     context.Entry(original).CurrentValues.SetValues(entity);
                     changed = true;
                 }

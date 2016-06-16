@@ -15,6 +15,9 @@ using System.Xml.Serialization;
 
 namespace AskGenerator.Business.Entities
 {
+    /// <summary>
+    /// A base class for entity whith ID field and XML-serializable dictionary.
+    /// </summary>
     public abstract class Entity
     {
         public virtual string Id { get; set; }
