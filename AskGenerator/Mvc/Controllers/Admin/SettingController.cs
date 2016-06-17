@@ -27,7 +27,7 @@ namespace AskGenerator.Controllers.Admin
         [HttpGet]
         public ActionResult Website()
         {
-            var model = Map<WebsiteSettings, WebsiteSettingsModel>(Manager.Website());
+            var model = Map<WebsiteSettings, WebsiteSettingsModel>(Manager.Website(true));
             return View(model); 
         }
 
@@ -46,7 +46,7 @@ namespace AskGenerator.Controllers.Admin
         [HttpGet]
         public ActionResult General()
         {
-            var model = Map<GeneralSettings, GeneralSettingsModel>(Manager.General());
+            var model = Map<GeneralSettings, GeneralSettingsModel>(Manager.General(true));
             return View(model);
         }
 

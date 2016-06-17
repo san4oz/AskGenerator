@@ -18,6 +18,11 @@ h1, h2, h3, h4, h5, h6,
     font-weight: bold;
 }
 
+.navbar-inverse {
+    background-image: linear-gradient(to bottom, #3c3c3c 15%, #222 100%);
+    background-repeat: repeat-x;
+}
+
 .navbar-header {
     position: relative;
     z-index: 1000;

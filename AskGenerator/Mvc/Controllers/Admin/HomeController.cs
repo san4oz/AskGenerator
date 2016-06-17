@@ -58,6 +58,16 @@ namespace AskGenerator.Controllers.Admin
             }
         }
 
+        public async Task<ActionResult> SaveStatToHistory()
+        {
+            return await Task.Factory.StartNew<ActionResult>((state) => 
+            {
+                System.Web.HttpContext.Current = (System.Web.HttpContext)state;
+                Site.TeamManager.MoveToHistory();
+                return RedirectToAction("Index");
+            }, System.Web.HttpContext.Current);
+        }
+
         #region Recalculate
         public async Task<ActionResult> Recalculate()
         {

@@ -13,5 +13,10 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// </summary>
         /// <param name="entity">Entity to load history.</param>
         void LoadHistory(TEntity entity);
+
+        /// <summary>
+        /// Moves all entities statistic to the history.
+        /// </summary>
+        void MoveToHistory();
     }
 }

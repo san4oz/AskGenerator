@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -60,6 +61,11 @@ namespace System
         {
             foreach (var t in source) action(t);
             return source;
+        }
+
+        public static bool IsEmpty<T>(this ICollection<T> source)
+        {
+            return source == null || !source.Any();
         }
     }
 }

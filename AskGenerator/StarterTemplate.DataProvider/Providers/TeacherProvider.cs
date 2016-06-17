@@ -79,6 +79,9 @@ namespace AskGenerator.DataProvider.Providers
             var original = context.Teachers.First(x => x.Id == teacher.Id);
             if (original != null)
             {
+                if (teacher.HasEmptyFields)
+                    original.CopyFieldsTo(teacher);
+
                 if (original.Equals(teacher))
                     return false;
                 

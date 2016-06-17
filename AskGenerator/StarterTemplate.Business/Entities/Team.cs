@@ -57,9 +57,10 @@ namespace AskGenerator.Business.Entities
         }
 
         #region IVersionedStatistics members
+        public const string Prefix = "team";
         public string HistoryPrefix
         {
-            get { return "team"; }
+            get { return Name; }
         }
 
         [NotMapped]
