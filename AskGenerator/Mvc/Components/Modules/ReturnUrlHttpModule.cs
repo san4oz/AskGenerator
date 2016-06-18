@@ -27,18 +27,18 @@ namespace AskGenerator.Mvc.Modules
             // request and response properties.
             HttpApplication application = (HttpApplication)source;
             HttpContext context = application.Context;
-            string returnUrl = null;
-            foreach (var key in context.Request.Params.AllKeys)
+            string returnUrlKey = null;
+            foreach (var key in context.Request.QueryString.AllKeys)
             {
                 if (key.Equals("returnUrl", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    returnUrl = key;
+                    returnUrlKey = key;
                     break;
                 }
             }
-            if (!returnUrl.IsEmpty())
+            if (!returnUrlKey.IsEmpty())
             {
-                var url = context.Request.Params[returnUrl];
+                var url = context.Request.QueryString[returnUrlKey];
                 ((MvcHandler)context.Handler).RequestContext.RouteData.Values["returnUrl"] = url;
             }
         }
