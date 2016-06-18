@@ -427,6 +427,7 @@ hr {
 
 #legend.closed {
     height: 0px;
+    min-height: 5px;
 }
 
     .hide-panel{
@@ -436,6 +437,7 @@ hr {
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         box-sizing: content-box;
+        cursor: pointer;
         height: 0;
         left: 40%;
         position: absolute;
@@ -443,16 +445,20 @@ hr {
         width: 120px;
     }
 
+    .hide-panel:hover{
+        border-bottom: 25px solid #f0f0f6;
+    }
+
     .hide-panel i.glyphicon{
         top: 5px;
     }
 
         .hide-panel i.glyphicon:before {
-            content: "";
+            content: ""
         }
 
     .closed .hide-panel i.glyphicon:before {
-        content: "";
+        content: "";;
     }
 
     #legend .col-xs-12 {
