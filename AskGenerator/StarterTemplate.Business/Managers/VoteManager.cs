@@ -12,6 +12,8 @@ namespace AskGenerator.Business.Managers
 {
     public class VoteManager : BaseEntityManager<Vote, IVoteProvider>, IVoteManager
     {
+        protected override string Name { get { return "Vote"; } }
+
         protected ITeacherQuestionManager TQ { get; private set; }
 
         public VoteManager(IVoteProvider provider, ITeacherQuestionManager tqManager)

@@ -503,6 +503,9 @@ a.help {
         .min-form form input {
             width: 80%;
         }
+         .min-form form input[type="checkbox"] {
+            margin-top : 8px;
+        }
 
 .field-validation-valid {
     display: none;

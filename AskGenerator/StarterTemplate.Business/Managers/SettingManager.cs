@@ -37,7 +37,7 @@ namespace AskGenerator.Business.Managers
             else
             {
                 if (ignoreCache)
-                    ToCache(res.Id, ignoreCache);
+                    ToCache(res.Id, settings);
 
                 settings.CopyFieldsTo(res);
             }
