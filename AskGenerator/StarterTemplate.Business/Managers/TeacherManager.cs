@@ -30,7 +30,10 @@ namespace AskGenerator.Business.Managers
 
         public bool Update(Teacher teacher, ICollection<string> ids)
         {
-            return Provider.Update(teacher, ids);
+            var result = Provider.Update(teacher, ids);
+            if (result)
+                RemoveFromCache(GetListKey());
+            return result;
         }
 
         public List<Teacher> List()
