@@ -76,5 +76,15 @@ namespace AskGenerator.Mvc.Components
         }
     }
 
-   
+    static class Initializer
+    {
+        public static void Init<T>(T page) where T : WebViewPage, IBaseWebViewPage
+        {
+            page.IsEditing = page.ViewBag.IsEditing ?? false;
+            var obj = page.ViewData.GetOrCreate("Robots", () => new RobotsInfo());
+            page.Robots = (RobotsInfo)obj;
+            page.R = new Resolver();
+        }
+    }
+
 }
