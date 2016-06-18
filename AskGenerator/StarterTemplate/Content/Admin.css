@@ -26,3 +26,6 @@ form.inline {
     position: relative;
     top: -25px;
 }
+textarea.multi-line {
+width: 90%;
+}
