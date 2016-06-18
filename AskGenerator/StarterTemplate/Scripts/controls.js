@@ -60,14 +60,13 @@
             if (!key)
                 key = lineKey.text();
             key = key && key.length > 20 ? key.substr(0, 20) : '';
-            if (!confirm('Delete ' + key + ' item?'))
-                return;
+
             self.confirm({
                 title: "Are you sure?",
                 text: 'Delete ' + key + ' item?'
             }, function () {
                 var id = target.data('id'),
-                href = this.href;
+                href = target.attr('href');
                 var data;
                 data = token ? { '__RequestVerificationToken': token } : {};
                 data.id = id;
@@ -97,16 +96,15 @@
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            cancelButtonText: "Ні, відмінити",
             closeOnConfirm: true
         };
-        if (setting.confirm) obj.confirmButtonText = setting.confirm;
-        if (setting.cancel) obj.cancelButtonText = setting.cancel;
+        if (settings.confirm) obj.confirmButtonText = setting.confirm;
+        if (settings.cancel) obj.cancelButtonText = setting.cancel;
 
 
         swal(obj, function (isConfirm) {
             if (isConfirm) success();
-            else fail();
+            else if(fail) fail();
         });
     }
 

@@ -1,5 +1,5 @@
 input:not([hidden]){
-    display: inline-block !important;
+    display: inline-block;
     max-width: 100%;
     width: 97%;
 }
