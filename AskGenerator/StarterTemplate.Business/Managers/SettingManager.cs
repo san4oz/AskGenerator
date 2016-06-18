@@ -24,18 +24,23 @@ namespace AskGenerator.Business.Managers
         /// <typeparam name="TSetting">Type of setting group.</typeparam>
         /// <param name="id">The ID of settings group. If <c>null</c> default group ID will be used.</param>
         /// <returns>Settings group.</returns>
-        protected virtual TSetting GetOrCreate<TSetting>(string id = null) where TSetting : Settings, new()
+        protected virtual TSetting GetOrCreate<TSetting>(string id = null, bool ignoreCache = false) where TSetting : Settings, new()
         {
             TSetting res = new TSetting();
             if (!id.IsEmpty())
                 res.Id = id;
 
-            var settings = FromCache(res.Id, () => Get(res.Id));
+            var settings = ignoreCache ? Get(res.Id) : FromCache(res.Id, () => Get(res.Id));
 
             if (settings == null)
                 Create(res);
             else
+            {
+                if (ignoreCache)
+                    ToCache(res.Id, ignoreCache);
+
                 settings.CopyFieldsTo(res);
+            }
 
             res.Initialize();
             return (TSetting)res;
@@ -57,18 +62,18 @@ namespace AskGenerator.Business.Managers
             return base.Update(settings);
         }
 
-        public WebsiteSettings Website()
+        public WebsiteSettings Website(bool ignoreCache = false)
         {
-            return GetOrCreate<WebsiteSettings>();
+            return GetOrCreate<WebsiteSettings>(ignoreCache: ignoreCache);
         }
 
         /// <summary>
         /// Gets general system settings.
         /// </summary>
         /// <returns>General system settings.</returns>
-        public GeneralSettings General()
+        public GeneralSettings General(bool ignoreCache = false)
         {
-            return GetOrCreate<GeneralSettings>();
+            return GetOrCreate<GeneralSettings>(ignoreCache: ignoreCache);
         }
     }
 }

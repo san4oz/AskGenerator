@@ -33,12 +33,6 @@ namespace AskGenerator.Mvc
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.NameIdentifier;
         }
 
-        protected void OnBefore(object sender, EventArgs e)
-        {
-            var x = 1 + 1;
-            Console.WriteLine(x);
-        }
-
         private void SetModelBinders()
         {
             var floarBinder = new FloatBinder();

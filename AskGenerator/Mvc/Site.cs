@@ -37,7 +37,13 @@ namespace AskGenerator
         #region private
         private static T Get<T>()
         {
-            return DependencyResolver.Current.GetService<T>();
+            var key = typeof(T).Name;
+            if (HttpContext.Current.Items.Contains(key))
+                return (T)(HttpContext.Current.Items[typeof(T).Name]);
+
+            var t = DependencyResolver.Current.GetService<T>();
+            HttpContext.Current.Items[typeof(T).Name] = t;
+            return t;
         }
         #endregion
     }

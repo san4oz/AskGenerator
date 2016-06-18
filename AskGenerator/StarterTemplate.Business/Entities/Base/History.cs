@@ -31,7 +31,7 @@ namespace AskGenerator.Business.Entities.Base
         {
             Id = stat.Id;
             HistoryPrefix = stat.HistoryPrefix;
-            Fields["Versions"] = stat.Versions;
+            Fields["Versions"] = stat.Versions ?? new Dictionary<int, object>(0);
         }
 
         /// <summary>

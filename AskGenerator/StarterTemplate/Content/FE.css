@@ -1,4 +1,4 @@
-body {
+﻿body {
     background-color: #f2f2f2;
     padding-top: 60px;
     background-color: #ccc;
@@ -18,9 +18,18 @@ h1, h2, h3, h4, h5, h6,
     font-weight: bold;
 }
 
+.navbar-inverse {
+    background-image: linear-gradient(to bottom, #3c3c3c 15%, #222 100%);
+    background-repeat: repeat-x;
+}
+
 .navbar-header {
     position: relative;
     z-index: 1000;
+}
+
+.navbar-brand{
+    font-size: 26px;
 }
 
 legend {
@@ -45,6 +54,8 @@ legend {
 
 .banner {
     background-color: rgb(211, 207, 207);
+    background-image: linear-gradient(to bottom, #f5f5f5 0px, #e8e8e8 100%);
+    background-repeat: repeat-x;
     border-radius: 20px;
     display: inline-block;
     padding-bottom: 7px;
@@ -402,13 +413,47 @@ hr {
 }
 
 #legend {
-    background-color: #d0d0d0;
+    background-color: rgb(211, 207, 207);
+    background-image: linear-gradient(to bottom, #f5f5f5 0px, #e8e8e8 100%);
+    background-repeat: repeat-x;
     border-radius: 2px;
     display: inline-block;
+    margin-top: 25px;
     padding: 0;
+    position: relative;
     text-align: center;
     width: 100%;
 }
+
+#legend.closed {
+    height: 0px;
+}
+
+    .hide-panel{
+        border-bottom: 25px solid #f3f3f3;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        box-sizing: content-box;
+        height: 0;
+        left: 40%;
+        position: absolute;
+        top: -25px;
+        width: 120px;
+    }
+
+    .hide-panel i.glyphicon{
+        top: 5px;
+    }
+
+        .hide-panel i.glyphicon:before {
+            content: "";
+        }
+
+    .closed .hide-panel i.glyphicon:before {
+        content: "";
+    }
 
     #legend .col-xs-12 {
         display: inline-block;
@@ -417,7 +462,7 @@ hr {
     #legend .thumbnail {
         display: inline-block;
         min-height: 172px;
-        margin: 5px 5px 2px;
+        margin: 5px 10px 2px;
         padding: 0;
     }
 

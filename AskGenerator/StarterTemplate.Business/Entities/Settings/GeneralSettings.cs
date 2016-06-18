@@ -20,6 +20,8 @@ namespace AskGenerator.Business.Entities.Settings
 
         public Iteration[] Iterations { get; set; }
 
+        public int CurrentIteration { get { return Iterations.IsEmpty() ? 0 : Iterations.Max(i => i.Id); } }
+
         public string[] BannedDomains { get; set; }
 
         /// <summary>
