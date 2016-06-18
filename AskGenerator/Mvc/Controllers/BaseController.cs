@@ -124,6 +124,10 @@ namespace AskGenerator.Mvc.Controllers
             return Mapper.Map<IList<TSource>, IList<TDestination>>(source);
         }
 
+        /// <summary>
+        /// Checks 'g-recaptcha-response' forms param and validate it. 
+        /// </summary>
+        /// <returns>Value indication whether validation completed with success</returns>
         protected async Task<bool> CheckCaptcha()
         {
             var captchaValues = Request.Form.GetValues("g-recaptcha-response");
@@ -164,7 +168,7 @@ namespace AskGenerator.Mvc.Controllers
             if (!string.IsNullOrWhiteSpace(subdir))
                 subdir = subdir.Trim('/') + '/';
 
-            var path = string.Format("/Content/Images/{0}{1}{2}", subdir ?? string.Empty, id, Path.GetExtension(image.FileName));
+            var path = PhotoPathFormat.FormatWith(subdir ?? string.Empty, id, Path.GetExtension(image.FileName));
             var serverPath = Server.MapPath(path);
 
             image.SaveAs(serverPath);
@@ -176,9 +180,9 @@ namespace AskGenerator.Mvc.Controllers
         /// Deletes file with specified <paramref name="path"/>.
         /// </summary>
         /// <param name="path">File path.</param>
-        protected void DeleteImage(string path)
+        protected void DeleteFile(string path)
         {
-            if (string.IsNullOrEmpty(path))
+            if (path.IsEmpty())
                 return;
 
             var serverPath = Server.MapPath(path);

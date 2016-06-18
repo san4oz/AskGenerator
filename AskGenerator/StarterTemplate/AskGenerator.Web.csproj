@@ -277,6 +277,7 @@
     <Content Include="Css\Site.css" />
     <Content Include="Css\select2.css" />
     <Content Include="Css\select2.min.css" />
+    <Content Include="Css\sweetalert.css" />
     <Content Include="Css\Theme\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Css\Theme\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Css\Theme\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -1282,6 +1283,8 @@
     <Content Include="Scripts\students.js" />
     <Content Include="Scripts\admin\Teacher.js" />
     <Content Include="Scripts\inputs\bootstrap-toggle.js" />
+    <Content Include="Scripts\sweetalert\sweetalert-dev.js" />
+    <Content Include="Scripts\sweetalert\sweetalert.min.js" />
     <Content Include="Scripts\twitter-bootstrap-hover-dropdown.js" />
     <Content Include="Scripts\twitter-bootstrap-hover-dropdown.min.js" />
     <None Include="Scripts\_references.js" />

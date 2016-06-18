@@ -1,5 +1,6 @@
 ﻿using AskGenerator.Mvc.Helpers;
 using Resources;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -78,7 +79,7 @@ namespace AskGenerator.Helpers
             message.Subject = subject;
 
             message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(plainBody ?? string.Empty, TextPlain));
-            if (string.IsNullOrEmpty(body))
+            if (!body.IsNullOrWhiteSpace())
             {
                 message.Body = plainBody ?? string.Empty;
             }
