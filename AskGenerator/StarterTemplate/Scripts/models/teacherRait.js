@@ -41,8 +41,14 @@
         GTM.trackVoteClick(self.selected);
         if (!self.selected) sendVote(option, $index, token, success);
         else if (self.selected !== self.value) {
-            if (confirm('Change vote ?')) sendVote(option, $index, token, success);
-            else self.mouseOut();
+            Controls.confirm({
+                title: "Ви впевнені?",
+                text: "Ви збиратесь переголосувати!",
+                confirm: "Так, переголосувати!",
+                cancel: "Ні, відмінити",
+            }, function () { sendVote(option, $index, token, success) },
+               self.mouseOut
+            );
         }
 
     };
