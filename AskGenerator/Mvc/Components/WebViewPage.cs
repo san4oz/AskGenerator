@@ -47,6 +47,7 @@ namespace AskGenerator.Mvc.Components
         }
     }
 
+
     public class BaseWebViewPage : WebViewPage, IBaseWebViewPage
     {
         public bool IsEditing { get; set; }
@@ -85,4 +86,5 @@ namespace AskGenerator.Mvc.Components
             page.R = new Resolver();
         }
     }
+
 }

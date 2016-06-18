@@ -114,8 +114,8 @@ namespace AskGenerator.Controllers.Admin
                 var q = QuestionManager.Extract(id);
                 if (q != null)
                 {
-                    base.DeleteImage(q.LeftLimit.Image);
-                    base.DeleteImage(q.RightLimit.Image);
+                    base.DeleteFile(q.LeftLimit.Image);
+                    base.DeleteFile(q.RightLimit.Image);
                     return Json(q);
                 }
                 return Json(false);

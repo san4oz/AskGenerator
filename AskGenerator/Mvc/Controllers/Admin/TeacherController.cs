@@ -91,7 +91,7 @@ namespace AskGenerator.Controllers.Admin
                 var q = TeacherManager.Extract(id);
                 if (q != null)
                 {
-                    DeleteImage(q.Image);
+                    DeleteFile(q.Image);
                     return Json(q);
                 }
                 return Json(false);

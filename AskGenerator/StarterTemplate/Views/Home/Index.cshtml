@@ -1,8 +1,12 @@
 ﻿@{
     ViewBag.Title = @Resource.Voting;
 }
+@section Styles{
+    @Styles.Render("~/Css/sweetalert.css")
+}
 
 @Scripts.Render("~/bundles/angular")
+
 @Html.AntiForgeryToken()
 <div ng-app="TeachersVote" id="TeachersVote">
     <div ng-view id="view" class="container loading popover">
@@ -20,4 +24,5 @@
     @Scripts.Render("~/bundles/models")
     @Scripts.Render("~/Scripts/app.js")
     @Scripts.Render("~/bundles/controllers")
+    @Scripts.Render("~/Scripts/sweetalert/sweetalert.min.js")
 }

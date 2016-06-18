@@ -60,31 +60,53 @@
             if (!key)
                 key = lineKey.text();
             key = key && key.length > 20 ? key.substr(0, 20) : '';
-            if (!confirm('Delete ' + key + ' item?'))
-                return;
 
-            var id = target.data('id'),
-                href = this.href;
-            var data;
-            data = token ? { '__RequestVerificationToken': token } : {};
-            data.id = id;
-            $.ajax(href, {
-                method: 'post', data: data,
-                success: function (d) {
-                    if (d) {
+            self.confirm({
+                title: "Are you sure?",
+                text: 'Delete ' + key + ' item?'
+            }, function () {
+                var id = target.data('id'),
+                href = target.attr('href');
+                var data;
+                data = token ? { '__RequestVerificationToken': token } : {};
+                data.id = id;
+                $.ajax(href, {
+                    method: 'post', data: data,
+                    success: function (d) {
+                        if (d) {
 
-                        if (line.length > 0)
-                            line = $(line[0]);
-                        line.animate({ height: 0, opacity: 0 }, 250, function () { line.remove() });
+                            if (line.length > 0)
+                                line = $(line[0]);
+                            line.animate({ height: 0, opacity: 0 }, 250, function () { line.remove() });
+                        }
+                    }, error: function (data) {
+                        if (data.url)
+                            location.assign(data.url);
+                        return data;
                     }
-                }, error: function (data) {
-                    if (data.url)
-                        location.assign(data.url);
-                    return data;
-                }
+                });
             });
         });
     };
+
+    self.confirm = function (settings, success, fail) {
+        var obj = {
+            title: settings.title,
+            text: settings.text,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            closeOnConfirm: true
+        };
+        if (settings.confirm) obj.confirmButtonText = setting.confirm;
+        if (settings.cancel) obj.cancelButtonText = setting.cancel;
+
+
+        swal(obj, function (isConfirm) {
+            if (isConfirm) success();
+            else if(fail) fail();
+        });
+    }
 
     var initScroll = function () {
         var toTop = $('#toTop');
