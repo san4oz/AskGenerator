@@ -26,6 +26,14 @@ Pages.Board = (function () {
         }
     };
 
+    self.toggleLegend = function () {
+        var legend = $('#legend');
+        legend.toggleClass('closed');
+        legend.children('.badge-row').toggleClass('hidden');
+        
+    };
+    $('#legend').click(self.toggleLegend);
+
     self.init = function () {
         self.loadBoard(function () {
             var popover = $('#details-popover');
@@ -99,7 +107,7 @@ Pages.Board = (function () {
                 else $this.fadeOut(speed);
             }
         });
-    }
+    };
 
     self.initSubscibe = function () {
         var form = $('.subscribe');

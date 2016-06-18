@@ -1,4 +1,4 @@
-body {
+﻿body {
     background-color: #f2f2f2;
     padding-top: 60px;
     background-color: #ccc;
@@ -418,10 +418,42 @@ hr {
     background-repeat: repeat-x;
     border-radius: 2px;
     display: inline-block;
+    margin-top: 25px;
     padding: 0;
+    position: relative;
     text-align: center;
     width: 100%;
 }
+
+#legend.closed {
+    height: 0px;
+}
+
+    .hide-panel{
+        border-bottom: 25px solid #f3f3f3;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        box-sizing: content-box;
+        height: 0;
+        left: 40%;
+        position: absolute;
+        top: -25px;
+        width: 120px;
+    }
+
+    .hide-panel i.glyphicon{
+        top: 5px;
+    }
+
+        .hide-panel i.glyphicon:before {
+            content: "";
+        }
+
+    .closed .hide-panel i.glyphicon:before {
+        content: "";
+    }
 
     #legend .col-xs-12 {
         display: inline-block;
