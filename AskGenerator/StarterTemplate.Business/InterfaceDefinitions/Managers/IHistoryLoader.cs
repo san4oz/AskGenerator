@@ -12,7 +12,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// Loads history to specified <see cref="entity"/>.
         /// </summary>
         /// <param name="entity">Entity to load history.</param>
-        void LoadHistory(TEntity entity);
+        TEntity LoadHistory(TEntity entity);
 
         /// <summary>
         /// Moves all entities statistic to the history.

@@ -23,9 +23,10 @@ namespace AskGenerator.Business.Managers
             Settings = settingManager;
         }
 
-        public void LoadHistory(Team entity)
+        public Team LoadHistory(Team entity)
         {
             HistoryManager.Get(entity.Id).Apply(entity);
+            return entity;
         }
 
 
@@ -41,11 +42,11 @@ namespace AskGenerator.Business.Managers
                 var teamHistory = hist.GetOrDefault(team.Id);
                 if (teamHistory == null)
                 {
-                    teamHistory = new History((IVersionedStatistics<object>)team);
+                    teamHistory = new History(team.Id, Team.Prefix);
                     newHistories.Add(teamHistory);
                 }
 
-                teamHistory.Versions[iteration] = CreateStat(team);
+                teamHistory.GetVersions<Team.Statistics>()[iteration] = CreateStat(team);
             }
             HistoryManager.Update(hist.Values);
             newHistories.AsParallel().ForAll(h => HistoryManager.Create(h));

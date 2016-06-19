@@ -14,11 +14,15 @@ namespace AskGenerator.Mvc.Controllers
     public class DetailsController : BaseController
     {
         [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client, VaryByParam = "id")]
-        public async Task<ActionResult> Team(string id = AskGenerator.Business.Entities.Team.AllTeachersTeamId)
+        public async Task<ActionResult> Team(string id = AskGenerator.Business.Entities.Team.AllTeachersTeamId, int iter = -1)
         {
             var model = new TeamResultsViewModel();
             model.Id = id;
-            var teams = await Site.TeamManager.AllAsync();
+
+            var manager = Site.TeamManager;
+            var teams = await manager.AllAsync();
+            if (iter != -1)
+                teams.AsParallel().ForAll(t => manager.LoadHistory(t).InitStatistics(iter));
             var team = teams.SingleOrDefault(t => t.Id.Equals(model.Id, StringComparison.InvariantCultureIgnoreCase));
             if (team == null)
             {

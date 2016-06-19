@@ -25,13 +25,10 @@ namespace AskGenerator.Business.Entities.Base
         public History()
         { }
 
-        public IDictionary<int, object> Versions { get { return Fields.GetOrDefault<Dictionary<int, object>>("Versions"); } }
-
-        public History(IVersionedStatistics<object> stat)
+        public History(string id, string prefix)
         {
-            Id = stat.Id;
-            HistoryPrefix = stat.HistoryPrefix;
-            Fields["Versions"] = stat.Versions ?? new Dictionary<int, object>(0);
+            Id = id;
+            HistoryPrefix = prefix;
         }
 
         /// <summary>
@@ -41,7 +38,21 @@ namespace AskGenerator.Business.Entities.Base
         /// <param name="stat">Object to set history to.</param>
         public void Apply<TStat>(IVersionedStatistics<TStat> stat)
         {
-            stat.Versions = Fields.GetOrDefault<Dictionary<int, TStat>>("Versions");
+            stat.Versions = Fields.GetOrDefault<SerializableDictionary<int, TStat>>("Versions");
+        }
+
+        public IDictionary<int, TStat> GetVersions<TStat>()
+        {
+            return Fields.GetOrCreate<SerializableDictionary<int, TStat>>("Versions");
+        }
+
+        /// <summary>
+        /// Sets versions to history.
+        /// </summary>
+        /// <typeparam name="TStat"></typeparam>
+        public void SetVersions<TStat>(IDictionary<int, TStat> versions)
+        {
+            Fields["Versions"] = new SerializableDictionary<int, TStat>(versions);
         }
     }
 }

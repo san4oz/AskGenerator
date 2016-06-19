@@ -63,7 +63,12 @@ namespace AskGenerator.Controllers.Admin
             return await Task.Factory.StartNew<ActionResult>((state) => 
             {
                 System.Web.HttpContext.Current = (System.Web.HttpContext)state;
+
                 Site.TeamManager.MoveToHistory();
+
+                if (Request.IsAjaxRequest())
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
                 return RedirectToAction("Index");
             }, System.Web.HttpContext.Current);
         }
