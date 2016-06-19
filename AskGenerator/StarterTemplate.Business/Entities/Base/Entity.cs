@@ -25,7 +25,7 @@ namespace AskGenerator.Business.Entities
         /// <summary>
         /// Indicates whether entity has empty fields.
         /// </summary>
-        public bool HasEmptyFields { get { return Fields != null && Fields.Count > 0; } }
+        public bool HasEmptyFields { get { return Fields == null || Fields.Count == 0; } }
 
         protected EntityFields Fields { get; set; }
 

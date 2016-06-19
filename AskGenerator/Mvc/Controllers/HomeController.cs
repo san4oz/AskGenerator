@@ -157,7 +157,7 @@ namespace AskGenerator.Mvc.Controllers
         }
 
         [HttpPost]
-        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Any)]
+        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Server)]
         [ActionName("Board")]
         public async Task<ViewResult> BoardPost()
         {
