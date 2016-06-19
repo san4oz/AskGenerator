@@ -19,7 +19,7 @@ namespace AskGenerator.Business.Entities
         public virtual ICollection<Teacher> Teachers { get; set; }
 
         [NotMapped]
-        public float Avg { get; set; }
+        public float AverageVote { get; set; }
 
         [NotMapped]
         /// <summary>
@@ -60,17 +60,14 @@ namespace AskGenerator.Business.Entities
         {
             var stat = Fields.GetOrCreate<Statistics>("Statistics", () => new Statistics());
 
-            stat.AverageVote = Avg;
+            stat.AverageVote = AverageVote;
             stat.StudentsCount = StudentsCount;
             stat.Marks = new SerializableDictionary<string, AnswerCountDictionary>(Marks);
             stat.Rating = Rating;
         }
 
         #region IVersionedStatistics members
-        public string HistoryPrefix
-        {
-            get { return "group"; }
-        }
+        public const string Prefix = "group";
 
         [NotMapped]
         public Dictionary<int, Statistics> Versions { get; set; }
@@ -87,7 +84,7 @@ namespace AskGenerator.Business.Entities
 
         protected void InitStatiscics(Statistics stat)
         {
-            Avg = stat.AverageVote;
+            AverageVote = stat.AverageVote;
             StudentsCount = stat.StudentsCount;
             Marks = stat.Marks ?? new Dictionary<string, AnswerCountDictionary>();
             Rating = stat.Rating ?? new Mark();

@@ -205,13 +205,13 @@ namespace AskGenerator.Mvc.Controllers
             var result = new Dictionary<string, LimitViewModel>(questions.Count * 2);
             foreach (var question in questions)
             {
-                if (question.LeftLimit.AvgLimit > 0)
+                if (question.LeftLimit.IsEnabled)
                 {
                     var badge = Map<Question.Limit, LimitViewModel>(question.LeftLimit);
                     badge.Id = question.Id;
                     result.Add(badge.Id + "l", badge);
                 }
-                if (question.RightLimit.AvgLimit > 0)
+                if (question.RightLimit.IsEnabled)
                 {
                     var badge = Map<Question.Limit, LimitViewModel>(question.RightLimit);
                     badge.Id = question.Id;
@@ -233,7 +233,7 @@ namespace AskGenerator.Mvc.Controllers
             var questions = QuestionManager.All();
             var badges = CreateBadges(questions);
 
-            foreach (var teacher in teachers)
+            foreach (var teacher in teachers.AsParallel())
             {
                 var tmodel = Map<Teacher, TeacherViewModel>(teacher);
 

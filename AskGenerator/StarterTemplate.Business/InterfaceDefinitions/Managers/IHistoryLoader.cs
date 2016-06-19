@@ -15,6 +15,12 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         TEntity LoadHistory(TEntity entity);
 
         /// <summary>
+        /// Loads history to specified <see cref="entities"/>.
+        /// </summary>
+        /// <param name="entities">List of entities to load history.</param>
+        void LoadHistory(IList<TEntity> entities);
+
+        /// <summary>
         /// Moves all entities statistic to the history.
         /// </summary>
         void MoveToHistory();

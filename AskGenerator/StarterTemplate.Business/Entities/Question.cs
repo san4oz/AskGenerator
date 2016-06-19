@@ -32,8 +32,6 @@ namespace AskGenerator.Business.Entities
 
         public class Limit
         {
-            public float AvgLimit { get; set; }
-
             /// <summary>
             /// Gets or sets path to the person image.
             /// </summary>
@@ -45,14 +43,7 @@ namespace AskGenerator.Business.Entities
             [MaxLength(250)]
             public string Description { get; set; }
 
-            [NotMapped]
-            public bool IsAvaliable
-            {
-                get
-                {
-                    return AvgLimit > 0;
-                }
-            }
+            public bool IsEnabled { get; set; }
         }
     }
 }

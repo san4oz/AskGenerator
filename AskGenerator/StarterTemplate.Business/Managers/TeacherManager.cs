@@ -121,5 +121,16 @@ namespace AskGenerator.Business.Managers
             HistoryManager.Get(entity.Id).Apply(entity);
             return entity;
         }
+
+        public void LoadHistory(IList<Teacher> entities)
+        {
+            var notes = HistoryManager.GetByPrefix(Teacher.Prefix);
+            foreach (var entity in entities.AsParallel())
+            {
+                var history = notes.GetOrDefault(entity.Id);
+                if (history != null)
+                    history.Apply(entity);
+            }
+        }
     }
 }

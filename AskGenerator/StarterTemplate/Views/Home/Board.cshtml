@@ -6,13 +6,14 @@
     Robots.Description = "Рейтинг виклачів Житомирського державного технологічного університету складений за результатами голосів студентів." + Environment.NewLine
         + " Кращі та гірші викладачі за різними критеріями.";
     ViewBag.Title = @Resources.Resource.Board;
+    if (Model.Iteration.Id != -1) Robots.Index = false;
 }
 
 @Banner()
 <h1 class="col-md-offset-1 col-md-5 col-lg-4">@Resources.Resource.Board</h1>
 <h3 class="col-md-6 col-lg-7">@Resources.Resource.VotedStudentsFormat.FormatWith(Model.UniqueUsers) <span id="data-from-wrapper" class="h4"></span></h3>
 @Legend()
-<section id="teacherBoard" class="row" data-src="@Url.Action("Board")">
+<section id="teacherBoard" class="row" data-src="@Url.Action("Board", new { i = Model.Iteration.Id})">
     <div id="loader" class="popover"></div>
 </section>
 <article id="details-popover" hidden="hidden">

@@ -66,6 +66,7 @@ namespace AskGenerator.Controllers.Admin
 
                 Site.TeamManager.MoveToHistory();
                 Site.TeacherManager.MoveToHistory();
+                Site.GroupManager.MoveToHistory();
 
                 if (Request.IsAjaxRequest())
                     return Json(true, JsonRequestBehavior.AllowGet);
@@ -126,7 +127,7 @@ namespace AskGenerator.Controllers.Admin
             foreach (var question in questions)
             {
                 IEnumerable<Teacher> ordered = teachers;
-                if (question.LeftLimit.IsAvaliable)
+                if (question.LeftLimit.IsEnabled)
                 {
                     ordered = ordered.OrderBy(t =>
                     {
@@ -143,7 +144,7 @@ namespace AskGenerator.Controllers.Admin
                     int count = GiveBadges(question, ordered, 'l');
                     ordered = ordered.Skip(count);
                 }
-                if (question.RightLimit.IsAvaliable)
+                if (question.RightLimit.IsEnabled)
                 {
                     ordered = ordered.OrderByDescending(t =>
                     {
@@ -337,7 +338,7 @@ namespace AskGenerator.Controllers.Admin
             if (group.Marks.Count == 0)
             {
                 group.StudentsCount = 0;
-                group.Avg = 0;
+                group.AverageVote = 0;
             }
             else
             {
@@ -361,7 +362,7 @@ namespace AskGenerator.Controllers.Admin
                 }
 
                 group.StudentsCount = uniqueAccounts;
-                group.Avg = avgSum / group.Marks.Count;
+                group.AverageVote = avgSum / group.Marks.Count;
             }
 
 

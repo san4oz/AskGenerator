@@ -585,4 +585,7 @@
   <data name="SignUp" xml:space="preserve">
     <value>Зареєструватися</value>
   </data>
+  <data name="Limit_IsEnabled" xml:space="preserve">
+    <value>Медаль доступна</value>
+  </data>
 </root>

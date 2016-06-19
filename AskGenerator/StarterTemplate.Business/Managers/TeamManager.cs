@@ -26,6 +26,16 @@ namespace AskGenerator.Business.Managers
             return entity;
         }
 
+        public void LoadHistory(IList<Team> entities)
+        {
+            var notes = HistoryManager.GetByPrefix(Team.Prefix);
+            foreach (var entity in entities)
+            {
+                var history = notes.GetOrDefault(entity.Id);
+                if (history != null)
+                    history.Apply(entity);
+            }
+        }
 
         public void MoveToHistory()
         {

@@ -76,12 +76,6 @@ namespace AskGenerator.App_Start.Routes
             );
 
             MapRoute(
-               name: "question/create",
-               url: "question/create",
-               defaults: new { controller = "Question", action = "Create" }
-           );
-
-            MapRoute(
                name: "question/edit",
                url: "question/edit/{id}",
                defaults: new { controller = "Question", action = "Edit" }
@@ -94,20 +88,14 @@ namespace AskGenerator.App_Start.Routes
          );
 
             MapRoute(
-              name: "question/list",
-              url: "question/list",
-              defaults: new { controller = "Question", action = "List" }
-          );
-
-            MapRoute(
                name: "questionAT/create",
-               url: "question/teacher/create",
+               url: "question/create",
                defaults: new { controller = "Question", action = "CreateTeacher" }
            );
 
             MapRoute(
               name: "questionAT/list",
-              url: "question/teacher/list",
+              url: "question/list",
               defaults: new { controller = "Question", action = "TeacherList" }
           );
 
