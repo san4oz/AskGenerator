@@ -6,7 +6,7 @@
     @Html.MenuRouteItem(@Resources.Resource.Teachers, "teacher/list")
     @Html.MenuRouteItem(@Resources.Resource.QuestionAbTeacher, "questionAT/list")
     <li><hr /></li>
-    @Html.MenuItem("Config", "Website", "Setting", area: "Admin")
+    @Html.MenuItem(@Resources.Resource.Config, "Website", "Setting", area: "Admin")
     @Html.MenuRouteItem(@Resources.Resource.Groups, "group/list")
     @Html.MenuRouteItem(Resources.Resource.Students, "student/list")
 </ul>

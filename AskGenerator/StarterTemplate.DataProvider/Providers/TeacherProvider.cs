@@ -62,17 +62,13 @@ namespace AskGenerator.DataProvider.Providers
         {
             return Execute(context =>
             {
-                if (teacher.Groups.Count >= 0)
-                {
-                    if (ids!=null)
-                    {
-                        var groups = context.Groups.Where(x => ids.Contains(x.Id))
-                            .Include(x => x.Students).Include(x => x.Teachers)
-                            .ToList();
-                        teacher.Groups = groups;
-                    }
-                }
-
+               if (ids!=null)
+               {
+                var groups = context.Groups.Where(x => ids.Contains(x.Id))
+                    .Include(x => x.Students).Include(x => x.Teachers)
+                    .ToList();
+                    teacher.Groups = groups;
+               }
                 return Update(context, teacher);
             });
         }
