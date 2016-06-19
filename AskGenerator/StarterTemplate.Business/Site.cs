@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
 using AskGenerator.Business.InterfaceDefinitions.Managers;
-using AskGenerator.DataProvider;
 using System.Web;
 
 using Microsoft.AspNet.Identity.Owin;
 using AskGenerator.Business.Entities;
+using AskGenerator.Business.InterfaceDefinitions.Providers;
 
 namespace AskGenerator
 {
@@ -30,9 +30,9 @@ namespace AskGenerator
 
         public static IBaseEntityManager<Subscriber> Subscribers { get { return Get<IBaseEntityManager<Subscriber>>(); } }
 
-        public static UserManager UserManager { get { return HttpContext.Current.GetOwinContext().GetUserManager<UserManager>(); } }
+        public static UserManagerBase UserManager { get { return HttpContext.Current.GetOwinContext().GetUserManager<UserManagerBase>(); } }
 
-        public static RoleManager RoleManager { get { return HttpContext.Current.GetOwinContext().GetUserManager<RoleManager>(); } }
+        public static RoleManagerBase RoleManager { get { return HttpContext.Current.GetOwinContext().GetUserManager<RoleManagerBase>(); } }
 
         #region private
         private static T Get<T>()

@@ -26,7 +26,7 @@ namespace AskGenerator.Controllers.Admin
         {
             get
             {
-                return Site.UserManager;
+                return (UserManager)Site.UserManager;
             }
         }
 
@@ -34,7 +34,7 @@ namespace AskGenerator.Controllers.Admin
         {
             get
             {
-                return Site.RoleManager;
+                return (RoleManager)Site.RoleManager;
             }
         }
 

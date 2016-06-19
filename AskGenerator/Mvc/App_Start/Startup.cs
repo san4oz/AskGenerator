@@ -1,4 +1,5 @@
-﻿using AskGenerator.DataProvider;
+﻿using AskGenerator.Business.InterfaceDefinitions.Providers;
+using AskGenerator.DataProvider;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -16,8 +17,8 @@ namespace AskGenerator.App_Start
             if (AppContext.Connection.StartsWith("test", System.StringComparison.OrdinalIgnoreCase))
                 Database.SetInitializer(new DropCreateDatabaseIfModelChanges<AppContext>());
             app.CreatePerOwinContext<AppContext>(AppContext.Create);
-            app.CreatePerOwinContext<UserManager>(UserManager.Create);
-            app.CreatePerOwinContext<RoleManager>(RoleManager.Create);
+            app.CreatePerOwinContext<UserManagerBase>(UserManager.Create);
+            app.CreatePerOwinContext<RoleManagerBase>(RoleManager.Create);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,

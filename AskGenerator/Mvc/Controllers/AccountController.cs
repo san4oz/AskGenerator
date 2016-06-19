@@ -28,7 +28,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             get
             {
-                return Site.UserManager;
+                return (UserManager)Site.UserManager;
             }
         }
 
@@ -36,7 +36,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             get
             {
-                return Site.RoleManager;
+                return (RoleManager)Site.RoleManager;
             }
         }
 
