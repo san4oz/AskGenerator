@@ -24,7 +24,7 @@ namespace AskGenerator.Controllers.Admin
         public StudentController()
         {
             StudentManager = Site.StudentManager;
-            UserManager = Site.UserManager;
+            UserManager = (UserManager)Site.UserManager;
         }
 
         [HttpGet]

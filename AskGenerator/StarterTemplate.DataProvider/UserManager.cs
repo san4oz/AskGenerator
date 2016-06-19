@@ -1,4 +1,5 @@
 ﻿using AskGenerator.Business.Entities;
+using AskGenerator.Business.InterfaceDefinitions.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -10,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.DataProvider
 {
-    public class UserManager : UserManager<User>
+    public class UserManager : UserManagerBase
     {
         public UserManager(IUserStore<User> store)
             : base(store)
         {
         }
 
-        public static UserManager Create(IdentityFactoryOptions<UserManager> options,
+        public static UserManagerBase Create(IdentityFactoryOptions<UserManagerBase> options,
                                                 IOwinContext context)
         {
             var db = context.Get<AppContext>();
@@ -44,14 +45,14 @@ namespace AskGenerator.DataProvider
             return base.CreateAsync(user, password);
         }
 
-        public virtual User FindByLoginKey(string key)
+        public override User FindByLoginKey(string key)
         {
             if (key.IsEmpty())
                 return null;
             return this.Users.SingleOrDefault(u => u.LoginKey == key);
         }
 
-        public virtual Task<User> FindByLoginKeyAsync(string key)
+        public override Task<User> FindByLoginKeyAsync(string key)
         {
             if (key.IsEmpty())
                 return null;

@@ -163,9 +163,11 @@
     <Compile Include="InterfaceDefinitions\Providers\IStudentProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\IFacultyProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\ISettingProvider.cs" />
+    <Compile Include="InterfaceDefinitions\Providers\UserManagerBase.cs" />
     <Compile Include="InterfaceDefinitions\Providers\IVoteProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\ITeamProvider.cs" />
     <Compile Include="InterfaceDefinitions\Providers\ITeacherQuestionProvider.cs" />
+    <Compile Include="InterfaceDefinitions\Providers\RoleManagerBase.cs" />
     <Compile Include="Managers\BaseEntityManager.cs" />
     <Compile Include="Managers\BaseManager.cs" />
     <Compile Include="Managers\GroupManager.cs" />
@@ -186,6 +188,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Site.cs" />
     <Compile Include="XmlSerializerManager.cs" />
   </ItemGroup>
   <ItemGroup>

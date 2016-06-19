@@ -28,7 +28,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             get
             {
-                return Site.UserManager;
+                return (UserManager)Site.UserManager;
             }
         }
 
@@ -36,7 +36,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             get
             {
-                return Site.RoleManager;
+                return (RoleManager)Site.RoleManager;
             }
         }
 
@@ -64,9 +64,6 @@ namespace AskGenerator.Mvc.Controllers
             return View();
         }
        
-
-        
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
