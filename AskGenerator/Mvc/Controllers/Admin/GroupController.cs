@@ -66,7 +66,7 @@ namespace AskGenerator.Controllers.Admin
             if (!ModelState.IsValid)
                 return View("Create", viewModel);
             var group = Map<GroupViewModel, Group>(viewModel);
-            Site.GroupManager.Update(group);
+            Site.GroupManager.Update(group, false);
             return RedirectToAction("List");
         }
         #endregion

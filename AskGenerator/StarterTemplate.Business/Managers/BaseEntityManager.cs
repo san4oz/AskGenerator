@@ -43,15 +43,17 @@ namespace AskGenerator.Business.Managers
         {
         }
 
-        public virtual bool Update(T entity)
+        public virtual bool Update(T entity, bool applyFields = true)
         {
-            entity.Apply();
+            if(applyFields)
+                entity.Apply();
             return Provider.Update(entity);
         }
 
-        public virtual void Update(IEnumerable<T> sequence)
+        public virtual void Update(IEnumerable<T> sequence, bool applyFields = true)
         {
-            sequence.Each(t => t.Apply());
+            if(applyFields)
+                sequence.Each(t => t.Apply());
             Provider.Update(sequence);
         }
 

@@ -53,7 +53,7 @@ namespace AskGenerator.Business.Managers
             return base.Create(settings);
         }
 
-        public override bool Update(Settings entity)
+        public override bool Update(Settings entity, bool applyFields = true)
         {
             RemoveFromCache(entity.Id);
             entity.Apply();

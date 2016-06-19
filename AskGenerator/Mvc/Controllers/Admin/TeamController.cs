@@ -55,7 +55,7 @@ namespace AskGenerator.Controllers.Admin
             if (!ModelState.IsValid)
                 return View("Create", viewModel);
             var model = Map<TeamViewModel, Team>(viewModel);
-            Site.TeamManager.Update(model);
+            Site.TeamManager.Update(model, false);
             return RedirectToAction("List");
         }
 

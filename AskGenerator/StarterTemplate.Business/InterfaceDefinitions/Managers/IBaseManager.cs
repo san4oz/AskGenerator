@@ -10,13 +10,14 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
     {
         bool Create(T entity);
 
-        bool Update(T entity);
+        bool Update(T entity, bool applyFields = true);
 
         /// <summary>
         /// Update each entity in sequence in one context.
         /// </summary>
         /// <param name="sequence">Entities to update.</param>
-        void Update(IEnumerable<T> sequence);
+        /// <param name="applyFields">Indicates whether fields should be filled before saving.</param>
+        void Update(IEnumerable<T> sequence, bool applyFields = true);
 
         bool Delete(string id);
 
