@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace AskGenerator.Business.Entities.Settings
 {
@@ -73,6 +74,12 @@ namespace AskGenerator.Business.Entities.Settings
             /// Voting end date.
             /// </summary>
             public DateTime End { get; set; }
+
+            /// <summary>
+            /// The number of voted users.
+            /// </summary>
+            [XmlElement("users")]
+            public short UniqueUsersCount { get; set; }
         }
     }
 }

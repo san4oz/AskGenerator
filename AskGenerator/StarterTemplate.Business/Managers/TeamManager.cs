@@ -14,25 +14,33 @@ namespace AskGenerator.Business.Managers
     {
         protected readonly IHistoryManager HistoryManager;
 
-        protected readonly ISettingManager Settings;
-
         public TeamManager(ITeamProvider provider, IHistoryManager historyManager, ISettingManager settingManager)
             : base(provider)
         {
             HistoryManager = historyManager;
-            Settings = settingManager;
         }
 
-        public void LoadHistory(Team entity)
+        public Team LoadHistory(Team entity)
         {
             HistoryManager.Get(entity.Id).Apply(entity);
+            return entity;
         }
 
+        public void LoadHistory(IList<Team> entities)
+        {
+            var notes = HistoryManager.GetByPrefix(Team.Prefix);
+            foreach (var entity in entities)
+            {
+                var history = notes.GetOrDefault(entity.Id);
+                if (history != null)
+                    history.Apply(entity);
+            }
+        }
 
         public void MoveToHistory()
         {
             var all = this.All();
-            var iteration = Settings.General(true).CurrentIteration + 1;
+            var iteration = Site.Settings.General(true).CurrentIteration + 1;
             var hist = HistoryManager.GetByPrefix(Team.Prefix);
             var newHistories = new List<History>();
 
@@ -41,11 +49,11 @@ namespace AskGenerator.Business.Managers
                 var teamHistory = hist.GetOrDefault(team.Id);
                 if (teamHistory == null)
                 {
-                    teamHistory = new History((IVersionedStatistics<object>)team);
+                    teamHistory = new History(team.Id, Team.Prefix);
                     newHistories.Add(teamHistory);
                 }
 
-                teamHistory.Versions[iteration] = CreateStat(team);
+                teamHistory.GetVersions<Team.Statistics>()[iteration] = CreateStat(team);
             }
             HistoryManager.Update(hist.Values);
             newHistories.AsParallel().ForAll(h => HistoryManager.Create(h));

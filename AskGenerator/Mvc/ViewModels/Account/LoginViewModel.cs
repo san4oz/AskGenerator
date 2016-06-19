@@ -29,5 +29,10 @@ namespace AskGenerator.ViewModels
 
         [Display(Name = "IsPersistent", ResourceType = typeof(R))]
         public bool IsPersistent { get; set; }
+
+        public LoginViewModel()
+        {
+            IsPersistent = true;
+        }
     }
 }

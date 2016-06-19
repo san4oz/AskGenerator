@@ -11,6 +11,8 @@ using System.Web.Mvc;
 
 namespace AskGenerator.ViewModels
 {
+    using R = Resources.Resource;
+
     public class LimitViewModel : IMapFrom<Question.Limit>
     {
         /// <summary>
@@ -19,20 +21,20 @@ namespace AskGenerator.ViewModels
         [ScaffoldColumn(false)]
         public string Id { get; set; }
 
-        [Range(0, 10.0)]
-        public float AvgLimit { get; set; }
+        [Display(Name = "Limit_IsEnabled", ResourceType = typeof(R))]
+        public bool IsEnabled { get; set; }
 
-        [Display(Name = "Photo", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "Photo", ResourceType = typeof(R))]
         public HttpPostedFileBase ImageFile { get; set; }
 
         [HiddenInput(DisplayValue = false)]
         public string Image { get; set; }
 
         [MaxLength(50)]
-        [Display(Name = "Tooltip", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "Tooltip", ResourceType = typeof(R))]
         public string ToolTip { get; set; }
 
-        [Display(Name = "Description", ResourceType = typeof(Resources.Resource))]
+        [Display(Name = "Description", ResourceType = typeof(R))]
         public string Description { get; set; }
     }
 }

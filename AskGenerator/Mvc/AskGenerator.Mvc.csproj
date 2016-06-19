@@ -200,14 +200,14 @@
     <Compile Include="ViewModels\Settings\WebsiteSettingsModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\GroupLoginKeys.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\LimitViewModel.cs" />
     <Compile Include="ViewModels\QuestionViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherDetailsViewModel.cs" />
     <Compile Include="ViewModels\TeamResultsViewModel.cs" />
     <Compile Include="ViewModels\FacultyViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
-    <Compile Include="ViewModels\RegistrationModel.cs" />
+    <Compile Include="ViewModels\Account\RegistrationModel.cs" />
     <Compile Include="ViewModels\StudentViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherComposeViewModel.cs" />
     <Compile Include="ViewModels\Teacher\TeacherListViewModel.cs" />
@@ -215,7 +215,7 @@
     <Compile Include="ViewModels\Teacher\BoardViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
     <Compile Include="ViewModels\VotingViewModel.cs" />
-    <Compile Include="ViewModels\KeyLoginViewModel.cs" />
+    <Compile Include="ViewModels\Account\KeyLoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

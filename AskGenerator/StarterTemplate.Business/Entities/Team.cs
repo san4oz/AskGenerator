@@ -58,10 +58,6 @@ namespace AskGenerator.Business.Entities
 
         #region IVersionedStatistics members
         public const string Prefix = "team";
-        public string HistoryPrefix
-        {
-            get { return Name; }
-        }
 
         [NotMapped]
         public Dictionary<int, Team.Statistics> Versions { get; set; }

@@ -145,7 +145,7 @@ namespace AskGenerator.Mvc.Controllers
         #region Board
         [HttpGet]
         [OutputCache(CacheProfile="Cache1Hour")]
-        public async Task<ViewResult> Board()
+        public async Task<ViewResult> Board(int i = -1)
         {
             var questions = await Site.QuestionManager.AllAsync();
             var badges = await Task.Factory.StartNew<Dictionary<string, LimitViewModel>>(() => CreateBadges(questions));
@@ -153,15 +153,23 @@ namespace AskGenerator.Mvc.Controllers
 
             var model = new BoardViewModel(questionsDictionary, badges);
             model.UniqueUsers = Site.VoteManager.UniqueUserCount();
+            model.Iteration.Id = i;
             return View(model);
         }
 
         [HttpPost]
-        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Server)]
+        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "i", Location = OutputCacheLocation.Server)]
         [ActionName("Board")]
-        public async Task<ViewResult> BoardPost()
+        public async Task<ViewResult> BoardPost(int i = -1)
         {
+            var manager = Site.TeacherManager;
             var teachers = await Site.TeacherManager.AllAsync(false);
+            if (i > -1)
+            {
+                manager.LoadHistory(teachers);
+                teachers.AsParallel().ForAll(t => t.InitStatistics(i));
+            }
+
             var model = new TeacherListViewModel();
             InitTeacherListViewModel(teachers, model);
             return View("_Board", model);

@@ -3,6 +3,7 @@ using AskGenerator.Business.Entities.Base;
 using AskGenerator.Business.InterfaceDefinitions.Managers;
 using AskGenerator.Business.InterfaceDefinitions.Providers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace AskGenerator.Business.Managers
         {
             var list = await AllAsync();
             foreach (var note in list)
-                note.Versions.Remove(id);
+                note.GetVersions<IDictionary>().Remove(id);
             await Task.Factory.StartNew(() => Provider.Update(list));
         }
 

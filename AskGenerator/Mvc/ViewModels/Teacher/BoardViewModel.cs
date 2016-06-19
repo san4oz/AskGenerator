@@ -14,6 +14,7 @@ namespace AskGenerator.Mvc.ViewModels
         {
             Questions = questions;
             Badges = badges ?? new Dictionary<string, LimitViewModel>();
+            Iteration = new Business.Entities.Settings.GeneralSettings.Iteration();
         }
 
         public Dictionary<string, LimitViewModel> Badges { get; set; }
@@ -21,5 +22,7 @@ namespace AskGenerator.Mvc.ViewModels
         public Dictionary<string, string> Questions { get; set; }
 
         public int UniqueUsers { get; set; }
+
+        public AskGenerator.Business.Entities.Settings.GeneralSettings.Iteration Iteration { get; set; }
     }
 }

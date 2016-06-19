@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.Business.InterfaceDefinitions.Managers
 {
-    public interface ITeacherManager : IBaseEntityManager<Teacher>
+    public interface ITeacherManager : IBaseEntityManager<Teacher>, IHistoryLoader<Teacher>
     {
         bool Create(Teacher teacher, ICollection<string> ids);
 
