@@ -30,10 +30,11 @@ namespace AskGenerator.Mvc.Controllers
                 team = Site.TeamManager.Get(model.Id);
             }
 
-            var teachers = await Site.TeacherManager.AllAsync(false);
+            var tManager = Site.TeacherManager;
+            var teachers = await tManager.AllAsync(false);
             if (model.Id != AskGenerator.Business.Entities.Team.AllTeachersTeamId)
                 teachers = teachers.Where(t => t.TeamId.Equals(id, StringComparison.InvariantCultureIgnoreCase)).ToList();
-
+            teachers.AsParallel().ForAll(t => tManager.LoadHistory(t).InitStatistics(iter));
 
             var questions = InitTeacherListViewModel(teachers, model);
 

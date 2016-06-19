@@ -10,11 +10,6 @@ namespace AskGenerator.Business.Entities.Base
     {
         string Id { get; }
 
-        /// <summary>
-        /// Gets prefix for history table.
-        /// </summary>
-        string HistoryPrefix { get; }
-
         Dictionary<int, TStat> Versions { get; set; }
 
         bool InitStatistics(int iterationID);

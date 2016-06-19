@@ -65,6 +65,7 @@ namespace AskGenerator.Controllers.Admin
                 System.Web.HttpContext.Current = (System.Web.HttpContext)state;
 
                 Site.TeamManager.MoveToHistory();
+                Site.TeacherManager.MoveToHistory();
 
                 if (Request.IsAjaxRequest())
                     return Json(true, JsonRequestBehavior.AllowGet);

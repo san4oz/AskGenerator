@@ -14,13 +14,10 @@ namespace AskGenerator.Business.Managers
     {
         protected readonly IHistoryManager HistoryManager;
 
-        protected readonly ISettingManager Settings;
-
         public TeamManager(ITeamProvider provider, IHistoryManager historyManager, ISettingManager settingManager)
             : base(provider)
         {
             HistoryManager = historyManager;
-            Settings = settingManager;
         }
 
         public Team LoadHistory(Team entity)
@@ -33,7 +30,7 @@ namespace AskGenerator.Business.Managers
         public void MoveToHistory()
         {
             var all = this.All();
-            var iteration = Settings.General(true).CurrentIteration + 1;
+            var iteration = Site.Settings.General(true).CurrentIteration + 1;
             var hist = HistoryManager.GetByPrefix(Team.Prefix);
             var newHistories = new List<History>();
 

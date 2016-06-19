@@ -51,10 +51,7 @@ namespace AskGenerator.Business.Entities
         }
 
         #region IVersionedStatistics members
-        public string HistoryPrefix
-        {
-            get { return "teach"; }
-        }
+        public const string Prefix = "teach";
 
         [NotMapped]
         public Dictionary<int, Statistics> Versions { get; set; }
