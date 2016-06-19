@@ -64,9 +64,6 @@ namespace AskGenerator.Mvc.Controllers
             return View();
         }
        
-
-        
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
