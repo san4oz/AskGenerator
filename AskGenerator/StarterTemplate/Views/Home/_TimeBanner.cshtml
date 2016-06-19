@@ -2,8 +2,8 @@
 @using AskGenerator.Business.Entities
 
 <div class="col-xs-12 banner">
-    <div class="col-md-offset-1 col-md-11 banner">
-        <div class="col-xs-12 col-sm-6 clockdiv" data-time="@WebsiteSettings.TimeBanner.ToString()">
+    <section class="col-xs-12 col-md-offset-1 col-md-11 banner">
+        <article class="col-xs-12 col-sm-6 clockdiv" data-time="@WebsiteSettings.TimeBanner.ToString()">
             <span class="h3" style="color:red;">@WebsiteSettings.TimeBanner.Header.Or("До оголошення результатів залишилось:").AsHtml()</span>
             <br />
             <div>
@@ -22,7 +22,7 @@
                 <span class="seconds"></span>
                 <div class="smalltext">секунд</div>
             </div>
-        </div>
+        </article>
         @using (Html.BeginForm("Subscribe", "Home", FormMethod.Post, new { @class = "form-horizontal col-xs-12 col-sm-6 subscribe" }))
         {
             if (WebsiteSettings.IsVotingEnabled)
@@ -42,5 +42,5 @@
                 </div>
             </div>
         }
-    </div>
+    </section>
 </div>

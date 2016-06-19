@@ -144,7 +144,7 @@ namespace AskGenerator.Mvc.Controllers
 
         #region Board
         [HttpGet]
-        [OutputCache(Duration = CacheDuration * 60, VaryByParam = "none", Location = OutputCacheLocation.Client)]
+        [OutputCache(CacheProfile="Cache1Hour")]
         public async Task<ViewResult> Board()
         {
             var questions = await Site.QuestionManager.AllAsync();
