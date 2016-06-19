@@ -588,4 +588,7 @@
   <data name="Limit_IsEnabled" xml:space="preserve">
     <value>Медаль доступна</value>
   </data>
+  <data name="Config" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
 </root>
