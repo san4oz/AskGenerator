@@ -7,23 +7,46 @@ using System.Runtime.Caching;
 
 namespace AskGenerator.Business.Managers
 {
+    /// <summary>
+    /// The base class for managers. Contains operations with cache.
+    /// </summary>
     public abstract class BaseManager
     {
         MemoryCache cache;
 
+        /// <summary>
+        /// Name of the manager. Used as prefix of cache keys.
+        /// </summary>
         protected abstract string Name { get; }
 
+        /// <summary>
+        /// Creates instance of manager with default state of cache.
+        /// </summary>
         public BaseManager()
         {
             cache = MemoryCache.Default;
         }
 
         #region GetKey
+        /// <summary>
+        /// Creates cache-key for argument by calling <see cref="ToString"/> method.
+        /// </summary>
+        /// <typeparam name="T">Type of argument.</typeparam>
+        /// <param name="arg">Argument.</param>
+        /// <returns>Created key.</returns>
         protected string GetKey<T>(T arg)
         {
             return ToString(arg);
         }
 
+        /// <summary>
+        /// Creates cache-key for arguments separated by '.' by calling <see cref="ToString"/> method.
+        /// </summary>
+        /// <typeparam name="T1">Type of 1-st argument.</typeparam>
+        /// <typeparam name="T2">Type of 2-nd argument.</typeparam>
+        /// <param name="arg1">Argument 1.</param>
+        /// <param name="arg2">Argument 2.</param>
+        /// <returns>Created key.</returns>
         protected string GetKey<T1, T2>(T1 arg1, T2 arg2)
         {
             var sb = new StringBuilder(ToString(arg1));
@@ -42,6 +65,13 @@ namespace AskGenerator.Business.Managers
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Creates cache-key for an array of arguments separated by '.' by calling <see cref="ToString"/> method.
+        /// </summary>
+        /// <typeparam name="T">Type of first argument.</typeparam>
+        /// <param name="arg1">Argument.</param>
+        /// <param name="args">An array of arguments.</param>
+        /// <returns>Created key.</returns>
         protected string GetKey<T1>(T1 arg1, params object[] args)
         {
             var sb = new StringBuilder(ToString(arg1));
@@ -85,6 +115,14 @@ namespace AskGenerator.Business.Managers
         #endregion
 
         #region FromCache
+        /// <summary>
+        /// Gets value from cache by specified cache-key.
+        /// </summary>
+        /// <typeparam name="TValue">Type of expected value.</typeparam>
+        /// <param name="key">Cache-key to get value by.</param>
+        /// <param name="function">Function to get new value if it was not found in cache.</param>
+        /// <param name="expiration">Time before new cache item will be expired.</param>
+        /// <returns>Retrived value.</returns>
         protected TValue FromCache<TValue>(string key, Func<TValue> function, DateTime? expiration = null)
         {
             var obj = cache.Get(Name + '_' + key);
@@ -99,22 +137,34 @@ namespace AskGenerator.Business.Managers
             return itemToSave;
         }
 
-        protected TValue FromCache<TValue>(string key, DateTime? expiration = null)
+
+        /// <summary>
+        /// Gets value from cache by specified cache-key.
+        /// </summary>
+        /// <typeparam name="TValue">Type of expected value.</typeparam>
+        /// <param name="key">Cache-key to get value by.</param>
+        /// <param name="expiration">Time before new cache item will be expired.</param>
+        /// <returns>Retrived value.</returns>
+        protected TValue FromCache<TValue>(string key)
         {
             key = Name + '_' + key;
             var obj = cache.Get(key);
             if (obj != null)
-            {
-                var item = (TValue)obj;
-                if (item != null)
-                    return item;
-            }
+                return (TValue)obj;
 
             return default(TValue);
         }
         #endregion
 
         #region ToCache
+        /// <summary>
+        /// Adds new item to cache.
+        /// </summary>
+        /// <typeparam name="TValue">Type of item.</typeparam>
+        /// <param name="key">Cache-key to save item by.</param>
+        /// <param name="function">Function to get value from.</param>
+        /// <param name="expiration">Time before new cache item will be expired.</param>
+        /// <returns>Created cache item.</returns>
         protected CacheItem ToCache<TValue>(string key, Func<TValue> function, DateTime? expiration = null)
         {
             var itemToSave = function();
@@ -122,6 +172,14 @@ namespace AskGenerator.Business.Managers
             return ToCache(key, itemToSave, expiration);
         }
 
+        /// <summary>
+        /// Adds new item to cache.
+        /// </summary>
+        /// <typeparam name="TValue">Type of item.</typeparam>
+        /// <param name="key">Cache-key to save item by.</param>
+        /// <param name="itemToSave">An item to save.</param>
+        /// <param name="expiration">Time before new cache item will be expired.</param>
+        /// <returns>Created cache item.</returns>
         protected CacheItem ToCache<TValue>(string key, TValue itemToSave, DateTime? expiration = null)
         {
             if (itemToSave == null)
@@ -137,6 +195,10 @@ namespace AskGenerator.Business.Managers
         }
         #endregion
 
+        /// <summary>
+        /// Removes item from cache by its key.
+        /// </summary>
+        /// <param name="key">Cache-key.</param>
         protected void RemoveFromCache(string key)
         {
             key = Name + '_' + key;
