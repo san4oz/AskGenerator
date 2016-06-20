@@ -273,6 +273,7 @@
     <Content Include="Css\img\img1.jpeg" />
     <Content Include="Css\img\logo_nom1.jpg" />
     <Content Include="Css\img\sprite.png" />
+    <Content Include="Css\jquery.datetimepicker.min.css" />
     <Content Include="Css\plugins\bootstrap-toggle.css" />
     <Content Include="Css\Site.css" />
     <Content Include="Css\select2.css" />
@@ -1078,6 +1079,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\admin\index.js" />
+    <Content Include="Scripts\admin\settings.js" />
     <Content Include="Scripts\angular\angular-route.min.js" />
     <Content Include="Scripts\angular\angular.min.js" />
     <Content Include="Scripts\app.js" />
@@ -1254,7 +1256,6 @@
     <Content Include="Areas\Admin\Views\Setting\Website.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\EditorTemplates\TimeBannerSettings.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\General.cshtml" />
-    <Content Include="Areas\Admin\Views\Setting\EditorTemplates\Iteration.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\EditorTemplates\Iterations.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jqmeter\jqmeter.js" />
@@ -1263,6 +1264,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.datetimepicker.full.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

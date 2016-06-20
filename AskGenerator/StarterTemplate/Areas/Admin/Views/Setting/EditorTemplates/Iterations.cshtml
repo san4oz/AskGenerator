@@ -11,8 +11,8 @@
                     @Html.HiddenFor(m => m[i].UniqueUsersCount)
                     @Html.EditorFor(m => m[i].Name)
                 </td>
-                <td>@Html.EditorFor(m => m[i].Start)</td>
-                <td>@Html.EditorFor(m => m[i].End)</td>
+                <td>@Html.TextBoxFor(m => m[i].Start, new { @class = "date" })</td>
+                <td>@Html.TextBoxFor(m => m[i].End, new { @class = "date" })</td>
             </tr>
         }
     </tbody>

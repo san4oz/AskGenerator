@@ -9,6 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/Admin.css")
     @Styles.Render("~/Css/sweetalert.css")
+    @Styles.Render("~/Css/jquery.datetimepicker.min.css")
 }
 
 @section NavBar{
@@ -46,6 +47,7 @@
 @section Scripts{
     @Scripts.Render("~/bundles/admin")
     @Scripts.Render("~/Scripts/sweetalert/sweetalert.min.js")
+    @Scripts.Render("~/Scripts/jquery.datetimepicker.full.min.js")
     @RenderSection("Scripts", required: false)
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=uk"
             async defer>
