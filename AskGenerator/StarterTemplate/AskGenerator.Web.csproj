@@ -1254,6 +1254,8 @@
     <Content Include="Areas\Admin\Views\Setting\Website.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\EditorTemplates\TimeBannerSettings.cshtml" />
     <Content Include="Areas\Admin\Views\Setting\General.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\EditorTemplates\Iteration.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\EditorTemplates\Iterations.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jqmeter\jqmeter.js" />
     <Content Include="Scripts\jqmeter\jqmeter.min.js" />

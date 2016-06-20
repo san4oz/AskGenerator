@@ -13,7 +13,8 @@ namespace AskGenerator.Mvc.ViewModels.Settings
     using R = Resources.Resource;
     public class GeneralSettingsModel : AskGenerator.ViewModels.BaseViewModel, IHaveCustomMappings
     {
-        public GeneralSettings.Iteration[] Iterations { get; set; }
+        [UIHint("Iterations")]
+        public List<GeneralSettings.Iteration> Iterations { get; set; }
 
         [Display(Name = "BannedDomains", ResourceType = typeof(R))]
         [DataType(DataType.MultilineText)]

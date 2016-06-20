@@ -1,4 +1,5 @@
 ﻿using AskGenerator.Business.Entities;
+using AskGenerator.Business.Entities.Settings;
 using AskGenerator.Helpers;
 using Resources;
 using System;
@@ -60,13 +61,41 @@ namespace AskGenerator.Controllers.Admin
 
         public async Task<ActionResult> SaveStatToHistory()
         {
-            return await Task.Factory.StartNew<ActionResult>((state) => 
-            {
-                System.Web.HttpContext.Current = (System.Web.HttpContext)state;
-
+            return await IndexActionWrapper(() => {
                 Site.TeamManager.MoveToHistory();
                 Site.TeacherManager.MoveToHistory();
                 Site.GroupManager.MoveToHistory();
+            });
+        }
+
+        public async Task<ActionResult> FinishIter()
+        {
+            return await IndexActionWrapper(() =>
+            {
+                var sett = Site.Settings.General();
+                var iteration = new GeneralSettings.Iteration(sett.CurrentIteration + 1, Site.VoteManager.UniqueUserCount());
+
+                if (!sett.Iterations.IsEmpty())
+                {
+                    var list = sett.Iterations.ToList();
+                    list.Add(iteration);
+                    sett.Iterations = list.ToArray();
+                }
+                else
+                {
+                    sett.Iterations = new GeneralSettings.Iteration[] { iteration };
+                }
+                Site.Settings.Update(sett);
+            });
+        }
+
+        protected Task<ActionResult> IndexActionWrapper(Action action){
+
+            return Task.Factory.StartNew<ActionResult>((state) =>
+            {
+                System.Web.HttpContext.Current = (System.Web.HttpContext)state;
+
+                action();
 
                 if (Request.IsAjaxRequest())
                     return Json(true, JsonRequestBehavior.AllowGet);
@@ -74,6 +103,7 @@ namespace AskGenerator.Controllers.Admin
                 return RedirectToAction("Index");
             }, System.Web.HttpContext.Current);
         }
+
 
         #region Recalculate
         public async Task<ActionResult> Recalculate()

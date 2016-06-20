@@ -21,6 +21,11 @@ namespace AskGenerator.Business.Entities.Settings
 
         public Iteration[] Iterations { get; set; }
 
+        public Iteration GetIteration(string name)
+        {
+            return Iterations.SingleOrDefault(i => i.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+        }
+
         public int CurrentIteration { get { return Iterations.IsEmpty() ? 0 : Iterations.Max(i => i.Id); } }
 
         public string[] BannedDomains { get; set; }
@@ -80,6 +85,19 @@ namespace AskGenerator.Business.Entities.Settings
             /// </summary>
             [XmlElement("users")]
             public short UniqueUsersCount { get; set; }
+
+            public Iteration()
+            { }
+
+            public Iteration(int id, int users, DateTime? start = null, DateTime? end = null)
+            {
+                this.Id = id;
+                if (start.HasValue)
+                    this.Start = start.Value;
+                this.End = end.HasValue ? end.Value : DateTime.Now;
+                this.Name = this.End.ToString("dd_MM");
+                this.UniqueUsersCount = (short)users;
+            }
         }
     }
 }

@@ -1,0 +1,26 @@
+﻿@model GeneralSettings.Iteration
+
+@using System.Linq.Expressions;
+@using AskGenerator.Business.Entities.Settings;
+
+@Html.HiddenFor(i => i.Id)
+@Html.EditorFor(i => i.Name)
+@Html.EditorFor(i => i.Start)
+@Html.EditorFor(i => i.End)
+@Html.HiddenFor(i => i.UniqueUsersCount)
+
+
+@helper T(Expression<Func<WebsiteSettings.TimeBannerSettings, bool>> expression) {
+    @Html.LabelFor(expression)
+    @Html.EditorFor(expression)
+}
+@helper T(Expression<Func<WebsiteSettings.TimeBannerSettings, string>> expression)
+{
+    @Html.LabelFor(expression)
+    @Html.EditorFor(expression)
+}
+@helper T(Expression<Func<WebsiteSettings.TimeBannerSettings, short>> expression)
+{
+    @Html.LabelFor(expression)
+    @Html.EditorFor(expression)
+}

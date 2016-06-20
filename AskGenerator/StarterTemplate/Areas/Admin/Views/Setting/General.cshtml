@@ -1,4 +1,6 @@
-﻿@model AskGenerator.Mvc.ViewModels.Settings.GeneralSettingsModel
+﻿@model GeneralSettingsModel
+
+@using AskGenerator.Mvc.ViewModels.Settings;           
 @{
     ViewBag.Title = "General";
 }
@@ -14,7 +16,7 @@
                     <fieldset>
                         <legend>@ViewBag.Title</legend>
                         @Html.EditorForModel()
-
+                        @Html.EditorFor(m => m.Iterations, "Iterations")
                         <button type="submit" class="btn btn-primary">@Resources.Resource.Save</button>
                         <button type="reset" class="btn btn-default">@Resources.Resource.Clean</button>
                     </fieldset>

@@ -1,6 +1,6 @@
 ﻿@using System.Web.Optimization
 @{
-    ViewBag.Title = @Resources.Resource.IndexHeader;
+    ViewBag.Title = "Admin";
 }
 
 <div>Yahoo!</div>
@@ -10,8 +10,10 @@
     </div>
 </div>
 <div class="bootstrap-admin-panel-content">
-    <div class="col-sm-3">
+    <div class="col-sm-3 btn-group-vertical">
         <a class="btn btn-primary" href="@Url.Action("Recalculate")" id="recalculate">Recalculate</a>
+        <span class="msg"></span>
+        <a class="btn btn-primary" href="@Url.Action("FinishIter")" id="finish">Finish iteration</a>
         <span class="msg"></span>
     </div>
     <div class="col-sm-3">

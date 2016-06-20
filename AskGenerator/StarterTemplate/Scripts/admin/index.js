@@ -2,7 +2,7 @@
 var Index = (function () {
     var self = {};
 
-    var initRecalculate = function (selector) {
+    var initLinkClick = function (selector) {
         var link = $(selector);
         var msg = link.next('.msg');
         link.click(function (e) {
@@ -26,8 +26,9 @@ var Index = (function () {
     };
 
     self.init = function () {
-        initRecalculate('#recalculate');
-        initRecalculate('#sendresult');
+        initLinkClick('#recalculate');
+        initLinkClick('#sendresult');
+        initLinkClick('#finis');
         Controls.TTips('#sendresult');
     };
 

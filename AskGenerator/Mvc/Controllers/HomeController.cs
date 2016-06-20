@@ -145,29 +145,38 @@ namespace AskGenerator.Mvc.Controllers
         #region Board
         [HttpGet]
         [OutputCache(CacheProfile="Cache1Hour")]
-        public async Task<ViewResult> Board(int i = -1)
+        public async Task<ActionResult> Board(string i = "")
         {
+            var iteration = i.IsEmpty() ? null : Site.Settings.General().GetIteration(i);
+            if (!i.IsEmpty() && iteration == null)
+                return HttpNotFound("Iteration {0} was not found".FormatWith(i));
+
             var questions = await Site.QuestionManager.AllAsync();
             var badges = await Task.Factory.StartNew<Dictionary<string, LimitViewModel>>(() => CreateBadges(questions));
             var questionsDictionary = questions.ToDictionary(q => q.Id, q => q.QuestionBody);
 
             var model = new BoardViewModel(questionsDictionary, badges);
             model.UniqueUsers = Site.VoteManager.UniqueUserCount();
-            model.Iteration.Id = i;
+            if (iteration != null)
+                model.Iteration = iteration;
             return View(model);
         }
 
         [HttpPost]
         [OutputCache(Duration = CacheDuration * 60, VaryByParam = "i", Location = OutputCacheLocation.Server)]
         [ActionName("Board")]
-        public async Task<ViewResult> BoardPost(int i = -1)
+        public async Task<ActionResult> BoardPost(string i = "")
         {
+            var iteration = i.IsEmpty() ? null : Site.Settings.General().GetIteration(i);
+            if (!i.IsEmpty() && iteration == null)
+                return HttpNotFound("Iteration {0} was not found".FormatWith(i));
+
             var manager = Site.TeacherManager;
             var teachers = await Site.TeacherManager.AllAsync(false);
-            if (i > -1)
+            if (iteration != null)
             {
                 manager.LoadHistory(teachers);
-                teachers.AsParallel().ForAll(t => t.InitStatistics(i));
+                teachers.AsParallel().ForAll(t => t.InitStatistics(iteration.Id));
             }
 
             var model = new TeacherListViewModel();

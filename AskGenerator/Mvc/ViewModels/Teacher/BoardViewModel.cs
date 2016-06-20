@@ -15,6 +15,7 @@ namespace AskGenerator.Mvc.ViewModels
             Questions = questions;
             Badges = badges ?? new Dictionary<string, LimitViewModel>();
             Iteration = new Business.Entities.Settings.GeneralSettings.Iteration();
+            Iteration.Id = -1;
         }
 
         public Dictionary<string, LimitViewModel> Badges { get; set; }
