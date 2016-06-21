@@ -247,7 +247,7 @@ namespace AskGenerator.Mvc.Controllers
             return questions;
         }
 
-        protected float CalculateRate(float difficultAvg, float otherAvg, int votesCount)
+        protected float CalculateRating(float difficultAvg, float otherAvg, int votesCount)
         {
             return (float)(Math.Pow(difficultAvg, 0.5) * otherAvg * Math.Pow(votesCount, 0.2));
         }
