@@ -259,6 +259,7 @@
     <Content Include="Content\Images\teacher\noImage.png" />
     <Content Include="Content\img\expander-minus.png" />
     <Content Include="Content\img\expander-plus.png" />
+    <Content Include="Content\img\LogoMakr.png" />
     <Content Include="Content\loader.gif" />
     <Content Include="Content\Site.css" />
     <Content Include="Css\bootstrap-theme.css" />

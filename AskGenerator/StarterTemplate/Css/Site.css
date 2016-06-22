@@ -83,7 +83,7 @@
     }
 
 .row {
-    background-color: #ccc;
+    background-color: #fff;
 }
 
 
@@ -379,4 +379,53 @@ body.print {
         transform: scale(0.8);
         transform-origin: 0 0;
     }
+}
+
+#navbar-collapse{
+    background-color: #3498db !important;
+    border: none !important;
+}
+
+.navbar-nav > li{
+    background-color: inherit;
+}
+
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav > li > a{
+    color: #fff;
+}
+
+.navbar-nav > li .active{
+    background-color: inherit;
+}
+
+.navbar-inverse .navbar-nav > .active > a{
+    background-color: inherit !important;
+}
+
+
+
+.navbar-default{
+    border-color: #3498db;
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav >
+ .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+    background-color: inherit;
+}
+
+#legend{
+    border: 3px solid #3498db;
+    width: 100% !important;
+    background-image: none !important;
+    background-color: #fff !important;
+    border-radius: 10px !important;
+}
+
+.hide-panel{
+
+    border-bottom: 25px solid #3498db !important;
+}
+
+body{
+    background-color: #fff !important;
 }

@@ -19,8 +19,8 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .navbar-inverse {
-    background-image: linear-gradient(to bottom, #3c3c3c 15%, #222 100%);
-    background-repeat: repeat-x;
+    background-color: #3498db !important;
+    background-image: none !important;
 }
 
 .navbar-header {
@@ -557,7 +557,7 @@ a.help {
     }
 
 .container > .row {
-    background-color: #ccc;
+    background-color: #fff;
 }
 
 
