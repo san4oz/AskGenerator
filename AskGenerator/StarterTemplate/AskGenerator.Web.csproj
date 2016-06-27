@@ -261,7 +261,6 @@
     <Content Include="Content\img\expander-plus.png" />
     <Content Include="Content\img\LogoMakr.png" />
     <Content Include="Content\loader.gif" />
-    <Content Include="Content\Site.css" />
     <Content Include="Css\bootstrap-theme.css" />
     <Content Include="Css\bootstrap-theme.min.css" />
     <Content Include="Css\bootstrap.css" />
@@ -276,7 +275,7 @@
     <Content Include="Css\img\sprite.png" />
     <Content Include="Css\jquery.datetimepicker.min.css" />
     <Content Include="Css\plugins\bootstrap-toggle.css" />
-    <Content Include="Css\Site.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Css\select2.css" />
     <Content Include="Css\select2.min.css" />
     <Content Include="Css\sweetalert.css" />

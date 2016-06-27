@@ -253,9 +253,9 @@ legend {
 }
 
 .option {
-    padding: 10px;
     color: black;
     cursor: pointer;
+    padding: 5px 10px;
     text-align: center;
 }
 
@@ -301,7 +301,7 @@ h4.teacher-title {
         padding-top: 100% !important;
     }
 
-.teachers-voit {
+.teachers-vote {
     display: inline-flexbox;
     display: flex;
     -webkit-flex-wrap: wrap;
@@ -458,7 +458,7 @@ hr {
         }
 
     .closed .hide-panel i.glyphicon:before {
-        content: "";;
+        content: "";
     }
 
     #legend .col-xs-12 {

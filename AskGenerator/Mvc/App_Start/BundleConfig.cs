@@ -61,7 +61,7 @@ namespace AskGenerator.Mvc
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                 "~/Css/select2.css",
-                "~/Css/Site.css"                
+                "~/Content/Site.css"                
                 ));
 
 
