@@ -296,6 +296,7 @@ namespace AskGenerator.Controllers.Admin
             int maxCount = int.MinValue;
             float avgSum = 0;
 
+            model.Marks.Clear();
             foreach (var grouped in votes)
             {
                 var qDictionary = model.Marks.GetOrCreate(grouped.Key);
@@ -354,9 +355,8 @@ namespace AskGenerator.Controllers.Admin
 
             foreach (var group in groups)
             {
-                group.Marks.Clear();
-
                 var students = allStudents.Where(s => s.Id.Equals(group.Id));
+                group.Marks.Clear();
                 RecalculateGroupStatistic(studentVotes, group, students, difficultQuestion.Id);
             }
             
