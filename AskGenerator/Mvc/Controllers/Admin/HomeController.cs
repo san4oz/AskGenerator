@@ -355,8 +355,7 @@ namespace AskGenerator.Controllers.Admin
 
             foreach (var group in groups)
             {
-                var students = allStudents.Where(s => s.Id.Equals(group.Id));
-                group.Marks.Clear();
+                var students = allStudents.Where(s => s.Group.Id.Equals(group.Id, StringComparison.InvariantCultureIgnoreCase));
                 RecalculateGroupStatistic(studentVotes, group, students, difficultQuestion.Id);
             }
             
@@ -367,6 +366,7 @@ namespace AskGenerator.Controllers.Admin
         #region Group private methods
         private void RecalculateGroupStatistic(ILookup<string, Vote> studentVotes, Group group, IEnumerable<Student> students, string difficultQuestionId)
         {
+            group.Marks.Clear();
             var uniqueAccounts = CalculateVotedMarks(studentVotes, group, students);
 
             int maxCount = int.MinValue;
