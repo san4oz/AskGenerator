@@ -18,16 +18,20 @@ namespace AskGenerator.Mvc.Controllers
         [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client, VaryByParam = "id")]
         public async Task<ActionResult> Team(string id = AskGenerator.Business.Entities.Team.AllTeachersTeamId, string i = "")
         {
-            var model = new TeamResultsViewModel();
-            model.Id = id;
-
-            var iteration = i.IsEmpty() ? null : Site.Settings.General().GetIteration(i);
-            if (!i.IsEmpty() && iteration == null)
+            var iteration = Iteration;
+            if (iteration == null)
                 return HttpNotFound("Iteration {0} was not found".FormatWith(id));
+
+            var model = new TeamResultsViewModel()
+            {
+                Id = id,
+                Iteration = iteration
+            };
+
 
             var manager = Site.TeamManager;
             var teams = await manager.AllAsync();
-            if (iteration != null)
+            if (iteration.Id != 0)
             {
                 manager.LoadHistory(teams);
                 teams.ForEach(t => t.InitStatistics(iteration.Id));
@@ -45,7 +49,7 @@ namespace AskGenerator.Mvc.Controllers
             if (model.Id != AskGenerator.Business.Entities.Team.AllTeachersTeamId)
                 teachers = teachers.Where(t => t.TeamId.Equals(id, StringComparison.InvariantCultureIgnoreCase)).ToList();
 
-            if (iteration != null)
+            if (iteration.Id != 0)
             {
                 tManager.LoadHistory(teachers);
                 teachers.AsParallel().ForAll(t => t.InitStatistics(iteration.Id));
@@ -65,17 +69,20 @@ namespace AskGenerator.Mvc.Controllers
         [OutputCache(Duration = 3600, Location = OutputCacheLocation.Client, VaryByParam = "id")]
         public async Task<ActionResult> Group(string id = "all", string i = "")
         {
-            var iteration = i.IsEmpty() ? null : Site.Settings.General().GetIteration(i);
-            if (!i.IsEmpty() && iteration == null)
+            var iteration = Iteration;
+            if (iteration == null)
                 return HttpNotFound("Iteration {0} was not found".FormatWith(id));
 
 
-            var model = new GroupStatisticViewModel();
-            model.Id = id;
+            var model = new GroupStatisticViewModel()
+            {
+                Id = id,
+                Iteration = iteration
+            };
 
             var manager = Site.GroupManager;
             var groups = await manager.AllAsync();
-            if (iteration != null)
+            if (iteration.Id != 0)
             {
                 manager.LoadHistory(groups);
                 groups.AsParallel().ForAll(g => g.InitStatistics(iteration.Id));

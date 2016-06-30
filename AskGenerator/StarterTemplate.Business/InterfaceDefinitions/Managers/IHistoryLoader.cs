@@ -23,6 +23,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// <summary>
         /// Moves all entities statistic to the history.
         /// </summary>
-        void MoveToHistory();
+        /// <param name="iterationId">The ID of history iteration to move statistics for.</param>
+        void MoveToHistory(int iterationId);
     }
 }

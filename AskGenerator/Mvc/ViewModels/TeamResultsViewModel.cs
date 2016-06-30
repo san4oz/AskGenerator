@@ -1,5 +1,6 @@
 ﻿using AskGenerator.Business.Entities;
 using AskGenerator.Business.Entities.Base;
+using AskGenerator.Business.Entities.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,10 @@ namespace AskGenerator.Mvc.ViewModels
         {
             Marks = new Dictionary<string, AnswerCountDictionary>();
         }
+
         public string Id { get; set; }
+
+        public GeneralSettings.Iteration Iteration { get; set; }
 
         /// <summary>
         /// Answer - count pairs per question ID.

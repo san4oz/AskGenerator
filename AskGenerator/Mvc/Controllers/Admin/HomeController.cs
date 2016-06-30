@@ -62,9 +62,10 @@ namespace AskGenerator.Controllers.Admin
         public async Task<ActionResult> SaveStatToHistory()
         {
             return await IndexActionWrapper(() => {
-                Site.TeamManager.MoveToHistory();
-                Site.TeacherManager.MoveToHistory();
-                Site.GroupManager.MoveToHistory();
+                var iterationId = Site.Settings.General(true).CurrentIteration + 1;
+                Site.TeamManager.MoveToHistory(iterationId);
+                Site.TeacherManager.MoveToHistory(iterationId);
+                Site.GroupManager.MoveToHistory(iterationId);
             });
         }
 

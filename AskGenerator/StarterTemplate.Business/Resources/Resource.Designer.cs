@@ -1240,7 +1240,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Оставим это на память)).
+        ///   Looks up a localized string similar to На пам&apos;ять)).
         /// </summary>
         public static string SomethingElseHere {
             get {

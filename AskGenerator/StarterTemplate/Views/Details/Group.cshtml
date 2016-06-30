@@ -21,8 +21,13 @@
                 @foreach (var group in Model.Groups)
                 {
                     var cl = group.Id == Model.Id ? "selected" : string.Empty;
+                    
+                    var urlParams = new RouteValueDictionary();
+                    urlParams.Add("id", group.Id);
+                    if (Model.Iteration.Id != 0) { urlParams.Add("i", Model.Iteration.Name); }
+                    
                     <tr class="@cl">
-                        <td>@Html.ActionLink(group.Name, "Group", new { id = group.Id })</td>
+                        <td>@Html.ActionLink(group.Name, "Group", urlParams)</td>
                         <td> @RoundAnswer(group.AverageVote, 1)</td>
                         <td>@group.StudentsCount</td>
                     </tr>

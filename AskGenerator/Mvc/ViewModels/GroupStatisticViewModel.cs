@@ -1,6 +1,7 @@
 ﻿using AskGenerator.App_Start.AutoMapper;
 using AskGenerator.Business.Entities;
 using AskGenerator.Business.Entities.Base;
+using AskGenerator.Business.Entities.Settings;
 using AskGenerator.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,8 @@ namespace AskGenerator.Mvc.ViewModels
         public Mark Rating { get; set; }
 
         public Dictionary<string, string> Questions { get; set; }
+
+        public GeneralSettings.Iteration Iteration { get; set; }
 
         public GroupStatisticViewModel()
         {
