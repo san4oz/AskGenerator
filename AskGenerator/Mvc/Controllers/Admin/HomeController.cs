@@ -284,14 +284,15 @@ namespace AskGenerator.Controllers.Admin
             return result;
         }
 
-        private void UpdateTeam(IEnumerable<IGrouping<string, Vote>> votes, Team model, string difficultId, string additionalMarkId = null)
+        private void UpdateTeam(IEnumerable<IGrouping<string, Vote>> votes, Team team, string difficultId, string additionalMarkId = null)
         {
             int maxCount = int.MinValue;
             float avgSum = 0;
 
+            team.Marks.Clear();
             foreach (var grouped in votes)
             {
-                var qDictionary = model.Marks.GetOrCreate(grouped.Key);
+                var qDictionary = team.Marks.GetOrCreate(grouped.Key);
                 var count = 0;
                 var sum = 0;
                 foreach (var vote in grouped)
@@ -309,13 +310,13 @@ namespace AskGenerator.Controllers.Admin
                     maxCount = count;
             }
 
-            model.AdditionalMark = AgregateMark(model, additionalMarkId);
-            model.AvgDifficult = AgregateMark(model, difficultId).Answer;
+            team.AdditionalMark = AgregateMark(team, additionalMarkId);
+            team.AvgDifficult = AgregateMark(team, difficultId).Answer;
 
-            model.ClearRating = (avgSum - model.AvgDifficult) / (model.Marks.Count - 1);
-            model.Rating = new Mark()
+            team.ClearRating = (avgSum - team.AvgDifficult) / (team.Marks.Count - 1);
+            team.Rating = new Mark()
             {
-                Answer = CalculateRate(model.AvgDifficult, model.ClearRating, maxCount),
+                Answer = CalculateRate(team.AvgDifficult, team.ClearRating, maxCount),
                 Count = maxCount
             };
         }
