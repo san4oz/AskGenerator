@@ -14,7 +14,7 @@ using AskGenerator.Mvc.ViewModels.Settings;
 
 namespace AskGenerator.Controllers.Admin
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = Role.Admin)]
     public class SettingController : BaseController
     {
         protected ISettingManager Manager { get; private set; }

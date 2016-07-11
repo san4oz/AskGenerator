@@ -15,7 +15,7 @@ using AskGenerator.Mvc.ViewModels;
 
 namespace AskGenerator.Controllers.Admin
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = Role.Admin)]
     public class StudentController : BaseController
     {
         protected IStudentManager StudentManager { get; private set; }

@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Controllers.Admin
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = Role.Admin)]
     public class GroupController : BaseController
     {
         protected IGroupManager GroupManager { get; private set; }

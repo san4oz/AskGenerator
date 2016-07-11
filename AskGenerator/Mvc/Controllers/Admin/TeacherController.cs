@@ -19,7 +19,7 @@ using System.Web.Routing;
 
 namespace AskGenerator.Controllers.Admin
 {
-    [Authorize(Roles="admin")]
+    [Authorize(Roles = Role.Admin)]
     public class TeacherController : BaseController
     {
         protected ITeacherManager TeacherManager { get; private set; }
