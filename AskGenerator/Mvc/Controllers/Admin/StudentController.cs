@@ -12,10 +12,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Text;
 using AskGenerator.Mvc.ViewModels;
+using AskGenerator.Mvc.Components.Attributes;
 
 namespace AskGenerator.Controllers.Admin
 {
-    [Authorize(Roles = Role.Admin)]
+    [RolesAuthorize(Role.Admin, Role.FacultyAdmin)]
     public class StudentController : BaseController
     {
         protected IStudentManager StudentManager { get; private set; }

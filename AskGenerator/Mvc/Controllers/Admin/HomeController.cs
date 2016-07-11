@@ -15,10 +15,9 @@ namespace AskGenerator.Controllers.Admin
     [RolesAuthorize(Role.Admin, Role.FacultyAdmin)]
     public class HomeController : AskGenerator.Mvc.Controllers.BaseController
     {
-        [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Index()
         {
-          return View();
+            return View();
         }
 
         [RolesAuthorize(Role.Admin)]
