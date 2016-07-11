@@ -63,6 +63,12 @@ namespace System
             return source;
         }
 
+        /// <summary>
+        /// Indicates whether collection equals <c>null</c> or contains no elements.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source">The source collection.</param>
+        /// <returns>Boolean value indicating whether collection.</returns>
         public static bool IsEmpty<T>(this ICollection<T> source)
         {
             return source == null || !source.Any();

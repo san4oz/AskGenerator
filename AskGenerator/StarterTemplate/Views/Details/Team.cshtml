@@ -87,8 +87,13 @@
     {
         id = null;
     }
+
+    var urlParams = new RouteValueDictionary();
+    urlParams.Add("id", team.Id);
+    if (Model.Iteration.Id != 0) { urlParams.Add("i", Model.Iteration.Name); }
+    
     <tr class="@rowClass">
-        <td>@Html.ActionLink(team.Name, "Team", new { id = id })</td>
+        <td>@Html.ActionLink(team.Name, "Team", urlParams)</td>
         <td>@RoundAnswer(team.AvgDifficult)</td>
         <td>@RoundAnswer(team.ClearRating)</td>
         <td>@RoundAnswer(team.AdditionalMark != null ? team.AdditionalMark.Answer : 0)</td>

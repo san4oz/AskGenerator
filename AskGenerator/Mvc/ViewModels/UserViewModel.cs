@@ -36,7 +36,7 @@ using R = Resources.Resource;
         public string Password { get; set; }
 
         [Display(Name = "RepitPassword", ResourceType = typeof(R))]
-        [Compare("Password", ErrorMessageResourceName = "NoRepitPassword", ErrorMessageResourceType = typeof(R))]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessageResourceName = "NoRepitPassword", ErrorMessageResourceType = typeof(R))]
         [DataType(DataType.Password)]
         public string PasswordConfirm { get; set; }
 

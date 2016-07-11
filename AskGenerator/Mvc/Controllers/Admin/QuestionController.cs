@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Controllers.Admin
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = Role.Admin)]
     public class QuestionController : BaseController
     {
         protected IQuestionManager QuestionManager { get; private set; }

@@ -1,6 +1,5 @@
 ﻿using AskGenerator.Business.Entities;
 using AskGenerator.Business.Entities.Settings;
-using AskGenerator.Business.Filters;
 using AskGenerator.Business.InterfaceDefinitions.Managers;
 using AskGenerator.Mvc.Components.Attributes;
 using AskGenerator.Mvc.ViewModels;
@@ -147,8 +146,8 @@ namespace AskGenerator.Mvc.Controllers
         [OutputCache(CacheProfile="Cache1Hour")]
         public async Task<ActionResult> Board(string i = "")
         {
-            var iteration = i.IsEmpty() ? null : Site.Settings.General().GetIteration(i);
-            if (!i.IsEmpty() && iteration == null)
+            var iteration = Iteration;
+            if (iteration == null)
                 return HttpNotFound("Iteration {0} was not found".FormatWith(i));
 
             var questions = await Site.QuestionManager.AllAsync();

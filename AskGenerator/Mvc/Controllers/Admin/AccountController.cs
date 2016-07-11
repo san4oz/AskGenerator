@@ -18,7 +18,7 @@ using AskGenerator.Mvc.Controllers;
 
 namespace AskGenerator.Controllers.Admin
 {
-    [Authorize(Roles="admin")]
+    [Authorize(Roles=Role.Admin)]
     public class AccountController : BaseController
     {
         #region Managers

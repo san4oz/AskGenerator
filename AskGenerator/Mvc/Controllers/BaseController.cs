@@ -1,4 +1,5 @@
 ﻿using AskGenerator.Business.Entities;
+using AskGenerator.Business.Entities.Settings;
 using AskGenerator.Business.InterfaceDefinitions.Managers;
 using AskGenerator.Mvc.Components;
 using AskGenerator.Mvc.ViewModels;
@@ -42,6 +43,11 @@ namespace AskGenerator.Mvc.Controllers
                 ViewBag.IsEditing = value; 
             }
         }
+
+        /// <summary>
+        /// Gets <see cref="GeneralSettings.Iteration"/> for current request.
+        /// </summary>
+        protected GeneralSettings.Iteration Iteration { get { return RouteData.Values["i"] as GeneralSettings.Iteration; } }
 
         /// <summary>
         /// Returns response with specified data and statuc code.
@@ -247,7 +253,7 @@ namespace AskGenerator.Mvc.Controllers
             return questions;
         }
 
-        protected float CalculateRate(float difficultAvg, float otherAvg, int votesCount)
+        protected float CalculateRating(float difficultAvg, float otherAvg, int votesCount)
         {
             return (float)(Math.Pow(difficultAvg, 0.5) * otherAvg * Math.Pow(votesCount, 0.2));
         }

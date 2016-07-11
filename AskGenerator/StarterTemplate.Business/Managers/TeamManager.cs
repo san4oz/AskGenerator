@@ -37,10 +37,9 @@ namespace AskGenerator.Business.Managers
             }
         }
 
-        public void MoveToHistory()
+        public void MoveToHistory(int iterationId)
         {
             var all = this.All();
-            var iteration = Site.Settings.General(true).CurrentIteration + 1;
             var hist = HistoryManager.GetByPrefix(Team.Prefix);
             var newHistories = new List<History>();
 
@@ -53,7 +52,7 @@ namespace AskGenerator.Business.Managers
                     newHistories.Add(teamHistory);
                 }
 
-                teamHistory.GetVersions<Team.Statistics>()[iteration] = CreateStat(team);
+                teamHistory.GetVersions<Team.Statistics>()[iterationId] = CreateStat(team);
             }
             HistoryManager.Update(hist.Values);
             newHistories.AsParallel().ForAll(h => HistoryManager.Create(h));

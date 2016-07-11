@@ -156,6 +156,12 @@ namespace AskGenerator.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (!await CheckCaptcha())
+                {
+                    ModelState.AddModelError("", Resource.ConfirmNoRobot);
+                    return View(model);
+                }
+
                 var transformedEmail = TransformEmail(model.Email);
                 foreach (var ban in Site.Settings.General().BannedDomains)
                 {
@@ -166,7 +172,6 @@ namespace AskGenerator.Mvc.Controllers
                     }
                 }
 
-
                 var task = checkLastNameAsync(model.LastName, model.GroupId);
                 var student = task != null ? await task : null;
                 if (student == null || student.HasUserAccount)
@@ -174,11 +179,7 @@ namespace AskGenerator.Mvc.Controllers
                     ModelState.AddModelError("LastName", Resource.NoLastNameFound);
                     return View(model);
                 }
-                if (!await CheckCaptcha())
-                {
-                    ModelState.AddModelError("", Resource.ConfirmNoRobot);
-                    return View(model);
-                }
+
                 var emailUser = await Manager.FindByEmailAsync(model.Email);
                 User user = null;
                 IdentityResult result;

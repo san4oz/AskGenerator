@@ -32,7 +32,7 @@ Pages.Board = (function () {
         legend.children('.badge-row').toggleClass('hidden');
         
     };
-    $('#legend').click(self.toggleLegend);
+    $('.hide-panel').click(self.toggleLegend);
 
     self.init = function () {
         self.loadBoard(function () {

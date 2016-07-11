@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Controllers.Admin
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = Role.Admin)]
     public class TeamController : BaseController
     {
         [HttpGet]

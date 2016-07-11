@@ -22,7 +22,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">@Resource.Generator</a>
+            <a class="navbar-brand" href="/">
+                <img src="~/Content/img/LogoMakr.png" />
+                Evaluate
+            </a>
         </div>
 
         @*Collect the nav links, forms, and other content for toggling*@
@@ -38,9 +41,9 @@
                 }
                 else
                 {
-                    @Html.MenuItem("Детальний звіт", "Team", "Details")
+                    @Html.MenuItem(Resource.Details, "Team", "Details")
                 }
-                    @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial")
             </ul>
         </nav>
     </header>

@@ -343,7 +343,7 @@
     <value>Вибріть групи</value>
   </data>
   <data name="SomethingElseHere" xml:space="preserve">
-    <value>Оставим это на память))</value>
+    <value>На пам'ять))</value>
   </data>
   <data name="Student" xml:space="preserve">
     <value>Студент</value>
@@ -590,5 +590,8 @@
   </data>
   <data name="Config" xml:space="preserve">
     <value>Налаштування</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детальний звіт</value>
   </data>
 </root>

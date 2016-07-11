@@ -166,6 +166,7 @@
     <Compile Include="App_Start\Routes\AdminAreaRegistrator.cs" />
     <Compile Include="App_Start\Routes\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Components\Attributes\RolesAuthorizeAttribute.cs" />
     <Compile Include="Components\Attributes\WebsiteAuthorizeAttribute.cs" />
     <Compile Include="Components\Resolver.cs" />
     <Compile Include="Components\RobotsInfo.cs" />
@@ -184,7 +185,7 @@
     <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
-    <Compile Include="Components\Filters\CultureAttribute.cs" />
+    <Compile Include="Components\Attributes\CultureAttribute.cs" />
     <Compile Include="Helpers\IdentityExtensions.cs" />
     <Compile Include="Helpers\Mailer.cs" />
     <Compile Include="Helpers\MailsData.Designer.cs">
@@ -192,7 +193,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MailsData.resx</DependentUpon>
     </Compile>
-    <Compile Include="Components\Modules\ReturnUrlHttpModule.cs" />
+    <Compile Include="Components\Modules\UrlParamsHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GroupStatisticViewModel.cs" />
