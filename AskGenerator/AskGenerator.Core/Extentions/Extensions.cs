@@ -66,9 +66,9 @@ namespace System.Web
             return MvcHtmlString.Create(li.ToString());
         }
 
-        public static MvcHtmlString SubmitBtn(this HtmlHelper helper, string text)
+        public static MvcHtmlString SubmitBtn(this HtmlHelper helper, string text, string cssClass = null)
         {
-            return "<button type=\"submit\" class=\"btn btn-primary\">{0}</button>".FormatWith(text).AsHtml();
+            return "<button type=\"submit\" class=\"btn {0}\">{1}</button>".FormatWith(cssClass.Or("btn-primary"), text).AsHtml();
         }
 
         public static MvcHtmlString ClearBtn(this HtmlHelper helper, string text)

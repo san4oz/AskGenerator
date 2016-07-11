@@ -10,21 +10,23 @@
     </div>
 </div>
 <div class="bootstrap-admin-panel-content">
-    <div class="col-sm-3 btn-group-vertical">
-        <a class="btn btn-primary" href="@Url.Action("Recalculate")" id="recalculate">Recalculate</a>
-        <span class="msg"></span>
-        <a class="btn btn-primary" href="@Url.Action("FinishIter")" id="finish">Finish iteration</a>
-        <span class="msg"></span>
-    </div>
-    <div class="col-sm-3">
-        <a class="btn btn-danger" href="@Url.Action("SendResult")" id="sendresult" data-togglee="tooltip" data-content="Don't spam">SendResult</a>
-        <span class="msg"></span>
-    </div>
+    @if (User.IsAdmin()) { 
+        <div class="col-sm-3 btn-group-vertical">
+            <a class="btn btn-primary" href="@Url.Action("Recalculate")" id="recalculate">Recalculate</a>
+            <span class="msg"></span>
+            <a class="btn btn-primary" href="@Url.Action("FinishIter")" id="finish">Finish iteration</a>
+            <span class="msg"></span>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-danger" href="@Url.Action("SendResult")" id="sendresult" data-togglee="tooltip" data-content="Don't spam">SendResult</a>
+            <span class="msg"></span>
+        </div>
 
-    <form action="@Url.Action("ClearCache")" class="col-sm-6 form-inline">
-        <input name="url" class="form-control" placeholder="path to clear output cache" value="/" />
-        <button type="submit" class="btn btn-default">Clear cache</button>
-    </form>
+        <form action="@Url.Action("ClearCache")" class="col-sm-6 form-inline">
+            <input name="url" class="form-control" placeholder="path to clear output cache" value="/" />
+            @Html.SubmitBtn("Clear cache", "btn-default")
+        </form>
+    }
 </div>
 
 

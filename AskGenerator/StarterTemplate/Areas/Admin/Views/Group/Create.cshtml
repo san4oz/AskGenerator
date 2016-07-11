@@ -20,8 +20,9 @@
                                 @Html.TextBoxFor(x => x.Name, htmlAttributes: new { @clas = "form-control" })
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">@Resources.Resource.Save</button>
-                        <button type="reset" class="btn btn-default">@Resources.Resource.Clean</button>
+
+                        @Html.SubmitBtn(Resources.Resource.Save)
+                        @Html.ClearBtn(Resources.Resource.Clean)
                     </fieldset>
                 </form>
             </div>

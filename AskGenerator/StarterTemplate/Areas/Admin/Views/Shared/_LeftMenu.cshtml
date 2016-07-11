@@ -4,9 +4,13 @@
     
     @Html.MenuItem(Resources.Resource.Departments, "List", "Team", area: "Admin")
     @Html.MenuRouteItem(@Resources.Resource.Teachers, "teacher/list")
-    @Html.MenuRouteItem(@Resources.Resource.QuestionAbTeacher, "questionAT/list")
+    @if(User.IsAdmin()) {
+        @Html.MenuRouteItem(@Resources.Resource.QuestionAbTeacher, "questionAT/list")
+    }
     <li><hr /></li>
-    @Html.MenuItem(@Resources.Resource.Config, "Website", "Setting", area: "Admin")
+    @if(User.IsAdmin()) {
+        @Html.MenuItem(@Resources.Resource.Config, "Website", "Setting", area: "Admin")
+    }
     @Html.MenuRouteItem(@Resources.Resource.Groups, "group/list")
     @Html.MenuRouteItem(Resources.Resource.Students, "student/list")
 </ul>

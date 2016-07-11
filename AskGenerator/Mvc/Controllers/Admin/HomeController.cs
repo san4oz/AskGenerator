@@ -1,6 +1,7 @@
 ﻿using AskGenerator.Business.Entities;
 using AskGenerator.Business.Entities.Settings;
 using AskGenerator.Helpers;
+using AskGenerator.Mvc.Components.Attributes;
 using Resources;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Controllers.Admin
 {
-    [Authorize(Roles = Role.Admin)]
+    [RolesAuthorize(Role.Admin, Role.FacultyAdmin)]
     public class HomeController : AskGenerator.Mvc.Controllers.BaseController
     {
         [OutputCache(CacheProfile = "Cache1Hour")]
@@ -20,12 +21,14 @@ namespace AskGenerator.Controllers.Admin
           return View();
         }
 
+        [RolesAuthorize(Role.Admin)]
         public ActionResult ClearCache(string url)
         {
             Response.RemoveOutputCacheItem(url);
             return RedirectToAction("Index");
         }
 
+        [RolesAuthorize(Role.Admin)]
         public async Task<ActionResult> SendResult()
         {
             try
@@ -59,6 +62,7 @@ namespace AskGenerator.Controllers.Admin
             }
         }
 
+        [RolesAuthorize(Role.Admin)]
         public async Task<ActionResult> SaveStatToHistory()
         {
             return await IndexActionWrapper(() => {
@@ -69,6 +73,7 @@ namespace AskGenerator.Controllers.Admin
             });
         }
 
+        [RolesAuthorize(Role.Admin)]
         public async Task<ActionResult> FinishIter()
         {
             return await IndexActionWrapper(() =>
