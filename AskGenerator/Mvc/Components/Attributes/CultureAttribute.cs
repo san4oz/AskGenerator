@@ -4,7 +4,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AskGenerator.Mvc.Filters
+namespace AskGenerator.Mvc.Components.Attributes
 {
     public class CultureAttribute : FilterAttribute, IActionFilter
     {

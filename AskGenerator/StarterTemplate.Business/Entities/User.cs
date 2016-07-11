@@ -102,6 +102,6 @@ namespace AskGenerator.Business.Entities
     {
         public const string Admin = "admin";
         public const string User = "user";
-        public const string SuperAdmin = "SA";
+        public const string FacultyAdmin = "fadmin";
     }
 }

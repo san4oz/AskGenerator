@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace AskGenerator.Controllers.Admin
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = Role.Admin)]
     public class HomeController : AskGenerator.Mvc.Controllers.BaseController
     {
         [OutputCache(CacheProfile = "Cache1Hour")]

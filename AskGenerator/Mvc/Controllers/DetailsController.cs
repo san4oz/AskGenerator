@@ -20,7 +20,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             var iteration = Iteration;
             if (iteration == null)
-                return HttpNotFound("Iteration {0} was not found".FormatWith(id));
+                return HttpNotFound("Iteration {0} was not found".FormatWith(i));
 
             var model = new TeamResultsViewModel()
             {

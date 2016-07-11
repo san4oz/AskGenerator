@@ -184,7 +184,7 @@
     <Compile Include="Controllers\DetailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoController.cs" />
-    <Compile Include="Components\Filters\CultureAttribute.cs" />
+    <Compile Include="Components\Attributes\CultureAttribute.cs" />
     <Compile Include="Helpers\IdentityExtensions.cs" />
     <Compile Include="Helpers\Mailer.cs" />
     <Compile Include="Helpers\MailsData.Designer.cs">

@@ -28,17 +28,14 @@ namespace System
         private static string GetValue(this IIdentity identity, string name)
         {
             if (identity == null)
-            {
-                throw new ArgumentNullException("identity");
-            }
+                throw new ArgumentNullException("identity", "Identity could not be null.");
+
             var ci = identity as ClaimsIdentity;
             if (ci != null)
             {
                 var id = ci.FindFirst(name);
                 if (id != null)
-                {
                     return id.Value;
-                }
             }
             return null;
         }
