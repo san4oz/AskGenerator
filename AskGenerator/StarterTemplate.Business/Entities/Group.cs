@@ -14,6 +14,11 @@ namespace AskGenerator.Business.Entities
     {
         public string Name { get; set; }
 
+        [ForeignKey("Faculty")]
+        public string FacultyId { get; set; }
+
+        public Faculty Faculty { get; set; }
+
         public virtual ICollection<Student> Students { get; set; }
 
         public virtual ICollection<Teacher> Teachers { get; set; }

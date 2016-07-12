@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201606191637180_LimitFix.Designer.cs">
       <DependentUpon>201606191637180_LimitFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201607121832505_Faculty Impl.cs" />
+    <Compile Include="Migrations\201607121832505_Faculty Impl.Designer.cs">
+      <DependentUpon>201607121832505_Faculty Impl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\BaseEntityProvider.cs" />
@@ -322,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606191637180_LimitFix.resx">
       <DependentUpon>201606191637180_LimitFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607121832505_Faculty Impl.resx">
+      <DependentUpon>201607121832505_Faculty Impl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

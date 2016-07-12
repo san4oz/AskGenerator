@@ -26,7 +26,7 @@ namespace AskGenerator.Business.Entities
         #endregion
 
         [Column(Order = 1)]
-        [ForeignKey("Group")]
+        [StringLength(64)]
         public string GroupId { get; set; }
 
         [ForeignKey("Student")]
@@ -36,7 +36,6 @@ namespace AskGenerator.Business.Entities
         [Index(IsUnique=true)]
         public string LoginKey { get; set; }
 
-        public Group Group { get; set; }
         public Student Student { get; set; }
 
         public override string UserName
