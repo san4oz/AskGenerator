@@ -11,9 +11,14 @@ namespace System
 {
     public static class IdentityExtensions
     {
+        /// <summary>
+        /// Gets the group ID or faculty ID.
+        /// </summary>
+        /// <param name="identity">The user identity.</param>
+        /// <returns>String value from 'GroupId' or 'FacultyId' claims.</returns>
         public static string GetGroupId(this IIdentity identity)
         {
-            return identity.GetValue("GroupId");
+            return identity.GetValue("GroupId") ?? identity.GetValue("FacultyId");
         }
 
         public static string GetId(this IIdentity identity)
