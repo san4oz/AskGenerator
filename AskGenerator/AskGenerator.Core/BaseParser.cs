@@ -5,91 +5,43 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text.RegularExpressions;
+using Microsoft.VisualBasic.FileIO;
 
 namespace AskGenerator.Core
 {
     public class BaseParser
     {
-        const string Col = @"[^\s]+(?:\s[^\s]+)?";
-        /// <summary>
-        /// Used to parse 'text  columns'.
-        /// </summary>
-        Regex ParseColumns = new Regex(@"(" + Col + @")(?:\s\s(" + Col + @"| ?))*", RegexOptions.Compiled);
-
         public ParseInfo Info { get; protected set; }
 
         public virtual void ParseText(string path)
-        {
-        }
+        { }
 
-        public virtual void ParseText(string path, Action<IList<string>> action)
+        protected void ReadLines(string path, Action<IList<string>> action)
         {
-            var lines = ReadLines(path);
-            HandleLine(action, lines);
-
-        }
-
-        protected virtual void ParseText(Stream stream, Action<IList<string>> action)
-        {
-            var lines = ReadLines(stream);
-            HandleLine(action, lines);
-        }
-
-        protected virtual IList<string> ReadLines(string path)
-        {
-            var result = new List<string>();
             if (File.Exists(path))
             {
-                using (var sr = new StreamReader(path))
-                    while (!sr.EndOfStream)
-                        result.Add(sr.ReadLine());
+                using (var reader = new TextFieldParser(path))
+                    ReadLines(reader, action);
             }
-            return result;
         }
 
-        protected virtual IList<string> ReadLines(Stream stream)
+        protected void ReadLines(Stream stream, Action<IList<string>> action)
         {
-            var result = new List<string>();
-            using (var sr = new StreamReader(stream))
-                while (!sr.EndOfStream)
-                    result.Add(sr.ReadLine());
-
-            return result;
+            using (var reader = new TextFieldParser(stream))
+                ReadLines(reader, action);
         }
 
-        #region private
-        private void HandleLine(Action<IList<string>> action, IList<string> lines)
+        protected virtual void ReadLines(TextFieldParser parser, Action<IList<string>> action)
         {
-            foreach (var l in lines)
+            parser.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited;
+            parser.SetDelimiters(new string[] { ";" });
+
+            while (!parser.EndOfData)
             {
-                var match = ParseColumns.Match(l);
-                if (match.Success)
-                {
-                    var captures = match.Groups[2].Captures;
-                    var list = new List<string>(captures.Count);
-                    list.Add(match.Groups[1].Value);
-                    for (var i = 0; i < captures.Count; i++)
-                        list.Add(captures[i].Value);
-                    try
-                    {
-                        action(list);
-                    }
-                    catch
-                    {
-                        try
-                        {
-                            action(list);
-                        }
-                        catch
-                        {
-                            if (this.Info != null)
-                                this.Info.Failed.Add(list.Join("  "));
-                        }
-                    }
-                }
+                string[] row = parser.ReadFields();
+                action(row);
             }
         }
-        #endregion
 
         #region Nested
         public class ParseInfo : IDisposable
@@ -155,14 +107,6 @@ namespace AskGenerator.Core
                 IsInitialized = true;
                 index = value;
             }
-        }
-
-        /// <summary>
-        /// Sets not existing <see cref="Index"/>.
-        /// </summary>
-        public void NotExists()
-        {
-            Index = byte.MaxValue;
         }
 
         /// <summary>

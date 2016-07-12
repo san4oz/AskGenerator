@@ -16,11 +16,11 @@ namespace AskGenerator.Business.Parsers
     /// Parser to parse text with students and save them.
     /// </summary>
     /// <remarks>
-    /// Use following text format:
-    /// index		secondname		firstname		fathername		group		course
-    /// 10		Криворот		Людмила		Володимирівна		СІ-68В		4
-    /// 20		Тищенко		Сергій		*		СІ-68В		4
-    /// 'Group' and 'firstname' columns are required.
+    /// Use csv text format:
+    /// secondname;firstname;fathername;group;course
+    /// Криворот;Людмила;Володимирівна;СІ-68В;4
+    /// Тищенко;Сергій;*;СІ-68В;4
+    /// 'group' and 'secondname' columns are required.
     /// Columns possitions can be changed.
     /// To skip using some column use '*', ' ', or '' cell.
     /// </remarks>
@@ -37,7 +37,6 @@ namespace AskGenerator.Business.Parsers
         protected IDictionary<string, Group> Groups { get; private set; }
 
         #region Columns
-        protected Column Index = new Column("INDEX");
         protected Column FirstName = new Column("FIRSTNAME");
         protected Column SecondName = new Column("SECONDNAME");
         protected Column FatherName = new Column("FATHERNAME");
@@ -51,7 +50,7 @@ namespace AskGenerator.Business.Parsers
         {
             GroupManager = groupManager;
             StudentManager = studentManager;
-            Columns = new List<Column>() { Index, FirstName, SecondName, FatherName, Group, Course };
+            Columns = new List<Column>() {  FirstName, SecondName, FatherName, Group, Course };
         }
 
         /// <summary>
@@ -63,7 +62,7 @@ namespace AskGenerator.Business.Parsers
             using (this.Info = new ParseInfo())
             {
                 InitGroups();
-                base.ParseText(stream, HandleLine);
+                base.ReadLines(stream, HandleLine);
             }
         }
 
@@ -76,7 +75,7 @@ namespace AskGenerator.Business.Parsers
             using (this.Info = new ParseInfo())
             {
                 InitGroups();
-                base.ParseText(path, HandleLine);
+                base.ReadLines(path, HandleLine);
             }
         }
 
@@ -103,7 +102,7 @@ namespace AskGenerator.Business.Parsers
             student.Group = GetGroup(line);
             if (student.Group == null)
             {
-                this.Info.Scipped.Add(line.Join("  "));
+                this.Info.Scipped.Add(line.Join(";"));
                 return;
             }
 
@@ -140,8 +139,6 @@ namespace AskGenerator.Business.Parsers
                 var column = Columns.SingleOrDefault(c => c.Key == key);
                 if (column != null)
                     column.Index = i;
-                else
-                    column.NotExists();
 
                 i++;
             }
@@ -160,11 +157,8 @@ namespace AskGenerator.Business.Parsers
 
         private void InitGroups()
         {
-            var groups = GroupManager.Provider.AllWithoutIncl();
-
-            Groups = new Dictionary<string, Group>();
-            foreach (var g in groups)
-                Groups[g.Name] = g;
+            Groups = GroupManager.Provider.AllWithoutIncl()
+                .ToDictionary(g => g.Name);
         }
         #endregion
     }
