@@ -39,42 +39,44 @@ namespace AskGenerator.Business.Managers
         {
             var result = Provider.Update(teacher, ids);
             if (result)
-                RemoveFromCache(GetListKey());
+                OnUpdated(teacher);
             return result;
         }
 
-        public List<Teacher> List()
+        protected List<Teacher> List()
         {
-            var key = GetListKey();
-            var list = FromCache(key, Provider.List);
+            var list = Provider.List();
             foreach (var t in list) t.Initialize();
             return list;
         }
 
         public List<Teacher> All(bool loadMarks)
         {
-            var teachers = this.List();
-            if (!loadMarks)
-                return teachers;
-            var answers = TQ.All().ToLookup(tq => tq.TeacherId);
-            foreach (var t in teachers)
+            return FromCache(GetListKey("marks", loadMarks), () =>
             {
-                t.Marks = answers[t.Id].ToList();
-                float avg = 0;
-                int count = 0;
-                t.Marks = t.Marks.Where(m => m.Answer != 0).ToList();
-                foreach (var mark in t.Marks)
+                var teachers = this.List();
+                if (!loadMarks)
+                    return teachers;
+                var answers = TQ.All().ToLookup(tq => tq.TeacherId);
+                foreach (var t in teachers)
                 {
-                    avg += mark.Answer;
-                    count++;
+                    t.Marks = answers[t.Id].ToList();
+                    float avg = 0;
+                    int count = 0;
+                    t.Marks = t.Marks.Where(m => m.Answer != 0).ToList();
+                    foreach (var mark in t.Marks)
+                    {
+                        avg += mark.Answer;
+                        count++;
+                    }
+                    if (avg != 0)
+                        avg /= (float)count;
+                    else
+                        avg = -0.001f;
+                    t.Marks.Insert(0, new TeacherQuestion() { Answer = avg, QuestionId = Question.AvarageId });
                 }
-                if (avg != 0)
-                    avg /= (float)count;
-                else
-                    avg = -0.001f;
-                t.Marks.Insert(0, new TeacherQuestion() { Answer = avg, QuestionId = Question.AvarageId });
-            }
-            return teachers;
+                return teachers;
+            });
         }
 
         public Task<List<Teacher>> AllAsync(bool loadMarks)
@@ -82,11 +84,7 @@ namespace AskGenerator.Business.Managers
             return Task.Factory.StartNew(() => All(loadMarks));
         }
 
-        public Task<List<Teacher>> ListAsync()
-        {
-            return Task.Factory.StartNew(() => this.List());
-        }
-
+        #region IHistoryLoader<Teacher> members
         public void MoveToHistory(int iterationId)
         {
             var all = this.All();
@@ -133,5 +131,32 @@ namespace AskGenerator.Business.Managers
                     history.Apply(entity);
             }
         }
+        #endregion
+
+        #region Clearing cache
+        protected override void OnCreated(Teacher entity)
+        {
+            base.OnCreated(entity);
+            RemoveByPrefix(GetListKey("marks"));
+        }
+
+        protected override void OnUpdated(Teacher entity)
+        {
+            base.OnUpdated(entity);
+            RemoveByPrefix(GetListKey("marks"));
+        }
+
+        protected override void OnDeleted(Teacher entity)
+        {
+            base.OnDeleted(entity);
+            RemoveByPrefix(GetListKey("marks"));
+        }
+
+        protected override void OnUpdating(IList<Teacher> entities)
+        {
+            base.OnUpdating(entities);
+            RemoveByPrefix(GetListKey("marks"));
+        }
+        #endregion
     }
 }

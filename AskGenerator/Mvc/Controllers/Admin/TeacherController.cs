@@ -32,7 +32,7 @@ namespace AskGenerator.Controllers.Admin
         [HttpGet]
         public async Task<ActionResult> List()
         {
-            var teachers = await TeacherManager.ListAsync();
+            var teachers = await TeacherManager.AllAsync();
             var viewModel = Map<IList<Teacher>, IList<TeacherViewModel>>(teachers);
             return View(viewModel);
         }

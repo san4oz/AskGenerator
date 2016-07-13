@@ -22,6 +22,7 @@ namespace AskGenerator.Business.Managers
             HistoryManager = historyManager;
         }
 
+        #region IHistoryLoader<Team> members
         public Team LoadHistory(Team entity)
         {
             HistoryManager.Get(entity.Id).Apply(entity);
@@ -74,5 +75,6 @@ namespace AskGenerator.Business.Managers
 
             return st;
         }
+        #endregion
     }
 }

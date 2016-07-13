@@ -12,16 +12,7 @@ namespace AskGenerator.Business.Managers
     {
         public SubscribersManager(IBaseEntityProvider<Subscriber> provider) : base(provider) { }
 
-        protected override string Name
-        {
-            get { return "Subscriber"; }
-        }
-
-        public override List<Subscriber> All()
-        {
-            var key = GetListKey();
-            return FromCache(key, base.All);
-        }
+        protected override string Name { get { return "Subscriber"; } }
 
         public override bool Create(Subscriber entity)
         {

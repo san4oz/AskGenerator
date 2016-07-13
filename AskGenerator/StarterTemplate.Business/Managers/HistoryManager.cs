@@ -25,6 +25,7 @@ namespace AskGenerator.Business.Managers
             foreach (var note in list)
                 note.GetVersions<IDictionary>().Remove(id);
             await Task.Factory.StartNew(() => Provider.Update(list));
+            OnUpdating(list);
         }
 
         public Dictionary<string, History> GetByPrefix(string prefix)
@@ -32,7 +33,33 @@ namespace AskGenerator.Business.Managers
             if (prefix.IsEmpty())
                 throw new ArgumentNullException("prefix", "Prefix shouldn't be an empty string.");
 
-            return Provider.GetByPrefix(prefix);
+            return FromCache(GetListKey(prefix), () => Provider.GetByPrefix(prefix));
         }
+
+        #region Clearing cache
+        protected override void OnCreated(History entity)
+        {
+            base.OnCreated(entity);
+            RemoveFromCache(GetListKey(entity.HistoryPrefix));
+        }
+
+        protected override void OnDeleted(History entity)
+        {
+            base.OnDeleted(entity);
+            RemoveFromCache(GetListKey(entity.HistoryPrefix));
+        }
+
+        protected override void OnUpdated(History entity)
+        {
+            base.OnUpdated(entity);
+            RemoveFromCache(GetListKey(entity.HistoryPrefix));
+        }
+
+        protected override void OnUpdating(IList<History> entities)
+        {
+            base.OnUpdating(entities);
+            entities.Each(e => RemoveFromCache(GetListKey(e.HistoryPrefix)));
+        }
+        #endregion
     }
 }

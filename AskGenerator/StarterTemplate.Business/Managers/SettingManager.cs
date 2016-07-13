@@ -24,23 +24,18 @@ namespace AskGenerator.Business.Managers
         /// <typeparam name="TSetting">Type of setting group.</typeparam>
         /// <param name="id">The ID of settings group. If <c>null</c> default group ID will be used.</param>
         /// <returns>Settings group.</returns>
-        protected virtual TSetting GetOrCreate<TSetting>(string id = null, bool ignoreCache = false) where TSetting : Settings, new()
+        protected virtual TSetting GetOrCreate<TSetting>(string id = null) where TSetting : Settings, new()
         {
             TSetting res = new TSetting();
             if (!id.IsEmpty())
                 res.Id = id;
 
-            var settings = ignoreCache ? Get(res.Id) : FromCache(res.Id, () => Get(res.Id));
+            var settings = Get(res.Id);
 
             if (settings == null)
                 Create(res);
             else
-            {
-                if (ignoreCache)
-                    ToCache(res.Id, settings);
-
                 settings.CopyFieldsTo(res);
-            }
 
             res.Initialize();
             return (TSetting)res;
@@ -55,25 +50,28 @@ namespace AskGenerator.Business.Managers
 
         public override bool Update(Settings entity, bool applyFields = true)
         {
-            RemoveFromCache(entity.Id);
             entity.Apply();
             var settings = new Settings() { Id = entity.Id };
             entity.CopyFieldsTo(settings);
             return base.Update(settings);
         }
 
-        public WebsiteSettings Website(bool ignoreCache = false)
+        /// <summary>
+        /// Gets website settings.
+        /// </summary>
+        /// <returns>Website settings.</returns>
+        public WebsiteSettings Website()
         {
-            return GetOrCreate<WebsiteSettings>(ignoreCache: ignoreCache);
+            return GetOrCreate<WebsiteSettings>();
         }
 
         /// <summary>
         /// Gets general system settings.
         /// </summary>
         /// <returns>General system settings.</returns>
-        public GeneralSettings General(bool ignoreCache = false)
+        public GeneralSettings General()
         {
-            return GetOrCreate<GeneralSettings>(ignoreCache: ignoreCache);
+            return GetOrCreate<GeneralSettings>();
         }
     }
 }

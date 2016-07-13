@@ -60,8 +60,7 @@ namespace AskGenerator.Business.Managers
 
         public int UniqueUserCount()
         {
-            var key = GetKey("UserCount");
-            return FromCache(key, () => Provider.All().GroupBy(tq => tq.AccountId).Count());
+            return Provider.All().GroupBy(tq => tq.AccountId).Count();
         }
     }
 }

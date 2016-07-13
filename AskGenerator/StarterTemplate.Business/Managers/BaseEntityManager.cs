@@ -32,7 +32,8 @@ namespace AskGenerator.Business.Managers
                 entity.Id = Guid.NewGuid().ToString();
             entity.Apply();
             var r = Provider.Create(entity);
-            OnCreated(entity);
+            if(r)
+                OnCreated(entity);
             return r;
         }
 
@@ -42,6 +43,7 @@ namespace AskGenerator.Business.Managers
         /// <param name="entity">New entity.</param>
         protected virtual void OnCreated(T entity)
         {
+            RemoveFromCache(GetListKey());
         }
         #endregion
 
@@ -83,14 +85,18 @@ namespace AskGenerator.Business.Managers
         /// <param name="entity">Modified entity.</param>
         protected virtual void OnUpdated(T entity)
         {
+            RemoveFromCache(GetListKey());
+            RemoveFromCache(entity.Id);
         }
 
         /// <summary>
-        /// Executes after entities were modified.
+        /// Executes after entities were modified. Clears list and id cache.
         /// </summary>
         /// <param name="entities">Modified entities.</param>
         protected virtual void OnUpdating(IList<T> entities)
         {
+            RemoveFromCache(GetListKey());
+            entities.Each(e => RemoveFromCache(e.Id));
         }
         #endregion
 
@@ -113,14 +119,22 @@ namespace AskGenerator.Business.Managers
         /// <param name="entity">Deleted entity.</param>
         protected virtual void OnDeleted(T entity)
         {
+            RemoveFromCache(GetListKey());
+            RemoveFromCache(entity.Id);
         }
         #endregion
 
         public virtual T Get(string id)
         {
-            var t = Provider.Get(id);
-            if(t != null) t.Initialize();
-            return t;
+            if (id.IsEmpty())
+                throw new ArgumentNullException("id", "Id can not be empty.");
+
+            return FromCache(GetKey(id), () =>
+            {
+                var t = Provider.Get(id);
+                if (t != null) t.Initialize();
+                return t;
+            });
         }
 
         public virtual Task<T> GetAsync(string id)
@@ -130,9 +144,12 @@ namespace AskGenerator.Business.Managers
 
         public virtual List<T> All()
         {
-            var list = Provider.All();
-            list.Each(t => t.Initialize());
-            return list;
+            return FromCache(GetListKey(), () =>
+            {
+                var list = Provider.All();
+                list.Each(t => t.Initialize());
+                return list;
+            });
         }
 
         public virtual Task<List<T>> AllAsync()
@@ -145,7 +162,7 @@ namespace AskGenerator.Business.Managers
         {
             if (id.IsEmpty())
                 return null;
-            var t = Provider.Extract(id);
+            var t = Provider.Delete(id);
             if (t != null)
             {
                 t.Initialize();

@@ -14,10 +14,6 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
 
         void Update(IEnumerable<T> sequence);
 
-        bool Delete(T entity);
-
-        T Extract(string id);
-
         T Delete(string id);
 
         T Get(string id);

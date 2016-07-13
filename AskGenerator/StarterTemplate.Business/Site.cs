@@ -5,6 +5,7 @@ using System.Web;
 using Microsoft.AspNet.Identity.Owin;
 using AskGenerator.Business.Entities;
 using AskGenerator.Business.InterfaceDefinitions.Providers;
+using System;
 
 namespace AskGenerator
 {
@@ -33,6 +34,19 @@ namespace AskGenerator
         public static UserManagerBase UserManager { get { return HttpContext.Current.GetOwinContext().GetUserManager<UserManagerBase>(); } }
 
         public static RoleManagerBase RoleManager { get { return HttpContext.Current.GetOwinContext().GetUserManager<RoleManagerBase>(); } }
+
+        public static class Cache
+        {
+            public static IDisposable Ignore
+            {
+                get { return Business.Managers.BaseManager.IgnoreCache(); }
+            }
+
+            public static IDisposable Update
+            {
+                get { return Business.Managers.BaseManager.UpdateCache(); }
+            }
+        }
 
         #region private
         private static T Get<T>()

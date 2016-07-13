@@ -96,15 +96,10 @@ namespace AskGenerator.Business.Managers
             return FromCache(key, () => Provider.GetByFaculty(facultyId));
         }
 
-        public override List<Group> All()
-        {
-            return FromCache(GetListKey(), base.All);
-        }
-
         #region Clearing cache
         protected override void OnCreated(Group entity)
         {
-            RemoveFromCache(GetListKey());
+            base.OnCreated(entity);
             RemoveFromCache(GetListKey(entity.FacultyId));
         }
 
@@ -115,7 +110,7 @@ namespace AskGenerator.Business.Managers
 
         protected override void OnUpdating(IList<Group> entities)
         {
-            RemoveFromCache(GetListKey());
+            base.OnUpdating(entities);
             entities.GroupBy(e => e.FacultyId)
                 .Each(g => RemoveFromCache(GetListKey(g.Key)));
         }
@@ -123,6 +118,7 @@ namespace AskGenerator.Business.Managers
         protected override void OnDeleted(Group entity)
         {
             base.OnDeleted(entity);
+            RemoveFromCache(GetListKey(entity.FacultyId));
         }
         #endregion
     }

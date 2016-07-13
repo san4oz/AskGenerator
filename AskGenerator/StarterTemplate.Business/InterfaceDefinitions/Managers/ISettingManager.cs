@@ -13,15 +13,13 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         /// <summary>
         /// Gets website settings.
         /// </summary>
-        /// <param name="ignoreCache">Indicates whether settings should be taken ftom cache or not.</param>
         /// <returns>Website settings.</returns>
-        WebsiteSettings Website(bool ignoreCache = false);
+        WebsiteSettings Website();
 
         /// <summary>
         /// Gets general system settings.
         /// </summary>
-        /// <param name="ignoreCache">Indicates whether settings should be taken ftom cache or not.</param>
         /// <returns>General system settings.</returns>
-        GeneralSettings General(bool ignoreCache = false);
+        GeneralSettings General();
     }
 }

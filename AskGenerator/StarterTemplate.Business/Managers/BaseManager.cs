@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Caching;
+using AskGenerator.Core;
 
 namespace AskGenerator.Business.Managers
 {
@@ -12,6 +13,27 @@ namespace AskGenerator.Business.Managers
     /// </summary>
     public abstract class BaseManager
     {
+        protected const string IgnoreCacheScopeName = "ignorecache";
+        protected const string UpdateCacheScopeName = "updatecache";
+
+        /// <summary>
+        /// Sets flag indicating to ignore cache.
+        /// </summary>
+        /// <returns>Disposable object.</returns>
+        public static IDisposable IgnoreCache()
+        {
+            return new ThreadScope(IgnoreCacheScopeName);
+        }
+
+        /// <summary>
+        /// Sets flag indicating to update cache.
+        /// </summary>
+        /// <returns>Disposable object.</returns>
+        public static IDisposable UpdateCache()
+        {
+            return new ThreadScope(UpdateCacheScopeName);
+        }
+
         MemoryCache cache;
 
         /// <summary>
@@ -125,12 +147,17 @@ namespace AskGenerator.Business.Managers
         /// <returns>Retrived value.</returns>
         protected TValue FromCache<TValue>(string key, Func<TValue> function, DateTime? expiration = null)
         {
-            var obj = cache.Get(Name + '_' + key);
-            if (obj != null)
-            {
-                return (TValue)obj;
-            }
+            if (ThreadScope.IsInScope(IgnoreCacheScopeName))
+                return function();
 
+            if (!ThreadScope.IsInScope(UpdateCacheScopeName))
+            {
+                var obj = cache.Get(Name + '_' + key);
+                if (obj != null)
+                {
+                    return (TValue)obj;
+                }
+            }
             var itemToSave = function();
             ToCache<TValue>(key, itemToSave, expiration);
 

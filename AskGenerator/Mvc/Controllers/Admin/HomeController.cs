@@ -65,10 +65,13 @@ namespace AskGenerator.Controllers.Admin
         public async Task<ActionResult> SaveStatToHistory()
         {
             return await IndexActionWrapper(() => {
-                var iterationId = Site.Settings.General(true).CurrentIteration + 1;
-                Site.TeamManager.MoveToHistory(iterationId);
-                Site.TeacherManager.MoveToHistory(iterationId);
-                Site.GroupManager.MoveToHistory(iterationId);
+                using (Site.Cache.Update)
+                {
+                    var iterationId = Site.Settings.General().CurrentIteration + 1;
+                    Site.TeamManager.MoveToHistory(iterationId);
+                    Site.TeacherManager.MoveToHistory(iterationId);
+                    Site.GroupManager.MoveToHistory(iterationId);
+                }
             });
         }
 
@@ -122,7 +125,9 @@ namespace AskGenerator.Controllers.Admin
                 try
                 {
                     var tqs = tqManager.All();
-                    var voteList = voteManager.All();
+                    List<Vote> voteList = null;
+                    using(Site.Cache.Ignore)
+                        voteList = voteManager.All();
                     var votes = voteList.ToLookup(v => v.TeacherId);
                     foreach (var tq in tqs)
                     {
@@ -137,7 +142,7 @@ namespace AskGenerator.Controllers.Admin
                     tqManager.Update(tqs);
                     UpdateGroupStatistic(voteList);
                     var teachers = UpdateTeachers();
-                    UpdateTeams(teachers);
+                    UpdateTeams(teachers, voteList);
                 }
                 catch (Exception e)
                 {
@@ -267,7 +272,7 @@ namespace AskGenerator.Controllers.Admin
         }
         #endregion
 
-        protected void UpdateTeams(IList<Teacher> teachers = null)
+        protected void UpdateTeams(IList<Teacher> teachers = null, IList<Vote> allVotes = null)
         {
             if (teachers == null)
                 teachers = Site.TeacherManager.All();
@@ -276,7 +281,10 @@ namespace AskGenerator.Controllers.Admin
             var diffId = questions.First().Id;
             var additionalId = questions.Last().Id;
 
-            var allVotes = Site.VoteManager.All();
+            if (allVotes == null)
+            using(Site.Cache.Ignore)
+                allVotes = Site.VoteManager.All();
+
             var teams = Site.TeamManager.All();
 
             foreach (var team in teams)
