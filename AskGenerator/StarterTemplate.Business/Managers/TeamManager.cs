@@ -12,6 +12,8 @@ namespace AskGenerator.Business.Managers
 {
     public class TeamManager : BaseEntityManager<Team, ITeamProvider>, ITeamManager
     {
+        protected override string Name { get { return "Team"; } }
+
         protected readonly IHistoryManager HistoryManager;
 
         public TeamManager(ITeamProvider provider, IHistoryManager historyManager, ISettingManager settingManager)

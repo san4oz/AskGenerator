@@ -15,7 +15,6 @@ namespace AskGenerator.ViewModels
 
         public BaseViewModel()
         {
-            //Id = Guid.NewGuid().ToString();
         }
     }
 }

@@ -20,21 +20,34 @@
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
                 <form method="post" class="form-horizontal" enctype="multipart/form-data">
-                    @Html.AntiForgeryToken()
-                    @Html.EditorFor(x => x.Id)
+                    @Html.AntiForgeryToken()  
                     <fieldset>
                         <legend>@legend</legend>
+                        @if (Model == null || Model.Id.IsNullOrWhiteSpace())
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.Id, htmlAttributes: new { @class = "col-lg-3 control-label" })
+                                <div class="col-lg-9">
+                                    @Html.TextBoxFor(x => x.Id, htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.Id)
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.EditorFor(x => x.Id)
+                        }
                         <div class="form-group">
                             @Html.LabelFor(x => x.ShortName, htmlAttributes: new { @class = "col-lg-3 control-label" })
                             <div class="col-lg-9">
-                                @Html.TextBoxFor(x => x.ShortName, htmlAttributes: new { @clas = "form-control" })
+                                @Html.TextBoxFor(x => x.ShortName, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(x => x.ShortName)
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(x => x.Name, htmlAttributes: new { @class = "col-lg-3 control-label" })
                             <div class="col-lg-9">
-                                @Html.TextBoxFor(x => x.Name, htmlAttributes: new { @clas = "form-control" })
+                                @Html.TextBoxFor(x => x.Name, htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationMessageFor(x => x.Name)
                             </div>
                         </div>

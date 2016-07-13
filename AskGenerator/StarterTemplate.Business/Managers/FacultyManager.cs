@@ -14,7 +14,8 @@ namespace AskGenerator.Business.Managers
         public FacultyManager(IFacultyProvider provider)
             : base(provider)
         {
-
         }
+
+        protected override string Name { get { return "Faculty"; } }
     }
 }

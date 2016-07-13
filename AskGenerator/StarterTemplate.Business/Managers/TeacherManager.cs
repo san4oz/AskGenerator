@@ -13,6 +13,8 @@ namespace AskGenerator.Business.Managers
 {
     public class TeacherManager : BaseEntityManager<Teacher, ITeacherProvider>, ITeacherManager
     {
+        protected override string Name { get { return "Teacher"; } }
+
         protected ITeacherQuestionManager TQ { get; private set; }
         protected readonly IHistoryManager HistoryManager;
 

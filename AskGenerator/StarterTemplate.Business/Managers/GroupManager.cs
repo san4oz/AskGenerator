@@ -12,6 +12,8 @@ namespace AskGenerator.Business.Managers
 {
     public class GroupManager : BaseEntityManager<Group, IGroupProvider>, IGroupManager
     {
+        protected override string Name { get { return "Group"; } }
+
         protected readonly IHistoryManager HistoryManager;
 
         public GroupManager(IGroupProvider provider,IHistoryManager historyManager) : base(provider) 

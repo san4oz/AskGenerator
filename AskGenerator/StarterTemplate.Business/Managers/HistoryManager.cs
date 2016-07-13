@@ -13,6 +13,8 @@ namespace AskGenerator.Business.Managers
 {
     public class HistoryManager : BaseEntityManager<History, IHistoryProvider>, IHistoryManager
     {
+        protected override string Name { get { return "History"; } }
+
         public HistoryManager(IHistoryProvider provider)
             : base(provider)
         { }

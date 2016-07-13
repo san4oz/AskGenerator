@@ -79,15 +79,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Поле &quot;Студент&quot; повино бути заповнене.
-        /// </summary>
-        public static string AccountIdRequired {
-            get {
-                return ResourceManager.GetString("AccountIdRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Додати кафедру.
         /// </summary>
         public static string AddDepartment {
@@ -156,15 +147,6 @@ namespace Resources {
         public static string Answer {
             get {
                 return ResourceManager.GetString("Answer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Поле &quot;Відповіть&quot; повино бути заповнене.
-        /// </summary>
-        public static string AnswerRequired {
-            get {
-                return ResourceManager.GetString("AnswerRequired", resourceCulture);
             }
         }
         
@@ -493,6 +475,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Факультети.
+        /// </summary>
+        public static string Faculties {
+            get {
+                return ResourceManager.GetString("Faculties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Факультет.
         /// </summary>
         public static string Faculty {
@@ -525,15 +516,6 @@ namespace Resources {
         public static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Поле &quot;Ім&apos;я&quot; повино бути заповнене.
-        /// </summary>
-        public static string FirstNameRequired {
-            get {
-                return ResourceManager.GetString("FirstNameRequired", resourceCulture);
             }
         }
         
@@ -588,15 +570,6 @@ namespace Resources {
         public static string HigherRateDescription {
             get {
                 return ResourceManager.GetString("HigherRateDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Поле &quot;Пояснення найвищої оцінки&quot; повино бути заповнене.
-        /// </summary>
-        public static string HigherRateDescriptionRequired {
-            get {
-                return ResourceManager.GetString("HigherRateDescriptionRequired", resourceCulture);
             }
         }
         
@@ -669,15 +642,6 @@ namespace Resources {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Поле &quot;Фамілія&quot; повино бути заповнене.
-        /// </summary>
-        public static string LastNameRequired {
-            get {
-                return ResourceManager.GetString("LastNameRequired", resourceCulture);
             }
         }
         
@@ -799,6 +763,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Поле &apos;{0}&apos; повинне бути не довше {1}.
+        /// </summary>
+        public static string MaxLengthError {
+            get {
+                return ResourceManager.GetString("MaxLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to *My MVC Admin Template.
         /// </summary>
         public static string MyMVCAdminTemplate {
@@ -822,15 +795,6 @@ namespace Resources {
         public static string NameDepart {
             get {
                 return ResourceManager.GetString("NameDepart", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Поле &quot;Група&quot; повино бути заповнене.
-        /// </summary>
-        public static string NameRequired {
-            get {
-                return ResourceManager.GetString("NameRequired", resourceCulture);
             }
         }
         
@@ -1042,29 +1006,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Поле &quot;Запитання&quot; повино бути заповнене.
-        /// </summary>
-        public static string QuestionBodyRequired {
-            get {
-                return ResourceManager.GetString("QuestionBodyRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Номер запитання.
         /// </summary>
         public static string QuestionId {
             get {
                 return ResourceManager.GetString("QuestionId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Поле &quot;Номер запитання&quot; повино бути заповнене.
-        /// </summary>
-        public static string QuestionIdRequired {
-            get {
-                return ResourceManager.GetString("QuestionIdRequired", resourceCulture);
             }
         }
         

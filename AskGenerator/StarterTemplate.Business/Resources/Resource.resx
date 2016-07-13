@@ -120,9 +120,6 @@
   <data name="AccountId" xml:space="preserve">
     <value>Студент</value>
   </data>
-  <data name="AccountIdRequired" xml:space="preserve">
-    <value>Поле "Студент" повино бути заповнене</value>
-  </data>
   <data name="AddDepartment" xml:space="preserve">
     <value>Додати кафедру</value>
   </data>
@@ -140,9 +137,6 @@
   </data>
   <data name="Answer" xml:space="preserve">
     <value>Відповіть</value>
-  </data>
-  <data name="AnswerRequired" xml:space="preserve">
-    <value>Поле "Відповіть" повино бути заповнене</value>
   </data>
   <data name="BackToTheList" xml:space="preserve">
     <value>Перейти до списку</value>
@@ -201,9 +195,6 @@
   <data name="FirstName" xml:space="preserve">
     <value>Ім'я</value>
   </data>
-  <data name="FirstNameRequired" xml:space="preserve">
-    <value>Поле "Ім'я" повино бути заповнене</value>
-  </data>
   <data name="Generator" xml:space="preserve">
     <value>Evaluator</value>
   </data>
@@ -222,9 +213,6 @@
   <data name="HigherRateDescription" xml:space="preserve">
     <value>Пояснення найвищої оцінки</value>
   </data>
-  <data name="HigherRateDescriptionRequired" xml:space="preserve">
-    <value>Поле "Пояснення найвищої оцінки" повино бути заповнене</value>
-  </data>
   <data name="Image" xml:space="preserve">
     <value>Фотографія</value>
   </data>
@@ -236,9 +224,6 @@
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Прізвище</value>
-  </data>
-  <data name="LastNameRequired" xml:space="preserve">
-    <value>Поле "Фамілія" повино бути заповнене</value>
   </data>
   <data name="ListDepartments" xml:space="preserve">
     <value>Список кафедр</value>
@@ -273,9 +258,6 @@
   <data name="NameDepart" xml:space="preserve">
     <value>Назва</value>
   </data>
-  <data name="NameRequired" xml:space="preserve">
-    <value>Поле "Група" повино бути заповнене</value>
-  </data>
   <data name="NewDepartment" xml:space="preserve">
     <value>Нова кафедра</value>
   </data>
@@ -309,14 +291,8 @@
   <data name="QuestionBody" xml:space="preserve">
     <value>Запитання</value>
   </data>
-  <data name="QuestionBodyRequired" xml:space="preserve">
-    <value>Поле "Запитання" повино бути заповнене</value>
-  </data>
   <data name="QuestionId" xml:space="preserve">
     <value>Номер запитання</value>
-  </data>
-  <data name="QuestionIdRequired" xml:space="preserve">
-    <value>Поле "Номер запитання" повино бути заповнене</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Реєстрація</value>
@@ -593,5 +569,11 @@
   </data>
   <data name="Details" xml:space="preserve">
     <value>Детальний звіт</value>
+  </data>
+  <data name="Faculties" xml:space="preserve">
+    <value>Факультети</value>
+  </data>
+  <data name="MaxLengthError" xml:space="preserve">
+    <value>Поле '{0}' повинне бути не довше {1}</value>
   </data>
 </root>

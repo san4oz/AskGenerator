@@ -13,13 +13,13 @@ namespace AskGenerator.Mvc.ViewModels
     using R = Resources.Resource;
     public class FacultyViewModel : BaseViewModel, IMapFrom<Faculty>
     {
-
         [Display(Name = "ShortName", ResourceType = typeof(R))]
-        [Required]
+        [StringLength(8, ErrorMessageResourceName = "MaxLengthError", ErrorMessageResourceType = typeof(R))]
+        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(R))]
         public string ShortName { get; set; }
 
         [Display(Name = "FacultyName", ResourceType = typeof(R))]
-        [Required]
+        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(R))]
         public string Name { get; set; }
     }
 }

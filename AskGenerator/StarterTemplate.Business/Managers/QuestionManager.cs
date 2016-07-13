@@ -11,6 +11,8 @@ namespace AskGenerator.Business.Managers
 {
     public class QuestionManager : BaseEntityManager<Question, IQuestionProvider>, IQuestionManager
     {
+        protected override string Name { get { return "Question"; } }
+
         public QuestionManager(IQuestionProvider provider)
             : base(provider)
         { }

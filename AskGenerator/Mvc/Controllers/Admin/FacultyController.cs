@@ -28,10 +28,10 @@ namespace AskGenerator.Controllers.Admin
 
         public ActionResult Edit(string id)
         {
-            var team = Site.FacultyManager.Get(id);
-            if (team == null)
+            var faculty = Site.FacultyManager.Get(id);
+            if (faculty == null)
                 return HttpNotFound("Faculty ({0}) was not found.".FormatWith(id));
-            var model = Map<Faculty, FacultyViewModel>(team);
+            var model = Map<Faculty, FacultyViewModel>(faculty);
             return View("Create", model);
         }
 

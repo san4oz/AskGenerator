@@ -1,16 +1,18 @@
 ﻿<!-- left, vertical navbar -->
 
 <ul class="nav navbar-collapse collapse bootstrap-admin-navbar-side">
-    
+    @if (User.IsAdmin())
+    {
+        @Html.MenuItem(Resources.Resource.Faculties, "List", "Faculty", area: "Admin")
+    }
     @Html.MenuItem(Resources.Resource.Departments, "List", "Team", area: "Admin")
     @Html.MenuRouteItem(@Resources.Resource.Teachers, "teacher/list")
-    @if(User.IsAdmin()) {
-        @Html.MenuRouteItem(@Resources.Resource.QuestionAbTeacher, "questionAT/list")
-    }
+    @Html.MenuRouteItem(@Resources.Resource.Groups, "group/list")
     <li><hr /></li>
-    @if(User.IsAdmin()) {
+    @if (User.IsAdmin())
+    {
+        @Html.MenuRouteItem(@Resources.Resource.QuestionAbTeacher, "questionAT/list")
         @Html.MenuItem(@Resources.Resource.Config, "Website", "Setting", area: "Admin")
     }
-    @Html.MenuRouteItem(@Resources.Resource.Groups, "group/list")
     @Html.MenuRouteItem(Resources.Resource.Students, "student/list")
 </ul>

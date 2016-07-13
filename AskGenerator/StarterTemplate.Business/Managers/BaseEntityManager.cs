@@ -15,11 +15,6 @@ namespace AskGenerator.Business.Managers
     {
         protected TProvider Provider;
 
-        protected override string Name
-        {
-            get { return "Entity"; }
-        }
-
         public BaseEntityManager(TProvider provider)
         {
             Provider = provider;
