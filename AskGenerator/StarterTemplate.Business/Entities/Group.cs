@@ -12,8 +12,14 @@ namespace AskGenerator.Business.Entities
 {
     public class Group : Entity, IVersionedStatistics<Group.Statistics>
     {
+        /// <summary>
+        /// Gets or sets the name of the group.
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        /// The ID of faculty this group related to.
+        /// </summary>
         [ForeignKey("Faculty")]
         public string FacultyId { get; set; }
 
@@ -26,10 +32,10 @@ namespace AskGenerator.Business.Entities
         [NotMapped]
         public float AverageVote { get; set; }
 
-        [NotMapped]
         /// <summary>
         /// The number of voted students.
         /// </summary>
+        [NotMapped]
         public int StudentsCount { get; set; }
 
         /// <summary>
@@ -44,6 +50,10 @@ namespace AskGenerator.Business.Entities
         [NotMapped]
         public Mark Rating { get; set; }
 
+        /// <summary>
+        /// Returns a string name that represents the current group.
+        /// </summary>
+        /// <returns><see cref="Name"/> of the group.</returns>
         public override string ToString()
         {
             return Name;

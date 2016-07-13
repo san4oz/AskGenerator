@@ -13,5 +13,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Managers
         IGroupProvider Provider { get; }
 
         List<Group> GetByIds(IEnumerable<string> ids);
+
+        IList<Group> GetByFaculty(string facultyId);
     }
 }

@@ -202,7 +202,18 @@ namespace AskGenerator.Business.Managers
         protected void RemoveFromCache(string key)
         {
             key = Name + '_' + key;
-            var removed = RemoveFromCacheCore(key);
+            RemoveFromCacheCore(key);
+        }
+
+        /// <summary>
+        /// Removes items from cache by their prefix.
+        /// </summary>
+        /// <param name="key">Prefix cache-keys started with.</param>
+        protected void RemoveByPrefix(string prefix)
+        {
+            var key = Name + '_' + prefix;
+            cache.Where(c => c.Key.StartsWith(key, StringComparison.InvariantCultureIgnoreCase))
+                .Each(c => RemoveFromCacheCore(c.Key));
         }
 
         #region private

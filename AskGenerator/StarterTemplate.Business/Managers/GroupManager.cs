@@ -31,6 +31,7 @@ namespace AskGenerator.Business.Managers
             get { return base.Provider; }
         }
 
+        #region IHistoryLoader<Group> members
         public Group LoadHistory(Group entity)
         {
             HistoryManager.Get(entity.Id).Apply(entity);
@@ -82,5 +83,45 @@ namespace AskGenerator.Business.Managers
 
             return st;
         }
+        #endregion
+
+        public IList<Group> GetByFaculty(string facultyId)
+        {
+            if (facultyId.IsEmpty())
+                return new Group[0];
+
+            var key = GetListKey(facultyId);
+            return FromCache(key, () => Provider.GetByFaculty(facultyId));
+        }
+
+        public override List<Group> All()
+        {
+            return FromCache(GetListKey(), base.All);
+        }
+
+        #region Clearing cache
+        protected override void OnCreated(Group entity)
+        {
+            RemoveFromCache(GetListKey());
+            RemoveFromCache(GetListKey(entity.FacultyId));
+        }
+
+        protected override void OnUpdated(Group entity)
+        {
+            OnCreated(entity);
+        }
+
+        protected override void OnUpdating(IList<Group> entities)
+        {
+            RemoveFromCache(GetListKey());
+            entities.GroupBy(e => e.FacultyId)
+                .Each(g => RemoveFromCache(GetListKey(g.Key)));
+        }
+
+        protected override void OnDeleted(Group entity)
+        {
+            base.OnDeleted(entity);
+        }
+        #endregion
     }
 }

@@ -149,6 +149,7 @@ namespace AskGenerator.Controllers.Admin
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [RolesAuthorize(Role.Admin)]
         public async Task<ActionResult> ResetAccountKeys()
         {
             var list = await StudentManager.AllAsync();

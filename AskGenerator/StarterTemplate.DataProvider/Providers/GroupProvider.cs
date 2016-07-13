@@ -47,5 +47,17 @@ namespace AskGenerator.DataProvider.Providers
                 return context.Groups.Where(g => g.Id != "all").ToList();
             });
         }
+
+
+        public List<Group> GetByFaculty(string facultyId)
+        {
+            return Execute(context =>
+            {
+                return context.Groups
+                    .Where(g => g.FacultyId == facultyId && g.Id != "all")
+                    .OrderBy(g => g.Name)
+                    .ToList();
+            });
+        }
     }
 }

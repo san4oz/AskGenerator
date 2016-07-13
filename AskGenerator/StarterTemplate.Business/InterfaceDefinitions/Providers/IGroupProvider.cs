@@ -12,5 +12,7 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
         List<Group> GetByIds(IEnumerable<string> ids);
 
         List<Group> AllWithoutIncl();
+
+        List<Group> GetByFaculty(string facultyId);
     }
 }

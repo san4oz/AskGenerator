@@ -1,6 +1,9 @@
 ﻿@model string
 @{
-    var list = (IEnumerable<SelectListItem>)AskGenerator.Site.GroupManager.All().Select(g => new SelectListItem()
+    var groups = User.IsAdmin()
+        ? AskGenerator.Site.GroupManager.All()
+        : AskGenerator.Site.GroupManager.GetByFaculty(User.Identity.GetGroupId());
+    var list = (IEnumerable<SelectListItem>)groups.Select(g => new SelectListItem()
                 {
                     Text = g.Name,
                     Value = g.Id,

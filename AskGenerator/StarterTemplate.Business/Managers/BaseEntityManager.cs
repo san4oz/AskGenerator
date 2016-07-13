@@ -25,6 +25,12 @@ namespace AskGenerator.Business.Managers
             Provider = provider;
         }
 
+        #region Create
+        /// <summary>
+        /// Saves new instance of entity.
+        /// </summary>
+        /// <param name="entity">Created entity to save.</param>
+        /// <returns><c>true</c> if saving was completed successfuly.</returns>
         public virtual bool Create(T entity)
         {
             if (entity.Id == null)
@@ -42,21 +48,58 @@ namespace AskGenerator.Business.Managers
         protected virtual void OnCreated(T entity)
         {
         }
+        #endregion
 
+        #region Update
+        /// <summary>
+        /// Updates modified entity.
+        /// </summary>
+        /// <param name="entity">The entity to update.</param>
+        /// <param name="applyFields">Indicates whether XML fields should be initialized from <paramref name="entity"/> or used saved one.</param>
+        /// <returns><c>true</c> if entity's record was updated.</returns>
         public virtual bool Update(T entity, bool applyFields = true)
         {
             if(applyFields)
                 entity.Apply();
-            return Provider.Update(entity);
+
+            var result = Provider.Update(entity);
+            if (result)
+                OnUpdated(entity);
+            return result;
         }
 
+        /// <summary>
+        /// Updates entities.
+        /// </summary>
+        /// <param name="sequence">The sequence of entities to update.</param>
+        /// <param name="applyFields">Indicates whether XML fields should be initialized from each entity or used saved ones.</param>
         public virtual void Update(IEnumerable<T> sequence, bool applyFields = true)
         {
+            var list = (sequence as IList<T>) ?? sequence.ToList();
             if(applyFields)
                 sequence.Each(t => t.Apply());
-            Provider.Update(sequence);
+            Provider.Update(list);
+            OnUpdating(list);
         }
 
+        /// <summary>
+        /// Executes after entity was modified.
+        /// </summary>
+        /// <param name="entity">Modified entity.</param>
+        protected virtual void OnUpdated(T entity)
+        {
+        }
+
+        /// <summary>
+        /// Executes after entities were modified.
+        /// </summary>
+        /// <param name="entities">Modified entities.</param>
+        protected virtual void OnUpdating(IList<T> entities)
+        {
+        }
+        #endregion
+
+        #region Delete
         public virtual bool Delete(string id)
         {
             var t = Provider.Delete(id);
@@ -70,12 +113,13 @@ namespace AskGenerator.Business.Managers
         }
 
         /// <summary>
-        /// Executes after new entity was created.
+        /// Executes after entity was deleted.
         /// </summary>
-        /// <param name="entity">New entity.</param>
+        /// <param name="entity">Deleted entity.</param>
         protected virtual void OnDeleted(T entity)
         {
         }
+        #endregion
 
         public virtual T Get(string id)
         {
