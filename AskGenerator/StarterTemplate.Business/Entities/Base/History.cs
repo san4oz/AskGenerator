@@ -27,7 +27,7 @@ namespace AskGenerator.Business.Entities.Base
 
         public History(string id, string prefix)
         {
-            Id = id;
+            base.Id = id;
             HistoryPrefix = prefix;
         }
 

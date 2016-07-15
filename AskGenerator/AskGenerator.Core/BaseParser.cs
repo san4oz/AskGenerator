@@ -44,7 +44,7 @@ namespace AskGenerator.Core
         }
 
         #region Nested
-        public class ParseInfo : IDisposable
+        public sealed class ParseInfo : IDisposable
         {
             protected DateTime Begin { get; set; }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Security.Permissions;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -10,12 +12,17 @@ using System.Xml.Serialization;
 namespace AskGenerator.Business.Entities.Base
 {
     [XmlRoot("Fields")]
+    [Serializable]
     public class EntityFields : XmlSerializableDictionary<object>
     {
         public EntityFields() : base()
         { }
 
         public EntityFields(IDictionary<string, object> dict) : base(dict)
+        { }
+
+        protected EntityFields(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         { }
 
         public TValue GetOrCreate<TValue>(string key) where TValue : new()
@@ -72,12 +79,14 @@ namespace AskGenerator.Business.Entities.Base
         : Dictionary<string, TValue>, IXmlSerializable
     {
         public XmlSerializableDictionary() :base()
-        {
-        }
+        { }
 
         public XmlSerializableDictionary(IDictionary<string, TValue> dict) : base(dict)
-        {
-        }
+        { }
+
+        protected XmlSerializableDictionary(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        { }
 
         private XmlSerializerManager sm = new XmlSerializerManager();
 
@@ -86,6 +95,14 @@ namespace AskGenerator.Business.Entities.Base
         {
             return null;
         }
+
+        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            if (info == null)
+                throw new ArgumentNullException("info", "Serialization info param is null.");
+            base.GetObjectData(info, context);
+        }
+
 
         public void ReadXml(XmlReader reader)
         {

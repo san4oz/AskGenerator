@@ -34,9 +34,9 @@ namespace AskGenerator.Business
             xws.NamespaceHandling = NamespaceHandling.OmitDuplicates;
             var ns = new XmlSerializerNamespaces();
             ns.Add(string.Empty, string.Empty);
-            using (var stringWriter = new StringWriter())
-            using (var xmlWriter = XmlTextWriter.Create(stringWriter, xws))
-            {
+            using (var stringWriter = new StringWriter()) {
+                var xmlWriter = XmlTextWriter.Create(stringWriter, xws);
+
                 GetSerializer(obj.GetType()).Serialize(xmlWriter, obj, ns);
                 xmlWriter.Flush();
                 stringWriter.Flush();
