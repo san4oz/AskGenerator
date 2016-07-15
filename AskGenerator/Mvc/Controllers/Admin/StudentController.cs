@@ -187,12 +187,18 @@ namespace AskGenerator.Controllers.Admin
 
         #region private
         
-        private Student DecomposeStudentViewModel(StudentViewModel Student)
+        private Student DecomposeStudentViewModel(StudentViewModel model)
         {
-            var student = Map<StudentViewModel, Student>(Student);
-            var group = Site.GroupManager.Get(Student.GroupId);
+            var existing = Site.StudentManager.Get(model.Id);
+            var student = Map<StudentViewModel, Student>(model);
+            var group = Site.GroupManager.Get(model.GroupId);
             student.Group = group;
-            student.Image = SaveImage(Student.ImageFile, Student.Id).Or(Student.Image);
+            student.Image = SaveImage(model.ImageFile, model.Id).Or(model.Image);
+            if (!User.IsAdmin())
+            {
+                student.AccountId = existing.AccountId;
+                student.HasUserAccount = existing.HasUserAccount;
+            }
             return student;
         }
 

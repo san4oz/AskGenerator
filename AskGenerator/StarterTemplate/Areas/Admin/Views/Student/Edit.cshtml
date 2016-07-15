@@ -1,7 +1,7 @@
 ﻿@model AskGenerator.ViewModels.StudentViewModel
 
 @{
-    ViewBag.Title = @Resources.Resource.EditStudent;
+    ViewBag.Title = @Resource.EditStudent;
     var maxSize = "100px";
 }
 
@@ -9,13 +9,13 @@
     <div class="row">
         <div class="panel panel-default bootstrap-admin-no-table-panel">
             <div class="panel-heading">
-                <div class="text-muted bootstrap-admin-box-title">@Resources.Resource.Student</div>
+                <div class="text-muted bootstrap-admin-box-title">@Resource.Student</div>
             </div>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
                 @using (Html.BeginForm("Edit", "Student", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
                 {
                     <fieldset>
-                        <legend>@Resources.Resource.EditStudent</legend>
+                        <legend>@Resource.EditStudent</legend>
                         @Html.HiddenFor(x => x.Id)
                         <div class="form-group">
                             @Html.LabelFor(x => x.FirstName, htmlAttributes: new { @class = "col-lg-2 control-label" })
@@ -37,20 +37,22 @@
                             @Html.ValidationMessageFor(x => x.GroupId, null, htmlAttributes: new { @class = "col-lg-10" })
                         </div>
 
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.AccountId, htmlAttributes: new { @class = "col-lg-2 control-label" })
-                            <div class="col-lg-10">
-                                @Html.TextBoxFor(x => x.AccountId, htmlAttributes: new { @class = "form-control" })
+                        @if (User.IsAdmin()) { 
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.AccountId, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                                <div class="col-lg-10">
+                                    @Html.TextBoxFor(x => x.AccountId, htmlAttributes: new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(x => x.AccountId, null, htmlAttributes: new { @class = "col-lg-10" })
                             </div>
-                            @Html.ValidationMessageFor(x => x.AccountId, null, htmlAttributes: new { @class = "col-lg-10" })
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.HasUserAccount, htmlAttributes: new { @class = "col-lg-2 control-label" })
-                            <div class="col-lg-10">
-                                @Html.EditorFor(x => x.HasUserAccount)
+                            <div class="form-group">
+                                @Html.LabelFor(x => x.HasUserAccount, htmlAttributes: new { @class = "col-lg-2 control-label" })
+                                <div class="col-lg-10">
+                                    @Html.EditorFor(x => x.HasUserAccount)
+                                </div>
+                                @Html.ValidationMessageFor(x => x.HasUserAccount, null, htmlAttributes: new { @class = "col-lg-10" })
                             </div>
-                            @Html.ValidationMessageFor(x => x.HasUserAccount, null, htmlAttributes: new { @class = "col-lg-10" })
-                        </div>
+                        }
 
                         @if (!Model.Image.IsNullOrWhiteSpace())
                         {
@@ -64,12 +66,13 @@
                             </div>
                         </div>
 
-                        @if (!Model.AccountId.IsNullOrWhiteSpace())
+                        @if (!Model.AccountId.IsNullOrWhiteSpace() && User.IsAdmin())
                         {
                             @Html.ActionLink("Edit account", "Edit", "Account", new { id=Model.AccountId, returnUrl = Request.Url.PathAndQuery }, null)
                         }
-                        <button type="submit" class="btn btn-primary">@Resources.Resource.Save</button>
-                        <button type="reset" class="btn btn-default">@Resources.Resource.Clean</button>
+                        
+                        @Html.SubmitBtn(Resource.Save)
+                        @Html.ClearBtn(Resource.Clean)
                     </fieldset>
                 }
             </div>
@@ -82,7 +85,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#GroupId").select2({
-                placeholder: '@Resources.Resource.SelectGroup',
+                placeholder: '@Resource.SelectGroup',
                 width: 400
             });
         });
