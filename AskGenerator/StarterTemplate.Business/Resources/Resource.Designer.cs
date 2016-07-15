@@ -520,6 +520,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Повинне бути заповненим поле &apos;{0}&apos; або &apos;{1}&apos;.
+        /// </summary>
+        public static string FirstOrSecondRequired {
+            get {
+                return ResourceManager.GetString("FirstOrSecondRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Evaluator.
         /// </summary>
         public static string Generator {
@@ -529,7 +538,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Группа.
+        ///   Looks up a localized string similar to Група.
         /// </summary>
         public static string Group {
             get {
@@ -1146,6 +1155,15 @@ namespace Resources {
         public static string SelectDepartment {
             get {
                 return ResourceManager.GetString("SelectDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Виберіть факультет.
+        /// </summary>
+        public static string SelectFaculty {
+            get {
+                return ResourceManager.GetString("SelectFaculty", resourceCulture);
             }
         }
         

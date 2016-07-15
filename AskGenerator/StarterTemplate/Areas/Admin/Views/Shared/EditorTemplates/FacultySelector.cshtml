@@ -1,0 +1,12 @@
+﻿@model string
+@{
+    var faculties = AskGenerator.Site.FacultyManager.All();
+    var list = (IEnumerable<SelectListItem>)faculties.Select(g => new SelectListItem()
+                {
+                    Text = g.ShortName,
+                    Value = g.Id,
+                    Selected = g.Id.Equals(Model, StringComparison.InvariantCultureIgnoreCase)
+                });
+}
+
+@Html.DropDownListFor(m => m, selectList:list)

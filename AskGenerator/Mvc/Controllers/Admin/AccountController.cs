@@ -47,6 +47,18 @@ namespace AskGenerator.Controllers.Admin
         }
         #endregion
 
+        /*
+        /// <summary>
+        /// Renders a view containing the list of 
+        /// </summary>
+        /// <returns></returns>
+        [ActionName("Index")]
+        public async Task<ActionResult> List()
+        {
+
+        }
+        */
+
         [HttpGet]
         public async Task<ActionResult> Edit(string id, string returnUrl = null)
         {
@@ -57,7 +69,15 @@ namespace AskGenerator.Controllers.Admin
                 return HttpNotFound("Account '{0}' was not found".FormatWith(id));
 
             ViewBag.ReturnUrl = returnUrl;
-            return View(Map<User, UserViewModel>(user));
+            var model = Map<User, UserViewModel>(user);
+
+            if(Manager.IsInRole(user.Id, Role.FacultyAdmin))
+            {
+                model.FacultyId = model.GroupId;
+                model.GroupId = string.Empty;
+            }
+
+            return View(model);
         }
 
         [HttpPost]
@@ -66,16 +86,24 @@ namespace AskGenerator.Controllers.Admin
             if (!ModelState.IsValid)
                 return View(model);
 
+            if(model.FacultyId.IsEmpty() && model.GroupId.IsEmpty())
+            {
+                ModelState.AddModelError("GroupId", Resource.FirstOrSecondRequired.FormatWith(Resource.Group, Resource.Faculty));
+                return View(model);
+            }
+
             id = id.Or(model.Id);
             if (id.IsEmpty())
-                throw new ArgumentNullException("Account ID should be specified.", "id");
+                throw new ArgumentNullException("id", "Account ID should be specified.");
             var user = await Manager.FindByIdAsync(id);
             if (user == null)
                 return HttpNotFound("Account '{0}' was not found".FormatWith(id));
 
             user.Email = model.Email;
             user.EmailConfirmed = model.EmailConfirmed;
-            user.GroupId = model.GroupId;
+
+            await ProcessFacultyAndGroupIds(model, user);
+
             user.LoginKey = model.LoginKey;
             user.StudentId = model.StudentId;
             if(!model.Password.IsEmpty())
@@ -86,6 +114,29 @@ namespace AskGenerator.Controllers.Admin
                 return RedirectToAction("List", "Student", new { area = "Admin" });
 
             return Redirect(returnUrl);
+        }
+
+        /// <summary>
+        /// Choose which ID (Group or Faculty) to save and resolves faculty admins role.
+        /// </summary>
+        /// <param name="model">The user model to get IDs from.</param>
+        /// <param name="user">User entity to save ID to.</param>
+        /// <returns><see cref="T:Task"/>.</returns>
+        protected virtual async Task ProcessFacultyAndGroupIds(UserViewModel model, Business.Entities.User user)
+        {
+            var isFacultyAdmin = await Manager.IsInRoleAsync(user.Id, Role.FacultyAdmin);
+            if (model.FacultyId.IsEmpty())
+            {
+                user.GroupId = model.GroupId;
+                if (isFacultyAdmin)
+                    await Manager.RemoveFromRoleAsync(user.Id, Role.FacultyAdmin);
+            }
+            else
+            {
+                user.GroupId = model.FacultyId;
+                if (!isFacultyAdmin)
+                    await Manager.AddToRoleAsync(user.Id, Role.FacultyAdmin);
+            }
         }
 
         protected Student checkLastName(string lastName, string groupId)

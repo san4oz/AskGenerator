@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace AskGenerator.ViewModels
 {
     using System.Web.Mvc;
-using R = Resources.Resource;
+    using R = Resources.Resource;
     public class UserViewModel : BaseViewModel, IMapFrom<User>
     {
         [HiddenInput(DisplayValue=true)]
@@ -22,11 +22,13 @@ using R = Resources.Resource;
         [DataType(DataType.EmailAddress, ErrorMessageResourceName = "RegularAddress", ErrorMessageResourceType = typeof(R))]
         public string Email { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(R), ErrorMessageResourceName = "Required")]
         [Display(Name = "Group", ResourceType = typeof(R))]
         [UIHint("GroupSelector")]
         public string GroupId { get; set; }
 
+        [Display(Name = "Faculty", ResourceType = typeof(R))]
+        [UIHint("FacultySelector")]
+        public string FacultyId { get; set; }
         
         public string StudentId { get; set; }
         

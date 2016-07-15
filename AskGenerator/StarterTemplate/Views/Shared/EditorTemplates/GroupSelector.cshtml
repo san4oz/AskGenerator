@@ -6,7 +6,6 @@
                     Value = g.Id,
                     Selected = g.Id.Equals(Model)
                 }).OrderBy(i => i.Text);
-    var modelName = Html.NameFor(x=>x).ToString();
 }
 
 @Html.DropDownListFor(m => m, selectList:list)

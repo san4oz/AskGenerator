@@ -199,7 +199,7 @@
     <value>Evaluator</value>
   </data>
   <data name="Group" xml:space="preserve">
-    <value>Группа</value>
+    <value>Група</value>
   </data>
   <data name="GroupName" xml:space="preserve">
     <value>Назва групи</value>
@@ -575,5 +575,11 @@
   </data>
   <data name="MaxLengthError" xml:space="preserve">
     <value>Поле '{0}' повинне бути не довше {1}</value>
+  </data>
+  <data name="SelectFaculty" xml:space="preserve">
+    <value>Виберіть факультет</value>
+  </data>
+  <data name="FirstOrSecondRequired" xml:space="preserve">
+    <value>Повинне бути заповненим поле '{0}' або '{1}'</value>
   </data>
 </root>
