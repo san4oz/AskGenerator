@@ -47,23 +47,31 @@ namespace AskGenerator.Controllers.Admin
         }
         #endregion
 
-        /*
         /// <summary>
         /// Renders a view containing the list of 
         /// </summary>
         /// <returns></returns>
         [ActionName("Index")]
-        public async Task<ActionResult> List()
+        public async Task<ActionResult> List(string roleId = null)
         {
+            return await Task.Factory.StartNew((state) =>
+            {
+                System.Web.HttpContext.Current = (System.Web.HttpContext)state;
+                var man = Manager;
 
+                var users = man.Users.Where(u => u.Email != null).ToList();
+                if (!roleId.IsEmpty())
+                    users = users.AsQueryable().Where(u => man.IsInRole(u.Id, roleId)).ToList();
+
+                return View(users);
+            }, System.Web.HttpContext.Current);
         }
-        */
 
         [HttpGet]
         public async Task<ActionResult> Edit(string id, string returnUrl = null)
         {
             if (id.IsEmpty())
-                throw new ArgumentNullException("Account ID should be specified.", "id");
+                throw new ArgumentNullException("id", "Account ID should be specified.");
             var user = await Manager.FindByIdAsync(id);
             if (user == null)
                 return HttpNotFound("Account '{0}' was not found".FormatWith(id));

@@ -582,4 +582,10 @@
   <data name="FirstOrSecondRequired" xml:space="preserve">
     <value>Повинне бути заповненим поле '{0}' або '{1}'</value>
   </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Активовано</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Створити користувача</value>
+  </data>
 </root>
