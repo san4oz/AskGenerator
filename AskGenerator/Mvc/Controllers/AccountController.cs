@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using AskGenerator.DataProvider;
+using AskGenerator.ViewModels;
 using AskGenerator.ViewModels;
 using AskGenerator.Business.Entities;
 using AskGenerator.Helpers;
@@ -21,7 +21,7 @@ namespace AskGenerator.Mvc.Controllers
     {
         const string ConirmRegistrationMail = "ConirmRegistration";
         const string ConirmVoiteMail = "ConirmVoite";
-        
+        const string CResetPassMail = "ResetPass";
 
         #region Managers
         protected UserManager Manager
@@ -282,13 +282,14 @@ namespace AskGenerator.Mvc.Controllers
             return null;
         }
 
-        protected Dictionary<string, string> CreateConfirmTags(string id)
+        protected Dictionary<string, string> CreateConfirmTags(string id, string code = null)
         {
             var result = new Dictionary<string, string>();
             result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
             result.Add("siteName", "Evaluate");
             result.Add("confirmURL", HttpContext.Request.Url.GetLeftPart(UriPartial.Authority).TrimEnd('/') + Url.Action("Confirm", new { id = id }));
-
+            result.Add("callbackUrl", HttpContext.Request.Url.GetLeftPart(UriPartial.Authority).TrimEnd('/') + Url.Action("ResetPassword", "Account",
+                   new { Id = id, code = code }, protocol: Request.Url.Scheme));
             return result;
         }
 
@@ -305,21 +306,18 @@ namespace AskGenerator.Mvc.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(ViewModels.Account.PrivateOfficeViewModel.ForgotPasswordViewModel model)
+        public async Task<ActionResult> ForgotPassword(AskGenerator.ViewModels.ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = Manager.FindByEmail(model.Email);
+                if (user == null || !(await Manager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    // Не показывать, что пользователь не существует или не подтвержден
                     return View("ForgotPasswordConfirmation");
                 }
-                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account",
-                    new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Сброс пароля",
-                    "Для сброса пароля, перейдите по ссылке <a href=\"" + callbackUrl + "\">сбросить</a>");
+                string code = await Manager.GeneratePasswordResetTokenAsync(user.Id);
+               // await Manager.SendEmailAsync(user.Id, "Сброс пароля",
+               //    "Для сброса пароля, перейдите по ссылке <a href=\"" + callbackUrl + "\">сбросить</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
             }// Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
@@ -346,19 +344,19 @@ namespace AskGenerator.Mvc.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(ViewModels.Account.PrivateOfficeViewModel.ResetPasswordViewModel model)
+        public async Task<ActionResult> ResetPassword(AskGenerator.ViewModels.ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await Manager.FindByNameAsync(model.Email);
             if (user == null)
             {
                 // Не показывать, что пользователь не существует
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-            var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            var result = await Manager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
                 return RedirectToAction("ResetPasswordConfirmation", "Account");

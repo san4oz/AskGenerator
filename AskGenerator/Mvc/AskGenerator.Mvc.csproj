@@ -195,7 +195,7 @@
     </Compile>
     <Compile Include="Components\Modules\UrlParamsHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Account\PrivateOfficeViewModel.cs" />
+    <Compile Include="ViewModels\Account\POfficeViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\GroupStatisticViewModel.cs" />
     <Compile Include="ViewModels\Settings\GeneralSettingsModel.cs" />

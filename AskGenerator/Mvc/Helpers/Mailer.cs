@@ -54,13 +54,11 @@ namespace AskGenerator.Helpers
                 if (!tags.ContainsKey(pair.Key))
                     tags[pair.Key] = pair.Value;
             }
-
             var subject = Mails.GetString(mailName + "_Subj").ReplaceTags(tags);
             var body = Mails.GetString(mailName + "_Body").ReplaceTags(tags);
             var plain = Mails.GetString(mailName + "_Plain").ReplaceTags(tags);
             Send(subject, body, to, plain, Bcc);
         }
-
         /// <summary>
         /// Sends message to the specified adress.
         /// </summary>

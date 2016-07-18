@@ -135,14 +135,12 @@
                   &lt;table border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
                     &lt;tbody&gt;
                       &lt;tr&gt;
-                        &lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 14px;" valign="top"&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Дякуємо за реєстрацію в &lt;em&gt;&lt;a href="[siteURL]" title="NoM"&gt;[siteName]&lt;/a&gt;&lt;/em&gt;. Завершіть реєстрацію для отримання доступу до голосування.&amp;nbsp;&lt;/span&gt;&lt;/font&gt;
+                        &lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 14px;" valign="top"&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Відновлення паролю у &lt;em&gt;&lt;a href="[siteURL]" title="NoM"&gt;[siteName]&lt;/a&gt;&lt;/em&gt;. Відновіть пароль для отримання доступу до голосування.&amp;nbsp;&lt;/span&gt;&lt;/font&gt;
 
                         &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt; 
-&lt;p&gt; Закінчення реєстрації за посиланням
+&lt;p&gt; Для зміни паролю перейдіть за посиланням
  &lt;a href="[confirmURL]"&gt;[confirmURL]&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Якщо ви не проходили реєстрацію просто ігноруйте це повідомлення.&lt;/p&gt;
-.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
 
                         &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Відвідайте сайт на якому відображаються результати оцінювання кращих студентів викладачами &lt;a href="[bestURL]"&gt;BEST.ztu.edu.ua&lt;/a&gt;. Також вступайте в співтовариство &amp;quot;&lt;a href="[vkdekURL]"&gt;Студентське життя ФІКТ&lt;/a&gt;&amp;quot;!&amp;nbsp;&lt;br /&gt;
                         &lt;br /&gt;
@@ -276,5 +274,75 @@ Network of Mentors</value>
   </data>
   <data name="ConirmVoite_Subj" xml:space="preserve">
     <value>Переглянути результати!</value>
+  </data>
+  <data name="ResetPass_Body" xml:space="preserve">
+    <value>&lt;h1&gt;&lt;span style="font-family: 'Lucida Grande CY', Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif; font-size: 24px; font-weight: bold; line-height: 31px;"&gt;Вас вітає &lt;em&gt;&lt;a href="[siteURL]" title="NoM"&gt;[siteName]&lt;/a&gt;&lt;/em&gt;&lt;/span&gt;&lt;/h1&gt; 
+
+&lt;table border="0" cellpadding="0" cellspacing="0" style="font-family: 'Lucida Grande CY', Arial, 'Liberation Sans', 'DejaVu Sans', sans-serif; line-height: normal;" width="100%"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style="border-collapse: collapse;"&gt;
+      &lt;table bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0" width="100%"&gt;
+        &lt;tbody&gt;
+          &lt;tr&gt;
+            &lt;td style="border-collapse: collapse;"&gt;
+            &lt;table bgcolor="" border="0" bordercolor="" cellpadding="0" cellspacing="0" width="100%"&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;
+                  &lt;td style="border-collapse: collapse; font-family: Arial;"&gt;
+                  &lt;table border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
+                    &lt;tbody&gt;
+                      &lt;tr&gt;
+                        &lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 14px;" valign="top"&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Дякуємо за реєстрацію в &lt;em&gt;&lt;a href="[siteURL]" title="NoM"&gt;[siteName]&lt;/a&gt;&lt;/em&gt;. Завершіть реєстрацію для отримання доступу до голосування.&amp;nbsp;&lt;/span&gt;&lt;/font&gt;
+
+                        &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt; 
+&lt;p&gt; Закінчення реєстрації за посиланням
+ &lt;a href="[confirmURL]"&gt;[confirmURL]&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Якщо ви не проходили реєстрацію просто ігноруйте це повідомлення.&lt;/p&gt;
+.&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+
+                        &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Відвідайте сайт на якому відображаються результати оцінювання кращих студентів викладачами &lt;a href="[bestURL]"&gt;BEST.ztu.edu.ua&lt;/a&gt;. Також вступайте в співтовариство &amp;quot;&lt;a href="[vkdekURL]"&gt;Студентське життя ФІКТ&lt;/a&gt;&amp;quot;!&amp;nbsp;&lt;br /&gt;
+                        &lt;br /&gt;
+                        З повагою,&amp;nbsp;&lt;br /&gt;
+                        &lt;br /&gt;
+                        Адміністрація сайту!&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+
+                        &lt;p&gt;&lt;br /&gt;
+                        &lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&lt;a href="[nomURL]" target="_blank"&gt;nom.ztu.edu.ua&lt;/a&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+
+                        &lt;table border="1" bordercolor="#ccc" cellpadding="5" cellspacing="0" id="RMCLRRHIfooter" style="border-collapse:collapse;" width="100%"&gt;
+                          &lt;tbody&gt;
+                            &lt;tr&gt;
+                              &lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 11px;" valign="top"&gt;
+                              &lt;div style="background:#eee;border:1px solid #ccc;padding:5px 10px;"&gt;&lt;br /&gt;
+                              &lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Ми дотримуємося конфіденційності.&amp;nbsp;&lt;br /&gt;
+                              &lt;br /&gt;
+                              NOM&lt;br /&gt;
+                              Ваще ребята&lt;br /&gt;
+                              Житомир, Україна&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;
+
+                              &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+                              &lt;/td&gt;
+                              &lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 11px;" valign="top"&gt;
+                              &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;&lt;span style="background-color: rgb(238, 238, 238);"&gt;Зв'язок з нами через соціальні мережі, та наш сайт:&lt;/span&gt;&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a  href="http://nom-networkofmentors.rhcloud.com" target="_blank"&gt;&lt;img alt="EvaluateFooterLogo" border="0"  src="http://ztu-fikt.azurewebsites.net/Css/img/logo_nom1.jpg" style="margin: 0px; padding: 0px; outline: 0px; width: 48px; height: 48px;" title="EvaluateFooterLogo" width="110" /&gt;&lt;/a&gt;
+
+&lt;a  href="[fbURL]" target="_blank"&gt;&lt;img alt="facebook.com/semka148" border="0"  src="https://www.facebook.com/images/fb_icon_325x325.png" style="margin: 0px; padding: 0px; outline: 0px; width: 48px; height: 48px;" title="facebook.com/" width="110" /&gt;&lt;/a&gt;
+
+&lt;a  href="[vkURL]" target="_blank"&gt;&lt;img alt="vk.com/semka148" border="0"  src="https://trade-groups.ru/images/vk-group.png" style="margin: 0px; padding: 0px; outline: 0px; width: 48px; height: 48px;" title="vk.com/semka148" width="110" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+                              &lt;p&gt;або по телефону:&lt;br /&gt;
+                              +3 8(097) 87 30 150&lt;br /&gt;
+                              +3 8(063) 60 57 647&lt;/p&gt;
+
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</value>
+  </data>
+  <data name="ResetPass_Plain" xml:space="preserve">
+    <value>Вітаємо!</value>
+  </data>
+  <data name="ResetPass_Subj" xml:space="preserve">
+    <value>Відновити пароль!</value>
   </data>
 </root>

@@ -5,11 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace AskGenerator.Mvc.ViewModels.Account
+namespace AskGenerator.ViewModels
 {
-    public class PrivateOfficeViewModel
-    {
-
         public class ExternalLoginConfirmationViewModel
         {
             [Required]
@@ -84,6 +81,4 @@ namespace AskGenerator.Mvc.ViewModels.Account
             public string Email { get; set; }
         }
     }
-
-}
 
