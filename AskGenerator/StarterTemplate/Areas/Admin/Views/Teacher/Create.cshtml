@@ -1,13 +1,14 @@
-﻿@model  AskGenerator.ViewModels.TeacherComposeViewModel
+﻿@model  TeacherComposeViewModel
+@using System.Linq.Expressions;
 @{
     string legend;
-    if(IsEditing){
-        ViewBag.Title = @Resources.Resource.OldTeacher;
-        legend = @Resources.Resource.EditTeacher;
+    if (IsEditing) {
+        ViewBag.Title = Resource.OldTeacher;
+        legend = Resource.EditTeacher;
     }
-    else{
-        ViewBag.Title = @Resources.Resource.NewTeacher;
-        legend = @Resources.Resource.CreatreTeacher;
+    else {
+        ViewBag.Title = Resource.NewTeacher;
+        legend = Resource.CreatreTeacher;
     }
     var maxSize = "100px";
 }
@@ -15,33 +16,24 @@
 <div class="col-md-10">
     <div class="row">
         <div class="panel panel-default bootstrap-admin-no-table-panel">
-            <div class="panel-heading">
-                <div class="text-muted bootstrap-admin-box-title">@Resources.Resource.Teacher</div>
-            </div>
+            <header class="panel-heading">
+                <div class="text-muted bootstrap-admin-box-title">@Resource.Teacher</div>
+            </header>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
                 <form method="post" class="form-horizontal" enctype="multipart/form-data">
                     @Html.AntiForgeryToken()
                     @Html.EditorFor(x => x.Teacher.Id)
                     <fieldset>
                         <legend>@legend</legend>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Teacher.FirstName, htmlAttributes: new { @class = "col-lg-2 control-label" })
-                            <div class="col-lg-10">
-                                @Html.TextBoxFor(x => x.Teacher.FirstName, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(x => x.Teacher.FirstName)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.Teacher.LastName, htmlAttributes: new { @class = "col-lg-2 control-label" })
-                            <div class="col-lg-10">
-                                @Html.TextBoxFor(x => x.Teacher.LastName, htmlAttributes: new { @class = "form-control" })
-                            </div>
-                        </div>
+
+                        @TextBoxGroup(x => x.Teacher.FirstName)
+                        @TextBoxGroup(x => x.Teacher.LastName)
 
                         <div class="form-group">
                             @Html.LabelFor(x => x.Teacher.SelectedGroups, htmlAttributes: new { @class = "col-lg-2 control-label" })
                             <div class="col-lg-10">
                                 @Html.ListBoxFor(x => x.Teacher.SelectedGroups, Model.AllGroups)
+                                @Html.ValidationMessageFor(x => x.Teacher.SelectedGroups)
                             </div>
                         </div>
                         
@@ -76,8 +68,8 @@
 
                         <div class="form-group">
                             <div class="btn-group col-lg-offset-2 col-lg-10">
-                                @Html.SubmitBtn(Resources.Resource.Save)
-                                @Html.ClearBtn(Resources.Resource.Clean)
+                                @Html.SubmitBtn(Resource.Save)
+                                @Html.ClearBtn(Resource.Clean)
                             </div>
                         </div>
                     </fieldset>
@@ -92,16 +84,27 @@
     <script type="text/javascript">
         $(function () {
             $("#Teacher_SelectedGroups").select2({
-                placeholder: "@Resources.Resource.SelectGroup",
+                placeholder: "@Resource.SelectGroup",
+                multiple: true,
                 width: 400,
                 maximumSelectionLength: 20
             });
             $('#Teacher_TeamId').select2({
-                placeholder: "@Resources.Resource.SelectDepartment",
+                placeholder: "@Resource.SelectDepartment",
                 multiple: false,
                 width: 400,
                 maximumSelectionLength: 20
             });
         });
     </script>
+}
+
+@helper TextBoxGroup(Expression<Func<TeacherComposeViewModel, string>> selector) {
+    <div class="form-group">
+        @Html.LabelFor(selector, htmlAttributes: new { @class = "col-lg-2 control-label" })
+        <div class="col-lg-10">
+            @Html.TextBoxFor(selector, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(selector)
+        </div>
+    </div>
 }

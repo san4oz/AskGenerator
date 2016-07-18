@@ -10,6 +10,17 @@ namespace System
     public static class StringExtentions
     {
         /// <summary>
+        /// Compares two strings ignoring character case and culture and supposing that <c>null</c> and empty string are also equal.
+        /// </summary>
+        /// <param name="str1">The first string to compare.</param>
+        /// <param name="str2">The second string to compare.</param>
+        /// <returns>The value indicating whether the two strings are equal.</returns>
+        public static bool iEquals(this string str1, string str2)
+        {
+            return string.Equals(str1 ?? string.Empty, str2 ?? string.Empty, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        /// <summary>
         /// Checks wheter current string is <c>null</c> or empty.
         /// </summary>
         /// <param name="str">The string to check.</param>
