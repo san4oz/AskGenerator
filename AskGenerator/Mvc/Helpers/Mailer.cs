@@ -76,7 +76,6 @@ namespace AskGenerator.Helpers
 
             message.Subject = subject;
 
-            message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(plainBody ?? string.Empty, TextPlain));
             if (!body.IsNullOrWhiteSpace())
             {
                 message.Body = plainBody ?? string.Empty;
@@ -87,6 +86,7 @@ namespace AskGenerator.Helpers
                 message.Body = body;
                 message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(body, TextHtml));
             }
+            message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(plainBody ?? string.Empty, TextPlain));
 
             using (var smtp = new SmtpClient("smtp.gmail.com", 587))
             {
