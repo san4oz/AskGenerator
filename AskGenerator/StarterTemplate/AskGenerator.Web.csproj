@@ -1339,6 +1339,10 @@
     <Content Include="Views\Info\Badging.cshtml" />
     <Content Include="Views\Shared\VotingDisabledNow.cshtml" />
     <Content Include="Views\Home\_TimeBanner.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
