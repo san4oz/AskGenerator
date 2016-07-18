@@ -71,8 +71,18 @@ namespace AskGenerator.Controllers.Admin
         public ActionResult Edit(TeacherComposeViewModel viewModel)
         {
             var teacher = DecomposeStudentViewModel(viewModel.Teacher);
-            Site.TeacherManager.Update(teacher, viewModel.Teacher.SelectedGroups);
+            if (!User.IsAdmin())
+            {
+                var facultyId = User.Identity.GetGroupId();
+                var existing = Site.TeacherManager.Get(teacher.Id);
+                var savedGroupds = from g in existing.Groups
+                                   where g.FacultyId.iEquals(facultyId)
+                                   select g.Id;
+                viewModel.Teacher.SelectedGroups = viewModel.Teacher.SelectedGroups.Union(savedGroupds, StringComparer.InvariantCultureIgnoreCase)
+                    .ToList();
+            }
 
+            Site.TeacherManager.Update(teacher, viewModel.Teacher.SelectedGroups);
             return RedirectToAction("List");
         }
 

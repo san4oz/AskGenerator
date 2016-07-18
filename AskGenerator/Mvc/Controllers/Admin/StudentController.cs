@@ -74,6 +74,11 @@ namespace AskGenerator.Controllers.Admin
                 return View(model);
 
             var edited = DecomposeStudentViewModel(model);
+            if (!User.IsAdmin() && !edited.Group.FacultyId.iEquals(User.Identity.GetGroupId()))
+            {
+                ModelState.AddModelError("GroupId", "Forbidden group.");
+                return View(model);
+            }
             StudentManager.Update(edited);
             return RedirectToAction("List");
         }
