@@ -293,13 +293,12 @@ Network of Mentors</value>
                   &lt;table border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
                     &lt;tbody&gt;
                       &lt;tr&gt;
-                        &lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 14px;" valign="top"&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Дякуємо за реєстрацію в &lt;em&gt;&lt;a href="[siteURL]" title="NoM"&gt;[siteName]&lt;/a&gt;&lt;/em&gt;. Завершіть реєстрацію для отримання доступу до голосування.&amp;nbsp;&lt;/span&gt;&lt;/font&gt;
+                        &lt;td align="left" style="border-collapse: collapse; color: rgb(102, 102, 102); font-family: 'Segoe UI', 'DejaVu Sans', 'Trebuchet MS', Verdana, sans-serif; font-size: 14px;" valign="top"&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt; Відновіть пароль для отримання доступу до голосування.&amp;nbsp;&lt;/span&gt;&lt;/font&gt;
 
                         &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt; 
-&lt;p&gt; Закінчення реєстрації за посиланням
- &lt;a href="[confirmURL]"&gt;[confirmURL]&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; Для відновлення паролю перейдіть за посиланням
+ &lt;a href="[callbackUrl]"&gt;[callbackUrl]&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Якщо ви не проходили реєстрацію просто ігноруйте це повідомлення.&lt;/p&gt;
 .&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;
 
                         &lt;p&gt;&lt;font color="#333333" face="sans-serif, Arial, Verdana, Trebuchet MS"&gt;&lt;span style="font-size: 13px; line-height: 20.8px;"&gt;Відвідайте сайт на якому відображаються результати оцінювання кращих студентів викладачами &lt;a href="[bestURL]"&gt;BEST.ztu.edu.ua&lt;/a&gt;. Також вступайте в співтовариство &amp;quot;&lt;a href="[vkdekURL]"&gt;Студентське життя ФІКТ&lt;/a&gt;&amp;quot;!&amp;nbsp;&lt;br /&gt;

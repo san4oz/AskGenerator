@@ -21,7 +21,7 @@ namespace AskGenerator.Mvc.Controllers
     {
         const string ConirmRegistrationMail = "ConirmRegistration";
         const string ConirmVoiteMail = "ConirmVoite";
-        const string CResetPassMail = "ResetPass";
+        const string ResetPassMail = "ResetPass";
 
         #region Managers
         protected UserManager Manager
@@ -313,9 +313,13 @@ namespace AskGenerator.Mvc.Controllers
                 var user = Manager.FindByEmail(model.Email);
                 if (user == null || !(await Manager.IsEmailConfirmedAsync(user.Id)))
                 {
+                    // Не показывать, что пользователь не существует или не подтвержден
                     return View("ForgotPasswordConfirmation");
                 }
                 string code = await Manager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account",
+                    new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                Mailer.Send(ResetPassMail, model.Email, CreateConfirmTags(user.Id, code));
                // await Manager.SendEmailAsync(user.Id, "Сброс пароля",
                //    "Для сброса пароля, перейдите по ссылке <a href=\"" + callbackUrl + "\">сбросить</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
