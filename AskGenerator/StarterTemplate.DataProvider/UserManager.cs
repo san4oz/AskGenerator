@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.DataProtection;
 using System;
 using System.Linq;
 using System.Security.Claims;
@@ -16,6 +17,9 @@ namespace AskGenerator.DataProvider
         public UserManager(IUserStore<User> store)
             : base(store)
         {
+            var provider = new DpapiDataProtectionProvider("Evaluator");
+
+            this.UserTokenProvider = new DataProtectorTokenProvider<User>(provider.Create("DefaultTokens"));
         }
 
         public static UserManagerBase Create(IdentityFactoryOptions<UserManagerBase> options,

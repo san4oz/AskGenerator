@@ -282,14 +282,13 @@ namespace AskGenerator.Mvc.Controllers
             return null;
         }
 
-        protected Dictionary<string, string> CreateConfirmTags(string id, string code = null)
+        protected Dictionary<string, string> CreateConfirmTags(string id, string callbackUrl = null)
         {
             var result = new Dictionary<string, string>();
             result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
             result.Add("siteName", "Evaluate");
             result.Add("confirmURL", HttpContext.Request.Url.GetLeftPart(UriPartial.Authority).TrimEnd('/') + Url.Action("Confirm", new { id = id }));
-            result.Add("callbackUrl", HttpContext.Request.Url.GetLeftPart(UriPartial.Authority).TrimEnd('/') + Url.Action("ResetPassword", "Account",
-                   new { Id = id, code = code }, protocol: Request.Url.Scheme));
+            result.Add("callbackUrl", callbackUrl);
             return result;
         }
 
@@ -319,7 +318,7 @@ namespace AskGenerator.Mvc.Controllers
                 string code = await Manager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account",
                     new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                Mailer.Send(ResetPassMail, model.Email, CreateConfirmTags(user.Id, code));
+                Mailer.Send(ResetPassMail, model.Email, CreateConfirmTags(user.Id, callbackUrl));
                // await Manager.SendEmailAsync(user.Id, "Сброс пароля",
                //    "Для сброса пароля, перейдите по ссылке <a href=\"" + callbackUrl + "\">сбросить</a>");
                 return RedirectToAction("ForgotPasswordConfirmation", "Account");
