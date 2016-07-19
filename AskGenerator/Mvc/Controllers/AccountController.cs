@@ -133,7 +133,7 @@ namespace AskGenerator.Mvc.Controllers
         public ActionResult VoitResult(string id, string param = null)
         {
        
-            Mailer.Send(ConirmVoiteMail, id, CreateConfirmTags(null));
+            Mailer.Send(ConirmVoiteMail, id, CreateTags(null));
   //            var user = await Manager.FindByEmailAsync(not);
   
             return null;
@@ -214,7 +214,7 @@ namespace AskGenerator.Mvc.Controllers
                 {
                     student.HasUserAccount = true;
                     Site.StudentManager.Update(student);
-                    Mailer.Send(ConirmRegistrationMail, model.Email, CreateConfirmTags(user.Id.Or(model.Id)));
+                    Mailer.Send(ConirmRegistrationMail, model.Email, CreateTags(user.Id.Or(model.Id)));
                     return View("_Success");
                 }
                 else
@@ -254,6 +254,84 @@ namespace AskGenerator.Mvc.Controllers
         }
         #endregion
 
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ForgotPassword(AskGenerator.ViewModels.ForgotPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = Manager.FindByEmail(model.Email);
+                if (user == null || !(await Manager.IsEmailConfirmedAsync(user.Id)))
+                    return View("ForgotPasswordConfirmation");
+
+                await Manager.UpdateSecurityStampAsync(user.Id);
+                var token = await Manager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account",
+                    new { id = user.Id, token = token }, protocol: Request.Url.Scheme);
+                Mailer.Send(ResetPassMail, model.Email, CreateTags(user.Id, callbackUrl));
+
+                return RedirectToAction("ForgotPasswordConfirmation", "Account");
+            }
+
+            return View(model);
+        }
+
+        public ActionResult ForgotPasswordConfirmation()
+        {
+            return View();
+        }
+
+        public ActionResult ResetPassword(string id, string token)
+        {
+            if (token.IsEmpty() || id.IsEmpty())
+                return View("Error");
+
+            var user = Manager.FindById(id);
+            if (user == null || !Manager.IsEmailConfirmed(user.Id))
+                return View("Error");
+
+
+            var model = new ResetPasswordModel()
+            {
+                Code = token,
+                Id = id
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetPassword(ResetPasswordModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var user = await Manager.FindByIdAsync(model.Id);
+            if (user == null)
+                return RedirectToAction("ResetPasswordConfirmation");
+
+            var result = await Manager.ResetPasswordAsync(user.Id, model.Code, model.Password);
+            if (result.Succeeded)
+                return RedirectToAction("ResetPasswordConfirmation");
+
+            AddErrors(result);
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+
+        #region checkLastName
         protected Task<Student> checkLastNameAsync(string lastName, string groupId)
         {
             var manager = Site.StudentManager;
@@ -281,8 +359,9 @@ namespace AskGenerator.Mvc.Controllers
 
             return null;
         }
+        #endregion
 
-        protected Dictionary<string, string> CreateConfirmTags(string id, string callbackUrl = null)
+        protected Dictionary<string, string> CreateTags(string id, string callbackUrl = null)
         {
             var result = new Dictionary<string, string>();
             result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
@@ -292,89 +371,6 @@ namespace AskGenerator.Mvc.Controllers
             return result;
         }
 
-        //
-        // GET: /Account/ForgotPassword
-        [AllowAnonymous]
-        public ActionResult ForgotPassword()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Account/ForgotPassword
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(AskGenerator.ViewModels.ForgotPasswordViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var user = Manager.FindByEmail(model.Email);
-                if (user == null || !(await Manager.IsEmailConfirmedAsync(user.Id)))
-                {
-                    // Не показывать, что пользователь не существует или не подтвержден
-                    return View("ForgotPasswordConfirmation");
-                }
-                string code = await Manager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account",
-                    new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                Mailer.Send(ResetPassMail, model.Email, CreateConfirmTags(user.Id, callbackUrl));
-               // await Manager.SendEmailAsync(user.Id, "Сброс пароля",
-               //    "Для сброса пароля, перейдите по ссылке <a href=\"" + callbackUrl + "\">сбросить</a>");
-                return RedirectToAction("ForgotPasswordConfirmation", "Account");
-            }// Появление этого сообщения означает наличие ошибки; повторное отображение формы
-            return View(model);
-        }
-
-        //
-        // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ForgotPasswordConfirmation()
-        {
-            return View();
-        }
-
-        //
-        // GET: /Account/ResetPassword
-        [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
-        {
-            return code == null ? View("Error") : View();
-        }
-
-        //
-        // POST: /Account/ResetPassword
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ResetPassword(AskGenerator.ViewModels.ResetPasswordViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            var user = await Manager.FindByNameAsync(model.Email);
-            if (user == null)
-            {
-                // Не показывать, что пользователь не существует
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
-            var result = await Manager.ResetPasswordAsync(user.Id, model.Code, model.Password);
-            if (result.Succeeded)
-            {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
-            }
-            AddErrors(result);
-            return View();
-        }
-
-        //
-        // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
-        public ActionResult ResetPasswordConfirmation()
-        {
-            return View();
-        }
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)

@@ -76,7 +76,7 @@ namespace AskGenerator.Helpers
 
             message.Subject = subject;
 
-            if (!body.IsNullOrWhiteSpace())
+            if (body.IsNullOrWhiteSpace())
             {
                 message.Body = plainBody ?? string.Empty;
             }

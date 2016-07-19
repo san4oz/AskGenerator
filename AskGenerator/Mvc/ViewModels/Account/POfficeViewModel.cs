@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace AskGenerator.ViewModels
 {
-        public class ExternalLoginConfirmationViewModel
+        public class ExternalLoginConfirmationModel
         {
             [Required]
             [Display(Name = "Адрес электронной почты")]
             public string Email { get; set; }
         }
 
-        public class ExternalLoginListViewModel
+        public class ExternalLoginListModel
         {
             public string ReturnUrl { get; set; }
         }
@@ -22,12 +23,15 @@ namespace AskGenerator.ViewModels
         public class SendCodeViewModel
         {
             public string SelectedProvider { get; set; }
-            public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+
+            public ICollection<SelectListItem> Providers { get; set; }
+
             public string ReturnUrl { get; set; }
+
             public bool RememberMe { get; set; }
         }
 
-        public class VerifyCodeViewModel
+        public class VerifyCodeModel
         {
             [Required]
             public string Provider { get; set; }
@@ -43,21 +47,16 @@ namespace AskGenerator.ViewModels
             public bool RememberMe { get; set; }
         }
 
-        public class ForgotViewModel
+        public class ForgotModel
         {
             [Required]
             [Display(Name = "Адрес электронной почты")]
             public string Email { get; set; }
         }
 
- 
 
-        public class ResetPasswordViewModel
+        public class ResetPasswordModel
         {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Адрес электронной почты")]
-            public string Email { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
@@ -67,10 +66,12 @@ namespace AskGenerator.ViewModels
 
             [DataType(DataType.Password)]
             [Display(Name = "Подтверждение пароля")]
-            [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
+            [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }
+
+            public string Id { get; set; }
         }
 
         public class ForgotPasswordViewModel
