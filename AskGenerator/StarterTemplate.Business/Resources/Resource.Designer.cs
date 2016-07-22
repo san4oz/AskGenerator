@@ -574,7 +574,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Введіть електрону адресу..
+        ///   Ищет локализованную строку, похожую на Для відновлення паролю ведіть електрону адресу..
         /// </summary>
         public static string GiveEmailForForgotPass {
             get {
@@ -1105,7 +1105,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Відновлення паролю..
+        ///   Ищет локализованную строку, похожую на Відновлення паролю.
         /// </summary>
         public static string recoverPass {
             get {

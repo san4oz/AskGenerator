@@ -61,13 +61,21 @@ namespace AskGenerator.Mvc.Helpers {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на &lt;h1&gt;&lt;span style=&quot;font-family: &apos;Lucida Grande CY&apos;, Arial, &apos;Liberation Sans&apos;, &apos;DejaVu Sans&apos;, sans-serif; font-size: 24px; font-weight: bold; line-height: 31px;&quot;&gt;Вас вітає &lt;em&gt;&lt;a href=&quot;[siteURL]&quot; title=&quot;NoM&quot;&gt;[siteName]&lt;/a&gt;&lt;/em&gt;&lt;/span&gt;&lt;/h1&gt; 
+        ///   Ищет локализованную строку, похожую на &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;ru&quot; lang=&quot;ru&quot;&gt;&lt;head&gt;
+        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
         ///
-        ///&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;font-family: &apos;Lucida Grande CY&apos;, Arial, &apos;Liberation Sans&apos;, &apos;DejaVu Sans&apos;, sans-serif; line-height: normal;&quot; width=&quot;100%&quot;&gt;
-        ///  &lt;tbody&gt;
-        ///    &lt;tr&gt;
-        ///      &lt;td style=&quot;border-collapse: collapse;&quot;&gt;
-        ///      &lt;table bgcolor=&quot;&quot; [остаток строки не уместился]&quot;;.
+        ///
+        ///&lt;title&gt;Evaluale&lt;/title&gt;
+        ///
+        ///&lt;/head&gt;
+        ///
+        ///&lt;body&gt;
+        ///
+        ///&lt;div class=&quot;messageBodyContainer isInnerPart&quot; id=&quot;part2&quot;&gt;
+        ///      
+        ///        
+        ///  &lt;div class=&quot;messageBodyContainer isInnerPart&quot; id=&quot;part2.1&quot;&gt;&lt;div class=&quot;messageBody isFormattedText&quot;&gt;
+        ///      &lt;div class=&quot;RMCYYQLY&quot;&gt; &lt;div class=&quot;RMCYYQLYhtml&quot;&gt;&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;/* Invalid style */&lt;/style&gt;      &lt;div class=&quot;RMCYYQLYbody&quot;&gt;                &lt;table [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string ConirmRegistration_Body {
             get {
@@ -138,13 +146,21 @@ namespace AskGenerator.Mvc.Helpers {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на &lt;h1&gt;&lt;span style=&quot;font-family: &apos;Lucida Grande CY&apos;, Arial, &apos;Liberation Sans&apos;, &apos;DejaVu Sans&apos;, sans-serif; font-size: 24px; font-weight: bold; line-height: 31px;&quot;&gt;Вас вітає &lt;em&gt;&lt;a href=&quot;[siteURL]&quot; title=&quot;NoM&quot;&gt;[siteName]&lt;/a&gt;&lt;/em&gt;&lt;/span&gt;&lt;/h1&gt; 
+        ///   Ищет локализованную строку, похожую на &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;ru&quot; lang=&quot;ru&quot;&gt;&lt;head&gt;
+        ///    &lt;meta charset=&quot;utf-8&quot; /&gt;
         ///
-        ///&lt;table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; style=&quot;font-family: &apos;Lucida Grande CY&apos;, Arial, &apos;Liberation Sans&apos;, &apos;DejaVu Sans&apos;, sans-serif; line-height: normal;&quot; width=&quot;100%&quot;&gt;
-        ///  &lt;tbody&gt;
-        ///    &lt;tr&gt;
-        ///      &lt;td style=&quot;border-collapse: collapse;&quot;&gt;
-        ///      &lt;table bgcolor=&quot;&quot; [остаток строки не уместился]&quot;;.
+        ///
+        ///&lt;title&gt;Evaluale&lt;/title&gt;
+        ///
+        ///&lt;/head&gt;
+        ///
+        ///&lt;body&gt;
+        ///
+        ///&lt;div class=&quot;messageBodyContainer isInnerPart&quot; id=&quot;part2&quot;&gt;
+        ///      
+        ///        
+        ///  &lt;div class=&quot;messageBodyContainer isInnerPart&quot; id=&quot;part2.1&quot;&gt;&lt;div class=&quot;messageBody isFormattedText&quot;&gt;
+        ///      &lt;div class=&quot;RMCYYQLY&quot;&gt; &lt;div class=&quot;RMCYYQLYhtml&quot;&gt;&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;/* Invalid style */&lt;/style&gt;      &lt;div class=&quot;RMCYYQLYbody&quot;&gt;                &lt;table [остаток строки не уместился]&quot;;.
         /// </summary>
         internal static string ResetPass_Body {
             get {

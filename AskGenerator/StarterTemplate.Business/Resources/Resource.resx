@@ -598,7 +598,7 @@
     <value>Протягом п'яти хвилин на Вашу електронну адресу буде надіслано повідомлення з подальшими вказівками для відновлення паролю.</value>
   </data>
   <data name="GiveEmailForForgotPass" xml:space="preserve">
-    <value>Введіть електрону адресу.</value>
+    <value>Для відновлення паролю ведіть електрону адресу.</value>
   </data>
   <data name="newpassmsg" xml:space="preserve">
     <value>Ваш пароль змінено.</value>
@@ -607,6 +607,6 @@
     <value>Відновити</value>
   </data>
   <data name="recoverPass" xml:space="preserve">
-    <value>Відновлення паролю.</value>
+    <value>Відновлення паролю</value>
   </data>
 </root>
