@@ -588,4 +588,25 @@
   <data name="AddUser" xml:space="preserve">
     <value>Створити користувача</value>
   </data>
+  <data name="forgotpassword" xml:space="preserve">
+    <value>Забули пароль?</value>
+  </data>
+  <data name="AskFP" xml:space="preserve">
+    <value>Забули пароль?</value>
+  </data>
+  <data name="confirmmsg" xml:space="preserve">
+    <value>Протягом п'яти хвилин на Вашу електронну адресу буде надіслано повідомлення з подальшими вказівками для відновлення паролю.</value>
+  </data>
+  <data name="GiveEmailForForgotPass" xml:space="preserve">
+    <value>Введіть електрону адресу.</value>
+  </data>
+  <data name="newpassmsg" xml:space="preserve">
+    <value>Ваш пароль змінено.</value>
+  </data>
+  <data name="recover" xml:space="preserve">
+    <value>Відновити</value>
+  </data>
+  <data name="recoverPass" xml:space="preserve">
+    <value>Відновлення паролю.</value>
+  </data>
 </root>

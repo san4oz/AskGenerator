@@ -261,6 +261,7 @@
     <Content Include="Content\img\expander-minus.png" />
     <Content Include="Content\img\expander-plus.png" />
     <Content Include="Content\img\LogoMakr.png" />
+    <Content Include="Content\img\LogoSMG.png" />
     <Content Include="Content\loader.gif" />
     <Content Include="Css\bootstrap-theme.css" />
     <Content Include="Css\bootstrap-theme.min.css" />
