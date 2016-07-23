@@ -31,6 +31,16 @@ namespace System
             return identity.GetValue(ClaimTypes.Email);
         }
 
+        /// <summary>
+        /// Determines whether user is in role of <see cref="Role.Admin"/>.
+        /// </summary>
+        /// <param name="user">User to check.</param>
+        /// <returns>Boolean value <c>true</c> if user is admin.</returns>
+        public static bool IsAdmin(this IPrincipal user)
+        {
+            return user.IsInRole(Role.Admin);
+        }
+
         private static string GetValue(this IIdentity identity, string name)
         {
             if (identity == null)
@@ -44,16 +54,6 @@ namespace System
                     return id.Value;
             }
             return null;
-        }
-
-        /// <summary>
-        /// Determines whether user is in role of <see cref="Role.Admin"/>.
-        /// </summary>
-        /// <param name="user">User to check.</param>
-        /// <returns>Boolean value <c>true</c> if user is admin.</returns>
-        public static bool IsAdmin(this IPrincipal user)
-        {
-            return user.IsInRole(Role.Admin);
         }
     }
 }

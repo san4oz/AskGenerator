@@ -142,7 +142,7 @@
     <value>Перейти до списку</value>
   </data>
   <data name="CheckPost" xml:space="preserve">
-    <value>На вказану вами електронну адресу буде надіслано лист, для закінчення реєстраціі.</value>
+    <value>На вказану вами електронну адресу буде надіслано лист, для закінчення реєстраціі</value>
   </data>
   <data name="Clean" xml:space="preserve">
     <value>Скинути</value>
@@ -388,7 +388,7 @@
     <value>Назва кафедри</value>
   </data>
   <data name="ConfirmNoRobot" xml:space="preserve">
-    <value>Підтвердіть, що ви не робот.</value>
+    <value>Підтвердіть, що ви не робот</value>
   </data>
   <data name="NoLastNameFound" xml:space="preserve">
     <value>Введене прізвище не знайдено у вказаній групі або вже використовується</value>
@@ -469,7 +469,7 @@
     <value>https://www.facebook.com/semka148</value>
   </data>
   <data name="nomURL" xml:space="preserve">
-    <value>http://nom-http://nom-networkofmentors.rhcloud.com/</value>
+    <value>http://nom-networkofmentors.rhcloud.com/</value>
   </data>
   <data name="vkdekURL" xml:space="preserve">
     <value>https://vk.com/dekanatfikt</value>
@@ -556,7 +556,7 @@
     <value>Повідомлення про вимкнуте голосування</value>
   </data>
   <data name="RegistrationClosed" xml:space="preserve">
-    <value>Вибачте, реєстрація тимчасово неможлива.</value>
+    <value>Вибачте, реєстрація тимчасово закрита</value>
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Зареєструватися</value>
@@ -595,7 +595,7 @@
     <value>Забули пароль?</value>
   </data>
   <data name="confirmmsg" xml:space="preserve">
-    <value>Протягом п'яти хвилин на Вашу електронну адресу буде надіслано повідомлення з подальшими вказівками для відновлення паролю.</value>
+    <value>Протягом п'яти хвилин на Вашу електронну адресу буде надіслано повідомлення з подальшими вказівками для відновлення паролю</value>
   </data>
   <data name="GiveEmailForForgotPass" xml:space="preserve">
     <value>Для відновлення паролю ведіть електрону адресу.</value>
