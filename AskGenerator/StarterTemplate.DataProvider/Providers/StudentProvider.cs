@@ -73,5 +73,15 @@ namespace AskGenerator.DataProvider.Providers
         {
             return GetSet(set => set.Where(s => s.Group.Id == groupId).ToList());
         }
+
+        /// <summary>
+        /// Gets list of students by specified faculty ID.
+        /// </summary>
+        /// <param name="groupId">Faculty identifier.</param>
+        /// <returns>List of students.</returns>
+        public List<Student> FacultyList(string facultyId)
+        {
+            return GetSet(set => set.Where(s => s.Group.FacultyId == facultyId).ToList());
+        }
     }
 }

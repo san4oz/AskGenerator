@@ -31,7 +31,10 @@ namespace AskGenerator.Controllers.Admin
         [HttpGet]
         public async Task<ActionResult> List()
         {
-            var students = await StudentManager.AllAsync();
+            var students = User.IsAdmin()
+                ? await StudentManager.AllAsync()
+                : StudentManager.FacultyList(User.Identity.GetGroupId());
+
             var viewModel = Map<IList<Student>, IList<StudentViewModel>>(students);
             return View(viewModel);
         }

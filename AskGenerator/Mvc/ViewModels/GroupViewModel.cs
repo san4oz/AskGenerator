@@ -14,5 +14,9 @@ namespace AskGenerator.ViewModels
         [Display(Name = "Group", ResourceType=typeof(Resources.Resource))]
         [Required]
         public string Name { get; set; }
+
+        [Display(Name = "Faculty", ResourceType = typeof(Resources.Resource))]
+        [UIHint("FacultySelector")]
+        public string FacultyId { get; set; }
     }
 }

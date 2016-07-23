@@ -23,5 +23,12 @@ namespace AskGenerator.Business.InterfaceDefinitions.Providers
         /// <param name="groupId">Group identifier.</param>
         /// <returns>List of students.</returns>
         List<Student> GroupList(string groupId);
+
+        /// <summary>
+        /// Gets list of students by specified faculty ID.
+        /// </summary>
+        /// <param name="groupId">Faculty identifier.</param>
+        /// <returns>List of students.</returns>
+        List<Student> FacultyList(string facultyId);
     }
 }

@@ -1229,7 +1229,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Group\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Group\List.cshtml" />
-    <Content Include="Areas\Admin\Views\Group\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Question\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Landing.cshtml" />

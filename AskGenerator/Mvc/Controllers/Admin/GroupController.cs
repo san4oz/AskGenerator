@@ -25,7 +25,10 @@ namespace AskGenerator.Controllers.Admin
         [HttpGet]
         public async Task<ActionResult> List( )
         {
-            var groups = await Site.GroupManager.AllAsync();
+            var groups = User.IsAdmin()
+                ? await GroupManager.AllAsync()
+                : GroupManager.GetByFaculty(User.Identity.GetGroupId());
+
             var viewModel = Map<IList<Group>, IList<GroupViewModel>>(groups);
             return View(viewModel);
         }
@@ -44,7 +47,9 @@ namespace AskGenerator.Controllers.Admin
             if (!ModelState.IsValid)
                 return View(viewModel);
             var group = Map<GroupViewModel, Group>(viewModel);
-            Site.GroupManager.Create(group);
+            if (!User.IsAdmin())
+                group.FacultyId = User.Identity.GetGroupId();
+            GroupManager.Create(group);
             return RedirectToAction("List");
         }
         #endregion
@@ -54,7 +59,7 @@ namespace AskGenerator.Controllers.Admin
         public ActionResult Edit(string id)
         {
             IsEditing = true;
-            var group = Site.GroupManager.Get(id);
+            var group = GroupManager.Get(id);
             if (group == null)
                 return HttpNotFound("Group ({0}) was not found".FormatWith(id));
             return View("Create", Map<Group, GroupViewModel>(group));
@@ -66,7 +71,9 @@ namespace AskGenerator.Controllers.Admin
             if (!ModelState.IsValid)
                 return View("Create", viewModel);
             var group = Map<GroupViewModel, Group>(viewModel);
-            Site.GroupManager.Update(group, false);
+            if (!User.IsAdmin())
+                group.FacultyId = User.Identity.GetGroupId();
+            GroupManager.Update(group, false);
             return RedirectToAction("List");
         }
         #endregion
