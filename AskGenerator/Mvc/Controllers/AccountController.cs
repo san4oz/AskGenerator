@@ -8,12 +8,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using AskGenerator.DataProvider;
 using AskGenerator.ViewModels;
-using AskGenerator.ViewModels;
 using AskGenerator.Business.Entities;
 using AskGenerator.Helpers;
 using Microsoft.Owin.Security;
 using Resources;
 using Microsoft.AspNet.Identity.EntityFramework;
+using AskGenerator.Business.InterfaceDefinitions.Managers;
 
 namespace AskGenerator.Mvc.Controllers
 {
@@ -22,7 +22,7 @@ namespace AskGenerator.Mvc.Controllers
         const string ConirmRegistrationMail = "ConirmRegistration";
         const string ConirmVoiteMail = "ConirmVoite";
         const string ResetPassMail = "ResetPass";
-
+        protected IStudentManager StudentManager { get; private set; }
         #region Managers
         protected UserManager Manager
         {
@@ -128,7 +128,47 @@ namespace AskGenerator.Mvc.Controllers
         }
         #endregion
 
+        #region PrivateOffice
+        private Student DecomposeStudentViewModel(PrivateOfficeViewModel model)
+        {
+            var existing = Site.StudentManager.Get(model.Id);
+            var student = Map<PrivateOfficeViewModel, Student>(model);
+            var group = Site.GroupManager.Get(model.GroupId);
+            student.Group = group;          
+            student.AccountId = existing.AccountId;         
+            return student;
+        }
+        [HttpGet]
+        public ActionResult PrivateOffice(string id)
+        {
+            if (id.IsEmpty())
+                return HttpNotFound("Student ID was not specified.");
+            var student = Site.StudentManager.Get(id);
+            if (student == null)
+                return HttpNotFound("Student ('{0}') was not specified.".FormatWith(id));
 
+            var model = Map<Student, PrivateOfficeViewModel>(student);
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult PrivateOffice(PrivateOfficeViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var edited = DecomposeStudentViewModel(model);
+            if (!User.IsAdmin() && !edited.Group.FacultyId.iEquals(User.Identity.GetGroupId()))
+            {
+                ModelState.AddModelError("GroupId", "Forbidden group.");
+                return View(model);
+            }
+            StudentManager.Update(edited);
+            if (!Site.Settings.Website().IsVotingEnabled)
+                return RedirectToAction("Board", "Home");
+            return RedirectToAction("Index", "Home");
+        }
+        #endregion
 
         public ActionResult VoitResult(string id, string param = null)
         {
@@ -253,7 +293,7 @@ namespace AskGenerator.Mvc.Controllers
             return View();
         }
         #endregion
-
+        #region ForgotPassword
         public ActionResult ForgotPassword()
         {
             return View();
@@ -285,7 +325,8 @@ namespace AskGenerator.Mvc.Controllers
         {
             return View();
         }
-
+        #endregion
+        #region ResetPassword
         public ActionResult ResetPassword(string id, string token)
         {
             if (token.IsEmpty() || id.IsEmpty())
@@ -329,7 +370,7 @@ namespace AskGenerator.Mvc.Controllers
         {
             return View();
         }
-
+        #endregion
 
         #region checkLastName
         protected Task<Student> checkLastNameAsync(string lastName, string groupId)
