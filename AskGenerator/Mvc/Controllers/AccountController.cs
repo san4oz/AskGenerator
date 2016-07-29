@@ -22,8 +22,10 @@ namespace AskGenerator.Mvc.Controllers
         const string ConirmRegistrationMail = "ConirmRegistration";
         const string ConirmVoiteMail = "ConirmVoite";
         const string ResetPassMail = "ResetPass";
-        protected IStudentManager StudentManager { get; private set; }
+
         #region Managers
+        protected IStudentManager StudentManager { get; private set; }
+
         protected UserManager Manager
         {
             get
@@ -130,24 +132,18 @@ namespace AskGenerator.Mvc.Controllers
 
         #region PrivateOffice
         [HttpGet]
-        public ActionResult PrivateOffice(string id)
+        public ActionResult PrivateOffice()
         {
-            if (id.IsEmpty())
-                return HttpNotFound("Student ID was not specified.");
-            var student = Site.StudentManager.Get(id);
-            if (student == null)
-                return HttpNotFound("Student ('{0}') was not specified.".FormatWith(id));
 
-            var model = Map<Student, PrivateOfficeViewModel>(student);
-            return View(model);
+            return View();
         }
 
         [HttpPost]
-        public ActionResult PrivateOffice(PrivateOfficeViewModel model)
+        public ActionResult PrivateOffice(PrivateOfficeModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
-
+            /*
             var edited = DecomposeStudentViewModel(model);
             if (!User.IsAdmin() && !edited.Group.FacultyId.iEquals(User.Identity.GetGroupId()))
             {
@@ -156,7 +152,7 @@ namespace AskGenerator.Mvc.Controllers
             }
             StudentManager.Update(edited);
             if (!Site.Settings.Website().IsVotingEnabled)
-                return RedirectToAction("Board", "Home");
+                return RedirectToAction("Board", "Home");*/
             return RedirectToAction("Index", "Home");
         }
         #endregion
@@ -167,8 +163,6 @@ namespace AskGenerator.Mvc.Controllers
   
             return null;
         }
-
-
 
         #region Register
         [OutputCache(CacheProfile = "Cache1Hour")]
@@ -291,7 +285,7 @@ namespace AskGenerator.Mvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ForgotPassword(AskGenerator.ViewModels.ForgotPasswordViewModel model)
+        public async Task<ActionResult> ForgotPassword(AskGenerator.ViewModels.ForgotPasswordModel model)
         {
             if (ModelState.IsValid)
             {
@@ -363,6 +357,24 @@ namespace AskGenerator.Mvc.Controllers
         }
         #endregion
 
+        protected Dictionary<string, string> CreateTags(string id, string callbackUrl = null)
+        {
+            var result = new Dictionary<string, string>();
+            result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
+            result.Add("siteName", "Evaluate");
+            result.Add("confirmURL", HttpContext.Request.Url.GetLeftPart(UriPartial.Authority).TrimEnd('/') + Url.Action("Confirm", new { id = id }));
+            result.Add("callbackUrl", callbackUrl);
+            return result;
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
+        }
+
         #region checkLastName
         protected Task<Student> checkLastNameAsync(string lastName, string groupId)
         {
@@ -392,33 +404,5 @@ namespace AskGenerator.Mvc.Controllers
             return null;
         }
         #endregion
-
-        protected Dictionary<string, string> CreateTags(string id, string callbackUrl = null)
-        {
-            var result = new Dictionary<string, string>();
-            result.Add("siteURL", "http://ztu-fikt.azurewebsites.net/");
-            result.Add("siteName", "Evaluate");
-            result.Add("confirmURL", HttpContext.Request.Url.GetLeftPart(UriPartial.Authority).TrimEnd('/') + Url.Action("Confirm", new { id = id }));
-            result.Add("callbackUrl", callbackUrl);
-            return result;
-        }
-
-        private void AddErrors(IdentityResult result)
-        {
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error);
-            }
-        }
-
-        private Student DecomposeStudentViewModel(PrivateOfficeViewModel model)
-        {
-            var existing = Site.StudentManager.Get(model.Id);
-            var student = Map<PrivateOfficeViewModel, Student>(model);
-            var group = Site.GroupManager.Get(model.GroupId);
-            student.Group = group;
-            student.AccountId = existing.AccountId;
-            return student;
-        }
     }
 }

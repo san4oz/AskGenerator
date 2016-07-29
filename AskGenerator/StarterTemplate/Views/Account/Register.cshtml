@@ -1,14 +1,14 @@
-﻿@model AskGenerator.ViewModels.RegistrationModel
+﻿@model RegistrationModel
 
 @{
     Robots.Index = false;
-    ViewBag.Title = @Resources.Resource.RegisterUser;
+    ViewBag.Title = Resource.RegisterUser;
 }
 
-<div class="col-md-offset-2 col-md-8 min-form">
+<div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 min-form">
     <div class="panel panel-default bootstrap-admin-no-table-panel">
         <div class="panel-heading">
-            <div class=" bootstrap-admin-box-title h3">@Resources.Resource.Register</div>
+            <div class="bootstrap-admin-box-title h3">@Resource.Register</div>
         </div>
         <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
             @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "form" }))
@@ -20,10 +20,12 @@
 
                     @Html.EditorForModel()
                 </fieldset>
-                <div class="col-md-offset-5 col-md-7" style="padding: 0">
-                    <div id="g-recaptcha"></div>
-                    <button type="submit" id="sendBtn" disabled="disabled" class="btn btn-primary">@Resources.Resource.SignUp</button>
-                    <button type="reset" class="btn btn-default">@Resources.Resource.CleanForm</button>
+                <div class="form-group">
+                    <div class="col-md-offset-5 col-md-7" style="padding: 0">
+                        <div id="g-recaptcha"></div>
+                        <button type="submit" id="sendBtn" disabled="disabled" class="btn btn-primary">@Resource.SignUp</button>
+                        <button type="reset" class="btn btn-default">@Resource.CleanForm</button>
+                    </div>
                 </div>
             }
         </div>
@@ -34,7 +36,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#GroupId").select2({
-                placeholder: "@Resources.Resource.SelectGroup",
+                placeholder: "@Resource.SelectGroup",
                 width: '80%',
                 maximumSelectionLength: 20
             });

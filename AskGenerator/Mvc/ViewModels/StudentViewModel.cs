@@ -10,6 +10,7 @@ using System.Web;
 
 namespace AskGenerator.ViewModels
 {
+    using Mvc.Components.Attributes;
     using R = Resources.Resource;
     public class StudentViewModel : BaseViewModel, IMapFrom<Student>
     {
@@ -19,7 +20,7 @@ namespace AskGenerator.ViewModels
         [Display(Name = "LastName", ResourceType = typeof(R))]
         public string LastName { get; set; }
 
-        [Required]
+        [iRequired]
         [Display(Name = "Group", ResourceType = typeof(R))]
         [UIHint("GroupSelector")]
         public string GroupId { get; set; }

@@ -6,114 +6,51 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using AskGenerator.Business.Entities;
 
 namespace AskGenerator.ViewModels
 {
-    using Business.Entities;
+    using Mvc.Components.Attributes;
     using R = Resources.Resource;
-    public class PrivateOfficeViewModel : BaseViewModel, IMapFrom<Student>
+    public class PrivateOfficeModel : UserModelBase
     {
-        [Display(Name = "FirstName", ResourceType = typeof(R))]
-        public string FirstName { get; set; }
+        [iRequired]
+        public override string Email { get; set; }
 
-        [Display(Name = "LastName", ResourceType = typeof(R))]
-        public string LastName { get; set; }
+        [iRequired]
+        public override string Password { get; set; }
 
-        [Required]
-        [Display(Name = "Group", ResourceType = typeof(R))]
-        [UIHint("GroupSelector")]
-        public string GroupId { get; set; }
-
-        [Display(Name = "Group", ResourceType = typeof(R))]
-        public GroupViewModel Group { get; set; }
-
-
-        /// <summary>
-        /// Indicates whether student has registred account.
-        /// </summary>
-        public bool HasUserAccount { get; set; }
-
-        [MaxLength(128)]
-        public string AccountId { get; set; }
-
-        [Display(Name = "Student", ResourceType = typeof(R))]
-        public string Name
-        {
-            get { return string.Format("{0} {1}", FirstName, LastName); }
-        }
+        [iRequired]
+        public override string PasswordConfirm { get; set; }
     }
-    public class ExternalLoginConfirmationModel
-        {
-            [Required]
-            [Display(Name = "Адрес электронной почты")]
-            public string Email { get; set; }
-        }
-
-        public class ExternalLoginListModel
-        {
-            public string ReturnUrl { get; set; }
-        }
-
-        public class SendCodeViewModel
-        {
-            public string SelectedProvider { get; set; }
-
-            public ICollection<SelectListItem> Providers { get; set; }
-
-            public string ReturnUrl { get; set; }
-
-            public bool RememberMe { get; set; }
-        }
-
-        public class VerifyCodeModel
-        {
-            [Required]
-            public string Provider { get; set; }
-
-            [Required]
-            [Display(Name = "Код")]
-            public string Code { get; set; }
-            public string ReturnUrl { get; set; }
-
-            [Display(Name = "Запомнить браузер?")]
-            public bool RememberBrowser { get; set; }
-
-            public bool RememberMe { get; set; }
-        }
-
-        public class ForgotModel
-        {
-            [Required]
-            [Display(Name = "Адрес электронной почты")]
-            public string Email { get; set; }
-        }
 
 
-        public class ResetPasswordModel
-        {
+    public class ResetPasswordModel
+    {
+        [iRequired]
+        [StringLength(20, MinimumLength = 6, ErrorMessageResourceName = "ValidLenght", ErrorMessageResourceType = typeof(R))]
+        [Display(Name = "Password", ResourceType = typeof(R))]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Пароль")]
-            public string Password { get; set; }
+        [StringLength(20, MinimumLength = 6, ErrorMessageResourceName = "ValidLenght", ErrorMessageResourceType = typeof(R))]
+        [Display(Name = "Password", ResourceType = typeof(R))]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
 
-            [DataType(DataType.Password)]
-            [Display(Name = "Подтверждение пароля")]
-            [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
-            public string ConfirmPassword { get; set; }
+        public string Code { get; set; }
 
-            public string Code { get; set; }
-
-            public string Id { get; set; }
-        }
-
-        public class ForgotPasswordViewModel
-        {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Почта")]
-            public string Email { get; set; }
-        }
+        public string Id { get; set; }
     }
+
+    public class ForgotPasswordModel
+    {
+        [iRequired]
+        [Display(Name = "Email", ResourceType = typeof(R))]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessageResourceName = "RegularAddress",
+                                                                               ErrorMessageResourceType = typeof(R))]
+        [DataType(DataType.EmailAddress, ErrorMessageResourceName = "RegularAddress", ErrorMessageResourceType = typeof(R))]
+        public string Email { get; set; }
+    }
+}
 

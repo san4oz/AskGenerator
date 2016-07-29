@@ -1,5 +1,6 @@
 ﻿using AskGenerator.App_Start.AutoMapper;
 using AskGenerator.Business.Entities;
+using AskGenerator.Mvc.Components.Attributes;
 using AskGenerator.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace AskGenerator.Mvc.ViewModels
     public class TeamViewModel : BaseViewModel, IMapFrom<Team>
     {
         [Display(Name = "TeamName", ResourceType = typeof(Resources.Resource))]
-        [Required]
+        [iRequired]
         public string Name { get; set; }
     }
 }

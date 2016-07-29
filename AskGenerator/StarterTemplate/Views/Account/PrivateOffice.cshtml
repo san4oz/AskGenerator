@@ -1,9 +1,8 @@
-﻿@model PrivateOfficeViewModel
+﻿@model UserModelBase
 @using System.Linq.Expressions;
 
 @{
-    ViewBag.Title = @Resource.EditStudent;
-    var maxSize = "100px";
+    ViewBag.Title = Resource.EditStudent;
 }
 
 <div class="col-md-10">
@@ -13,45 +12,7 @@
                 <div class="text-muted bootstrap-admin-box-title">@Resource.Student</div>
             </header>
             <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
-                @using (Html.BeginForm("Edit", "Student", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
-                {
-                    <fieldset>
-                        <legend>@Resource.EditStudent</legend>
-                        @Html.HiddenFor(x => x.Id)
-
-                        @TextBoxGroup(x => x.FirstName)
-                        @TextBoxGroup(x => x.LastName)
-
-                        <div class="form-group">
-                            @Html.LabelFor(x => x.GroupId, htmlAttributes: new { @class = "col-lg-2 control-label" })
-                            <div class="col-lg-10">
-                                @Html.EditorFor(x => x.GroupId)
-                            </div>
-                            @Html.ValidationMessageFor(x => x.GroupId, null, htmlAttributes: new { @class = "col-lg-10" })
-                        </div>
-
-                        @if (User.IsAdmin()) { 
-                            
-                            @TextBoxGroup(x => x.AccountId)
-
-                            <div class="form-group">
-                                @Html.LabelFor(x => x.HasUserAccount, htmlAttributes: new { @class = "col-lg-2 control-label" })
-                                <div class="col-lg-10">
-                                    @Html.EditorFor(x => x.HasUserAccount)
-                                </div>
-                                @Html.ValidationMessageFor(x => x.HasUserAccount, null, htmlAttributes: new { @class = "col-lg-10" })
-                            </div>
-                        }                 
-
-                        @if (!Model.AccountId.IsNullOrWhiteSpace() && User.IsAdmin())
-                        {
-                            @Html.ActionLink("Edit account", "Edit", "Account", new { id=Model.AccountId, returnUrl = Request.Url.PathAndQuery }, null)
-                        }
-                        
-                        @Html.SubmitBtn(Resource.Save)
-                        @Html.ClearBtn(Resource.Clean)
-                    </fieldset>
-                }
+                
             </div>
         </div>
     </div>
@@ -68,14 +29,15 @@
         });
     </script>
 }
-
-@helper TextBoxGroup(Expression<Func<PrivateOfficeViewModel, string>> selector, string type = "text")
-{
-    <div class="form-group">
-        @Html.LabelFor(selector, htmlAttributes: new { @class = "col-lg-2 control-label" })
-        <div class="col-lg-10">
-            @Html.TextBoxFor(selector, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(selector)
+@*
+    @helper TextBoxGroup(Expression<Func<PrivateOfficeViewModel, string>> selector, string type = "text")
+    {
+        <div class="form-group">
+            @Html.LabelFor(selector, htmlAttributes: new { @class = "col-lg-2 control-label" })
+            <div class="col-lg-10">
+                @Html.TextBoxFor(selector, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(selector)
+            </div>
         </div>
-    </div>
-}
+    }
+*@

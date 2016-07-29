@@ -7,17 +7,18 @@ using System.Threading.Tasks;
 
 namespace AskGenerator.ViewModels
 {
+    using Mvc.Components.Attributes;
     using R = Resources.Resource;
     public class LoginViewModel
     {
-        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(R))]
+        [iRequired]
         [Display(Name = "Email", ResourceType = typeof(R))]
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessageResourceName = "RegularAddress",
                                                                                ErrorMessageResourceType = typeof(R))]
         [DataType(DataType.EmailAddress, ErrorMessageResourceName = "RegularAddress", ErrorMessageResourceType = typeof(R))]
         public string Email { get; set; }
 
-        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(R))]
+        [iRequired]
         [Display(Name = "Password", ResourceType = typeof(R))]
         [StringLength(20, MinimumLength = 6, ErrorMessageResourceName = "ValidLenght", ErrorMessageResourceType = typeof(R))]
         [DataType(DataType.Password)]

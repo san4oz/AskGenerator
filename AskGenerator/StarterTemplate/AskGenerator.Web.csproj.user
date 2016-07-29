@@ -9,6 +9,7 @@
     </WebStackScaffolding_LayoutPageFile>
     <ProjectView>ProjectFiles</ProjectView>
     <NameOfLastUsedPublishProfile>ztu-fikt - Web Deploy</NameOfLastUsedPublishProfile>
+    <UseIISExpress>true</UseIISExpress>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

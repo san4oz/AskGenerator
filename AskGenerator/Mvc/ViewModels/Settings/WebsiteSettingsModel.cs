@@ -1,15 +1,10 @@
 ﻿using AskGenerator.App_Start.AutoMapper;
-using AskGenerator.Business.Entities;
 using AskGenerator.Business.Entities.Settings;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AskGenerator.Mvc.ViewModels.Settings
 {
+    using Components.Attributes;
     using System.Web.Mvc;
     using R = Resources.Resource;
     public class WebsiteSettingsModel : AskGenerator.ViewModels.BaseViewModel, IMapFrom<WebsiteSettings>
@@ -21,7 +16,7 @@ namespace AskGenerator.Mvc.ViewModels.Settings
         public bool RegisterOpened { get; set; }
 
         [Display(Name = "VotingDisabledText", ResourceType = typeof(R))]
-        [Required(ErrorMessageResourceName = "Required", ErrorMessageResourceType = typeof(R))]
+        [iRequired]
         [AllowHtml]
         public string VotingDisabledText { get; set; }
 

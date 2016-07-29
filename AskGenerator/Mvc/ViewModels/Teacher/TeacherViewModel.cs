@@ -1,12 +1,9 @@
 ﻿using AskGenerator.App_Start.AutoMapper;
 using AskGenerator.Business.Entities;
-using AskGenerator.Mvc.ViewModels;
-using System;
+using AskGenerator.Mvc.Components.Attributes;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -35,7 +32,7 @@ namespace AskGenerator.ViewModels
         /// <summary>
         /// Gets or sets value indicating sex of teacher.
         /// </summary>
-        [Required]
+        [iRequired]
         [Display(Name = "Is male")]
         public bool IsMale { get; set; }
 

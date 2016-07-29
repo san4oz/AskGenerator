@@ -601,15 +601,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Вкажіть группу у якій навчається студент.
-        /// </summary>
-        public static string GroupRequired {
-            get {
-                return ResourceManager.GetString("GroupRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Групи.
         /// </summary>
         public static string Groups {
@@ -795,24 +786,6 @@ namespace Resources {
         public static string LogOut {
             get {
                 return ResourceManager.GetString("LogOut", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Пояснення найнижчої оцінки.
-        /// </summary>
-        public static string LowerRateDescription {
-            get {
-                return ResourceManager.GetString("LowerRateDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Поле &quot;Пояснення найнижчої оцінки&quot; повино бути заповнене.
-        /// </summary>
-        public static string LowerRateDescriptionRequired {
-            get {
-                return ResourceManager.GetString("LowerRateDescriptionRequired", resourceCulture);
             }
         }
         

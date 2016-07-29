@@ -544,10 +544,6 @@ a.help {
     position: relative;
 }
 
-.teacher-tile .img-thumbnail {
-    position: relative;
-}
-
     .teacher-tile .img-thumbnail > .photo {
         bottom: 0;
         left: 1px;
@@ -599,6 +595,10 @@ a.help {
         height: 1.45em;
         margin-top: -2.2em;
         opacity: 0.8;
+    }
+
+    .form-horizontal .form-group{
+        margin-left: 0;
     }
 }
 
@@ -720,4 +720,16 @@ table .selected td:first-child::before {
 
 #team-table {
     display: inline-block;
+}
+
+@media (min-width: 768px) {
+    
+
+    #g-recaptcha {
+        margin-top: 4px;
+    }
+}
+
+.form-group button[type="submit"], .form-group button[type="reset"], .form-group iframe {
+    margin-left: 15px;
 }

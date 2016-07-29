@@ -204,9 +204,6 @@
   <data name="GroupName" xml:space="preserve">
     <value>Назва групи</value>
   </data>
-  <data name="GroupRequired" xml:space="preserve">
-    <value>Вкажіть группу у якій навчається студент</value>
-  </data>
   <data name="Groups" xml:space="preserve">
     <value>Групи</value>
   </data>
@@ -245,9 +242,6 @@
   </data>
   <data name="LowerRateDescription" xml:space="preserve">
     <value>Пояснення найнижчої оцінки</value>
-  </data>
-  <data name="LowerRateDescriptionRequired" xml:space="preserve">
-    <value>Поле "Пояснення найнижчої оцінки" повино бути заповнене</value>
   </data>
   <data name="MyMVCAdminTemplate" xml:space="preserve">
     <value>*My MVC Admin Template</value>
