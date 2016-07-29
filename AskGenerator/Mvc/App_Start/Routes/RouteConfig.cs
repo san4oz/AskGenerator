@@ -39,6 +39,24 @@ namespace AskGenerator.App_Start.Routes
             );
 
             routes.MapRoute(
+                name: "PrivateOffice",
+                url: "profile",
+                defaults: new { controller = "Account", action = "PrivateOffice" }
+            );
+
+            routes.MapRoute(
+                name: "ForgotPassword",
+                url: "profile/forgot",
+                defaults: new { controller = "Account", action = "ForgotPassword" }
+            );
+
+            routes.MapRoute(
+                name: "ResetPassword",
+                url: "profile/reset",
+                defaults: new { controller = "Account", action = "ResetPassword" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
                 defaults: new { controller = "Home", action = "Index" }

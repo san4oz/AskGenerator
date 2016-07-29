@@ -129,15 +129,6 @@ namespace AskGenerator.Mvc.Controllers
         #endregion
 
         #region PrivateOffice
-        private Student DecomposeStudentViewModel(PrivateOfficeViewModel model)
-        {
-            var existing = Site.StudentManager.Get(model.Id);
-            var student = Map<PrivateOfficeViewModel, Student>(model);
-            var group = Site.GroupManager.Get(model.GroupId);
-            student.Group = group;          
-            student.AccountId = existing.AccountId;         
-            return student;
-        }
         [HttpGet]
         public ActionResult PrivateOffice(string id)
         {
@@ -172,9 +163,7 @@ namespace AskGenerator.Mvc.Controllers
 
         public ActionResult VoitResult(string id, string param = null)
         {
-       
             Mailer.Send(ConirmVoiteMail, id, CreateTags(null));
-  //            var user = await Manager.FindByEmailAsync(not);
   
             return null;
         }
@@ -293,6 +282,7 @@ namespace AskGenerator.Mvc.Controllers
             return View();
         }
         #endregion
+
         #region ForgotPassword
         public ActionResult ForgotPassword()
         {
@@ -326,6 +316,7 @@ namespace AskGenerator.Mvc.Controllers
             return View();
         }
         #endregion
+
         #region ResetPassword
         public ActionResult ResetPassword(string id, string token)
         {
@@ -418,6 +409,16 @@ namespace AskGenerator.Mvc.Controllers
             {
                 ModelState.AddModelError("", error);
             }
+        }
+
+        private Student DecomposeStudentViewModel(PrivateOfficeViewModel model)
+        {
+            var existing = Site.StudentManager.Get(model.Id);
+            var student = Map<PrivateOfficeViewModel, Student>(model);
+            var group = Site.GroupManager.Get(model.GroupId);
+            student.Group = group;
+            student.AccountId = existing.AccountId;
+            return student;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model AskGenerator.ViewModels.LoginViewModel
+﻿@model LoginViewModel
 @{
     var notRegisteredText = "Якщо ви не зареєстровані і не маєте ключа, будь ласка, зверніться до адміністрації сайту.";
     ViewBag.Title = Resource.LogIn;
@@ -10,7 +10,7 @@
 <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8 min-form">
     <div class="panel panel-default bootstrap-admin-no-table-panel">
         <div class="panel-heading">
-            <div class="bootstrap-admin-box-title h3">@Resources.Resource.LogIn</div>
+            <div class="bootstrap-admin-box-title h3">@Resource.LogIn</div>
         </div>
         <div class="bootstrap-admin-no-table-panel-content bootstrap-admin-panel-content collapse in">
             @Login(notRegisteredText)
@@ -51,22 +51,22 @@
 @helper Login(string notRegisteredText)
 { 
     <form method="post" class="form-horizontal">
-            @Html.AntiForgeryToken()
-            <fieldset>
-                <legend></legend>
-                @Html.ValidationSummary(true)
-                @Html.EditorForModel()
-                <div class="col-md-offset-5 col-md-7">
-                    <button type="submit" class="btn btn-primary">@Resource.LogIn </button>
-                    <button type="reset" class="btn btn-default">@Resource.Clean</button>
-                    @if (WebsiteSettings.RegisterOpened) {
-                        @Html.ActionLink(Resource.NotRegistred, "Register")
-                    }
-                    else {
-                        <a href="#" class="help" data-content="@notRegisteredText.">@Resource.NotRegistred</a>
-                    }
-                    @Html.ActionLink(Resource.forgotpassword, "ForgotPassword")
-                </div>
-            </fieldset>
-        </form>
+        @Html.AntiForgeryToken()
+        <fieldset>
+            <legend></legend>
+            @Html.ValidationSummary(true)
+            @Html.EditorForModel()
+            <div class="col-md-offset-5 col-md-7">
+                <button type="submit" class="btn btn-primary">@Resource.LogIn </button>
+                <button type="reset" class="btn btn-default">@Resource.Clean</button>
+                @if (WebsiteSettings.RegisterOpened) {
+                    @Html.ActionLink(Resource.NotRegistred, "Register")
+                }
+                else {
+                    <a href="#" class="help" data-content="@notRegisteredText.">@Resource.NotRegistred</a>
+                }
+                @Html.RouteLink(Resource.ForgotPassword, "ForgotPassword")
+            </div>
+        </fieldset>
+    </form>
 }
