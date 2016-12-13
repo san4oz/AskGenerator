@@ -1259,6 +1259,8 @@
     <Content Include="Areas\Admin\Views\Setting\EditorTemplates\Iterations.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\EditorTemplates\FacultySelector.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\ThisIsSparta - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\ThisIsSparta.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jqmeter\jqmeter.js" />
     <Content Include="Scripts\jqmeter\jqmeter.min.js" />
@@ -1294,7 +1296,9 @@
     <Content Include="Scripts\twitter-bootstrap-hover-dropdown.js" />
     <Content Include="Scripts\twitter-bootstrap-hover-dropdown.min.js" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
