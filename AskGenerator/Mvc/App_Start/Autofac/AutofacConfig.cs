@@ -58,6 +58,7 @@ namespace AskGenerator.App_Start.Autofac
             builder.RegisterType<SubscribersManager>().As<IBaseEntityManager<Subscriber>>();
             builder.RegisterType<SettingManager>().As<ISettingManager>();
             builder.RegisterType<HistoryManager>().As<IHistoryManager>();
+            builder.RegisterType<CacheManager>().As<CacheManager>();
         }
     }
 }

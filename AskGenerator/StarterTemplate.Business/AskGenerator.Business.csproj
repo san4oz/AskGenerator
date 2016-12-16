@@ -171,6 +171,7 @@
     <Compile Include="InterfaceDefinitions\Providers\RoleManagerBase.cs" />
     <Compile Include="Managers\BaseEntityManager.cs" />
     <Compile Include="Managers\BaseManager.cs" />
+    <Compile Include="Managers\CacheManager.cs" />
     <Compile Include="Managers\GroupManager.cs" />
     <Compile Include="Managers\HistoryManager.cs" />
     <Compile Include="Managers\QuestionManager.cs" />

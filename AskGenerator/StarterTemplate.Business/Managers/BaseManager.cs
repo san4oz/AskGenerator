@@ -16,24 +16,6 @@ namespace AskGenerator.Business.Managers
         protected const string IgnoreCacheScopeName = "ignorecache";
         protected const string UpdateCacheScopeName = "updatecache";
 
-        /// <summary>
-        /// Sets flag indicating to ignore cache.
-        /// </summary>
-        /// <returns>Disposable object.</returns>
-        public static IDisposable IgnoreCache()
-        {
-            return new ThreadScope(IgnoreCacheScopeName);
-        }
-
-        /// <summary>
-        /// Sets flag indicating to update cache.
-        /// </summary>
-        /// <returns>Disposable object.</returns>
-        public static IDisposable UpdateCache()
-        {
-            return new ThreadScope(UpdateCacheScopeName);
-        }
-
         MemoryCache cache;
 
         /// <summary>

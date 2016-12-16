@@ -34,11 +34,11 @@ namespace AskGenerator.DataProvider
         {
             var result = await base.CreateIdentityAsync(user, authenticationType);
 
-            result.AddClaim(new Claim(ClaimTypes.Email, user.Email.Or(string.Empty)));
+            result.AddClaim(new Claim(ClaimTypes.Email, user.Email ?? string.Empty));
             if(user.StudentId.IsEmpty())
-                result.AddClaim(new Claim("FacultyId", user.GroupId));
+                result.AddClaim(new Claim("FacultyId", user.GroupId ?? string.Empty));
             else
-                result.AddClaim(new Claim("GroupId", user.GroupId));
+                result.AddClaim(new Claim("GroupId", user.GroupId ?? string.Empty));
             result.AddClaim(new Claim("UId", user.Id));
 
             return result;

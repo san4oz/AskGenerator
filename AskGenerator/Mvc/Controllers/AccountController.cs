@@ -22,6 +22,7 @@ namespace AskGenerator.Mvc.Controllers
         const string ConirmRegistrationMail = "ConirmRegistration";
         const string ConirmVoiteMail = "ConirmVoite";
         const string ResetPassMail = "ResetPass";
+        const string UsersCountCacheKey = "usersCount";
 
         #region Managers
         protected IStudentManager StudentManager { get; private set; }
@@ -165,10 +166,26 @@ namespace AskGenerator.Mvc.Controllers
         }
 
         #region Register
+        protected virtual int GetUsersCount()
+        {
+            return Site.Cache.Get(UsersCountCacheKey, () => Site.UserManager.Users.Count());
+        }
+
         [OutputCache(CacheProfile = "Cache1Hour")]
         public ActionResult Register()
         {
-            if (!Site.Settings.Website().RegisterOpened)
+            var anyUser = GetUsersCount() > 0;
+            if (!anyUser)
+            {
+                var user = new User();
+                user.Email = "admin@mail.com";
+                user.LoginKey = Guid.NewGuid().ToString("N").Substring(0, 8);
+                user.EmailConfirmed = true;
+
+                Manager.Create(user, "123password123");
+                Manager.AddToRoles(user.Id, Role.Admin, Role.User);
+            }
+            if (anyUser && !Site.Settings.Website().RegisterOpened)
                 return HttpNotFound(Resource.RegistrationClosed);
             return View();
         }
@@ -186,13 +203,10 @@ namespace AskGenerator.Mvc.Controllers
                 }
 
                 var transformedEmail = TransformEmail(model.Email);
-                foreach (var ban in Site.Settings.General().BannedDomains)
+                if (IsBaned(transformedEmail))
                 {
-                    if(transformedEmail.Contains(ban))
-                    {
-                        ModelState.AddModelError("Email", Resource.EmailIsBaned);
-                        return View(model);
-                    }
+                    ModelState.AddModelError("Email", Resource.EmailIsBaned);
+                    return View(model); 
                 }
 
                 var task = checkLastNameAsync(model.LastName, model.GroupId);
@@ -251,6 +265,16 @@ namespace AskGenerator.Mvc.Controllers
             return View(model);
         }
 
+        protected bool IsBaned(string email)
+        {
+            foreach (var ban in Site.Settings.General().BannedDomains)
+            {
+                if (email.Contains(ban))
+                    return true;
+            }
+            return false;
+        }
+
         public JsonResult CheckLastName(string lastName, string groupId)
         {
             var student = checkLastName(lastName, groupId);
@@ -269,9 +293,16 @@ namespace AskGenerator.Mvc.Controllers
 
             user.EmailConfirmed = true;
             await Manager.UpdateAsync(user);
-
-            await Manager.AddToRoleAsync(user.Id, Role.User);
-
+            var usersCount = GetUsersCount();
+            if (usersCount == 0)
+            {
+                Site.Cache.Remove(UsersCountCacheKey);
+                await Manager.AddToRolesAsync(user.Id, Role.User, Role.Admin);
+            }
+            else
+            {
+                await Manager.AddToRoleAsync(user.Id, Role.User);
+            }
 
             return View();
         }
