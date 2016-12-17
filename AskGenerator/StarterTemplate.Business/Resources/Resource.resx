@@ -242,6 +242,7 @@
   </data>
   <data name="LowerRateDescription" xml:space="preserve">
     <value>Пояснення найнижчої оцінки</value>
+    <comment>LowerRateDescription</comment>
   </data>
   <data name="MyMVCAdminTemplate" xml:space="preserve">
     <value>*My MVC Admin Template</value>
