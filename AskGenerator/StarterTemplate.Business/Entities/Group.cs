@@ -74,10 +74,12 @@ namespace AskGenerator.Business.Entities
         public override void Apply()
         {
             var stat = Fields.GetOrCreate<Statistics>("Statistics", () => new Statistics());
+            if (this.Marks == null)
+                this.Marks = new Dictionary<string, AnswerCountDictionary>(0);
 
-            stat.AverageVote = AverageVote;
-            stat.StudentsCount = StudentsCount;
-            stat.Marks = new SerializableDictionary<string, AnswerCountDictionary>(Marks);
+            stat.AverageVote = this.AverageVote;
+            stat.StudentsCount = this.StudentsCount;
+            stat.Marks = new SerializableDictionary<string, AnswerCountDictionary>(this.Marks);
             stat.Rating = Rating;
         }
 

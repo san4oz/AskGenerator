@@ -35,10 +35,17 @@ namespace AskGenerator.DataProvider.Providers
                 {
                     if (teacher.Id.IsEmpty())
                         teacher.Id = Guid.NewGuid().ToString();
-                    var groups = context.Groups.Where(x => ids.Contains(x.Id))
-                        .Include(x => x.Students).Include(x => x.Teachers)
-                        .ToList();
-                    teacher.Groups = groups;
+                    if (ids != null && ids.Count > 0)
+                    {
+                        var groups = context.Groups.Where(x => ids.Contains(x.Id))
+                            .Include(x => x.Students).Include(x => x.Teachers)
+                            .ToList();
+                        teacher.Groups = groups;
+                    }
+                    else
+                    {
+                        teacher.Groups = new List<Group>();
+                    }
                     context.Teachers.Add(teacher);
                     context.SaveChanges();
                     return true;
