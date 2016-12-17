@@ -410,13 +410,16 @@ namespace AskGenerator.Mvc.Controllers
         protected Task<Student> checkLastNameAsync(string lastName, string groupId)
         {
             var manager = Site.StudentManager;
+            var gm = Site.GroupManager;
             if (!lastName.IsEmpty())
             {
                 return Task.Factory.StartNew(() =>
                 {
                     lastName = lastName.Trim().ToUpperInvariant();
                     var students = manager.GroupList(groupId);
-                    return students.FirstOrDefault(s => s.LastName.Trim().ToUpperInvariant() == lastName);
+                    var st =  students.FirstOrDefault(s => s.LastName.Trim().ToUpperInvariant() == lastName);
+                    st.Group = gm.Get(groupId);
+                    return st;
                 });
             }
 
